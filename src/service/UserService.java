@@ -1,6 +1,8 @@
 package service;
 
-import dao.userDao;
+import dao.UserDao;
+import exception.ApplicationException;
+import model.User;
 
 public class UserService {
     private UserDao userDao = new UserDao();

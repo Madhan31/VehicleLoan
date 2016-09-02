@@ -1,8 +1,14 @@
 package model;
 
+import java.util.Set;
+
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 import model.Payment;
@@ -38,7 +44,7 @@ public class LoanDetail {
         return loanDetailId;
     }
    
-    public String getBalanceAmount() {
+    public int getBalanceAmount() {
         return balanceAmount;
     }
    
@@ -46,7 +52,7 @@ public class LoanDetail {
         return balanceEmi;
     }
    
-    public set getPayment() {
+    public Payment getPayment() {
         return payment;
     }
    
@@ -54,7 +60,7 @@ public class LoanDetail {
         this.loanDetailId = loanDetailId;
     }
    
-    public void setLoanName(String balanceAmount) {
+    public void setLoanName(int balanceAmount) {
         this.balanceAmount = balanceAmount;
     }
     
