@@ -3,11 +3,12 @@
 
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <html>
-    <c:if test="${sessionScope['userName'] == null}" >
-        <c:redirect url = "logIn.jsp" />
+        <title>Welcome</title>
+    <c:if test="${null == sessionScope['userId']}" >
+        <c:redirect url = "logIn" />
     </c:if>
     <body>
-        <title>Welcome</title>
-         <c:redirect url = "welcome" />
+	Vehicle Loan
+   
     </body>
 </html>

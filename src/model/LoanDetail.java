@@ -8,6 +8,7 @@ import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
@@ -21,11 +22,15 @@ public class LoanDetail {
     @Column(name = "loan_detail_id",  unique = true)
     private int loanDetailId;
     
-    @Column(name = "balance_amount")
+    @Column(name = "balance__loan_amount")
     private int balanceAmount;
     
-    @Column(name = "balance_emi")
+    @Column(name = "balance_emi_months")
     private int balanceEmi;
+    
+    @ManyToOne(cascade = CascadeType.PERSIST)
+    @JoinColumn(name = "loan_id")
+    private Loan loan;    
     
     @OneToOne(cascade = CascadeType.PERSIST,fetch = FetchType.EAGER)
     @JoinColumn(name = "payment_id")
@@ -71,6 +76,18 @@ public class LoanDetail {
     public void setPayment(Payment payment) {
         this.payment = payment;
     }
+
+	public Loan getLoan() {
+		return loan;
+	}
+
+	public void setLoan(Loan loan) {
+		this.loan = loan;
+	}
+
+	public void setBalanceAmount(int balanceAmount) {
+		this.balanceAmount = balanceAmount;
+	}
     
 }
    

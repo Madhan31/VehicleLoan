@@ -30,6 +30,10 @@ import model.Role;
 @Table(name = "user_detail")
 public class User {
 
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    private int userId;
+	
     @Column(name = "first_name")
     private String firstName;
     
@@ -50,10 +54,6 @@ public class User {
     
     @Column(name = "password")
     private String password;
-    
-    @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    private int userId;
     
     @OneToOne(cascade = CascadeType.PERSIST,fetch = FetchType.EAGER)
     @JoinColumn(name = "role_id")

@@ -49,10 +49,10 @@ public class Loan {
 	@Column(name = "loan_id")
 	private int loanId;
 	
-	@Column(name = "emi")
+	@Column(name = "emi_in_rupees")
 	private int emi;
 	
-	@Column(name = "loan_period")
+	@Column(name = "loan_period_in_months")
 	private int loanPeriod;
 	
 	@Column(name = "document_charges")
@@ -60,6 +60,9 @@ public class Loan {
 	
 	@Column(name = "date")
 	private String date;
+	
+	@Column(name = "loan_amount")
+	private int loanAmount;
 	
 	@OneToOne(cascade = CascadeType.PERSIST)
     @JoinColumn(name = "eligibility_detail_id")	
@@ -71,7 +74,7 @@ public class Loan {
     
     @OneToMany(cascade = CascadeType.PERSIST)
     @JoinColumn(name = "payment_id")
-    private Set<Payment> payments = new HashSet<Payment>();    
+    private Set<LoanDetail> loanDetails = new HashSet<LoanDetail>();    
 
 	public int getLoanId() {
 		return loanId;
@@ -129,13 +132,27 @@ public class Loan {
 		this.user = user;
 	}
 
-	/* (non-Javadoc)
-	 * @see java.lang.Object#toString()
-	 */
 	@Override
 	public String toString() {
 		return "Loan [loanId=" + loanId + ", emi=" + emi + ", loanPeriod=" + loanPeriod + ", documentCharges="
-				+ documentCharges + ", date=" + date + ", eligibilityDetail=" + eligibilityDetail + "]";
+				+ documentCharges + ", date=" + date + ", loanAmount=" + loanAmount + ", eligibilityDetail="
+				+ eligibilityDetail + ", user=" + user + ", loanDetails=" + loanDetails + "]";
+	}
+
+	public int getLoanAmount() {
+		return loanAmount;
+	}
+
+	public void setLoanAmount(int loanAmount) {
+		this.loanAmount = loanAmount;
+	}
+
+	public Set<LoanDetail> getLoanDetails() {
+		return loanDetails;
+	}
+
+	public void setLoanDetails(Set<LoanDetail> loanDetails) {
+		this.loanDetails = loanDetails;
 	}	
 
 }

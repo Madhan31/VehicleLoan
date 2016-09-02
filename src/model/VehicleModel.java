@@ -6,23 +6,27 @@ import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 import model.Vehicle;
 
 @Entity
-@Table(name = "brand")
+@Table(name = "vehicle_model")
 public class VehicleModel {
     
     @Id
-    @Column(name = "brand_id", unique = true)
+    @Column(name = "vehicle_model_id", unique = true)
     private int vehicleModelId;
     
-    @Column(name = "brand_name")
+    @Column(name = "vehicle_model_name")
     private String vehicleModelName;
     
-    @OneToOne(cascade = CascadeType.PERSIST,fetch = FetchType.EAGER)
+    @Column(name = "price_in_rupees")
+    private int price;
+    
+    @ManyToOne(cascade = CascadeType.PERSIST,fetch = FetchType.EAGER)
     @JoinColumn(name = "vehicle_id")
     private Vehicle vehicle;
     
