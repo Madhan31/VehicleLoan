@@ -6,8 +6,4 @@
     <c:if test="${sessionScope['userName'] == null}" >
         <c:redirect url = "logIn.jsp" />
     </c:if>
-    <body>
-        <title>Welcome</title>
-         <c:redirect url = "welcome" />
-    </body>
 </html>

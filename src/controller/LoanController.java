@@ -52,10 +52,16 @@ public class LoanController extends HttpServlet {
         }
     }
     
+    @RequestMapping("/signUp")     
+    public String signUp(ModelMap map) {
+    	map.addAttribute("User", new User());
+        return "user";
+    }
+    
     @RequestMapping(value="/addUser", method = RequestMethod.POST) 
     public String addUser(@ModelAttribute("User") User user, ModelMap map) throws ServletException, IOException {
         try {
-        	userService.addUser(user);
+            userService.addUser(user);
             map.addAttribute("Insert", "User details added successfully");
 	    return "logIn";
         } catch (ApplicationException e) {
