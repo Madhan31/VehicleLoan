@@ -3,9 +3,7 @@ package controller;
 import java.io.IOException;
 import java.util.List;
 
-import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpSession;
-import javax.servlet.ServletException;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
@@ -13,23 +11,23 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;  
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.portlet.ModelAndView;
+import org.springframework.web.servlet.ModelAndView;
 
 import exception.ApplicationException;
 import service.UserService;
 import model.User;
 
 @Controller
-public class LoanController extends HttpServlet {
-    UserService userService = new UserService();
+public class LoanController {
+    private UserService userService = new UserService();
     
-    @RequestMapping("/welcome") 
+    @RequestMapping("/logIn") 
     public String welcome() {
         return "logIn";
     }
     
     @RequestMapping(value = "/logIn", method = RequestMethod.POST)
-    public ModelAndView logIn(@RequestParam("userId")String userId, @RequestParam("password")String password, HttpSession session) throws ServletException, IOException {  
+    public ModelAndView logIn(@RequestParam("userId")String userId, @RequestParam("password")String password, HttpSession session) {  
         try {
             User user = userService.retrieveUser(userId);
             if(user != null) {
@@ -52,14 +50,22 @@ public class LoanController extends HttpServlet {
         }
     }
     
+<<<<<<< HEAD
     @RequestMapping("/signUp")     
     public String signUp(ModelMap map) {
     	map.addAttribute("User", new User());
         return "user";
     }
+=======
+    @RequestMapping(value = "/signup")
+    private String user(ModelMap modelMap) {
+    	modelMap.addAttribute("user", new User());
+    	return "signUp";
+    }   
+>>>>>>> 422b51232604120b55de99016654d82cb35fd5f6
     
     @RequestMapping(value="/addUser", method = RequestMethod.POST) 
-    public String addUser(@ModelAttribute("User") User user, ModelMap map) throws ServletException, IOException {
+    public String addUser(@ModelAttribute("User") User user, ModelMap map) {
         try {
             userService.addUser(user);
             map.addAttribute("Insert", "User details added successfully");
