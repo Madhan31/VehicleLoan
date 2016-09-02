@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.util.List;
 
 import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpSession;
 import javax.servlet.ServletException;
 
 import org.springframework.stereotype.Controller;
@@ -12,14 +13,17 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;  
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.portlet.ModelAndView;
 
+import exception.ApplicationException;
 import service.UserService;
+import model.User;
 
 @Controller
 public class LoanController extends HttpServlet {
     UserService userService = new UserService();
     
-    @RequsetMapping("/welcome") 
+    @RequestMapping("/welcome") 
     public String welcome() {
         return "logIn";
     }
@@ -51,7 +55,7 @@ public class LoanController extends HttpServlet {
     @RequestMapping(value="/addUser", method = RequestMethod.POST) 
     public String addUser(@ModelAttribute("User") User user, ModelMap map) throws ServletException, IOException {
         try {
-            userService.addUser(user)
+        	userService.addUser(user);
             map.addAttribute("Insert", "User details added successfully");
 	    return "logIn";
         } catch (ApplicationException e) {
@@ -59,6 +63,7 @@ public class LoanController extends HttpServlet {
             return "logIn"; 
         } 
     }
+}
     
     
     

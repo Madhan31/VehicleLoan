@@ -6,33 +6,35 @@ import java.util.HashSet;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
-import model.Brand;
+import model.VehicleModel;
 
 @Entity
 @Table(name = "vehicle")
 public class Vehicle {
     
     @Id
-    @Column(name = "vehicle_id" , unique = "true")
+    @Column(name = "vehicle_id" , unique = true)
     private int vehicleId;
     
     @Column(name = "vehicle_name")
     private String vehicleName;
     
     @OneToMany(cascade = CascadeType.PERSIST,fetch = FetchType.EAGER)
-    @JoinColumn(name = "brand_id")
-    private Set<Brand> brands = new HashSet<Brand>();
+    @JoinColumn(name = "vehicle_model_id")
+    private Set<VehicleModel> vehicleModels = new HashSet<VehicleModel>();
     
-    public Vechicle() {
+    public Vehicle() {
     }
    
-    public Vechicle(int vehicleId, String vehicleName) {
+    public Vehicle(int vehicleId, String vehicleName) {
         this.vehicleId = vehicleId;
         this.vehicleName = vehicleName;
     }
@@ -45,8 +47,8 @@ public class Vehicle {
         return vehicleName;
     }
     
-    public Set getBrands() {
-        return brands;
+    public Set getVehicleModels() {
+        return vehicleModels;
     }
     
     public void setVehicleId(int vehicleId) {
@@ -57,8 +59,8 @@ public class Vehicle {
         this.vehicleName = vehicleName;
     }
     
-    public void setBrands(Set brands) {
-        this.brands = brands;
+    public void setVehicleModels(Set vehicleModels) {
+        this.vehicleModels = vehicleModels;
     }
 }
    

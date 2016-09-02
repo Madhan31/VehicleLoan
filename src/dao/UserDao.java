@@ -1,5 +1,16 @@
 package dao;
 
+import org.hibernate.cfg.AnnotationConfiguration;
+
+import connection.HibernateConnection;
+import exception.ApplicationException;
+
+import org.hibernate.HibernateException;
+import org.hibernate.Query;
+import org.hibernate.Session;
+import org.hibernate.SessionFactory;
+import org.hibernate.Transaction;
+
 import model.User;
 
 public class UserDao {
@@ -13,7 +24,7 @@ public class UserDao {
             transaction = session.beginTransaction();
             session.save(user);
             transaction.commit();
-        } catch(Hibernatexception e) {
+        } catch(HibernateException e) {
             throw new ApplicationException("Error occured in add the values in account", e);
         } finally {
             session.close();
@@ -35,5 +46,6 @@ public class UserDao {
             session.close();
         }
     } 
+}
     
     

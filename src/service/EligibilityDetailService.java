@@ -1,8 +1,8 @@
 package service;
 
 import dao.EligibilityDetailDao;
-import exception.DatabaseException;
-import model.Employee;
+import exception.ApplicationException;
+import model.EligibilityDetail;
 
 public class EligibilityDetailService {
 	
@@ -20,7 +20,7 @@ public class EligibilityDetailService {
      * 		If there is any error in hibernate configuration.
      */   
     public boolean addEligibilityDetail(EligibilityDetail eligibilityDetail) throws ApplicationException {
-        return eligibilityDetailDao.insertEmployee(eligibilityDetail);
+        return eligibilityDetailDao.insertEligibilityDetail(eligibilityDetail);
     }	
 
 }

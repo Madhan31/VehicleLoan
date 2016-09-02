@@ -29,7 +29,7 @@ public class EligibilityDetail {
 	public EligibilityDetail(int id, String currentCity, String employment, String company, String salary,
 			int downPayment, VehicleModel vehicleModel, User user) {
 		super();
-		this.id = id;	@
+		this.id = id;	
 		this.currentCity = currentCity;
 		this.employment = employment;
 		this.company = company;
