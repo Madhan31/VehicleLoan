@@ -1,2 +1,0 @@
-# VehicleLoan
-Web development project
