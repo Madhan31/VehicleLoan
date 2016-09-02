@@ -21,7 +21,7 @@ import model.Role;
 
 @Entity
 @Table(name = "user_detail")
-public class UserDetail {
+public class User {
 
     @Column(name = "first_name")
     private String firstName;
@@ -45,7 +45,7 @@ public class UserDetail {
     private String password;
     
     @Id
-    @Column(name = "user_id", unique = true)
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private int userId;
     
     @OneToOne(cascade = CascadeType.PERSIST,fetch = FetchType.EAGER)
@@ -68,10 +68,10 @@ public class UserDetail {
     @JoinColumn(name = "payment_id")
     private Set<Payment> payments = new HashSet<Payment>();
     
-    public UserDetail() {
+    public User() {
     }
     
-    public UserDetail(String firstName, String lastName, String mobileNumber, String emailId,String dateOfBirth, String gender, String password, int userId) {
+    public User(String firstName, String lastName, String mobileNumber, String emailId,String dateOfBirth, String gender, String password, int userId) {
         this.firstName = firstName;
         this.lastName = lastName;
         this.mobileNumber = mobileNumber;
