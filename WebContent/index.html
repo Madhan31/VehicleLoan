@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html>
+<!-- Head -->
+<head>
+	<!-- Style --> <link rel="stylesheet" href="css/style.css" type="text/css" media="all" />
+
+	<!-- Web-Fonts -->
+            <link href='//fonts.googleapis.com/css?family=Raleway:400,500,600,700,800' rel='stylesheet' type='text/css'>
+	    <link href='//fonts.googleapis.com/css?family=Open+Sans:400,600,700' rel='stylesheet' type='text/css'>
+	<!-- //Web-Fonts -->
+	    <link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.4/themes/smoothness/jquery-ui.css">
+</head>
+<!-- //Head -->
+
+<!-- Body -->
+<body>
+
+	<h1>LOAN LOGIN & REGISTER FORMS</h1>
+
+	<div class="container w3layouts agileits">
+
+		<div class="login w3layouts">
+			<form action="#" method="post">
+				<label>User name</label>
+				<input type="text" class="user" placeholder="User Name" required="">
+				<label>Password</label>
+				<input type="password" class="pass" placeholder="Password" required="">
+			<input type="submit" value="LOGIN" ></form>
+			<div class="clear"></div>
+		</div></br></br>
+		<div class="reg w3l aits">
+			<h3>Not a member?</h3>
+			<a class="popup-with-zoom-anim hvr-underline-from-left" href="#small-dialog">Register Here</a>
+			<div class="clear"></div>
+
+			<!-- Popup-Box -->
+			<div id="popup w3l">
+				<div id="small-dialog" class="mfp-hide aits">
+					<div class="pop_up agileits">
+						<div class="register w3layouts">
+							<form action="#" method="post">
+								<label>First Name</label>
+								<input type="text" Name="firstName" placeholder="First Name" required="">
+								<label>Last Name</label>
+								<input type="text" Name="lastName" placeholder="Last Name" required="">
+								<label>Date Of Birth</label>
+								<input type = "datetime" id="datepicker" Name="dateOfBirth" placeholder="Date Of Birth" required="">
+								<label>Email</label>
+								<input type="text" Name="email" placeholder="Email" required="">
+								<label>Password</label>
+								<input type="password" Name="password" placeholder="Password" required="">
+								<label>Confirm Password</label>
+								<input type="password" Name="confirmPassword" class="lessgap" placeholder="Confirm Password" required="">
+								<label>Phone Number</label>
+								<input type="text" Name="Phone Number" placeholder="Phone Number" required="">
+								<div class="send-button">
+									<input type="submit" value="REGISTER">
+								</div>
+							</form>
+						</div>
+					</div>
+				</div>
+			</div>
+			<button title="Close (Esc)" type="button" class="mfp-close w3layouts">×</button>
+			<!-- //Popup-Box -->
+
+		</div>
+
+	</div>
+
+	<!-- Custom-JavaScript-File-Links -->
+		<script src="js/jquery-2.1.4.min.js"></script>
+		<!-- pop-up-box -->
+			<script src="js/jquery.magnific-popup.js" type="text/javascript"></script>
+			<script>
+				$(document).ready(function() {
+					$('.popup-with-zoom-anim').magnificPopup({
+						type: 'inline',
+						fixedContentPos: false,
+						fixedBgPos: true,
+						overflowY: 'auto',
+						closeBtnInside: true,
+						preloader: false,
+						midClick: true,
+						removalDelay: 300,
+						mainClass: 'my-mfp-zoom-in'
+					});
+				});
+			</script>
+		<!--//pop-up-box -->
+	<!-- //Custom-JavaScript-File-Links -->
+
+</body>
+<!-- //Body -->
+
+</html>
