@@ -20,7 +20,7 @@ public class EligibilityDetailService {
      * 		If there is any error in hibernate configuration.
      */   
     public boolean addEligibilityDetail(EligibilityDetail eligibilityDetail) throws ApplicationException {
-        return employeeDao.insertEmployee(employee);
+        return eligibilityDetailDao.insertEmployee(eligibilityDetail);
     }	
 
 }
