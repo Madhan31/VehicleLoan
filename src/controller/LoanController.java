@@ -54,7 +54,12 @@ public class LoanController {
     public String signUp(ModelMap map) {
     	map.addAttribute("User", new User());
         return "user";
-    }  
+    }
+    @RequestMapping(value = "/signup")
+    private String user(ModelMap modelMap) {
+    	modelMap.addAttribute("user", new User());
+    	return "signUp";
+    }   
     
     @RequestMapping(value="/addUser", method = RequestMethod.POST) 
     public String addUser(@ModelAttribute("User") User user, ModelMap map) {

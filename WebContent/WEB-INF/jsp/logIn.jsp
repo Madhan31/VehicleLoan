@@ -1,6 +1,21 @@
 <%@ taglib uri="http://www.springframework.org/tags/form" prefix="form"%>    
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html>
+<<<<<<< HEAD
+<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
+    pageEncoding="ISO-8859-1"%>
+
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ taglib uri="http://www.springframework.org/tags/form" prefix="form" %>
+<html>
+
+    <c:if test="${Message != null}" >
+            <script language = "javaScript" type = "text/javascript">
+                alert('<c:out value = "${Message}" />');
+            </script>
+    </c:if>
+=======
+>>>>>>> 0897180f2bad6d76f1e209535cd8468a459e005d
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
         <link href="css/login.css" rel="stylesheet" type="text/css" />
@@ -46,4 +61,8 @@
         </form>
     </div>
     </body>
+<<<<<<< HEAD
 </html>
+=======
+</html>
+>>>>>>> 0897180f2bad6d76f1e209535cd8468a459e005d
