@@ -50,19 +50,16 @@ public class LoanController {
         }
     }
     
-<<<<<<< HEAD
     @RequestMapping("/signUp")     
     public String signUp(ModelMap map) {
     	map.addAttribute("User", new User());
         return "user";
     }
-=======
     @RequestMapping(value = "/signup")
     private String user(ModelMap modelMap) {
     	modelMap.addAttribute("user", new User());
     	return "signUp";
     }   
->>>>>>> 422b51232604120b55de99016654d82cb35fd5f6
     
     @RequestMapping(value="/addUser", method = RequestMethod.POST) 
     public String addUser(@ModelAttribute("User") User user, ModelMap map) {
