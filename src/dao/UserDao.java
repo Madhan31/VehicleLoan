@@ -1,6 +1,5 @@
 package dao;
 
-import org.hibernate.cfg.AnnotationConfiguration;
 
 import connection.HibernateConnection;
 import exception.ApplicationException;
@@ -14,8 +13,8 @@ import org.hibernate.Transaction;
 import model.User;
 
 public class UserDao {
-    private HibernateConnection hibernateConnection = HibernateConnection.getConnection();
-    private SessionFactory sessionFactory = hibernateConnection.getSessionFactory();
+    private HibernateConnection hibernateConnection =  HibernateConnection.createObject();
+    private SessionFactory sessionFactory = hibernateConnection.establishConnection();
     
     public void addUser(User user) throws ApplicationException {
         Session session = sessionFactory.openSession();

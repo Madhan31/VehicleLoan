@@ -22,7 +22,7 @@ public class LoanDetail {
     @Column(name = "loan_detail_id",  unique = true)
     private int loanDetailId;
     
-    @Column(name = "balance__loan_amount")
+    @Column(name = "balance_loan_amount")
     private int balanceAmount;
     
     @Column(name = "balance_emi_months")
