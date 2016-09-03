@@ -4,7 +4,6 @@ import org.hibernate.HibernateException;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
-import org.hibernate.cfg.AnnotationConfiguration;
 
 import connection.HibernateConnection;
 import exception.ApplicationException;
@@ -46,7 +45,9 @@ public class EligibilityDetailDao {
             return true;
         } catch (HibernateException exp) {
             transaction.rollback();
-            throw new ApplicationException("Oops...Cannot add kindly check your input and try again...\n", exp);    
+            exp.printStackTrace();
+            return false;
+            //throw new ApplicationException("Oops...Cannot register kindly check your input and try again...\n", exp);    
         } finally {
             session.close();           
         }

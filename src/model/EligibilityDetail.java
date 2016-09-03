@@ -8,6 +8,9 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
+
+import model.VehicleModel;
+
 /**
  * @author Madhan
  *
@@ -40,8 +43,8 @@ public class EligibilityDetail {
 		this.downPayment = downPayment;
 		this.vehicleModel = vehicleModel;
 		this.user = user;
-	}
-	
+	}	
+
 	public EligibilityDetail(int id, String currentCity, String employment, String company, String salary,
 			int downPayment) {
 		super();
@@ -51,10 +54,8 @@ public class EligibilityDetail {
 		this.company = company;
 		this.salary = salary;
 		this.downPayment = downPayment;
-		this.vehicleModel = vehicleModel;
-		this.user = user;
-	}	
-
+	}
+	
 	@Id
 	@Column(name = "eligibility_detail_id")
 	private int id;

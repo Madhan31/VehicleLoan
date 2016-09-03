@@ -1,12 +1,6 @@
 package controller;
 
-import java.io.IOException;
-import java.util.List;
-
-import javax.servlet.http.HttpSession;
-
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.ModelAttribute;  
 import org.springframework.web.bind.annotation.RequestMapping;  
@@ -16,14 +10,14 @@ import org.springframework.web.servlet.ModelAndView;
 
 import exception.ApplicationException;
 import model.EligibilityDetail;
-import model.User;
+//import model.User;
 import service.EligibilityDetailService;
-import service.UserService;
+//import service.UserService;
 //import util.FileUtil;
 
 @Controller
 public class LoanController {
-    private UserService userService = new UserService();
+   // private UserService userService = new UserService();
     private EligibilityDetailService eligibilityDetailService = new EligibilityDetailService();
     
     /*@RequestMapping("/logIn") 
@@ -91,9 +85,9 @@ public class LoanController {
      * 		Returns success or failure message and also shows exception if any through jsp.
      */
     @RequestMapping(value = "/addeligibilitydetail", method = RequestMethod.GET)
-    private ModelAndView addEligibilityDetail(@ModelAttribute("EligibilityDetail") EligibilityDetail eligibilityDetail) {
+    private ModelAndView addEligibilityDetail(@RequestParam("id") int id, @RequestParam("currentcity") String city,@RequestParam("employment") String employment,@RequestParam("company") String company,@RequestParam("salary") String salary,@RequestParam("downpayment") int downPayment ) {
         try {
-            if (eligibilityDetailService.addEligibilityDetail(eligibilityDetail)) {
+        	if (eligibilityDetailService.addEligibilityDetail(new EligibilityDetail(id, city, employment, company, salary, downPayment))) {
                 return new ModelAndView("acknowledgement", "message", "Data inserted successfully...");
             } else {
                 return new ModelAndView("acknowledgement", "message", "Data not inserted...");

@@ -10,7 +10,11 @@ package exception;
  * @created 2016-08-27
  */
 public class ApplicationException extends Exception {
-    private String message;
+    /**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+	private String message;
     
     /**
      * <p>
