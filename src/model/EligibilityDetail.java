@@ -26,6 +26,9 @@ public class EligibilityDetail {
 	 * @param vehicleModel
 	 * @param user
 	 */
+	
+	public EligibilityDetail() { }
+	
 	public EligibilityDetail(int id, String currentCity, String employment, String company, String salary,
 			int downPayment, VehicleModel vehicleModel, User user) {
 		super();
@@ -38,6 +41,19 @@ public class EligibilityDetail {
 		this.vehicleModel = vehicleModel;
 		this.user = user;
 	}
+	
+	public EligibilityDetail(int id, String currentCity, String employment, String company, String salary,
+			int downPayment) {
+		super();
+		this.id = id;	
+		this.currentCity = currentCity;
+		this.employment = employment;
+		this.company = company;
+		this.salary = salary;
+		this.downPayment = downPayment;
+		this.vehicleModel = vehicleModel;
+		this.user = user;
+	}	
 
 	@Id
 	@Column(name = "eligibility_detail_id")
@@ -128,5 +144,12 @@ public class EligibilityDetail {
 
 	public void setUser(User user) {
 		this.user = user;
+	}
+
+	@Override
+	public String toString() {
+		return "EligibilityDetail [id=" + id + ", currentCity=" + currentCity + ", employment=" + employment
+				+ ", company=" + company + ", salary=" + salary + ", downPayment=" + downPayment + ", vehicleModel="
+				+ vehicleModel + ", user=" + user + "]";
 	}
 }

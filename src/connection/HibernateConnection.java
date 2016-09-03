@@ -1,63 +1,60 @@
 package connection;
 
-import org.hibernate.cfg.AnnotationConfiguration;
 import org.hibernate.SessionFactory;
-import org.hibernate.HibernateException;
-
+import org.hibernate.cfg.AnnotationConfiguration;
 
 /**
  * <p>
- * This class has methods for building sessionfactory and returning object. 
+ * Hibernate Connection is used to connect the application with database using Hibernate configuration
+ * Class is architectured using singleton factory concept.
  * </p>
- * 
- * @author Madhan
- * 
- * @created 2016-08-27
+ *
+ * @author Praveen RaJ
+ *
+ * @created 2016-09-01
  */
+
 public class HibernateConnection {
-    private static HibernateConnection hibernateConnection;
-    private SessionFactory sessionFactory;
+   
+	private static HibernateConnection hibernateConnection = null;
+    private AnnotationConfiguration configuration=null;
+    private SessionFactory sessionFactory=null;
     
     /**
-     * <p>
-     * Constructor which cannot accessed from outside.
-     * </p>
+     * Restricts object creation for this class
      */
-    private HibernateConnection() { }
+    private HibernateConnection(){  
+    } 
     
     /**
-     * <p>
-     * Only returns one object without creating object if not exits. 
-     * </p>
-     * @return
-     * 		Returns this class object.
+     * This method is used to create object for this class
+     * It doesn't allow to create more then one object
+     * and returns the existing object.
+     * @return hibernateconnection
+     *        Contains object for class HibernateConnection
      */
-    public static HibernateConnection getConnection() {
-        if (null == hibernateConnection) {
+    public static HibernateConnection createObject() {
+        if(hibernateConnection==null){
             hibernateConnection = new HibernateConnection();
-        }
+        }         
         return hibernateConnection;
-    }  
+    }
     
     /**
-     * <p>
-     * This method returns build session factory if not exists.
-     * </p>
-     * @return
-     * 		Returns session factory object.
+     * This Method is used to create object for sessionFactory through "hibernate.cfg.xml" file    
+     * It doesn't allow to create more then one object
+     * and returns the existing object.     
+     * @return sessionFactory
+     *        Contains object for class SessionFactory
      */
-    public SessionFactory getSessionFactory() {
-        if (null == sessionFactory) {
-            try {
-                AnnotationConfiguration annotationConfiguration = new AnnotationConfiguration();
-                annotationConfiguration.configure("hibernate.cfg.xml");
-                annotationConfiguration.addAnnotatedClass(model.EligibilityDetail.class);
-                sessionFactory = annotationConfiguration.buildSessionFactory();
-            } catch (HibernateException exp) {
-                //FileUtil.errorLog("Exception occured in HibernateConnection/getSession()..." + exp.toString());
-                System.out.println("Oops...Cannot connect kindly check your input and try again...\n");
-            }
-        }
+    public SessionFactory establishConnection() {
+        if(configuration==null){
+            configuration=new AnnotationConfiguration();
+   	        configuration.configure("hibernate.cfg.xml"); 
+   	    }
+   	    if(sessionFactory==null){	
+	        sessionFactory=configuration.configure().buildSessionFactory();
+	    }
         return sessionFactory;
-    }
-}
+   }
+ }

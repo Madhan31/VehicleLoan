@@ -4,6 +4,7 @@ import org.hibernate.HibernateException;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
+import org.hibernate.cfg.AnnotationConfiguration;
 
 import connection.HibernateConnection;
 import exception.ApplicationException;
@@ -20,8 +21,8 @@ import model.EligibilityDetail;
  */
 public class EligibilityDetailDao {
 
-    private HibernateConnection hibernateConnection = HibernateConnection.getConnection();
-    private SessionFactory sessionFactory = hibernateConnection.getSessionFactory();
+	private HibernateConnection hibernateConnection =  HibernateConnection.createObject();
+	private SessionFactory sessionFactory = hibernateConnection.establishConnection();
     private Session session;
     private Transaction transaction;
     
