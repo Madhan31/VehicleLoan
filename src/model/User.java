@@ -7,8 +7,8 @@ import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
+//import javax.persistence.GeneratedValue;
+//import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.OneToMany;
@@ -31,7 +31,6 @@ import model.Role;
 public class User {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
     private int userId;
 	
     @Column(name = "first_name")
@@ -129,18 +128,6 @@ public class User {
         return address;
     }
     
-    public Set getEligibilityDetails() {
-        return eligibilityDetails;
-    }
-    
-    public Set getLoans() {
-        return loans;
-    }
-    
-    public Set getPayments() {
-        return payments;
-    }
-    
     public void setFirstName(String firstName) {
         this.firstName = firstName;
     }
@@ -179,19 +166,31 @@ public class User {
    
     public void setAddress(Address address) {
         this.address = address;
-    } 
-    
-    public void setEligibilityDetails(Set eligibilityDetails) {
-        this.eligibilityDetails = eligibilityDetails;
     }
-    
-    public void setLoan(Set loans) {
-        this.loans = loans;
-    }
-   
-    public void setPayments(Set payments) {
-        this.payments = payments;
-    } 
+
+	public void setEligibilityDetails(Set<EligibilityDetail> eligibilityDetails) {
+		this.eligibilityDetails = eligibilityDetails;
+	}
+
+	public void setLoans(Set<Loan> loans) {
+		this.loans = loans;
+	}
+
+	public void setPayments(Set<Payment> payments) {
+		this.payments = payments;
+	}
+
+	public Set<EligibilityDetail> getEligibilityDetails() {
+		return eligibilityDetails;
+	}
+
+	public Set<Loan> getLoans() {
+		return loans;
+	}
+
+	public Set<Payment> getPayments() {
+		return payments;
+	} 
     
 }
     

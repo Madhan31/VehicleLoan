@@ -9,9 +9,7 @@ import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
-import javax.persistence.OneToOne;
 import javax.persistence.Table;	
 
 import model.VehicleModel;
@@ -47,10 +45,6 @@ public class Vehicle {
         return vehicleName;
     }
     
-    public Set getVehicleModels() {
-        return vehicleModels;
-    }
-    
     public void setVehicleId(int vehicleId) {
         this.vehicleId = vehicleId;
     }
@@ -58,9 +52,13 @@ public class Vehicle {
     public void setVehicleName(String vehicleName) {
         this.vehicleName = vehicleName;
     }
-    
-    public void setVehicleModels(Set vehicleModels) {
-        this.vehicleModels = vehicleModels;
-    }
+
+	public Set<VehicleModel> getVehicleModels() {
+		return vehicleModels;
+	}
+
+	public void setVehicleModels(Set<VehicleModel> vehicleModels) {
+		this.vehicleModels = vehicleModels;
+	}
 }
    
