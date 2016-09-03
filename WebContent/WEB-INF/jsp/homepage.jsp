@@ -7,18 +7,17 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+      <link rel="stylesheet" href="css/style.css">
 <title>Insert title here</title>
 </head>
-<body>
     <title>Employee Addition</title>
-      <link rel="stylesheet" href="css/style.css">
     <body>
         <form align = "right" action = "logout" method = "get">
             <input type = "submit" name = "button" value = "logout" style ="width:80px; height:30px;" />
         </form>    
         <br></br>
     <button type="button" onclick="javascript:history.back()" style ="width:80px; height:30px;" >go back</button>
-    <br></br><p><h1 align = "center">Register Eligibility Details :</h1></p>
+    <br></br><h1 align = "center">Register Eligibility Details :/h1>
     <form action = "addeligibilitydetail" method = "get" modelAttribute = "EligibilityDetail" class= "login"><br></br>
         <input type = "text" name = "id" path = "id" placeholder = "Eligibility id" required = "required" data-validation="number" data-validation-error-msg="Please enter number only..." /><br></br>
         <input type = "text" name = "currentcity" path = "currentCity" placeholder = "Current City" required = "required" /><br></br>
