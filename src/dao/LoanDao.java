@@ -16,8 +16,8 @@ import model.Loan;
 
 
 public class LoanDao {
-    private HibernateConnection hibernateConnection = HibernateConnection.getConnection();
-    private SessionFactory sessionFactory = hibernateConnection.getSessionFactory();
+    private HibernateConnection hibernateConnection = HibernateConnection.createObject();
+    private SessionFactory sessionFactory = hibernateConnection.establishConnection();
     
     public void addLoan(Loan loan) throws ApplicationException {
         Session session = sessionFactory.openSession();
@@ -49,7 +49,7 @@ public class LoanDao {
         }
     }
     
-    public Loan retriveLoan(int loanId) throws ApplicationException {
+    public Loan retrieveLoan(int loanId) throws ApplicationException {
         Session session = sessionFactory.openSession();
         Transaction transaction = null;
         Loan loan;
@@ -65,7 +65,7 @@ public class LoanDao {
         }
     } 
     
-     public List<Loan> retriveAllLoans() throws ApplicationException {
+     public List<Loan> retreieveAllLoans() throws ApplicationException {
         Session session = sessionFactory.openSession();
         List<Loan> loans = new ArrayList<Loan>();
         Transaction transaction = null;

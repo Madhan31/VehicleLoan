@@ -8,7 +8,7 @@ import model.VehicleModel;
 
 public class VehicleModelService {
 	
-	private VehicleModelDao vehicleModelDao = new VehicleModelDao();
+    private VehicleModelDao vehicleModelDao = new VehicleModelDao();
 	
 	public List<VehicleModel> getVehicleModelsByVehicleId(int vehicleId) throws ApplicationException {
 		return vehicleModelDao.getVehicleModelsByVehicleId(vehicleId);
@@ -21,5 +21,13 @@ public class VehicleModelService {
 	public List<VehicleModel> retrieveVehicleModels() throws ApplicationException {
 		return vehicleModelDao.retrieveVehicleModels();		
 	}
+	
+	public void addVehicleModel(VehicleModel vehicleModel) throws ApplicationException {
+            vehicleModelDao.addVehicleModel(vehicleModel);
+        }
+        
+        public void removeVehicleModel(int vehicleModelId) throws ApplicationException {
+            vehicleModelDao.removeVehicleModel(vehicleModelId);
+        }  
 
 }
