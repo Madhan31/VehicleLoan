@@ -15,7 +15,6 @@ import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
-import model.Address;
 import model.EligibilityDetail;
 import model.Loan;
 import model.Payment;
@@ -57,10 +56,6 @@ public class User {
     @OneToOne(cascade = CascadeType.PERSIST,fetch = FetchType.EAGER)
     @JoinColumn(name = "role_id")
     private Role role;
-    
-    @OneToOne(cascade = CascadeType.PERSIST,fetch = FetchType.EAGER)
-    @JoinColumn(name = "address_id")
-    private Address address;  
     
     @OneToMany(cascade = CascadeType.PERSIST,fetch = FetchType.EAGER)
     @JoinColumn(name = "eligibility_detail_id")
@@ -124,10 +119,6 @@ public class User {
         return role;
     }
     
-    public Address getAddress() {
-        return address;
-    }
-    
     public void setFirstName(String firstName) {
         this.firstName = firstName;
     }
@@ -162,10 +153,6 @@ public class User {
 
     public void setRole(Role role) {
         this.role = role;
-    }
-   
-    public void setAddress(Address address) {
-        this.address = address;
     }
 
 	public void setEligibilityDetails(Set<EligibilityDetail> eligibilityDetails) {
