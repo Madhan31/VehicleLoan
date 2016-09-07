@@ -56,6 +56,16 @@ public class EligibilityDetail {
 		this.downPayment = downPayment;
 	}
 	
+	public EligibilityDetail(String currentCity, String employment, String company, String salary,
+			int downPayment) {
+		super();
+		this.currentCity = currentCity;
+		this.employment = employment;
+		this.company = company;
+		this.salary = salary;
+		this.downPayment = downPayment;
+	}	
+	
 	@Id
 	@Column(name = "eligibility_detail_id")
 	private int id;
