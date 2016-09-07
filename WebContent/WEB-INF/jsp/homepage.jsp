@@ -62,13 +62,7 @@ function loadvehicleprice() {
     <button type="button" onclick="javascript:history.back()" style ="width:80px; height:30px;" >go back</button>
     <br></br><p><h1 align = "center">Register Eligibility Details :</h1>
     <form:form action = "addeligibilitydetail" method = "get" modelAttribute = "eligibilityDetail" class= "login"><br></br>
-        <form:input type = "text" name = "currentcity" path = "currentCity" placeholder = "Current City" required = "required" /><br></br>
-                                            <!--<form:select path = "employment">
-                                                <form:option value = "select">Select Employment type</form:option>                                            
-                                                <form:option value = "Salaried">Salaried</form:option>
-                                                <form:option value = "Self Employed">Self Employed Business</form:option>
-                                                <form:option value = "Retired">Retired</form:option>
-                                            </form:select> -->          
+        <form:input type = "text" name = "currentcity" path = "currentCity" placeholder = "Current City" required = "required" /><br></br>         
         <form:select path = "company.companyId" >
 		   <option value="0"> -- Select Company -- </option>
 		<m:forEach items="${companyList}" var="company">

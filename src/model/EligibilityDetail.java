@@ -28,9 +28,6 @@ public class EligibilityDetail {
 	@Column(name = "current_city")
 	private String currentCity;
 	
-	@Column(name = "employment")
-	private String employment;
-	
 	@Column(name = "salary")
 	private String salary;
 	
@@ -63,14 +60,6 @@ public class EligibilityDetail {
 
 	public void setCurrentCity(String currentCity) {
 		this.currentCity = currentCity;
-	}
-
-	public String getEmployment() {
-		return employment;
-	}
-
-	public void setEmployment(String employment) {
-		this.employment = employment;
 	}
 
 	public String getSalary() {
@@ -116,19 +105,17 @@ public class EligibilityDetail {
 	/**
 	 * @param id
 	 * @param currentCity
-	 * @param employment
 	 * @param salary
 	 * @param downPayment
 	 * @param company
 	 * @param vehicleModel
 	 * @param user
 	 */
-	public EligibilityDetail(int id, String currentCity, String employment, String salary, int downPayment,
+	public EligibilityDetail(int id, String currentCity, String salary, int downPayment,
 			Company company, VehicleModel vehicleModel, User user) {
 		super();
 		this.id = id;
 		this.currentCity = currentCity;
-		this.employment = employment;
 		this.salary = salary;
 		this.downPayment = downPayment;
 		this.company = company;
@@ -138,8 +125,7 @@ public class EligibilityDetail {
 
 	@Override
 	public String toString() {
-		return "EligibilityDetail [id=" + id + ", currentCity=" + currentCity + ", employment=" + employment
-				+ ", company=" + company + ", salary=" + salary + ", downPayment=" + downPayment + ", vehicleModel="
+		return "EligibilityDetail [id=" + id + ", currentCity=" + currentCity + ", company=" + company + ", salary=" + salary + ", downPayment=" + downPayment + ", vehicleModel="
 				+ vehicleModel + ", user=" + user + "]";
 	}
 }
