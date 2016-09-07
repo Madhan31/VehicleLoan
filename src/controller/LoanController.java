@@ -38,7 +38,7 @@ public class LoanController {
     }
     
     @RequestMapping(value = "/logIn", method = RequestMethod.POST)
-    public ModelAndView logIn(@RequestParam("userId")String userId, @RequestParam("password")String password, HttpSession session) {  
+    public ModelAndView logIn(@RequestParam("userId")int userId, @RequestParam("password")String password, HttpSession session) {  
         try {
             User user = userService.retrieveUser(userId);
             if(user != null) {
@@ -64,18 +64,19 @@ public class LoanController {
     
     @RequestMapping("/signUp")     
     public String signUp(ModelMap map) {
-    	map.addAttribute("User", new User());
+    	map.addAttribute("user", new User());
         return "user";
     }  
     
     @RequestMapping(value="/addUser", method = RequestMethod.POST) 
-    public String addUser(@ModelAttribute("User") User user, ModelMap map) {
+    public String addUser(@ModelAttribute("user") User user, ModelMap map) {
         try {
+        	System.out.println(user);
             userService.addUser(user);
-            map.addAttribute("Insert", "User details added successfully");
+            map.addAttribute("Message", "User details added successfully");
 	    return "logIn";
         } catch (ApplicationException e) {
-            map.addAttribute("Insert", (e.getMessage().toString()));
+            map.addAttribute("Message", (e.getMessage().toString()));
             return "logIn"; 
         } 
     }

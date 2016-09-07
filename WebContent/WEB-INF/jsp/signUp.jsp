@@ -33,6 +33,7 @@
 				        <form:input type="text" name=" mobileNumber" placeholder="Mobile Number" path = "mobileNumber" required="" />
 					<label>Password</label>
 					<form:input type="password" name="password" placeholder="Password" path = "password" required="" />
+					<form:input type = "text" path = "role.roleId" value = "1" readonly />
 				        <div class="send-button">
 					    <input type="submit" value="REGISTER">
 					</div>

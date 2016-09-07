@@ -177,8 +177,15 @@ public class User {
 
 	public Set<Payment> getPayments() {
 		return payments;
+	}
+
+	@Override
+	public String toString() {
+		return "User [userId=" + userId + ", firstName=" + firstName + ", lastName=" + lastName + ", mobileNumber="
+				+ mobileNumber + ", emailId=" + emailId + ", dateOfBirth=" + dateOfBirth + ", gender=" + gender
+				+ ", password=" + password + ", role=" + role + ", eligibilityDetails=" + eligibilityDetails
+				+ ", loans=" + loans + ", payments=" + payments + "]";
 	} 
-    
 }
     
     
