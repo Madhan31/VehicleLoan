@@ -54,6 +54,7 @@ function loadvehicleprice() {
 </head>
 <link rel="stylesheet" href="css/style.css">
     <body>
+    <a href = "adminOperation">admin</a>
         <form action = "logout" method = "get">
             <input type = "submit" name = "button" value = "logout" style ="width:80px; height:30px;" />
         </form>    	       
@@ -82,12 +83,11 @@ function loadvehicleprice() {
    <option value="0"> Select Vehicle Model -- </option>	                                         
    </form:select>  <br></br>
    	<div id = "vehicleModelPrice">
-   		<textarea readonly style = "width: 100px; height: 15px;">Rs.</textarea>
+   		<textarea readonly style = "width: 100px; height: 15px; display:none;'">Rs.</textarea>
    		 </div>	      
         <form:input type = "text" name = "downpayment" path = "downPayment" placeholder = "Down Payment" required = "required" /><br></br>                
         <input type = "submit" name = "button" value = "Register"/>
     </form:form>   
-    
     
 </body>
 

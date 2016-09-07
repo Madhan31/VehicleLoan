@@ -10,7 +10,7 @@
         <h1>USER INFORMATION</h1>
 	    <div class="container">
 		<div class="contact">
-		    <form:form action="addUser" method="post">
+		    <form:form action="addUser" modelAttribute = "User" method="post">
 		        <label>First Name</label>
 			<form:input type = "text" name = "firstName" path = "firstName" placeholder = "First Name" required = "required" />		        
 			<label>Last Name</label>

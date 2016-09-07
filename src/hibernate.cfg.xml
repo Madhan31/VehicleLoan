@@ -20,7 +20,8 @@
         <mapping class = "model.Role"/>  
         <mapping class = "model.User"/>  
         <mapping class = "model.Vehicle"/>  
-        <mapping class = "model.VehicleModel"/>       
+        <mapping class = "model.VehicleModel"/>   
+        <mapping class = "model.Company"/>       
     </session-factory>  
       
 </hibernate-configuration>  

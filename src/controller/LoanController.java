@@ -1,5 +1,9 @@
 package controller;
 
+import java.util.List;
+
+import javax.servlet.http.HttpSession;
+
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.ModelAttribute;  
@@ -12,21 +16,21 @@ import exception.ApplicationException;
 import model.EligibilityDetail;
 import model.Vehicle;
 import model.VehicleModel;
-//import model.User;
+import model.User;
 import service.EligibilityDetailService;
-//import service.UserService;
+import service.UserService;
 //import util.FileUtil;
 import service.VehicleService;
 import service.VehicleModelService;
 
 @Controller
 public class LoanController {
-   // private UserService userService = new UserService();
+    private UserService userService = new UserService();
     private EligibilityDetailService eligibilityDetailService = new EligibilityDetailService();
     private VehicleService vehicleService = new VehicleService();
     private VehicleModelService vehicleModelService = new VehicleModelService();
     
-    /*@RequestMapping("/logIn") 
+    @RequestMapping("/logIn") 
     public String welcome() {
         return "logIn";
     }
@@ -72,7 +76,7 @@ public class LoanController {
             map.addAttribute("Insert", (e.getMessage().toString()));
             return "logIn"; 
         } 
-    }*/
+    }
     
     @RequestMapping("/homepage")     
     public String eligibilityDetail(ModelMap modelMap) throws ApplicationException {
@@ -134,7 +138,7 @@ public class LoanController {
     
     @RequestMapping("/insertVehicleModel")     
     public String insertVehicleModel(ModelMap modelMap) throws ApplicationException {
-    	modelMap.addAttribute("insertVehicle", new VehicleModel());
+    	modelMap.addAttribute("insertVehicleModel", new VehicleModel());
         return "addVehicleModel";
     }
     

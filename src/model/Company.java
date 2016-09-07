@@ -1,8 +1,12 @@
 package model;
 
 import javax.persistence.Column;
+import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.Table;
 
+@Entity
+@Table(name = "company_detail")
 public class Company {
 	
 	@Id
