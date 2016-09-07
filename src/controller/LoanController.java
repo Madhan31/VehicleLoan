@@ -17,6 +17,7 @@ import model.EligibilityDetail;
 import model.Vehicle;
 import model.VehicleModel;
 import model.User;
+import service.CompanyService;
 import service.EligibilityDetailService;
 import service.UserService;
 //import util.FileUtil;
@@ -29,6 +30,7 @@ public class LoanController {
     private EligibilityDetailService eligibilityDetailService = new EligibilityDetailService();
     private VehicleService vehicleService = new VehicleService();
     private VehicleModelService vehicleModelService = new VehicleModelService();
+    private CompanyService companyService = new CompanyService();
     
     @RequestMapping("/logIn") 
     public String welcome() {
@@ -82,6 +84,7 @@ public class LoanController {
     public String eligibilityDetail(ModelMap modelMap) throws ApplicationException {
     	modelMap.addAttribute("eligibilityDetail", new EligibilityDetail());
     	modelMap.addAttribute("vehicleList", vehicleService.retrieveVehicles());
+    	modelMap.addAttribute("companyList", companyService.retrieveCompanys());
         return "homepage";
     } 
     

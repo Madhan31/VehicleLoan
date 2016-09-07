@@ -69,7 +69,12 @@ function loadvehicleprice() {
                                                 <form:option value = "Self Employed">Self Employed Business</form:option>
                                                 <form:option value = "Retired">Retired</form:option>
                                             </form:select> -->          
-        <form:input type = "text" name = "company" path = "company" placeholder = "company" required = "required" /><br></br>
+        <form:select path = "company.companyId" >
+		   <option value="0"> -- Select Company -- </option>
+		<m:forEach items="${companyList}" var="company">
+		 <option value="${company.companyId}">${company.companyName}</option>
+		</m:forEach>
+		 </form:select>         
         <form:input type = "text" name = "salary" path = "salary" placeholder = "salary" required = "required" /><br></br>
         
         <select name = "vehicle" id = "vehicle" onChange="loadvehiclemodels();" >
