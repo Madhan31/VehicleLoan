@@ -62,12 +62,12 @@ function loadvehicleprice() {
     <br></br><p><h1 align = "center">Register Eligibility Details :</h1>
     <form:form action = "addeligibilitydetail" method = "get" modelAttribute = "eligibilityDetail" class= "login"><br></br>
         <form:input type = "text" name = "currentcity" path = "currentCity" placeholder = "Current City" required = "required" /><br></br>
-                                            <form:select path = "employment">
+                                            <!--<form:select path = "employment">
                                                 <form:option value = "select">Select Employment type</form:option>                                            
                                                 <form:option value = "Salaried">Salaried</form:option>
                                                 <form:option value = "Self Employed">Self Employed Business</form:option>
                                                 <form:option value = "Retired">Retired</form:option>
-                                            </form:select>          
+                                            </form:select> -->          
         <form:input type = "text" name = "company" path = "company" placeholder = "company" required = "required" /><br></br>
         <form:input type = "text" name = "salary" path = "salary" placeholder = "salary" required = "required" /><br></br>
         
@@ -78,7 +78,7 @@ function loadvehicleprice() {
 		</m:forEach>
 		 </select>    
 		 
-<form:select path="vehicleModel" id="vehicleModelView" onchange = "loadvehicleprice();" >                    
+<form:select path="vehicleModel.vehicleModelId" id="vehicleModelView" onchange = "loadvehicleprice();" >                    
    <option value="0"> Select Vehicle Model -- </option>	                                         
    </form:select>  <br></br>
    	<div id = "vehicleModelPrice">

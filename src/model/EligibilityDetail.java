@@ -18,53 +18,8 @@ import model.VehicleModel;
 @Entity
 @Table(name = "eligibility_detail")
 public class EligibilityDetail {
-	
-	/**
-	 * @param id
-	 * @param currentCity
-	 * @param employment
-	 * @param company
-	 * @param salary
-	 * @param downPayment
-	 * @param vehicleModel
-	 * @param user
-	 */
-	
-	public EligibilityDetail() { }
-	
-	public EligibilityDetail(int id, String currentCity, String employment, String company, String salary,
-			int downPayment, VehicleModel vehicleModel, User user) {
-		super();
-		this.id = id;	
-		this.currentCity = currentCity;
-		this.employment = employment;
-		this.company = company;
-		this.salary = salary;
-		this.downPayment = downPayment;
-		this.vehicleModel = vehicleModel;
-		this.user = user;
-	}	
 
-	public EligibilityDetail(int id, String currentCity, String employment, String company, String salary,
-			int downPayment) {
-		super();
-		this.id = id;	
-		this.currentCity = currentCity;
-		this.employment = employment;
-		this.company = company;
-		this.salary = salary;
-		this.downPayment = downPayment;
-	}
-	
-	public EligibilityDetail(String currentCity, String employment, String company, String salary,
-			int downPayment) {
-		super();
-		this.currentCity = currentCity;
-		this.employment = employment;
-		this.company = company;
-		this.salary = salary;
-		this.downPayment = downPayment;
-	}	
+	public EligibilityDetail() { }	
 	
 	@Id
 	@Column(name = "eligibility_detail_id")
@@ -76,14 +31,15 @@ public class EligibilityDetail {
 	@Column(name = "employment")
 	private String employment;
 	
-	@Column(name = "company")
-	private String company;
-	
 	@Column(name = "salary")
 	private String salary;
 	
 	@Column(name = "down_payment")
 	private int downPayment;
+
+	@OneToOne(cascade = CascadeType.PERSIST)
+	@JoinColumn(name = "company_id")
+	private Company company;	
 	
 	@OneToOne(cascade = CascadeType.PERSIST)
     @JoinColumn(name = "vehicle_model_id")	
@@ -117,14 +73,6 @@ public class EligibilityDetail {
 		this.employment = employment;
 	}
 
-	public String getCompany() {
-		return company;
-	}
-
-	public void setCompany(String company) {
-		this.company = company;
-	}
-
 	public String getSalary() {
 		return salary;
 	}
@@ -154,6 +102,37 @@ public class EligibilityDetail {
 	}
 
 	public void setUser(User user) {
+		this.user = user;
+	}
+	
+	public Company getCompany() {
+		return company;
+	}	
+	
+	public void setCompany(Company company) {
+		this.company = company;
+	}	
+
+	/**
+	 * @param id
+	 * @param currentCity
+	 * @param employment
+	 * @param salary
+	 * @param downPayment
+	 * @param company
+	 * @param vehicleModel
+	 * @param user
+	 */
+	public EligibilityDetail(int id, String currentCity, String employment, String salary, int downPayment,
+			Company company, VehicleModel vehicleModel, User user) {
+		super();
+		this.id = id;
+		this.currentCity = currentCity;
+		this.employment = employment;
+		this.salary = salary;
+		this.downPayment = downPayment;
+		this.company = company;
+		this.vehicleModel = vehicleModel;
 		this.user = user;
 	}
 
