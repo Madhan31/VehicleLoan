@@ -10,6 +10,8 @@ import org.springframework.web.servlet.ModelAndView;
 
 import exception.ApplicationException;
 import model.EligibilityDetail;
+import model.Vehicle;
+import model.VehicleModel;
 //import model.User;
 import service.EligibilityDetailService;
 //import service.UserService;
