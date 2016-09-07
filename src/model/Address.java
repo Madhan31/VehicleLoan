@@ -1,8 +1,12 @@
 package model;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 /**
@@ -46,7 +50,11 @@ public class Address {
     
     @Column(name = "landmark")
     private String landmark;
-
+    
+    @OneToOne(cascade = CascadeType.PERSIST,fetch = FetchType.EAGER)
+    @JoinColumn(name = "user_id")
+    private User user;
+    
 	public int getAddressId() {
 		return addressId;
 	}
@@ -66,7 +74,10 @@ public class Address {
 	public String getCity() {
 		return city;
 	}
-
+    
+	public User getUser() {
+		return user;
+	}
 	public void setCity(String city) {
 		this.city = city;
 	}
@@ -94,7 +105,10 @@ public class Address {
 	public void setLandmark(String landmark) {
 		this.landmark = landmark;
 	}
-
+    
+	public void setUser(User user) {
+		this.user = user;
+	}
 	/* (non-Javadoc)
 	 * @see java.lang.Object#toString()
 	 */
