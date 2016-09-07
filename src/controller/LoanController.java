@@ -91,6 +91,7 @@ public class LoanController {
         return "vehicleModelPrice";
     }     
     
+    
     /**
      * <p>
      * Gets employee details from jsp and calls service method and also display result.
@@ -115,7 +116,77 @@ public class LoanController {
         } catch (Exception e) {
         	return new ModelAndView("acknowledgement", "message", e.getMessage());
         }
-    }    
+    }
+    
+    @RequestMapping("/insertVehicle")     
+    public String insertVehicle(ModelMap modelMap) throws ApplicationException {
+    	modelMap.addAttribute("insertVehicle", new Vehicle());
+        return "addVehicle";
+    }
+    
+    @RequestMapping("/addVehicle")
+    public String addVehicle(@ModelAttribute("Vehicle") Vehicle vehicle, ModelMap modelMap) throws ApplicationException {
+        modelMap.addAttribute("addVehicle", vehicleService.addVehicle(vehicle));
+        return "addVehicle";
+    } 
+    
+    @RequestMapping("/insertVehicleModel")     
+    public String insertVehicleModel(ModelMap modelMap) throws ApplicationException {
+    	modelMap.addAttribute("insertVehicle", new VehicleModel());
+        return "addVehicleModel";
+    }
+    
+    @RequestMapping("/addVehicleModel")
+    public String addVehicleModel(@ModelAttribute("VehicleModel") VehicleModel vehicleModel, ModelMap modelMap) throws ApplicationException {
+        modelMap.addAttribute("addVehicleModel", vehicleModelService.addVehicleModel(vehicleModel));
+        return "addVehicleModel";
+    } 
+    
+    @RequestMapping("/deleteVehicle")     
+    public String deleteVehicle(ModelMap modelMap) throws ApplicationException {
+        List<Vehicle> vehicles = vehicleService.retrieveVehicles();
+    	modelMap.addAttribute("vehicles", vehicles);
+        return "removeVehicle";
+    }
+    
+    @RequestMapping(value = "/removeVehicle", method = RequestMethod.GET)     
+    public String removeVehicle(@RequestParam("vehicleId") int vehicleId, ModelMap modelMap) throws ApplicationException {
+    	modelMap.addAttribute("vehicleModelList", vehicleService.removeVehicle(vehicleId));
+        return "removeVehicle";
+    } 
+    
+    @RequestMapping("/deleteVehicleModel")     
+    public String deleteVehicleModel(ModelMap modelMap) throws ApplicationException {
+        List<VehicleModel> vehicleModels = vehicleModelService.retrieveVehicleModels();
+    	modelMap.addAttribute("vehicleModels", vehicleModels);
+        return "removeVehicleModel";
+    }
+    
+    @RequestMapping(value = "/removeVehicleModel", method = RequestMethod.GET)     
+    public String removeVehicleModel(@RequestParam("vehicleModelId") int vehicleModelId, ModelMap modelMap) throws ApplicationException {
+    	modelMap.addAttribute("vehicleModelList", vehicleModelService.removeVehicleModel(vehicleModelId));
+        return "removeVehicleModel";
+    } 
+   
+    @RequestMapping("/retrieveAllVehicle")     
+    public String retrieveAllVehicle(ModelMap modelMap) throws ApplicationException {
+        List<Vehicle> vehicles = vehicleService.retrieveVehicles();
+    	modelMap.addAttribute("vehicles", vehicles);
+        return "retrieveAllVehicle";
+    }
+    
+    @RequestMapping("/retrieveAllVehicleModel")     
+    public String retrieveAllVehicleModel(ModelMap modelMap) throws ApplicationException {
+        List<VehicleModel> vehicleModels = vehicleModelService.retrieveVehicleModels();
+    	modelMap.addAttribute("vehicleModels", vehicleModels);
+        return "retrieveAllVehicleModel";
+    }
+    
+    @RequestMapping("/adminOperation")
+    public String adminOperation(ModelMap modelMap) {   
+        return "adminOperation";
+    }
+    
 }
     
     

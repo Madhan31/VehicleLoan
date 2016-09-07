@@ -12,8 +12,8 @@ import model.VehicleModel;
 
 public class VehicleModelDao {
 
-	private HibernateConnection hibernateConnection =  HibernateConnection.createObject();
-	private SessionFactory sessionFactory = hibernateConnection.establishConnection();
+    private HibernateConnection hibernateConnection =  HibernateConnection.createObject();
+    private SessionFactory sessionFactory = hibernateConnection.establishConnection();
     private Session session;
     private Transaction transaction;	
     
@@ -63,6 +63,34 @@ public class VehicleModelDao {
             return vehicleModels;
         } catch (Exception exp) {
             throw new ApplicationException("Oops...Kindly check your input and try again...\n", exp);
+        } finally {
+            session.close();
+        }
+    }	
+    
+    public void addVehicleModel(VehicleModel vehicleModel) throws ApplicationException {
+        session = sessionFactory.openSession();
+        try {
+            transaction = session.beginTransaction();
+            session.save(vehicleModel);
+            transaction.commit();
+        } catch(HibernateException exp) {
+            throw new ApplicationException("Error occured in add the values in vehicle model", exp);
+        } finally {
+            session.close();
+        }
+    }
+    
+    public void removeVehicleModel(int vehicleModelId) throws ApplicationException {
+        session = sessionFactory.openSession();
+        VehicleModel vehicleModel;
+        try {
+            transaction = session.beginTransaction();  
+            vehicleModel = (VehicleModel) session.load(VehicleModel.class, vehicleModelId);
+            session.delete(vehicleModel);
+            transaction.commit();
+        } catch(HibernateException exp) {
+            throw new ApplicationException("Error occured in remove the vehicle model details", exp);
         } finally {
             session.close();
         }
