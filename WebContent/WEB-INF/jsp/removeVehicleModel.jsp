@@ -29,5 +29,10 @@
             </fieldset>
         </form>
         <a href = "adminOperation">Back to main page</a> 
+        <c:if test="${remove != null}" >
+            <script language = "javaScript" type = "text/javascript">
+                alert('<c:out value = "${remove}" />');
+            </script>
+        </c:if>
     </body>
 </html>

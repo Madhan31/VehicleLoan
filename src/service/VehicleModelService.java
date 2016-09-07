@@ -22,12 +22,14 @@ public class VehicleModelService {
 		return vehicleModelDao.retrieveVehicleModels();		
 	}
 	
-	public void addVehicleModel(VehicleModel vehicleModel) throws ApplicationException {
+	public String addVehicleModel(VehicleModel vehicleModel) throws ApplicationException {
             vehicleModelDao.addVehicleModel(vehicleModel);
+            return "Vehicle model details added successfully";
         }
         
-        public void removeVehicleModel(int vehicleModelId) throws ApplicationException {
+        public String removeVehicleModel(int vehicleModelId) throws ApplicationException {
             vehicleModelDao.removeVehicleModel(vehicleModelId);
+            return "Vehicle model details deleted successfully";
         }  
 
 }

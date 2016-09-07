@@ -14,12 +14,14 @@ public class VehicleService {
         return vehicleDao.retrieveVehicles();		
     }
     
-    public void addVehicle(Vehicle vehicle) throws ApplicationException {
+    public String addVehicle(Vehicle vehicle) throws ApplicationException {
         vehicleDao.addVehicle(vehicle);
+        return "Vehicle details added successfully";
     }
     
-    public void removeVehicle(int vehicleId) throws ApplicationException {
+    public String removeVehicle(int vehicleId) throws ApplicationException {
         vehicleDao.removeVehicle(vehicleId);
+        return "Vehicle details deleted successfully";
     }    
         
 }

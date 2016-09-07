@@ -128,7 +128,7 @@ public class LoanController {
     
     @RequestMapping("/addVehicle")
     public String addVehicle(@ModelAttribute("Vehicle") Vehicle vehicle, ModelMap modelMap) throws ApplicationException {
-        modelMap.addAttribute("addVehicle", vehicleService.addVehicle(vehicle));
+        modelMap.addAttribute("insert", vehicleService.addVehicle(vehicle));
         return "addVehicle";
     } 
     
@@ -140,7 +140,7 @@ public class LoanController {
     
     @RequestMapping("/addVehicleModel")
     public String addVehicleModel(@ModelAttribute("VehicleModel") VehicleModel vehicleModel, ModelMap modelMap) throws ApplicationException {
-        modelMap.addAttribute("addVehicleModel", vehicleModelService.addVehicleModel(vehicleModel));
+        modelMap.addAttribute("insert", vehicleModelService.addVehicleModel(vehicleModel));
         return "addVehicleModel";
     } 
     
@@ -153,7 +153,7 @@ public class LoanController {
     
     @RequestMapping(value = "/removeVehicle", method = RequestMethod.GET)     
     public String removeVehicle(@RequestParam("vehicleId") int vehicleId, ModelMap modelMap) throws ApplicationException {
-    	modelMap.addAttribute("vehicleModelList", vehicleService.removeVehicle(vehicleId));
+    	modelMap.addAttribute("remove", vehicleService.removeVehicle(vehicleId));
         return "removeVehicle";
     } 
     
@@ -166,7 +166,7 @@ public class LoanController {
     
     @RequestMapping(value = "/removeVehicleModel", method = RequestMethod.GET)     
     public String removeVehicleModel(@RequestParam("vehicleModelId") int vehicleModelId, ModelMap modelMap) throws ApplicationException {
-    	modelMap.addAttribute("vehicleModelList", vehicleModelService.removeVehicleModel(vehicleModelId));
+    	modelMap.addAttribute("remove", vehicleModelService.removeVehicleModel(vehicleModelId));
         return "removeVehicleModel";
     } 
    

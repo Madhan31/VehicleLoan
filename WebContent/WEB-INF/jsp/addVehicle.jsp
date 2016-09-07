@@ -27,5 +27,10 @@
         </fieldset>
     </form:form>
     <a href = "adminOperation">Back to main page</a>
+    <c:if test="${insert != null}" >
+            <script language = "javaScript" type = "text/javascript">
+                alert('<c:out value = "${insert}" />');
+            </script>
+        </c:if>
 </body>
 </html>
