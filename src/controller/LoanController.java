@@ -14,11 +14,15 @@ import model.EligibilityDetail;
 import service.EligibilityDetailService;
 //import service.UserService;
 //import util.FileUtil;
+import service.VehicleService;
+import service.VehicleModelService;
 
 @Controller
 public class LoanController {
    // private UserService userService = new UserService();
     private EligibilityDetailService eligibilityDetailService = new EligibilityDetailService();
+    private VehicleService vehicleService = new VehicleService();
+    private VehicleModelService vehicleModelService = new VehicleModelService();
     
     /*@RequestMapping("/logIn") 
     public String welcome() {
@@ -54,12 +58,7 @@ public class LoanController {
     public String signUp(ModelMap map) {
     	map.addAttribute("User", new User());
         return "user";
-    }
-    @RequestMapping(value = "/signup")
-    private String user(ModelMap modelMap) {
-    	modelMap.addAttribute("user", new User());
-    	return "signUp";
-    }   
+    }  
     
     @RequestMapping(value="/addUser", method = RequestMethod.POST) 
     public String addUser(@ModelAttribute("User") User user, ModelMap map) {
@@ -74,9 +73,22 @@ public class LoanController {
     }*/
     
     @RequestMapping("/homepage")     
-    public String eligibilityDetail(ModelMap map) {
-    	map.addAttribute("eligibilityDetail", new EligibilityDetail());
+    public String eligibilityDetail(ModelMap modelMap) throws ApplicationException {
+    	modelMap.addAttribute("eligibilityDetail", new EligibilityDetail());
+    	modelMap.addAttribute("vehicleList", vehicleService.retrieveVehicles());
         return "homepage";
+    } 
+    
+    @RequestMapping(value = "/vehicleModelView", method = RequestMethod.GET)     
+    public String vehicleModelView(@RequestParam("vehicleId") int vehicleId, ModelMap modelMap) throws ApplicationException {
+    	modelMap.addAttribute("vehicleModelList", vehicleModelService.getVehicleModelsByVehicleId(vehicleId));
+        return "vehicleModelView";
+    } 
+    
+    @RequestMapping(value = "/vehicleModelPrice", method = RequestMethod.GET)     
+    public String vehicleModelPrice(@RequestParam("vehicleModelId") int vehicleModelId, ModelMap modelMap) throws ApplicationException {
+    	modelMap.addAttribute("vehicleModel", vehicleModelService.getVehicleModelById(vehicleModelId));
+        return "vehicleModelPrice";
     }     
     
     /**
@@ -90,9 +102,9 @@ public class LoanController {
      * 		Returns success or failure message and also shows exception if any through jsp.
      */
     @RequestMapping(value = "/addeligibilitydetail", method = RequestMethod.GET)
-    private ModelAndView addEligibilityDetail(@RequestParam("id") int id, @RequestParam("currentcity") String city,@RequestParam("employment") String employment,@RequestParam("company") String company,@RequestParam("salary") String salary,@RequestParam("downpayment") int downPayment ) {
+    private ModelAndView addEligibilityDetail(@ModelAttribute("EligibilityDetail") EligibilityDetail eligibilityDetail) {
         try {
-        	if (eligibilityDetailService.addEligibilityDetail(new EligibilityDetail(id, city, employment, company, salary, downPayment))) {
+            if (eligibilityDetailService.addEligibilityDetail(eligibilityDetail)) {
                 return new ModelAndView("acknowledgement", "message", "Data inserted successfully...");
             } else {
                 return new ModelAndView("acknowledgement", "message", "Data not inserted...");

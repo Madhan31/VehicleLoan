@@ -32,10 +32,13 @@ public class VehicleModel {
     public VehicleModel() {
     }
    
-    public VehicleModel(int vehicleModelId, String vehicleModelName) {
-        this.vehicleModelId = vehicleModelId;
-        this.vehicleModelName = vehicleModelName;
-    }
+	public VehicleModel(int vehicleModelId, String vehicleModelName, int price, Vehicle vehicle) {
+		super();
+		this.vehicleModelId = vehicleModelId;
+		this.vehicleModelName = vehicleModelName;
+		this.price = price;
+		this.vehicle = vehicle;
+	}  
    
     public int getVehicleModelId() {
         return vehicleModelId;
@@ -60,5 +63,21 @@ public class VehicleModel {
     public void setLoanType(Vehicle vehicle) {
         this.vehicle = vehicle;
     }
+
+	public int getPrice() {
+		return price;
+	}
+
+	public void setPrice(int price) {
+		this.price = price;
+	}
+
+	public Vehicle getVehicle() {
+		return vehicle;
+	}
+
+	public void setVehicle(Vehicle vehicle) {
+		this.vehicle = vehicle;
+	}
 }
    
