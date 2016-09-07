@@ -11,7 +11,7 @@ public class UserService {
         userDao.addUser(user);
     }
     
-    public User retrieveUser(String phoneNumber) throws ApplicationException{
+    public User retrieveUser(int phoneNumber) throws ApplicationException{
         return userDao.retrieveUser(phoneNumber);
     }
 }

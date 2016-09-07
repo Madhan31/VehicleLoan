@@ -13,6 +13,8 @@ import javax.persistence.Table;
 @Table(name = "role")
 public class Role {
 	
+	public Role() { }
+	
 	public Role(int roleId, String roleName) {
 		super();
 		this.roleId = roleId;

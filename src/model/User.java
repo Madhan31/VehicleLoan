@@ -30,6 +30,7 @@ import model.Role;
 public class User {
 
     @Id
+    @Column(name = "user_id")
     private int userId;
 	
     @Column(name = "first_name")

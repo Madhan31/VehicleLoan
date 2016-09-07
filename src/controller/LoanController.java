@@ -19,6 +19,7 @@ import model.VehicleModel;
 import model.User;
 import service.CompanyService;
 import service.EligibilityDetailService;
+import service.LoanService;
 import service.UserService;
 //import util.FileUtil;
 import service.VehicleService;
@@ -26,11 +27,13 @@ import service.VehicleModelService;
 
 @Controller
 public class LoanController {
+	
     private UserService userService = new UserService();
     private EligibilityDetailService eligibilityDetailService = new EligibilityDetailService();
     private VehicleService vehicleService = new VehicleService();
     private VehicleModelService vehicleModelService = new VehicleModelService();
     private CompanyService companyService = new CompanyService();
+    private LoanService loanService = new LoanService();
     
     @RequestMapping("/logIn") 
     public String welcome() {
@@ -71,7 +74,6 @@ public class LoanController {
     @RequestMapping(value="/addUser", method = RequestMethod.POST) 
     public String addUser(@ModelAttribute("user") User user, ModelMap map) {
         try {
-        	System.out.println(user);
             userService.addUser(user);
             map.addAttribute("Message", "User details added successfully");
 	    return "logIn";
@@ -116,7 +118,7 @@ public class LoanController {
     private ModelAndView addEligibilityDetail(@ModelAttribute("EligibilityDetail") EligibilityDetail eligibilityDetail) {
         try {
             if (eligibilityDetailService.addEligibilityDetail(eligibilityDetail)) {
-                return new ModelAndView("acknowledgement", "message", "Data inserted successfully...");
+                return new ModelAndView("loan.jsp", "loanamount", loanService.calculateLoanAmount(eligibilityDetail));
             } else {
                 return new ModelAndView("acknowledgement", "message", "Data not inserted...");
             }            
@@ -159,7 +161,8 @@ public class LoanController {
         return "removeVehicle";
     }
     
-    @RequestMapping(value = "/removeVehicle", method = RequestMethod.GET)     
+    @RequestMapping(value = "/removeVehicle", method =            map.addAttribute("Message", (e.getMessage().toString()));
+ RequestMethod.GET)     
     public String removeVehicle(@RequestParam("vehicleId") int vehicleId, ModelMap modelMap) throws ApplicationException {
     	modelMap.addAttribute("remove", vehicleService.removeVehicle(vehicleId));
         return "removeVehicle";

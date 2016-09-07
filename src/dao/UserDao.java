@@ -22,13 +22,15 @@ public class UserDao {
             session.save(user);
             transaction.commit();
         } catch(HibernateException e) {
-            throw new ApplicationException("Error occured in add the values in account", e);
+            transaction.rollback();
+            e.printStackTrace();        	
+            //throw new ApplicationException("Error occured in add the values in account", e);
         } finally {
             session.close();
         }
     }
     
-    public User retrieveUser(String phoneNumber) throws ApplicationException {
+    public User retrieveUser(int phoneNumber) throws ApplicationException {
         Session session = sessionFactory.openSession();
         Transaction transaction = null;
         User user;
