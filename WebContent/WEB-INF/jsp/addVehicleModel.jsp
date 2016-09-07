@@ -23,16 +23,11 @@
     <form:form action = "addVehicleModel" method = "get" modelAttribute = "insertVehicleModel" class= "login"><br></br>
         <fieldset>
             <legand>Insert vehicle model</legand>
-            <form:input type = "text" name = "vehicleModelName" path = "vehicleModelName" placeholder = "Model name" /><br></br>
+            <form:input type = "text" name = "vehicleModelName" path = "vehicleModelName" placeholder = "Model name" required = "required" /><br></br>
             <form:input type = "text" name = "price" path = "price" placeholder = "Price" required = "required" data-validation="number" data-validation-error-msg="Please enter number only..." /><br></br>  
             <input type = "submit" name = "button" value = "Add"/>
         </fieldset>
     </form:form>
     <a href = "adminOperation">Back to main page</a>
-    <c:if test="${insert != null}" >
-            <script language = "javaScript" type = "text/javascript">
-                alert('<c:out value = "${insert}" />');
-            </script>
-        </c:if>
 </body>
 </html>

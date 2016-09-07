@@ -15,6 +15,11 @@
     <title>Vehicle Addition</title>
       <link rel="stylesheet" href="css/style.css">
     <body>
+    <c:if test="${insert != null}" >
+            <script language = "javaScript" type = "text/javascript">
+                alert('<c:out value = "${insert}" />');
+            </script>
+        </c:if>
         <form align = "right" action = "logout" method = "get">
             <input type = "submit" name = "button" value = "logout" style ="width:80px; height:30px;" />
         </form>    
@@ -28,11 +33,8 @@
             <input type = "submit" name = "button" value = "Add"/>
         </fieldset>
     </form:form>
-    <c:if test="${insert != null}" >
-            <script language = "javaScript" type = "text/javascript">
-                alert('<c:out value = "${insert}" />');
-            </script>
-        </c:if>
+    
     <a href = "adminOperation">Back to main page</a>
+    
 </body>
 </html>
