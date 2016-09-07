@@ -85,7 +85,7 @@ function loadvehicleprice() {
    		<textarea readonly style = "width: 100px; height: 15px; display:none;'">Rs.</textarea>
    		 </div>	      
         <form:input type = "text" name = "downpayment" path = "downPayment" placeholder = "Down Payment" required = "required" /><br></br>                
-        <input type = "submit" name = "button" value = "Register"/>
+        <input type = "submit" name = "button" value = "Proceed"/>
     </form:form>   
     
 </body>

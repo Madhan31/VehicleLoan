@@ -5,20 +5,20 @@
     
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
+<link rel="stylesheet" href="css/style.css">
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Insert title here</title>
 </head>
-<body>
-    <title>Loan Addition</title>
-      <link rel="stylesheet" href="css/style.css">
+<title>Loan Addition</title>
+<body>  
     <body>
-        <form align = "right" action = "logout" method = "get">
+        <form  action = "logout" method = "get">
             <input type = "submit" name = "button" value = "logout" style ="width:80px; height:30px;" />
         </form>    
         <br></br>
     <button type="button" onclick="javascript:history.back()" style ="width:80px; height:30px;" >go back</button>
-    <br></br><p><h1 align = "center">Register Loan Details :</h1></p>
+    <br></br><p><h1 align = "center">Register Loan Details :</h1>
     <form:form action = "addloandetail" method = "get" modelAttribute = "Loan" class= "login"><br></br>
         <form:input type = "text" name = "emi" path = "emi" placeholder = "Emi" required = "required" /><br></br>
         <form:input type = "text" name = "period" path = "period" placeholder = "Period" required = "required" data-validation="number" data-validation-error-msg="Please enter number only..." /><br></br>  
