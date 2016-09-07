@@ -134,7 +134,7 @@ public class LoanController {
     }
     
     @RequestMapping("/addVehicle")
-    public String addVehicle(@ModelAttribute("Vehicle") Vehicle vehicle, ModelMap modelMap) throws ApplicationException {
+    public String addVehicle(@ModelAttribute("insertVehicle") Vehicle vehicle, ModelMap modelMap) throws ApplicationException {
         modelMap.addAttribute("insert", vehicleService.addVehicle(vehicle));
         return "addVehicle";
     } 
@@ -146,7 +146,7 @@ public class LoanController {
     }
     
     @RequestMapping("/addVehicleModel")
-    public String addVehicleModel(@ModelAttribute("VehicleModel") VehicleModel vehicleModel, ModelMap modelMap) throws ApplicationException {
+    public String addVehicleModel(@ModelAttribute("insertVehicleModel") VehicleModel vehicleModel, ModelMap modelMap) throws ApplicationException {
         modelMap.addAttribute("insert", vehicleModelService.addVehicleModel(vehicleModel));
         return "addVehicleModel";
     } 

@@ -26,7 +26,7 @@
         <br></br>
     <button type="button" onclick="javascript:history.back()" style ="width:80px; height:30px;" >go back</button>
     <br></br><p><h1 align = "center">Add Vehicle Details :</h1></p>
-    <form:form action = "addVehicle" method = "get" modelAttribute = "insertVehicle" class= "login"><br></br>
+    <form:form action = "addVehicle" modelAttribute = "insertVehicle" class= "login"><br></br>
         <fieldset>
             <legand>Insert Vehicle</legand>
             <form:input type = "text" name = "vehicleName" path = "vehicleName" placeholder = "Vehicle name" required = "required" /><br></br>
