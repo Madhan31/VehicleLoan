@@ -23,5 +23,19 @@
     <form class = "login">
     <m:out value = "Rs. ${loanamount}"/>
     </form>
+    <form:form action = "addloandetail" method = "get" modelAttribute = "Loan" class= "login"><br></br>
+    <m:out value = "Rs. ${loanamount}"/>
+    <form:select path = loanPeriod onchange = >
+    	<option value = "12">1 Year</option>
+    	<option value = "24">2 Year</option>
+    	<option value = "36">3 Year</option>
+   	</form:select>
+        <!--<form:input type = "text" name = "emi" path = "emi" placeholder = "Emi" required = "required" /><br></br>
+        <form:input type = "text" name = "period" path = "period" placeholder = "Period" required = "required" data-validation="number" data-validation-error-msg="Please enter number only..." /><br></br>  
+        <form:input type = "text" name = "documentCharge" path = "documentCharge" placeholder = "Document Charge" required = "required" /><br></br>
+        <form:input type = "text" name = "date" path = "date" placeholder = "DD/MM/YYYY" required = "required" /><br></br>
+        <form:input type = "text" name = "loanAmount" path = "loanAmount" placeholder = "Loan Amount" required = "required" data-validation="number" data-validation-error-msg="Please enter number only..."/><br></br> -->                
+        <input type = "submit" name = "button" value = "Register"/>
+    </form:form>
 </body>
 </html>
