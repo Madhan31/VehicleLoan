@@ -26,10 +26,10 @@ function emiDetails() {
 	  }
 	  xhttp.onreadystatechange = function() {
 	    if (this.readyState == 4 && this.status == 200) {
-	      document.getElementById("vehicleModelView").innerHTML = this.responseText;
+	      document.getElementById("emidetails").innerHTML = this.responseText;
 	    }
 	  };
-	  xhttp.open("GET", "emi.html?vehicleId="+emi, true);
+	  xhttp.open("GET", "emi.html?emi="+emi, true);
 	  xhttp.send();
 	}
 </script>	

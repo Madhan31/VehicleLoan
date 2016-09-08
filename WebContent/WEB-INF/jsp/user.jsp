@@ -23,7 +23,7 @@
        		<option value = "male">Male</option>
        		<option value = "female">Female</option>
        		<option value = "others">Others</option>       		
-       	</form:select>       		
+       	</form:select>     
         <form:input type="text" name="emailId" placeholder="Email" path="emailId" required="required" />
         <form:input type="text" name=" mobileNumber" placeholder="Mobile Number" path="mobileNumber" required="required" />
         <form:input type="password" name="password" placeholder="Password" path="password" required="required" />
