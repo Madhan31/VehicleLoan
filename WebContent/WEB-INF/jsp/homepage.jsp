@@ -82,7 +82,7 @@ function loadvehicleprice() {
    <option value="0"> Select Vehicle Model -- </option>	                                         
    </form:select>  <br></br>
    	<div id = "vehicleModelPrice">
-   		<textarea readonly style = "width: 100px; height: 15px; display:none;'">Rs.</textarea>
+   		<textarea readonly style = "width: 100px; height: 15px; display:none;'"></textarea>
    		 </div>	      
         <form:input type = "text" name = "downpayment" path = "downPayment" placeholder = "Down Payment" required = "required" /><br></br>                
         <input type = "submit" name = "button" value = "Proceed"/>

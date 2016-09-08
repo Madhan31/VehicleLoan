@@ -74,6 +74,7 @@ public class LoanController {
     @RequestMapping(value="/addUser", method = RequestMethod.POST) 
     public String addUser(@ModelAttribute("user") User user, ModelMap map) {
         try {
+        	System.out.println(user);
              userService.addUser(user);
              int userId = userService.getUserId(user);
              map.addAttribute("Message", "Your user ID is:"+userId);
@@ -118,6 +119,7 @@ public class LoanController {
     @RequestMapping(value = "/addeligibilitydetail", method = RequestMethod.GET)
     private ModelAndView addEligibilityDetail(@ModelAttribute("EligibilityDetail") EligibilityDetail eligibilityDetail) {
         try {
+        	System.out.println(eligibilityDetail.getVehicleModel().getPrice());
             if (eligibilityDetailService.addEligibilityDetail(eligibilityDetail)) {
                 return new ModelAndView("loan", "loanamount", loanService.calculateLoanAmount(eligibilityDetail));
             } else {
@@ -167,7 +169,7 @@ public class LoanController {
     	modelMap.addAttribute("remove", vehicleService.removeVehicle(vehicleId));
         return "removeVehicle";
     } 
-    
+
     @RequestMapping("/deleteVehicleModel")     
     public String deleteVehicleModel(ModelMap modelMap) throws ApplicationException {
         List<VehicleModel> vehicleModels = vehicleModelService.retrieveVehicleModels();
