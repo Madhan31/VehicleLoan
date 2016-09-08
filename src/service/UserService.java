@@ -11,11 +11,12 @@ public class UserService {
         userDao.addUser(user);
     }
     
-    public User retrieveUser(int mobileNumber) throws ApplicationException{
-        return userDao.retrieveUser(mobileNumber);
+    public User retrieveUser(int userId) throws ApplicationException{
+        return userDao.retrieveUser(userId);
     }
     
-    public int getUserId(User user) throws ApplicationException {
+    public int getUserId(String mobileNumber) throws ApplicationException {
+    	User user = userDao.retrieveUserByMobileNumber(mobileNumber);
         return user.getUserId();
     }
 }

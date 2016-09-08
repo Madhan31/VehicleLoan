@@ -21,26 +21,41 @@ public class UserDao {
             transaction = session.beginTransaction();
             session.save(user);
             transaction.commit();
-        } catch(HibernateException e) {
+        } catch(HibernateException exp) {
             transaction.rollback();
-            e.printStackTrace();        	
-            //throw new ApplicationException("Error occured in add the values in account", e);
+            throw new ApplicationException("Error occured in add the values in user", exp);
         } finally {
             session.close();
         }
     }
     
-    public User retrieveUser(int mobileNumber) throws ApplicationException {
+    public User retrieveUser(int userId) throws ApplicationException {
         Session session = sessionFactory.openSession();
         Transaction transaction = null;
         User user;
         try {
             transaction = session.beginTransaction();
-            user = (User) session.get(User.class, mobileNumber);
+            user = (User) session.get(User.class, userId);
             transaction.commit();
             return user;
-        } catch(HibernateException e) {
-            throw new ApplicationException("Error occured in retrive the account details in account", e);
+        } catch(HibernateException exp) {
+            throw new ApplicationException("Error occured in retrive the user details in user", exp);
+        } finally {
+            session.close();
+        }
+    } 
+    
+    public User retrieveUserByMobileNumber(String mobileNumber) throws ApplicationException {
+        Session session = sessionFactory.openSession();
+        Transaction transaction = null;
+        User user;
+        try {
+            transaction = session.beginTransaction();
+            user = (User) session.createQuery("from User where mobileNumber="+mobileNumber);
+            transaction.commit();
+            return user;
+        } catch(HibernateException exp) {
+            throw new ApplicationException("Error occured in retrive the user details in user", exp);
         } finally {
             session.close();
         }

@@ -76,7 +76,7 @@ public class LoanController {
         try {
         	System.out.println(user);
              userService.addUser(user);
-             int userId = userService.getUserId(user);
+             int userId = userService.getUserId(user.getMobileNumber());
              map.addAttribute("Message", "Your user ID is:"+userId);
 	    return "logIn";
         } catch (ApplicationException e) {
