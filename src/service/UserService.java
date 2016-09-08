@@ -14,5 +14,9 @@ public class UserService {
     public User retrieveUser(int phoneNumber) throws ApplicationException{
         return userDao.retrieveUser(phoneNumber);
     }
+    
+    public int getUserId(User user) throws ApplicationException {
+        return user.getUserId();
+    }
 }
     
