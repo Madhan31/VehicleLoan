@@ -26,7 +26,7 @@ import service.VehicleService;
 import service.VehicleModelService;
 
 @Controller
-public class LoanController {
+public class LoanControllerviki {
 	
     private UserService userService = new UserService();
     private EligibilityDetailService eligibilityDetailService = new EligibilityDetailService();
@@ -75,6 +75,8 @@ public class LoanController {
     public String addUser(@ModelAttribute("user") User user, ModelMap map) {
         try {
             userService.addUser(user);
+            String mobileNumber = user.getMobileNumber();
+            userService.
             map.addAttribute("Message", "User details added successfully");
 	    return "logIn";
         } catch (ApplicationException e) {
