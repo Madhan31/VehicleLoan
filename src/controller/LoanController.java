@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 import exception.ApplicationException;
+import model.Company;
 import model.EligibilityDetail;
 import model.Vehicle;
 import model.VehicleModel;
@@ -59,7 +60,7 @@ public class LoanController {
             } else {
             	return new ModelAndView("logIn", "Message", "Incorrect username or password");
             	//FileUtil.errorLog("Exception occured in EmployeeDao/insertEmployee()..." + exp.toString());	
- }
+            }
         } catch (ApplicationException e) {
             return new ModelAndView("logIn", "Message", (e.getMessage().toString()));
         }
@@ -88,7 +89,7 @@ public class LoanController {
     public String eligibilityDetail(ModelMap modelMap) throws ApplicationException {
     	modelMap.addAttribute("eligibilityDetail", new EligibilityDetail());
     	modelMap.addAttribute("vehicleList", vehicleService.retrieveVehicles());
-    	modelMap.addAttribute("companyList", companyService.retrieveCompanys());
+    	modelMap.addAttribute("companyList", companyService.retrieveCompanies());
         return "homepage";
     } 
     
@@ -156,17 +157,29 @@ public class LoanController {
         return "addVehicleModel";
     } 
     
-    @RequestMapping("/deleteVehicle")     
-    public String deleteVehicle(ModelMap modelMap) throws ApplicationException {
-        List<Vehicle> vehicles = vehicleService.retrieveVehicles();
-    	modelMap.addAttribute("vehicles", vehicles);
-        return "removeVehicle";
+    @RequestMapping("/insertCompany")     
+    public String insertCompany(ModelMap modelMap) throws ApplicationException {
+    	modelMap.addAttribute("insertCompany", new Company());
+        return "addCompany";
     }
     
-    @RequestMapping(value = "/removeVehicle", method = RequestMethod.GET)     
-    public String removeVehicle(@RequestParam("vehicleId") int vehicleId, ModelMap modelMap) throws ApplicationException {
-    	modelMap.addAttribute("remove", vehicleService.removeVehicle(vehicleId));
-        return "removeVehicle";
+    @RequestMapping("/addCompany")
+    public String addCompany(@ModelAttribute("insertCompany") Company company, ModelMap modelMap) throws ApplicationException {
+        modelMap.addAttribute("insert", companyService.addCompany(company));
+        return "addCompany";
+    }
+    
+    @RequestMapping("/deleteCompany")     
+    public String deleteCompany(ModelMap modelMap) throws ApplicationException {
+        List<Company> companies = companyService.retrieveCompanies();
+    	modelMap.addAttribute("companies", companies);
+        return "removeCompany";
+    }
+    
+    @RequestMapping(value = "/removeCompany", method = RequestMethod.GET)     
+    public String removeCompany(@RequestParam("companyId") int companyId, ModelMap modelMap) throws ApplicationException {
+    	modelMap.addAttribute("remove", companyService.removeCompany(companyId));
+        return "removeCompany";
     } 
 
     @RequestMapping("/deleteVehicleModel")     
@@ -194,6 +207,13 @@ public class LoanController {
         List<VehicleModel> vehicleModels = vehicleModelService.retrieveVehicleModels();
     	modelMap.addAttribute("vehicleModels", vehicleModels);
         return "retrieveAllVehicleModel";
+    }
+    
+    @RequestMapping("/retrieveAllCompany")     
+    public String retrieveAllCompany(ModelMap modelMap) throws ApplicationException {
+        List<Company> companies = companyService.retrieveCompanies();
+    	modelMap.addAttribute("companies", companies);
+        return "retrieveAllCompany";
     }
     
     @RequestMapping("/adminOperation")

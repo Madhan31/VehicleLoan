@@ -25,7 +25,7 @@
         </form>    
         <br></br>
     <button type="button" onclick="javascript:history.back()" style ="width:80px; height:30px;" >go back</button>
-    <br></br><p><h1 align = "center">Add Vehicle Details :</h1></p>
+    <br></br><p><h1 align = "center">Add Company Details :</h1></p>
     <form:form action = "addCompany" modelAttribute = "insertCompany" class= "login"><br></br>
         <fieldset>
             <legand>Insert Company</legand>

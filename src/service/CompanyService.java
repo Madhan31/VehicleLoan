@@ -10,8 +10,8 @@ public class CompanyService {
 
     private CompanyDao comanyDao = new CompanyDao();
 	
-    public List<Company> retrieveCompanys() throws ApplicationException {
-        return comanyDao.retrieveCompanys();		
+    public List<Company> retrieveCompanies() throws ApplicationException {
+        return comanyDao.retrieveCompanies();		
     }	
 
     public String addCompany(Company company) throws ApplicationException {

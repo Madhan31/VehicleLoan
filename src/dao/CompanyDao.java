@@ -27,7 +27,7 @@ public class CompanyDao {
      * @throws DatabaseException
      * 		if there is any error in hibernate configuration.
      */
-    public List<Company> retrieveCompanys() throws ApplicationException {
+    public List<Company> retrieveCompanies() throws ApplicationException {
         session = sessionFactory.openSession();
         try {
             transaction = session.beginTransaction();
