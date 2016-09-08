@@ -74,10 +74,9 @@ public class LoanController {
     @RequestMapping(value="/addUser", method = RequestMethod.POST) 
     public String addUser(@ModelAttribute("user") User user, ModelMap map) {
         try {
-        	System.out.println(user);
              userService.addUser(user);
-             int userId = userService.getUserId(user.getMobileNumber());
-             map.addAttribute("Message", "Your user ID is:"+userId);
+             //int userId = userService.getUserId(user.getMobileNumber());
+             //map.addAttribute("Message", "Your user ID is:"+userId);
 	    return "logIn";
         } catch (ApplicationException e) {
             map.addAttribute("Message", (e.getMessage().toString()));

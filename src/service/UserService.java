@@ -17,6 +17,7 @@ public class UserService {
     
     public int getUserId(String mobileNumber) throws ApplicationException {
     	User user = userDao.retrieveUserByMobileNumber(mobileNumber);
+    	System.out.println(user);
         return user.getUserId();
     }
 }
