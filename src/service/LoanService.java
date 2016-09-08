@@ -4,10 +4,15 @@ import java.util.List;
 
 import dao.LoanDao;
 import exception.ApplicationException;
+import model.EligibilityDetail;
 import model.Loan;
 
 public class LoanService {
     private LoanDao loanDao = new LoanDao();
+    
+    public int calculateLoanAmount(EligibilityDetail eligibilityDetail) {
+    	return eligibilityDetail.getVehicleModel().getPrice() - eligibilityDetail.getDownPayment();
+    }
     
     public void addLoan(Loan loan) throws ApplicationException {
         loanDao.addLoan(loan);
