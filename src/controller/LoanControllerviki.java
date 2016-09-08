@@ -70,14 +70,12 @@ public class LoanControllerviki {
     	map.addAttribute("user", new User());
         return "user";
     }  
-    
+    /*viki*/
     @RequestMapping(value="/addUser", method = RequestMethod.POST) 
     public String addUser(@ModelAttribute("user") User user, ModelMap map) {
         try {
             userService.addUser(user);
-            String mobileNumber = user.getMobileNumber();
-            userService.
-            map.addAttribute("Message", "User details added successfully");
+            map.addAttribute("Message", "User details added successfully:"user.getUserId());
 	    return "logIn";
         } catch (ApplicationException e) {
             map.addAttribute("Message", (e.getMessage().toString()));
