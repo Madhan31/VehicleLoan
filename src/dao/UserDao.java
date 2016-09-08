@@ -3,7 +3,10 @@ package dao;
 import connection.HibernateConnection;
 import exception.ApplicationException;
 
+import java.util.List;
+
 import org.hibernate.HibernateException;
+import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
@@ -19,11 +22,13 @@ public class UserDao {
         Transaction transaction = null;
         try {
             transaction = session.beginTransaction();
+            System.out.println(user);
             session.save(user);
             transaction.commit();
         } catch(HibernateException exp) {
             transaction.rollback();
-            throw new ApplicationException("Error occured in add the values in user", exp);
+            exp.printStackTrace();
+            //throw new ApplicationException("Error occured in add the values in user", exp);
         } finally {
             session.close();
         }
@@ -45,13 +50,15 @@ public class UserDao {
         }
     } 
     
-    public User retrieveUserByMobileNumber(String mobileNumber) throws ApplicationException {
+    public List<User> retrieveUserByMobileNumber(long mobileNumber) throws ApplicationException {
         Session session = sessionFactory.openSession();
         Transaction transaction = null;
-        User user;
+        List<User> user;
         try {
             transaction = session.beginTransaction();
-            user = (User) session.createQuery("from User where mobileNumber="+mobileNumber);
+            Query query = session.createQuery("from User where mobileNumber=: mobileNumber");
+            query.setParameter("mobileNumber", mobileNumber);
+            user = query.list();
             transaction.commit();
             return user;
         } catch(HibernateException exp) {
