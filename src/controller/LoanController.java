@@ -118,7 +118,7 @@ public class LoanController {
     private ModelAndView addEligibilityDetail(@ModelAttribute("EligibilityDetail") EligibilityDetail eligibilityDetail) {
         try {
             if (eligibilityDetailService.addEligibilityDetail(eligibilityDetail)) {
-                return new ModelAndView("loan.jsp", "loanamount", loanService.calculateLoanAmount(eligibilityDetail));
+                return new ModelAndView("loan", "loanamount", loanService.calculateLoanAmount(eligibilityDetail));
             } else {
                 return new ModelAndView("acknowledgement", "message", "Data not inserted...");
             }            
