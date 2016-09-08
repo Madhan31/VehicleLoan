@@ -9,9 +9,30 @@
 <link rel="stylesheet" href="css/style.css">
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>Insert title here</title>
 </head>
 <title>Loan Addition</title>
+<script>
+function emiDetails() {
+	  var xhttp;
+	  var emi = parseInt(document.getElementById('loanperiod').value); 
+
+	  
+	  if (window.XMLHttpRequest) {
+	    // code for modern browsers
+	    xhttp = new XMLHttpRequest();
+	    } else {
+	    // code for IE6, IE5
+	    xhttp = new ActiveXObject("Microsoft.XMLHTTP");
+	  }
+	  xhttp.onreadystatechange = function() {
+	    if (this.readyState == 4 && this.status == 200) {
+	      document.getElementById("vehicleModelView").innerHTML = this.responseText;
+	    }
+	  };
+	  xhttp.open("GET", "vehicleModelView.html?vehicleId="+vehicle, true);
+	  xhttp.send();
+	}
+</script>	
 <body>  
     <body>
         <form  action = "logout" method = "get">
@@ -25,7 +46,7 @@
     </form>
     <form:form action = "addloandetail" method = "get" modelAttribute = "Loan" class= "login"><br></br>
     <m:out value = "Rs. ${loanamount}"/>
-    <form:select path = loanPeriod onchange = >
+    <form:select path = "loanPeriod" id = "loanperiod" onchange = "emiDetails();">
     	<option value = "12">1 Year</option>
     	<option value = "24">2 Year</option>
     	<option value = "36">3 Year</option>
