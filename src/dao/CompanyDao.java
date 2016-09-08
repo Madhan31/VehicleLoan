@@ -40,5 +40,34 @@ public class CompanyDao {
             session.close();
         }
     }	
+    
+    public void addCompany(Company company) throws ApplicationException {
+        session = sessionFactory.openSession();
+        try {
+            transaction = session.beginTransaction();
+            session.save(company);
+            transaction.commit();
+        } catch(HibernateException exp) {
+            throw new ApplicationException("Error occured in add the values in company", exp);
+        } finally {
+            session.close();
+        }
+    }
+    
+    public void removeCompany(int companyId) throws ApplicationException {
+        session = sessionFactory.openSession();
+        Company company;
+        try {
+            transaction = session.beginTransaction();  
+            company = (Company) session.load(Company.class, companyId);
+            session.delete(company);
+            transaction.commit();
+        } catch(HibernateException exp) {
+            throw new ApplicationException("Error occured in remove the vehicle details in company", exp);
+        } finally {
+            session.close();
+        }
+    }	
+
 
 }

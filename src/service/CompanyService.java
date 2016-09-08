@@ -14,4 +14,13 @@ public class CompanyService {
         return comanyDao.retrieveCompanys();		
     }	
 
+    public String addCompany(Company company) throws ApplicationException {
+        comanyDao.addCompany(company);
+        return "Company details added successfully";
+    }
+    
+    public String removeCompany(int companyId) throws ApplicationException {
+        comanyDao.removeCompany(companyId);
+        return "Company details deleted successfully";
+    }    
 }

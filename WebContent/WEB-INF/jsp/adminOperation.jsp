@@ -8,10 +8,13 @@
         <h>Account operation</h></br></br>
         <a href = insertVehicle>Insert vehicle details</a></br></br>
         <a href = insertVehicleModel>Insert vehicle model details</a></br></br>
+        <a href = insertCompany>Insert vehicle details</a></br></br>
         <a href = deleteVehicle>Delete vehicle details</a></br></br>
         <a href = deleteVehicleModel>Delete vehicle model details</a></br></br>
+        <a href = deleteCompany>Delete vehicle details</a></br></br>
         <a href = retrieveAllVehicle>Display all vehicle details</a></br></br>
         <a href = retrieveAllVehicleModel>Display all vehicle model details</a></br></br>
+        <a href = retrieveAllCompany>Delete vehicle details</a></br></br>
         <a href = logOut>Log out</a>
     </body>
 </html>

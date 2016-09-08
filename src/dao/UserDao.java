@@ -57,7 +57,7 @@ public class UserDao {
         try {
             transaction = session.beginTransaction();
             Query query = session.createQuery("from User where mobileNumber=: mobileNumber");
-            query.setParameter("mobileNumber", mobileNumber);
+            query.setParameter("mobileNumber", "mobileNumber");
             user = query.list();
             transaction.commit();
             return user;
