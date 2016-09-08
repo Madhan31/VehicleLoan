@@ -29,7 +29,7 @@ function emiDetails() {
 	      document.getElementById("vehicleModelView").innerHTML = this.responseText;
 	    }
 	  };
-	  xhttp.open("GET", "vehicleModelView.html?vehicleId="+vehicle, true);
+	  xhttp.open("GET", "emi.html?vehicleId="+emi, true);
 	  xhttp.send();
 	}
 </script>	
