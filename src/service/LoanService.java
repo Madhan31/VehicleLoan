@@ -11,7 +11,8 @@ public class LoanService {
     private LoanDao loanDao = new LoanDao();
     
     public int calculateLoanAmount(EligibilityDetail eligibilityDetail) {
-    	return eligibilityDetail.getVehicleModel().getPrice() - eligibilityDetail.getDownPayment();
+    	System.out.println(eligibilityDetail.getVehicleModel().getPrice());
+    	return (eligibilityDetail.getVehicleModel().getPrice() - eligibilityDetail.getDownPayment());
     }
     
     public void addLoan(Loan loan) throws ApplicationException {
