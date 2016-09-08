@@ -6,6 +6,7 @@ import javax.servlet.http.HttpSession;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.ModelAttribute;  
 import org.springframework.web.bind.annotation.RequestMapping;  
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -15,6 +16,7 @@ import org.springframework.web.servlet.ModelAndView;
 import exception.ApplicationException;
 import model.Company;
 import model.EligibilityDetail;
+import model.Loan;
 import model.Vehicle;
 import model.VehicleModel;
 import model.User;
@@ -103,7 +105,20 @@ public class LoanController {
     public String vehicleModelPrice(@RequestParam("vehicleModelId") int vehicleModelId, ModelMap modelMap) throws ApplicationException {
     	modelMap.addAttribute("vehicleModel", vehicleModelService.getVehicleModelById(vehicleModelId));
         return "vehicleModelPrice";
-    }     
+    }
+    
+    @RequestMapping(value = "/loan")     
+    public String loan(@ModelAttribute("loan") Loan loan, ModelMap modelMap) throws ApplicationException {
+    	modelMap.addAttribute("loan", new Loan());
+        return "loan";
+    }
+    
+    @RequestMapping(value = "/emi", method = RequestMethod.GET)     
+    public String emi(@RequestParam("loanPeriod") int loanPeriod,@RequestParam("loanAmount") int loanAmount, ModelMap modelMap) throws ApplicationException {
+    	System.out.println(loanPeriod + loanAmount);
+    	modelMap.addAttribute("emiDetails", loanService.getEmiDetails(loanPeriod, loanAmount));
+        return "emi";
+    }    
     
     
     /**
@@ -117,11 +132,11 @@ public class LoanController {
      * 		Returns success or failure message and also shows exception if any through jsp.
      */
     @RequestMapping(value = "/addeligibilitydetail", method = RequestMethod.GET)
-    private ModelAndView addEligibilityDetail(@ModelAttribute("EligibilityDetail") EligibilityDetail eligibilityDetail) {
+    private ModelAndView addEligibilityDetail(@ModelAttribute("eligibilityDetail") EligibilityDetail eligibilityDetail, BindingResult bindingResult) {
         try {
-        	System.out.println(eligibilityDetail.getVehicleModel().getPrice());
+        	VehicleModel vechicleModel = vehicleModelService.getVehicleModelById(eligibilityDetail.getVehicleModel().getVehicleModelId()); 
             if (eligibilityDetailService.addEligibilityDetail(eligibilityDetail)) {
-                return new ModelAndView("loan", "loanamount", loanService.calculateLoanAmount(eligibilityDetail));
+                return new ModelAndView("loan", "loanamount", loanService.calculateLoanAmount(eligibilityDetail,vechicleModel));
             } else {
                 return new ModelAndView("acknowledgement", "message", "Data not inserted...");
             }            
@@ -129,6 +144,7 @@ public class LoanController {
         	//FileUtil.errorLog("Exception occured in EmployeeDao/insertEmployee()..." + exp.toString());	
             return new ModelAndView("acknowledgement", "message", exp.getMessage());           
         } catch (Exception e) {
+        	e.printStackTrace();
         	return new ModelAndView("acknowledgement", "message", e.getMessage());
         }
     }

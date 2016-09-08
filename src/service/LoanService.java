@@ -6,14 +6,10 @@ import dao.LoanDao;
 import exception.ApplicationException;
 import model.EligibilityDetail;
 import model.Loan;
+import model.VehicleModel;
 
 public class LoanService {
     private LoanDao loanDao = new LoanDao();
-    
-    public int calculateLoanAmount(EligibilityDetail eligibilityDetail) {
-    	System.out.println(eligibilityDetail.getVehicleModel().getPrice());
-    	return (eligibilityDetail.getVehicleModel().getPrice() - eligibilityDetail.getDownPayment());
-    }
     
     public void addLoan(Loan loan) throws ApplicationException {
         loanDao.addLoan(loan);
@@ -38,5 +34,22 @@ public class LoanService {
     public boolean isLoanExist(int loanId) throws ApplicationException {
         return (retrieveLoan(loanId) != null);
     }
+    
+    public int calculateLoanAmount(EligibilityDetail eligibilityDetail,VehicleModel vehicleModel) {
+    	return (vehicleModel.getPrice() - eligibilityDetail.getDownPayment());
+    }
+    
+    public float getEmiDetails(int loanPeriod,int loanAmount) {
+    	if(loanPeriod == 12) {
+    		return (loanAmount + loanAmount * 10/100)/loanPeriod;
+    	}
+    	if(loanPeriod == 24) {
+    		return (loanAmount + loanAmount * 15/100)/loanPeriod;
+    	}
+    	if(loanPeriod == 36) {
+    		return (loanAmount + loanAmount * 18/100)/loanPeriod;
+    	}
+    	return 0;    	
+    }    
 }
 

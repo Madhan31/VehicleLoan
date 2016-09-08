@@ -14,14 +14,12 @@
 <script>
 function emiDetails() {
 	  var xhttp;
-	  var emi = parseInt(document.getElementById('loanperiod').value); 
-
+	  var loanPeriod = parseInt(document.getElementById('loanperiod').value); 
+	  var loanAmount = parseInt(document.getElementById('loanAmount').value); 
 	  
 	  if (window.XMLHttpRequest) {
-	    // code for modern browsers
 	    xhttp = new XMLHttpRequest();
 	    } else {
-	    // code for IE6, IE5
 	    xhttp = new ActiveXObject("Microsoft.XMLHTTP");
 	  }
 	  xhttp.onreadystatechange = function() {
@@ -29,7 +27,7 @@ function emiDetails() {
 	      document.getElementById("emidetails").innerHTML = this.responseText;
 	    }
 	  };
-	  xhttp.open("GET", "emi.html?emi="+emi, true);
+	  xhttp.open("GET", "emi.html?loanPeriod="+loanPeriod + "&loanAmount="+loanAmount, true);
 	  xhttp.send();
 	}
 </script>	
@@ -40,23 +38,23 @@ function emiDetails() {
         </form>    
         <br></br>
     <button type="button" onclick="javascript:history.back()" style ="width:80px; height:30px;" >go back</button>
-    <br></br><p><h1 align = "center">Register Loan Details :</h1>
-    <form class = "login">
+    <br></br><p><h1 align = "center">Decide to Apply :</h1>
+    <!--<form class = "login">
     <m:out value = "Rs. ${loanamount}"/>
-    </form>
-    <form:form action = "addloandetail" method = "get" modelAttribute = "Loan" class= "login"><br></br>
+    </form>-->
+    <form action = "addloandetail" method = "get" class= "login"><br></br>
+    <div id = "loanAmount">
     <m:out value = "Rs. ${loanamount}"/>
-    <form:select path = "loanPeriod" id = "loanperiod" onchange = "emiDetails();">
+    </div>
+    <select path = "loanPeriod" id = "loanperiod" onchange = "emiDetails();">
     	<option value = "12">1 Year</option>
     	<option value = "24">2 Year</option>
     	<option value = "36">3 Year</option>
-   	</form:select>
-        <!--<form:input type = "text" name = "emi" path = "emi" placeholder = "Emi" required = "required" /><br></br>
-        <form:input type = "text" name = "period" path = "period" placeholder = "Period" required = "required" data-validation="number" data-validation-error-msg="Please enter number only..." /><br></br>  
-        <form:input type = "text" name = "documentCharge" path = "documentCharge" placeholder = "Document Charge" required = "required" /><br></br>
-        <form:input type = "text" name = "date" path = "date" placeholder = "DD/MM/YYYY" required = "required" /><br></br>
-        <form:input type = "text" name = "loanAmount" path = "loanAmount" placeholder = "Loan Amount" required = "required" data-validation="number" data-validation-error-msg="Please enter number only..."/><br></br> -->                
-        <input type = "submit" name = "button" value = "Register"/>
-    </form:form>
+   	</select>   
+   	<div id = "emidetails">
+   	<textarea style = "width: 100px; height: 15px; display:none;"></textarea>
+   	</div>     
+        <input type = "submit" name = "button" value = "Apply Loan"/>
+    </form>
 </body>
 </html>

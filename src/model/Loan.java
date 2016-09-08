@@ -44,6 +44,8 @@ public class Loan {
 		this.eligibilityDetail = eligibilityDetail;
 		this.user = user;
 	}
+	
+	public Loan() {	}
 
 	@Id
 	@Column(name = "loan_id")
