@@ -30,13 +30,13 @@ public class UserDao {
         }
     }
     
-    public User retrieveUser(int phoneNumber) throws ApplicationException {
+    public User retrieveUser(int mobileNumber) throws ApplicationException {
         Session session = sessionFactory.openSession();
         Transaction transaction = null;
         User user;
         try {
             transaction = session.beginTransaction();
-            user = (User) session.get(User.class, phoneNumber);
+            user = (User) session.get(User.class, mobileNumber);
             transaction.commit();
             return user;
         } catch(HibernateException e) {
