@@ -1,16 +1,21 @@
 package dao;
 
+import java.util.List;
+
 import org.hibernate.HibernateException;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
 
-import java.util.List;
-
 import connection.HibernateConnection;
 import exception.ApplicationException;
 import model.VehicleModel;
 
+/**
+ * 
+ * @author vicky
+ *
+ */
 public class VehicleModelDao {
 
     private HibernateConnection hibernateConnection =  HibernateConnection.createObject();
@@ -32,6 +37,12 @@ public class VehicleModelDao {
         }	
     }    
     
+    /**
+     * 
+     * @param vehicleId
+     * @return
+     * @throws ApplicationException
+     */
     public List<VehicleModel> getVehicleModelsByVehicleId(int vehicleId) throws ApplicationException {
         session = sessionFactory.openSession();
         try {
@@ -69,6 +80,11 @@ public class VehicleModelDao {
         }
     }	
     
+    /**
+     * 
+     * @param vehicleModel
+     * @throws ApplicationException
+     */
     public void addVehicleModel(VehicleModel vehicleModel) throws ApplicationException {
         session = sessionFactory.openSession();
         try {
@@ -82,6 +98,11 @@ public class VehicleModelDao {
         }
     }
     
+    /**
+     * 
+     * @param vehicleModelId
+     * @throws ApplicationException
+     */
     public void removeVehicleModel(int vehicleModelId) throws ApplicationException {
         session = sessionFactory.openSession();
         VehicleModel vehicleModel;
@@ -96,6 +117,4 @@ public class VehicleModelDao {
             session.close();
         }
     }	
-	
-	
 }

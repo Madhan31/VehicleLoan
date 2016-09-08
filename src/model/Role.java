@@ -13,8 +13,17 @@ import javax.persistence.Table;
 @Table(name = "role")
 public class Role {
 	
-	public Role() { }
+	/**
+	 * 
+	 */
+	public Role() { 
+	}
 	
+	/**
+	 * 
+	 * @param roleId
+	 * @param roleName
+	 */
 	public Role(int roleId, String roleName) {
 		super();
 		this.roleId = roleId;
@@ -51,5 +60,4 @@ public class Role {
 	public String toString() {
 		return "Role [roleId=" + roleId + ", roleName=" + roleName + "]";
 	}
-
 }

@@ -11,6 +11,11 @@ import javax.persistence.Table;
 
 import model.Vehicle;
 
+/**
+ * 
+ * @author admin-pc
+ *
+ */
 @Entity
 @Table(name = "vehicle_model")
 public class VehicleModel {
@@ -29,9 +34,19 @@ public class VehicleModel {
     @JoinColumn(name = "vehicle_id")
     private Vehicle vehicle;
     
+    /**
+     * 
+     */
     public VehicleModel() {
     }
-   
+    
+    /**
+     * 
+     * @param vehicleModelId
+     * @param vehicleModelName
+     * @param price
+     * @param vehicle
+     */
 	public VehicleModel(int vehicleModelId, String vehicleModelName, int price, Vehicle vehicle) {
 		super();
 		this.vehicleModelId = vehicleModelId;

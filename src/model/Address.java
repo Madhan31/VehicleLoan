@@ -22,6 +22,15 @@ import javax.persistence.Table;
 @Table(name = "address")
 public class Address {
 	
+	/**
+	 * 
+	 * @param addressId
+	 * @param street
+	 * @param city
+	 * @param state
+	 * @param pincode
+	 * @param landmark
+	 */
     public Address(int addressId, String street, String city, String state, int pincode, String landmark) {
 		super();
 		this.addressId = addressId;
@@ -32,7 +41,7 @@ public class Address {
 		this.landmark = landmark;
 	}
 
-	@Id 
+    @Id 
     @Column(name = "address_id")
     private int addressId;
     
@@ -78,6 +87,7 @@ public class Address {
 	public User getUser() {
 		return user;
 	}
+	
 	public void setCity(String city) {
 		this.city = city;
 	}
@@ -109,6 +119,7 @@ public class Address {
 	public void setUser(User user) {
 		this.user = user;
 	}
+	
 	/* (non-Javadoc)
 	 * @see java.lang.Object#toString()
 	 */

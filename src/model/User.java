@@ -7,8 +7,6 @@ import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
-//import javax.persistence.GeneratedValue;
-//import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.OneToMany;
@@ -24,7 +22,6 @@ import model.Role;
  * Pojo class of Account model and create getter setter method for all attributes.
  *   
  */
-
 @Entity
 @Table(name = "user_detail")
 public class User {
@@ -70,9 +67,23 @@ public class User {
     @JoinColumn(name = "payment_id")
     private Set<Payment> payments = new HashSet<Payment>();
     
+    /**
+     * 
+     */
     public User() {
     }
     
+    /**
+     * 
+     * @param firstName
+     * @param lastName
+     * @param mobileNumber
+     * @param emailId
+     * @param dateOfBirth
+     * @param gender
+     * @param password
+     * @param userId
+     */
     public User(String firstName, String lastName, long mobileNumber, String emailId,String dateOfBirth, String gender, String password, int userId) {
         this.firstName = firstName;
         this.lastName = lastName;

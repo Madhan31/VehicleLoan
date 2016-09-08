@@ -1,7 +1,7 @@
 package connection;
 
-import org.hibernate.SessionFactory;
 import org.hibernate.cfg.AnnotationConfiguration;
+import org.hibernate.SessionFactory;
 
 /**
  * <p>
@@ -13,17 +13,16 @@ import org.hibernate.cfg.AnnotationConfiguration;
  *
  * @created 2016-09-01
  */
-
 public class HibernateConnection {
-   
-	private static HibernateConnection hibernateConnection = null;
-    private AnnotationConfiguration configuration=null;
-    private SessionFactory sessionFactory=null;
+    
+    private static HibernateConnection hibernateConnection = null;
+    private AnnotationConfiguration configuration = null;
+    private SessionFactory sessionFactory = null;
     
     /**
      * Restricts object creation for this class
      */
-    private HibernateConnection(){  
+    private HibernateConnection() {  
     } 
     
     /**
@@ -34,7 +33,7 @@ public class HibernateConnection {
      *        Contains object for class HibernateConnection
      */
     public static HibernateConnection createObject() {
-        if(hibernateConnection==null){
+        if(hibernateConnection==null) {
             hibernateConnection = new HibernateConnection();
         }         
         return hibernateConnection;
@@ -48,13 +47,13 @@ public class HibernateConnection {
      *        Contains object for class SessionFactory
      */
     public SessionFactory establishConnection() {
-        if(configuration==null){
+        if(configuration==null) {
             configuration=new AnnotationConfiguration();
-   	        configuration.configure("hibernate.cfg.xml"); 
-   	    }
-   	    if(sessionFactory==null){	
-	        sessionFactory=configuration.configure().buildSessionFactory();
-	    }
+   	    configuration.configure("hibernate.cfg.xml"); 
+   	}
+   	if(sessionFactory==null) {	
+	    sessionFactory=configuration.configure().buildSessionFactory();
+	}
         return sessionFactory;
-   }
- }
+    }
+}

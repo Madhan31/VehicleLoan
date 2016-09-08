@@ -11,6 +11,11 @@ import connection.HibernateConnection;
 import exception.ApplicationException;
 import model.Vehicle;
 
+/**
+ * 
+ * @author vicky
+ *
+ */
 public class VehicleDao {
 	
     private HibernateConnection hibernateConnection =  HibernateConnection.createObject();
@@ -41,6 +46,11 @@ public class VehicleDao {
         }
     }
     
+    /**
+     * 
+     * @param vehicle
+     * @throws ApplicationException
+     */
     public void addVehicle(Vehicle vehicle) throws ApplicationException {
         session = sessionFactory.openSession();
         try {
@@ -54,6 +64,11 @@ public class VehicleDao {
         }
     }
     
+    /**
+     * 
+     * @param vehicleId
+     * @throws ApplicationException
+     */
     public void removeVehicle(int vehicleId) throws ApplicationException {
         session = sessionFactory.openSession();
         Vehicle vehicle;
@@ -68,5 +83,4 @@ public class VehicleDao {
             session.close();
         }
     }	
-
 }

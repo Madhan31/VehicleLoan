@@ -92,12 +92,13 @@ public class Payment {
 	public void setUser(User user) {
 		this.user = user;
 	}
-
+    
+	/**
+	 * 
+	 */
 	@Override
 	public String toString() {
 		return "Payment [paymentId=" + paymentId + ", paymentAmount=" + paymentAmount + ", date=" + date + ", loan="
 				+ loan + "]";
 	}
-	
-
 }

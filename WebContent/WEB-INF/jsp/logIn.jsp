@@ -6,9 +6,9 @@
 <%@ taglib uri="http://www.springframework.org/tags/form" prefix="form" %>
 <html>
     <c:if test="${Message != null}" >
-            <script language = "javaScript" type = "text/javascript">
-                alert('<c:out value = "${Message}" />');
-            </script>
+        <script language = "javaScript" type = "text/javascript">
+            alert('<c:out value = "${Message}" />');
+        </script>
     </c:if>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
@@ -47,8 +47,8 @@
             <div class="footer">
                 <input type="submit" name="submit" value="Login" class="button" />
             </div>
-         </form>
-         <form name="login-form" class="login-form" action="signUp" method="post">
+        </form>
+        <form name="login-form" class="login-form" action="signUp" method="post">
             <div class="footer">
                 <input type="submit" name="submit" value="Register here" class="button" />
             </div>
@@ -56,6 +56,5 @@
     </div>
     <a href = "homepage">homepage</a>
     <a href = "adminOperation">adminOperation</a>
-    
     </body>
 </html>

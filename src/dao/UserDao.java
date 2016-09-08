@@ -1,8 +1,5 @@
 package dao;
 
-import connection.HibernateConnection;
-import exception.ApplicationException;
-
 import java.util.List;
 
 import org.hibernate.HibernateException;
@@ -11,29 +8,46 @@ import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
 
+import connection.HibernateConnection;
+import exception.ApplicationException;
 import model.User;
 
+/**
+ * 
+ * @author vicky
+ *
+ */
 public class UserDao {
+	
     private HibernateConnection hibernateConnection =  HibernateConnection.createObject();
     private SessionFactory sessionFactory = hibernateConnection.establishConnection();
     
+    /**
+     * 
+     * @param user
+     * @throws ApplicationException
+     */
     public void addUser(User user) throws ApplicationException {
         Session session = sessionFactory.openSession();
         Transaction transaction = null;
         try {
             transaction = session.beginTransaction();
-            System.out.println(user);
             session.save(user);
             transaction.commit();
         } catch(HibernateException exp) {
             transaction.rollback();
-            exp.printStackTrace();
-            //throw new ApplicationException("Error occured in add the values in user", exp);
+            throw new ApplicationException("Error occured in add the values in user", exp);
         } finally {
             session.close();
         }
     }
     
+    /**
+     * 
+     * @param userId
+     * @return
+     * @throws ApplicationException
+     */
     public User retrieveUser(int userId) throws ApplicationException {
         Session session = sessionFactory.openSession();
         Transaction transaction = null;
@@ -50,6 +64,12 @@ public class UserDao {
         }
     } 
     
+    /**
+     * 
+     * @param mobileNumber
+     * @return
+     * @throws ApplicationException
+     */
     public List<User> retrieveUserByMobileNumber(long mobileNumber) throws ApplicationException {
         Session session = sessionFactory.openSession();
         Transaction transaction = null;

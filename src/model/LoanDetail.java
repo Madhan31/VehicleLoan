@@ -12,6 +12,11 @@ import javax.persistence.Table;
 
 import model.Payment;
 
+/**
+ * 
+ * @author vicky
+ *
+ */
 @Entity
 @Table(name = "loan_detail")
 public class LoanDetail {
@@ -34,9 +39,18 @@ public class LoanDetail {
     @JoinColumn(name = "payment_id")
     private Payment payment;
     
+    /**
+     * 
+     */
     public LoanDetail() {
     }
-   
+    
+    /**
+     * 
+     * @param loanDetailId
+     * @param balanceAmount
+     * @param balanceEmi
+     */
     public LoanDetail(int loanDetailId, int balanceAmount, int balanceEmi) {
         this.loanDetailId = loanDetailId;
         this.balanceAmount = balanceAmount;
@@ -86,6 +100,5 @@ public class LoanDetail {
 	public void setBalanceAmount(int balanceAmount) {
 		this.balanceAmount = balanceAmount;
 	}
-    
 }
    
