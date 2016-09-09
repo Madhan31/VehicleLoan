@@ -40,7 +40,7 @@
                     <tr>
                         <td><c:out value="${loans.loanId}" /></td>
                         <td><c:out value="${loans.emi}" /></td>
-                        <td><c:out value="${loans.period}" /></td>
+                        <td><c:out value="${loans.loanPeriod}" /></td>
                         <td><c:out value="${loans.date}" /></td>
                         <td><c:out value="${loans.loanAmount}" /></td>
                     </tr>
@@ -63,7 +63,7 @@
                 <legand>Insert Vehicle</legand>
                 <form:input type = "text" name = "loan" path = "loan.loanId" placeholder = "Loan ID" required = "required" /><br></br>
                 <form:input type = "text" name = "paymentAmount" path = "paymentAmount" placeholder = "Payment Amount" required = "required" /><br></br>
-                <form:input type = "hidden" path = "user.userId" value = "<c:out value = "${userId}"/>" /> <br></br>
+                <form:input type = "hidden" path = "user.userId" value = "${userId}" /> <br></br>
                 <input type = "submit" name = "button" value = "Payment"/>
             </fieldset>
         </form:form>

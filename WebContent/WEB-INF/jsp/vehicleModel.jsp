@@ -20,13 +20,7 @@
         <br></br><h1 align = "center">Register Loan Details :</h1>
         <form:form action = "addVehicleModel" method = "get" modelAttribute = "Vehicle" class= "login"><br></br>
             <fieldset>
-                <p>Insert vehicle model</p>
-        <form:select path = "vehicle.vehicleId" >
-		   <option value="0"> -- Select vehicle -- </option>
-		<m:forEach items="${vehicleList}" var="vehicle">
-		 <option value="${vehicle.vehicleId}">${vehicle.vehicleName}</option>
-		</m:forEach>
-		 </form:select>                
+                <p>Insert vehicle model</p>               
                 <form:input type = "text" name = "vehicleModelName" path = "vehicleModelName" placeholder = "Model name" required = "required" /><br></br>
                 <form:input type = "text" name = "price" path = "price" placeholder = "Price" required = "required" data-validation="number" data-validation-error-msg="Please enter number only..." /><br></br>  
                 <input type = "submit" name = "button" value = "Add"/>

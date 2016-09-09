@@ -68,14 +68,16 @@ public class LoanDao {
     public List<Loan> retrieveLoansByUserId(int userId) throws ApplicationException {
         Session session = sessionFactory.openSession();
         Transaction transaction = null;
-        List<Loan> loans = new ArrayList<Loan>();
         try {
             transaction = session.beginTransaction();
-            loans = (List<Loan>) session.createQuery("from Loan where user_id ="+userId).list();
+            List<Loan> loans = session.createQuery("from Loan where user_id ="+userId).list();
             transaction.commit();
             return loans;
         } catch(HibernateException exception) {
-            throw new ApplicationException("Error occured in retrive the loan details in loan", exception);
+        	transaction.rollback();
+        	exception.printStackTrace();
+        	return null;
+            //throw new ApplicationException("Error occured in retrive the loan details in loan", exception);
         } finally {
             session.close();
         }

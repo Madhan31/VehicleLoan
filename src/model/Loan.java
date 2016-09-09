@@ -55,14 +55,6 @@ public class Loan {
     @ManyToOne(cascade = CascadeType.PERSIST)
     @JoinColumn(name = "user_id")
     private User user;
-    
-    @Override
-	public String toString() {
-		return "Loan [loanId=" + loanId + ", emi=" + emi + ", loanPeriod=" + loanPeriod + ", processingFees="
-				+ processingFees + ", documentationCharges=" + documentationCharges + ", date=" + date + ", loanAmount="
-				+ loanAmount + ", eligibilityDetail=" + eligibilityDetail + ", user=" + user + ", loanDetails="
-				+ loanDetails + "]";
-	}
 
 	/**
 	 * @param loanId

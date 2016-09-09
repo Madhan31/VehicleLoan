@@ -180,6 +180,7 @@ public class LoanController {
     @RequestMapping("/insertVehicleModel")     
     public String insertVehicleModel(ModelMap modelMap) throws ApplicationException {
     	modelMap.addAttribute("insertVehicleModel", new VehicleModel());
+    	modelMap.addAttribute("vehicleList", vehicleService.retrieveVehicles());
         return "addVehicleModel";
     }
     

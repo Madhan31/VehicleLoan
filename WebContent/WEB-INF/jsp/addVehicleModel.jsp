@@ -22,6 +22,12 @@
         <form:form action = "addVehicleModel" modelAttribute = "insertVehicleModel" class= "login"><br></br>
             <fieldset>
                 <legand>Insert vehicle model</legand>
+        <form:select path = "vehicle.vehicleId" >
+		   <option value="0"> -- Select vehicle -- </option>
+		<c:forEach items="${vehicleList}" var="vehicle">
+		 <option value="${vehicle.vehicleId}">${vehicle.vehicleName}</option>
+		</c:forEach>
+		 </form:select>                 
                 <form:input type = "text" name = "vehicleModelName" path = "vehicleModelName" placeholder = "Model name" required = "required" /><br></br>
                 <form:input type = "text" name = "price" path = "price" placeholder = "Price" required = "required" data-validation="number" data-validation-error-msg="Please enter number only..." /><br></br>  
                 <input type = "submit" name = "button" value = "Add"/>

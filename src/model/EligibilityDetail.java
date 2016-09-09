@@ -122,10 +122,4 @@ public class EligibilityDetail {
 		this.vehicleModel = vehicleModel;
 		this.user = user;
 	}
-
-	@Override
-	public String toString() {
-		return "EligibilityDetail [id=" + id + ", currentCity=" + currentCity + ", company=" + company + ", salary=" + salary + ", downPayment=" + downPayment + ", vehicleModel="
-				+ vehicleModel + ", user=" + user + "]";
-	}
 }
