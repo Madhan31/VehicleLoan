@@ -43,7 +43,8 @@ function emiDetails() {
     </form>-->
     <form:form action = "addloandetail" modelAttribute = "loan" method = "get" class= "login"><br></br>
     <m:out value = "Rs. ${loanamount}"/>
-    <form:input type="hidden" path = "loanAmount" id = "loanAmount" value = " <m:out value = "${loanamount}"/>"></form:input>
+    <input type="hidden" id = "loanAmount" value = " <m:out value = "${loanamount}" />" readonly/>
+    <form:input type="hidden" path = "loanAmount" value = "<m:out value = "${loanamount}"/>" readonly />
     <form:select path = "loanPeriod" id = "loanperiod" onchange = "emiDetails();">
     	<option value = "12">1 Year</option>
     	<option value = "24">2 Year</option>

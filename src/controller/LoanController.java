@@ -46,7 +46,7 @@ public class LoanController {
         return "logIn";
     }
     
-    @RequestMapping(value = "/logIn", method = RequestMethod.POST)
+    /*@RequestMapping(value = "/logIn", method = RequestMethod.POST)
     public ModelAndView logIn(@RequestParam("userId")int userId, @RequestParam("password")String password, HttpSession session) {  
         try {
             User user = userService.retrieveUser(userId);
@@ -69,7 +69,7 @@ public class LoanController {
         } catch (ApplicationException e) {
             return new ModelAndView("logIn", "Message", (e.getMessage().toString()));
         }
-    }
+    }*/
     
     @RequestMapping("/signUp")     
     public String signUp(ModelMap map) {
@@ -86,7 +86,7 @@ public class LoanController {
             if(user.getRole().getRoleId() == 2){
 	            return "admin";
             }
-            return "login";            
+            return "logIn";            
         } catch (ApplicationException e) {
             map.addAttribute("Message", (e.getMessage().toString()));
             return "logIn"; 
@@ -150,6 +150,20 @@ public class LoanController {
         	return new ModelAndView("acknowledgement", "message", e.getMessage());
         }
     }
+    
+    @RequestMapping(value = "/addloandetail", method = RequestMethod.GET)
+    private void addLoanDetail(@ModelAttribute("loan") Loan loan, BindingResult bindingResult, ModelMap modelMap) {
+        try {
+        	loanService.addLoan(loan);          
+        } catch (ApplicationException exp) {
+        	//FileUtil.errorLog("Exception occured in EmployeeDao/insertEmployee()..." + exp.toString());	
+            //return new ModelAndView("acknowledgement", "message", exp.getMessage());
+        	exp.printStackTrace();
+        } catch (Exception e) {
+        	e.printStackTrace();
+        	//return new ModelAndView("acknowledgement", "message", e.getMessage());
+        }
+    }    
     
     @RequestMapping("/insertVehicle")     
     public String insertVehicle(ModelMap modelMap) throws ApplicationException {
@@ -241,7 +255,7 @@ public class LoanController {
     
     @RequestMapping("/payment")
     public String payment(@RequestParam("userId") int userId, ModelMap modelMap) throws ApplicationException {
-    	List<Loan>loans = loanService.retrieveLoansByUserId(userId);
+    	List<Loan> loans = loanService.retrieveLoansByUserId(userId);
     	modelMap.addAttribute("loans",loans);
     	modelMap.addAttribute("userId",userId);
     	modelMap.addAttribute("payment", new Payment());
