@@ -71,7 +71,7 @@ public class LoanDao {
         List<Loan> loans = new ArrayList<Loan>();
         try {
             transaction = session.beginTransaction();
-            loans = session.createQuery("from Loan where user_id ="+userId).list();
+            loans = (List<Loan>) session.createQuery("from Loan where user_id ="+userId).list();
             transaction.commit();
             return loans;
         } catch(HibernateException exception) {
