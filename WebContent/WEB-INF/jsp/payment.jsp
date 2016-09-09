@@ -27,7 +27,6 @@
         </style>
     </head>
     <body>
-
         <c:if test = "${loans != null}">
             <table>
                 <tr>
@@ -62,11 +61,10 @@
         <form:form action = "paymentConfirm" modelAttribute = "payment" class= "login"><br></br>
             <fieldset>
                 <legand>Insert Vehicle</legand>
-                <form:input type = "text" name = "loan.loanId" path = "LoanId" placeholder = "Loan ID" required = "required" /><br></br>
+                <form:input type = "text" name = "loan" path = "loan.loanId" placeholder = "Loan ID" required = "required" /><br></br>
                 <form:input type = "text" name = "paymentAmount" path = "paymentAmount" placeholder = "Payment Amount" required = "required" /><br></br>
                 <form:input type = "hidden" path = "user.userId" value = "<c:out value = "${userId}"/>" /> <br></br>
                 <input type = "submit" name = "button" value = "Payment"/>
-                
             </fieldset>
         </form:form>
         <a href = "adminOperation">Back to main page</a>
