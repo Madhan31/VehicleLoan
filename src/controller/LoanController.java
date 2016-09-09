@@ -83,7 +83,10 @@ public class LoanController {
             userService.addUser(user);
             int userId = userService.getUserId(user.getMobileNumber());
             map.addAttribute("Message", "Your user ID is:"+userId);
-	        return "logIn";
+            if(user.getRole().getRoleId() == 2){
+	            return "admin";
+            }
+            return "login";            
         } catch (ApplicationException e) {
             map.addAttribute("Message", (e.getMessage().toString()));
             return "logIn"; 
@@ -249,6 +252,12 @@ public class LoanController {
     public String paymentConfirm(@ModelAttribute("payment") Payment payment, ModelMap modelMap) throws ApplicationException {
         modelMap.addAttribute("insert", paymentService.addPayment(payment));
         return "payment";
+    } 
+    
+    @RequestMapping("/admin")     
+    public String admin(ModelMap map) {
+    	map.addAttribute("user", new User());
+        return "admin";
     } 
     
     @RequestMapping("/adminOperation")
