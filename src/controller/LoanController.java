@@ -107,16 +107,11 @@ public class LoanController {
         return "vehicleModelPrice";
     }
     
-    @RequestMapping(value = "/loan")     
-    public String loan(@ModelAttribute("loan") Loan loan, ModelMap modelMap) throws ApplicationException {
-    	modelMap.addAttribute("loan", new Loan());
-        return "loan";
-    }
-    
     @RequestMapping(value = "/emi", method = RequestMethod.GET)     
     public String emi(@RequestParam("loanPeriod") int loanPeriod,@RequestParam("loanAmount") int loanAmount, ModelMap modelMap) throws ApplicationException {
-    	System.out.println(loanPeriod + loanAmount);
-    	modelMap.addAttribute("emiDetails", loanService.getEmiDetails(loanPeriod, loanAmount));
+    	modelMap.addAttribute("emi", loanService.getEmiDetails(loanPeriod, loanAmount));
+    	modelMap.addAttribute("processingFees", loanService.getProcessingFees(loanPeriod, loanAmount));
+    	modelMap.addAttribute("documentationCharges", loanService.getDocumentationCharges(loanPeriod, loanAmount));
         return "emi";
     }    
     
@@ -132,10 +127,11 @@ public class LoanController {
      * 		Returns success or failure message and also shows exception if any through jsp.
      */
     @RequestMapping(value = "/addeligibilitydetail", method = RequestMethod.GET)
-    private ModelAndView addEligibilityDetail(@ModelAttribute("eligibilityDetail") EligibilityDetail eligibilityDetail, BindingResult bindingResult) {
+    private ModelAndView addEligibilityDetail(@ModelAttribute("eligibilityDetail") EligibilityDetail eligibilityDetail, BindingResult bindingResult, ModelMap modelMap) {
         try {
         	VehicleModel vechicleModel = vehicleModelService.getVehicleModelById(eligibilityDetail.getVehicleModel().getVehicleModelId()); 
             if (eligibilityDetailService.addEligibilityDetail(eligibilityDetail)) {
+            	modelMap.addAttribute("loan", new Loan());
                 return new ModelAndView("loan", "loanamount", loanService.calculateLoanAmount(eligibilityDetail,vechicleModel));
             } else {
                 return new ModelAndView("acknowledgement", "message", "Data not inserted...");

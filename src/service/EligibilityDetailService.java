@@ -22,4 +22,5 @@ public class EligibilityDetailService {
     public boolean addEligibilityDetail(EligibilityDetail eligibilityDetail) throws ApplicationException {
         return eligibilityDetailDao.insertEligibilityDetail(eligibilityDetail);
     }	
+
 }

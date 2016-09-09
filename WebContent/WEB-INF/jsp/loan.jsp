@@ -16,7 +16,6 @@ function emiDetails() {
 	  var xhttp;
 	  var loanPeriod = parseInt(document.getElementById('loanperiod').value); 
 	  var loanAmount = parseInt(document.getElementById('loanAmount').value); 
-	  
 	  if (window.XMLHttpRequest) {
 	    xhttp = new XMLHttpRequest();
 	    } else {
@@ -24,7 +23,7 @@ function emiDetails() {
 	  }
 	  xhttp.onreadystatechange = function() {
 	    if (this.readyState == 4 && this.status == 200) {
-	      document.getElementById("emidetails").innerHTML = this.responseText;
+	      document.getElementById("emiDetails").innerHTML = this.responseText;
 	    }
 	  };
 	  xhttp.open("GET", "emi.html?loanPeriod="+loanPeriod + "&loanAmount="+loanAmount, true);
@@ -42,19 +41,17 @@ function emiDetails() {
     <!--<form class = "login">
     <m:out value = "Rs. ${loanamount}"/>
     </form>-->
-    <form action = "addloandetail" method = "get" class= "login"><br></br>
-    <div id = "loanAmount">
+    <form:form action = "addloandetail" modelAttribute = "loan" method = "get" class= "login"><br></br>
     <m:out value = "Rs. ${loanamount}"/>
-    </div>
-    <select path = "loanPeriod" id = "loanperiod" onchange = "emiDetails();">
+    <form:input type="hidden" path = "loanAmount" id = "loanAmount" value = " <m:out value = "${loanamount}"/>"></form:input>
+    <form:select path = "loanPeriod" id = "loanperiod" onchange = "emiDetails();">
     	<option value = "12">1 Year</option>
     	<option value = "24">2 Year</option>
     	<option value = "36">3 Year</option>
-   	</select>   
-   	<div id = "emidetails">
-   	<textarea style = "width: 100px; height: 15px; display:none;"></textarea>
-   	</div>     
+   	</form:select>   
+<div id = "emiDetails">
+   	</div>  
         <input type = "submit" name = "button" value = "Apply Loan"/>
-    </form>
+    </form:form>
 </body>
 </html>

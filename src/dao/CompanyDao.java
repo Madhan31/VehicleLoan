@@ -11,6 +11,11 @@ import connection.HibernateConnection;
 import exception.ApplicationException;
 import model.Company;
 
+/**
+ * 
+ * @author vicky
+ *
+ */
 public class CompanyDao {
 
     private HibernateConnection hibernateConnection =  HibernateConnection.createObject();
@@ -25,7 +30,7 @@ public class CompanyDao {
      * @return
      * 		Returns company list to service method.
      * @throws DatabaseException
-     * 		if there is any error in hibernate configuration.
+     * 		If there is any error in hibernate configuration.
      */
     public List<Company> retrieveCompanies() throws ApplicationException {
         session = sessionFactory.openSession();
@@ -41,6 +46,11 @@ public class CompanyDao {
         }
     }	
     
+    /**
+     * 
+     * @param company
+     * @throws ApplicationException
+     */
     public void addCompany(Company company) throws ApplicationException {
         session = sessionFactory.openSession();
         try {
@@ -54,6 +64,11 @@ public class CompanyDao {
         }
     }
     
+    /**
+     * 
+     * @param companyId
+     * @throws ApplicationException
+     */
     public void removeCompany(int companyId) throws ApplicationException {
         session = sessionFactory.openSession();
         Company company;
@@ -68,6 +83,4 @@ public class CompanyDao {
             session.close();
         }
     }	
-
-
 }

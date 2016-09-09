@@ -9,9 +9,6 @@ import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
-import org.hibernate.annotations.LazyCollection;
-import org.hibernate.annotations.LazyCollectionOption;
-
 import model.VehicleModel;
 
 /**
@@ -42,12 +39,10 @@ public class EligibilityDetail {
 	private Company company;	
 	
 	@OneToOne(cascade = CascadeType.PERSIST)
-    @JoinColumn(name = "vehicle_model_id")
-	@LazyCollection(LazyCollectionOption.FALSE)
+    @JoinColumn(name = "vehicle_model_id")	
 	private VehicleModel vehicleModel;
 	
     @ManyToOne(cascade = CascadeType.PERSIST)
-    @LazyCollection(LazyCollectionOption.FALSE)
     @JoinColumn(name = "user_id")
     private User user;
 

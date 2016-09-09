@@ -24,27 +24,6 @@ import javax.persistence.Table;
 @Table(name = "loan")
 public class Loan {
 	
-	/**
-	 * @param loanIdOneToMany
-	 * @param emi
-	 * @param loanPeriod
-	 * @param documentCharges
-	 * @param date
-	 * @param eligibilityDetail
-	 * @param user
-	 */
-	public Loan(int loanId, int emi, int loanPeriod, int documentCharges, String date,
-			EligibilityDetail eligibilityDetail, User user) {
-		super();
-		this.loanId = loanId;
-		this.emi = emi;
-		this.loanPeriod = loanPeriod;
-		this.documentCharges = documentCharges;
-		this.date = date;
-		this.eligibilityDetail = eligibilityDetail;
-		this.user = user;
-	}
-	
 	public Loan() {	}
 
 	@Id
@@ -52,14 +31,17 @@ public class Loan {
 	private int loanId;
 	
 	@Column(name = "emi_in_rupees")
-	private int emi;
+	private float emi;
 	
 	@Column(name = "loan_period_in_months")
 	private int loanPeriod;
 	
-	@Column(name = "document_charges")
-	private int documentCharges;
-	
+	@Column(name = "processing_fees")
+	private float processingFees;
+
+	@Column(name = "documentation_charges")
+	private float documentationCharges;
+
 	@Column(name = "date")
 	private String date;
 	
@@ -74,9 +56,44 @@ public class Loan {
     @JoinColumn(name = "user_id")
     private User user;
     
-    @OneToMany(cascade = CascadeType.PERSIST)
+    @Override
+	public String toString() {
+		return "Loan [loanId=" + loanId + ", emi=" + emi + ", loanPeriod=" + loanPeriod + ", processingFees="
+				+ processingFees + ", documentationCharges=" + documentationCharges + ", date=" + date + ", loanAmount="
+				+ loanAmount + ", eligibilityDetail=" + eligibilityDetail + ", user=" + user + ", loanDetails="
+				+ loanDetails + "]";
+	}
+
+	/**
+	 * @param loanId
+	 * @param emi
+	 * @param loanPeriod
+	 * @param processingFees
+	 * @param documentationCharges
+	 * @param date
+	 * @param loanAmount
+	 * @param eligibilityDetail
+	 * @param user
+	 * @param loanDetails
+	 */
+	public Loan(int loanId, float emi, int loanPeriod, float processingFees, float documentationCharges, String date,
+			int loanAmount, EligibilityDetail eligibilityDetail, User user, Set<LoanDetail> loanDetails) {
+		super();
+		this.loanId = loanId;
+		this.emi = emi;
+		this.loanPeriod = loanPeriod;
+		this.processingFees = processingFees;
+		this.documentationCharges = documentationCharges;
+		this.date = date;
+		this.loanAmount = loanAmount;
+		this.eligibilityDetail = eligibilityDetail;
+		this.user = user;
+		this.loanDetails = loanDetails;
+	}
+
+	@OneToMany(cascade = CascadeType.PERSIST)
     @JoinColumn(name = "payment_id")
-    private Set<LoanDetail> loanDetails = new HashSet<LoanDetail>();    
+    private Set<LoanDetail> loanDetails = new HashSet<LoanDetail>();
 
 	public int getLoanId() {
 		return loanId;
@@ -86,11 +103,11 @@ public class Loan {
 		this.loanId = loanId;
 	}
 
-	public int getEmi() {
+	public float getEmi() {
 		return emi;
 	}
 
-	public void setEmi(int emi) {
+	public void setEmi(float emi) {
 		this.emi = emi;
 	}
 
@@ -102,12 +119,20 @@ public class Loan {
 		this.loanPeriod = loanPeriod;
 	}
 
-	public int getDocumentCharges() {
-		return documentCharges;
+	public float getProcessingFees() {
+		return processingFees;
 	}
 
-	public void setDocumentCharges(int documentCharges) {
-		this.documentCharges = documentCharges;
+	public void setProcessingFees(float processingFees) {
+		this.processingFees = processingFees;
+	}
+
+	public float getDocumentationCharges() {
+		return documentationCharges;
+	}
+
+	public void setDocumentationCharges(float documentationCharges) {
+		this.documentationCharges = documentationCharges;
 	}
 
 	public String getDate() {
@@ -116,6 +141,14 @@ public class Loan {
 
 	public void setDate(String date) {
 		this.date = date;
+	}
+
+	public int getLoanAmount() {
+		return loanAmount;
+	}
+
+	public void setLoanAmount(int loanAmount) {
+		this.loanAmount = loanAmount;
 	}
 
 	public EligibilityDetail getEligibilityDetail() {
@@ -134,27 +167,12 @@ public class Loan {
 		this.user = user;
 	}
 
-	@Override
-	public String toString() {
-		return "Loan [loanId=" + loanId + ", emi=" + emi + ", loanPeriod=" + loanPeriod + ", documentCharges="
-				+ documentCharges + ", date=" + date + ", loanAmount=" + loanAmount + ", eligibilityDetail="
-				+ eligibilityDetail + ", user=" + user + ", loanDetails=" + loanDetails + "]";
-	}
-
-	public int getLoanAmount() {
-		return loanAmount;
-	}
-
-	public void setLoanAmount(int loanAmount) {
-		this.loanAmount = loanAmount;
-	}
-
 	public Set<LoanDetail> getLoanDetails() {
 		return loanDetails;
 	}
 
 	public void setLoanDetails(Set<LoanDetail> loanDetails) {
 		this.loanDetails = loanDetails;
-	}	
+	}
 
 }

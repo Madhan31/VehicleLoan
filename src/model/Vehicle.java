@@ -1,7 +1,7 @@
 package model;
 
-import java.util.Set;
 import java.util.HashSet;
+import java.util.Set;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
@@ -14,6 +14,11 @@ import javax.persistence.Table;
 
 import model.VehicleModel;
 
+/**
+ * 
+ * @author vicky
+ *
+ */
 @Entity
 @Table(name = "vehicle")
 public class Vehicle {
@@ -29,9 +34,17 @@ public class Vehicle {
     @JoinColumn(name = "vehicle_model_id")
     private Set<VehicleModel> vehicleModels = new HashSet<VehicleModel>();
     
+    /**
+     * 
+     */
     public Vehicle() {
     }
-   
+    
+    /**
+     * 
+     * @param vehicleId
+     * @param vehicleName
+     */
     public Vehicle(int vehicleId, String vehicleName) {
         this.vehicleId = vehicleId;
         this.vehicleName = vehicleName;
