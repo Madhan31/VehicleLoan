@@ -34,7 +34,9 @@ public class Payment {
 		this.loan = loan;
 		this.user = user;
 	}
-
+    public Payment() {
+    	
+    }
 	@Id
 	@Column(name = "payment_id")
 	private int paymentId;

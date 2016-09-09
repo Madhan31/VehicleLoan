@@ -59,12 +59,14 @@
         <br></br>
         <button type="button" onclick="javascript:history.back()" style ="width:80px; height:30px;" >go back</button>
         <br></br><p><h1 align = "center">Payment Details :</h1></p>
-        <form:form action = "addVehicle" modelAttribute = "insertVehicle" class= "login"><br></br>
+        <form:form action = "paymentConfirm" modelAttribute = "insertVehicle" class= "login"><br></br>
             <fieldset>
                 <legand>Insert Vehicle</legand>
-                <form:input type = "text" name = "loanId" path = "LoanId" placeholder = "Loan ID" required = "required" /><br></br>
+                <form:input type = "text" name = "loan.loanId" path = "LoanId" placeholder = "Loan ID" required = "required" /><br></br>
                 <form:input type = "text" name = "paymentAmount" path = "paymentAmount" placeholder = "Payment Amount" required = "required" /><br></br>
+                <form:input type = "hidden" path = "user.userId" value = "<c:out value = "${userId}"/>" /> <br></br>
                 <input type = "submit" name = "button" value = "Payment"/>
+                
             </fieldset>
         </form:form>
         <a href = "adminOperation">Back to main page</a>

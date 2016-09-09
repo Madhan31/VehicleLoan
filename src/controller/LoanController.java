@@ -17,12 +17,14 @@ import exception.ApplicationException;
 import model.Company;
 import model.EligibilityDetail;
 import model.Loan;
+import model.Payment;
 import model.Vehicle;
 import model.VehicleModel;
 import model.User;
 import service.CompanyService;
 import service.EligibilityDetailService;
 import service.LoanService;
+import service.PaymentService;
 import service.UserService;
 //import util.FileUtil;
 import service.VehicleService;
@@ -37,6 +39,7 @@ public class LoanController {
     private VehicleModelService vehicleModelService = new VehicleModelService();
     private CompanyService companyService = new CompanyService();
     private LoanService loanService = new LoanService();
+    private PaymentService paymentService = new PaymentService();
     
     @RequestMapping("/logIn") 
     public String welcome() {
@@ -227,6 +230,26 @@ public class LoanController {
     	modelMap.addAttribute("companies", companies);
         return "retrieveAllCompany";
     }
+    
+    @RequestMapping("/loanDetail") 
+    public String loanDetail() {
+    	return "loanDetail";
+    }
+    
+    @RequestMapping("/payment")
+    public String payment(@RequestParam("userId") int userId, ModelMap modelMap) throws ApplicationException {
+    	List<Loan>loans = loanService.retrieveLoansByUserId(userId);
+    	modelMap.addAttribute("loans",loans);
+    	modelMap.addAttribute("userId",userId);
+    	modelMap.addAttribute("payment", new Payment());
+    	return "payment";
+    }
+    
+    @RequestMapping("/paymentConfirm") 
+    public String paymentConfirm(@ModelAttribute("payment") Payment payment, ModelMap modelMap) throws ApplicationException {
+        modelMap.addAttribute("insert", paymentService.addPayment(payment));
+        return "payment";
+    } 
     
     @RequestMapping("/adminOperation")
     public String adminOperation(ModelMap modelMap) {   

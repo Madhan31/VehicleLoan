@@ -23,11 +23,11 @@
         </form>    
         <br></br>
         <button type="button" onclick="javascript:history.back()" style ="width:80px; height:30px;" >go back</button>
-        <br></br><p><h1 align = "center">Enter loan ID to make payment :</h1></p>
-        <form action = "addVehicle" modelAttribute = "insertVehicle" class= "login"><br></br>
+        <br></br><p><h1 align = "center">Enter user ID to make payment :</h1></p>
+        <form action = "payment" class= "login"><br></br>
             <fieldset>
                 <legand>Insert Vehicle</legand>
-                <input type = "text" name = "loanId" value = "loanId" placeholder = "Loan ID" required = "required" /><br></br>
+                <input type = "text" name = "userId" value = "userId" placeholder = "User ID" required = "required" /><br></br>
                 <input type = "submit" name = "button" value = "Submit"/>
             </fieldset>
         </form>
