@@ -11,6 +11,9 @@
         </script>
     </c:if>
     <head>
+        <style>
+            background-color: lightblue;
+        </style>
         <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
         <link href="css/login.css" rel="stylesheet" type="text/css" />
         <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.2.6/jquery.min.js"></script>
