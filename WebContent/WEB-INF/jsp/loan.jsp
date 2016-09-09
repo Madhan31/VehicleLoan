@@ -30,8 +30,22 @@ function emiDetails() {
 	  xhttp.send();
 	}
 </script>	
-<body>  
-    <body>
+
+<script type="text/javascript">
+function getDate()
+{
+    var today = new Date();
+    var dd = today.getDate();
+    var mm = today.getMonth()+1; //January is 0!
+    var yyyy = today.getFullYear();
+    if(dd<10){dd='0'+dd} if(mm<10){mm='0'+mm}
+    today = yyyy+""+mm+""+dd;
+
+    document.getElementById("todayDate").value = today;
+}
+
+</script>
+    <body onload = "getDate();">
         <form  action = "logout" method = "get">
             <input type = "submit" name = "button" value = "logout" style ="width:80px; height:30px;" />
         </form>    
@@ -43,12 +57,13 @@ function emiDetails() {
     </form>-->
     <form:form action = "addloandetail" modelAttribute = "loan" method = "get" class= "login"><br></br>
     <m:out value = "Rs. ${loanamount}"/>
-    <input type="hidden" id = "loanAmount" value = " <m:out value = "${loanamount}" />" readonly/>
+    <form:input type="hidden" path = "loanAmount" id = "loanAmount" value = "${loanamount}" />
     <form:select path = "loanPeriod" id = "loanperiod" onchange = "emiDetails();">
     	<option value = "12">1 Year</option>
     	<option value = "24">2 Year</option>
     	<option value = "36">3 Year</option>
    	</form:select>   
+   	<form:input type="hidden" path = "date" name="startdate" id="todayDate"/>
 <div id = "emiDetails">
    	</div>  
         <input type = "submit" name = "button" value = "Apply Loan"/>

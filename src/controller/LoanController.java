@@ -46,7 +46,7 @@ public class LoanController {
         return "logIn";
     }
     
-    /*@RequestMapping(value = "/logIn", method = RequestMethod.POST)
+    @RequestMapping(value = "/logIn", method = RequestMethod.POST)
     public ModelAndView logIn(@RequestParam("userId")int userId, @RequestParam("password")String password, HttpSession session) {  
         try {
             User user = userService.retrieveUser(userId);
@@ -69,7 +69,7 @@ public class LoanController {
         } catch (ApplicationException e) {
             return new ModelAndView("logIn", "Message", (e.getMessage().toString()));
         }
-    }*/
+    }
     
     @RequestMapping("/signUp")     
     public String signUp(ModelMap map) {
