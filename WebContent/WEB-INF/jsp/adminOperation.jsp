@@ -15,6 +15,7 @@
         <a href = retrieveAllVehicle>Display all vehicle details</a></br></br>
         <a href = retrieveAllVehicleModel>Display all vehicle model details</a></br></br>
         <a href = retrieveAllCompany>Display all company details</a></br></br>
+        <a href = loanDetail>Loan payment </a></br></br>
         <a href = logOut>Log out</a>
     </body>
 </html>

@@ -27,6 +27,10 @@ public class LoanService {
         return loanDao.retrieveLoan(loanId);
     }
     
+    public List<Loan> retrieveLoansByUserId(int userId) throws ApplicationException {
+        return loanDao.retrieveLoansByUserId(userId);
+    }
+    
     public List<Loan> retreiveAllLoans() throws ApplicationException {
         return loanDao.retreieveAllLoans();
     }
