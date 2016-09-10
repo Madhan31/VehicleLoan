@@ -36,7 +36,8 @@ public class UserDao {
             transaction.commit();
         } catch(HibernateException exp) {
             transaction.rollback();
-            throw new ApplicationException("Error occured in add the values in user", exp);
+            exp.printStackTrace();
+            //throw new ApplicationException("Error occured in add the values in user", exp);
         } finally {
             session.close();
         }
