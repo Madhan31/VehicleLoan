@@ -82,10 +82,11 @@ public class LoanController {
         try {
         	System.out.println(user);
             userService.addUser(user);
+            int userId = user.getUserId();
             //int userId = userService.getUserId(user.getMobileNumber());
-            //map.addAttribute("Message", "Your user ID is:"+userId);
+            map.addAttribute("Message", "Your user ID is:"+userId);
             //if(user.getRole().getRoleId() == 2){
-	          //  return "admin";
+            //	return "admin";
             //}
             return "logIn";            
         } catch (ApplicationException e) {

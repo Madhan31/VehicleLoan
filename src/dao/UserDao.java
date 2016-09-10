@@ -77,13 +77,13 @@ public class UserDao {
         List<User> user;
         try {
             transaction = session.beginTransaction();
-            Query query = session.createQuery("from User where mobileNumber=: mobileNumber");
+            Query query = session.createQuery("from User where mobileNumber=" + mobileNumber);
             query.setParameter("mobileNumber", "mobileNumber");
             user = query.list();
             transaction.commit();
             return user;
         } catch(HibernateException exp) {
-            throw new ApplicationException("Error occured in retrive the user details in user", exp);
+            throw new ApplicationException("Error occured in retrive the mobile number in user", exp);
         } finally {
             session.close();
         }
