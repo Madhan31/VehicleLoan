@@ -55,7 +55,9 @@ public class LoanDao {
         Loan loan;
         try {
             transaction = session.beginTransaction();
+            System.out.println(loanId);
             loan = (Loan) session.get(Loan.class, loanId);
+            System.out.println("check");
             transaction.commit();
             return loan;
         } catch(HibernateException exception) {

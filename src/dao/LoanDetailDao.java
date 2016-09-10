@@ -34,7 +34,7 @@ public class LoanDetailDao {
         LoanDetail loanDetail;
         try {
             transaction = session.beginTransaction();
-            loanDetail = (LoanDetail) session.createQuery("from LoanDetail where loan_id = " + loanId);
+            loanDetail = (LoanDetail) session.get(LoanDetail.class, loanId);
             transaction.commit();
             System.out.println(loanDetail);
             return loanDetail;
@@ -44,4 +44,5 @@ public class LoanDetailDao {
             session.close();
         }
     } 
+    
 }

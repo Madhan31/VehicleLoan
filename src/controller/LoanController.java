@@ -267,7 +267,7 @@ public class LoanController {
     @RequestMapping("/paymentConfirm") 
     public String paymentConfirm(@ModelAttribute("payment") Payment payment, ModelMap modelMap) throws ApplicationException {
         modelMap.addAttribute("insert", paymentService.addPayment(payment));
-        return "payment";
+        return "loanDetail";
     } 
     
     @RequestMapping("/admin")     

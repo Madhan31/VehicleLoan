@@ -103,7 +103,13 @@ public class LoanDetail {
         this.loanDetailId = loanDetailId;
     }
    
-    public void setLoanName(int balanceAmount) {
+    @Override
+	public String toString() {
+		return "LoanDetail [loanDetailId=" + loanDetailId + ", balanceAmount=" + balanceAmount + ", balanceEmi="
+				+ balanceEmi + ", loan=" + loan + ", payment=" + payment + "]";
+	}
+
+	public void setLoanName(int balanceAmount) {
         this.balanceAmount = balanceAmount;
     }
     
