@@ -16,6 +16,7 @@ public class PaymentService {
         paymentDao.addPayment(payment);
         Loan loan = loanService.retrieveLoan(payment.getLoan().getLoanId());
         if(loanDetailService.isLoanDetailExist(payment.getLoan().getLoanId())) {
+        	System.out.println("test");
            int balanceEmi = ((loan.getLoanPeriod()) - 1);
            int balanceAmount = (loan.getLoanAmount() - payment.getPaymentAmount());
            loanDetailService.addLoanDetail(new LoanDetail(balanceAmount, balanceEmi, loan, payment));

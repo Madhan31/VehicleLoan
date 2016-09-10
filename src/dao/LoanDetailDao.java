@@ -34,8 +34,9 @@ public class LoanDetailDao {
         LoanDetail loanDetail;
         try {
             transaction = session.beginTransaction();
-            loanDetail = (LoanDetail) session.get(LoanDetail.class, loanId);
+            loanDetail = (LoanDetail) session.createQuery("from LoanDetail where loan_id = " + loanId);
             transaction.commit();
+            System.out.println(loanDetail);
             return loanDetail;
         } catch(HibernateException exception) {
             throw new ApplicationException("Error occured in retrive the loan details in loan", exception);
