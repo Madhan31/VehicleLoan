@@ -56,7 +56,14 @@ public class LoanDetail {
         this.balanceAmount = balanceAmount;
         this.balanceEmi = balanceEmi;
     }
-   
+    
+    public LoanDetail(int balanceAmount, int balanceEmi, Loan loan, Payment payment) {
+    	this.payment = payment;
+    	this.loan = loan;
+        this.balanceAmount = balanceAmount;
+        this.balanceEmi = balanceEmi;
+    }
+    
     /**
 	 * @param loanDetailId
 	 * @param balanceAmount
