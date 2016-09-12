@@ -40,6 +40,8 @@ public class Address {
 		this.pincode = pincode;
 		this.landmark = landmark;
 	}
+    
+    public Address() { }
 
     @Id 
     @Column(name = "address_id")

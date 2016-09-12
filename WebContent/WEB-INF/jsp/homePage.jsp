@@ -78,12 +78,14 @@ function loadvehicleprice() {
 		 </select>    
 		 
 <form:select path="vehicleModel.vehicleModelId" id="vehicleModelView" onchange = "loadvehicleprice();" >                    
-   <option value="0"> Select Vehicle Model -- </option>	                                         
+   <option value="0"> Select Vehicle Model -- </option>	   
+   <option></option>                                      
    </form:select>  <br></br>
    	<div id = "vehicleModelPrice">
    		<textarea readonly style = "width: 100px; height: 15px; display:none;'"></textarea>
    		 </div>	      
-        <form:input type = "text" name = "downpayment" path = "downPayment" placeholder = "Down Payment" required = "required" /><br></br>                
+        <form:input type = "text" name = "downpayment" path = "downPayment" placeholder = "Down Payment" required = "required" /><br></br>
+        <form:input type = "hidden" path = "user.userId" value = "${sessionScope['userId']}" />                
         <input type = "submit" name = "button" value = "Proceed"/>
     </form:form>   
     

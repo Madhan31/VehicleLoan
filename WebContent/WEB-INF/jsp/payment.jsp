@@ -69,7 +69,7 @@
                 <legand>Insert Vehicle</legand>
                 <form:input type = "text" name = "loan" path = "loan.loanId" placeholder = "Loan ID" required = "required" /><br></br>
                 <form:input type = "text" name = "paymentAmount" path = "paymentAmount" placeholder = "Payment Amount" required = "required" /><br></br>
-                <form:input type = "hidden" path = "user.userId" value = "${userId}" /> <br></br>
+                <form:input type = "hidden" path = "user.userId" value = "${sessionScope['userId']}" /> <br></br>
                 <input type = "submit" name = "button" value = "Payment"/>
             </fieldset>
         </form:form>

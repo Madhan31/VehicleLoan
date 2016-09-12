@@ -4,6 +4,11 @@ import dao.EligibilityDetailDao;
 import exception.ApplicationException;
 import model.EligibilityDetail;
 
+/**
+ * 
+ * @author Madhan
+ *
+ */
 public class EligibilityDetailService {
 	
 	private EligibilityDetailDao eligibilityDetailDao = new EligibilityDetailDao();

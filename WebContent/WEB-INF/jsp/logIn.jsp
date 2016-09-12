@@ -26,7 +26,7 @@
 		    $(".user-icon").css("left","0px");
 	        });
 	        $(".password").focus(function() {
-	 	    $(".pass-icon").css("left","-48px");
+	 	    $(".pass-icon").css("left","0px");
 	        });
 	        $(".password").blur(function() {
 		    $(".pass-icon").css("left","0px");
@@ -40,12 +40,11 @@
         <div class="pass-icon"></div>
         <form name="login-form" class="login-form" action="logIn" method="post">
             <div class="header">
-                <h1>Login Form</h1>
-                <span>Fill out the form below to login to my super awesome imaginary control panel.</span>
+                <h1>Login</h1>
             </div>
             <div class="content">
-	        <input name="userId" type="text" class="input userId" value="userName" onfocus="this.value=''" />
-                <input name="password" type="password" class="input password" value="password" onfocus="this.value=''" />
+	        <input name="userId" type="text" class="input userId" onfocus="this.value=''" placeholder = "user Id"/>
+                <input name="password" type="password" class="input password"  onfocus="this.value=''" placeholder = "password" />
             </div>
             <div class="footer">
                 <input type="submit" name="submit" value="Login" class="button" />

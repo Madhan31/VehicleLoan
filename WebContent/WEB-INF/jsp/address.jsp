@@ -12,18 +12,15 @@
 <title>Insert title here</title>
 </head>
 <title>Address Addition</title>
-<body>
-    <body>
+    <body onload = "populateStates('state','city');" >	
     <br></br><p><h1 align = "center">Add Address Details :</h1>
-    <form:form action="addUser" modelAttribute = "user" method="post">
+    <form:form action="address" modelAttribute = "address" method="post">
         <form:input type = "text" name = "street" path = "street" placeholder = "Street" required = "required"/>
-        <form:input type = "text" name = "landMark" path = "landMark" placeholder = "Land mark" required = "required"/>		        
-        <form:select id="state" name ="state" path = state ></form:select>><br></br>  
-        <form:select id ="city" name ="city" path = city ></form:select><br></br>
-        <script language="javascript">
-            populateStates("state", "city");
-        </script>
+        <form:input type = "text" name = "landmark" path = "landmark" placeholder = "Landmark" required = "required"/>		        
+        <form:select id="state" name ="state" path = "state" ></form:select><br></br>  
+        <form:select id ="city" name ="city" path = "city" ></form:select><br></br>       
         <form:input type = "text" name = "pincode" path = "pincode" placeholder = "Pincode" required = "required"/>
+        <form:input type = "hidden" path = "user.userId" value = "${sessionScope['userId']}" />
         <input type = "submit" name = "button" value = "Register"/>
     </form:form>
 </body>

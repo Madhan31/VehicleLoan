@@ -65,7 +65,9 @@ function getDate()
    	</form:select>   
    	<form:input type="hidden" path = "date" name="startdate" id="todayDate"/>
 <div id = "emiDetails">
-   	</div>  
+   	</div>
+   	<form:input type = "hidden" path = "eligibilityDetail.id" value = "${eligibilityDetailId}" />  
+   	<form:input type = "hidden" path = "user.userId" value = "${sessionScope['userId']}" />
         <input type = "submit" name = "button" value = "Apply Loan"/>
     </form:form>
 </body>

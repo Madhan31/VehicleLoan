@@ -15,8 +15,8 @@ function populateCities(stateElementId, cityElementId) {
 
     var cityElement = document.getElementById(cityElementId);
 
-    cityElement.length = 0; // Fixed by Julian Woods
-    cityElement.options[0] = new Option('Select brand', '');
+    cityElement.length = 0;
+    cityElement.options[0] = new Option('Select city', '');
     cityElement.selectedIndex = 0;
 
     var city_arr = s_a[selectedStateIndex].split("|");
@@ -28,20 +28,17 @@ function populateCities(stateElementId, cityElementId) {
 }
 
 function populateStates(stateElementId, cityElementId) {
-    // given the id of the <select> tag as function argument, it inserts <option> tags
     var stateElement = document.getElementById(stateElementId);
     stateElement.length = 0;
-    stateElement.options[0] = new Option('Select Loan type', '-1');
+    stateElement.options[0] = new Option('Select state', '-1');
     stateElement.selectedIndex = 0;
     for (var i = 0; i < state_arr.length; i++) {
         stateElement.options[stateElement.length] = new Option(state_arr[i], state_arr[i]);
     }
 
-    // Assigned all states. Now assign event listener for the cities.
-
     if (cityElementId) {
-        cityElement.onchange = function () {
-            populateStates(stateElementId, cityElementId);
+        stateElement.onchange = function () {
+            populateCities(stateElementId, cityElementId);
         };
     }
 }

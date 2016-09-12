@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 import exception.ApplicationException;
+import model.Address;
 import model.Company;
 import model.EligibilityDetail;
 import model.Loan;
@@ -22,6 +23,7 @@ import model.Payment;
 import model.Vehicle;
 import model.VehicleModel;
 import model.User;
+import service.AddressService;
 import service.CompanyService;
 import service.EligibilityDetailService;
 import service.LoanDetailService;
@@ -43,6 +45,7 @@ public class LoanController {
     private LoanService loanService = new LoanService();
     private PaymentService paymentService = new PaymentService();
     private LoanDetailService loanDetailService = new LoanDetailService();
+    private AddressService addressService = new AddressService();
     
     @RequestMapping("/logIn") 
     public String welcome() {
@@ -83,9 +86,8 @@ public class LoanController {
     public String addUser(@ModelAttribute("user") User user, ModelMap map) {
         try {
             userService.addUser(user);
-            int userId = user.getUserId();
             //int userId = userService.getUserId(user.getMobileNumber());
-            map.addAttribute("Message", "Your user ID is:"+userId);
+            map.addAttribute("Message", "Your user ID is:"+user.getUserId());
             //if(user.getRole().getRoleId() == 2){
 	          //  return "admin";
             //}
@@ -140,6 +142,8 @@ public class LoanController {
         try {
         	VehicleModel vechicleModel = vehicleModelService.getVehicleModelById(eligibilityDetail.getVehicleModel().getVehicleModelId()); 
             if (eligibilityDetailService.addEligibilityDetail(eligibilityDetail)) {
+            	System.out.println(eligibilityDetail.getId());
+            	modelMap.addAttribute("eligibilityDetailId", eligibilityDetail.getId());
             	modelMap.addAttribute("loan", new Loan());
                 return new ModelAndView("loan", "loanamount", loanService.calculateLoanAmount(eligibilityDetail,vechicleModel));
             } else {
@@ -149,24 +153,36 @@ public class LoanController {
         	//FileUtil.errorLog("Exception occured in EmployeeDao/insertEmployee()..." + exp.toString());	
             return new ModelAndView("acknowledgement", "message", exp.getMessage());           
         } catch (Exception e) {
-        	e.printStackTrace();
         	return new ModelAndView("acknowledgement", "message", e.getMessage());
         }
     }
     
     @RequestMapping(value = "/addloandetail", method = RequestMethod.GET)
-    private void addLoanDetail(@ModelAttribute("loan") Loan loan, BindingResult bindingResult, ModelMap modelMap) {
+    private ModelAndView addLoanDetail(@ModelAttribute("loan") Loan loan, BindingResult bindingResult, ModelMap modelMap) {
         try {
-        	loanService.addLoan(loan);          
+        	loanService.addLoan(loan);
+        	modelMap.addAttribute("address", new Address());
+        	return new ModelAndView("address", "loan", loan);
         } catch (ApplicationException exp) {
         	//FileUtil.errorLog("Exception occured in EmployeeDao/insertEmployee()..." + exp.toString());	
-            //return new ModelAndView("acknowledgement", "message", exp.getMessage());
-        	exp.printStackTrace();
+            return new ModelAndView("acknowledgement", "message", exp.getMessage());
         } catch (Exception e) {
-        	e.printStackTrace();
-        	//return new ModelAndView("acknowledgement", "message", e.getMessage());
+        	return new ModelAndView("acknowledgement", "message", e.getMessage());
         }
     }  
+    
+    @RequestMapping(value = "/address", method = RequestMethod.POST)
+    private ModelAndView addAddress(@ModelAttribute("address") Address address, BindingResult bindingResult, ModelMap modelMap) {
+        try {
+        	addressService.addAddress(address);
+        	return new ModelAndView("acknowledgement", "message", "Loan applied successfully we will contact you soon");
+        } catch (ApplicationException exp) {
+        	//FileUtil.errorLog("Exception occured in EmployeeDao/insertEmployee()..." + exp.toString());	
+            return new ModelAndView("acknowledgement", "message", exp.getMessage());
+        } catch (Exception e) {
+        	return new ModelAndView("acknowledgement", "message", e.getMessage());
+        }
+    }      
     
     @RequestMapping("/vehicleOperation") 
     public String vehicleOperation() {
