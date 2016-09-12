@@ -1,10 +1,16 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib uri="http://www.springframework.org/tags/form" prefix="form" %>
-
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>  
     
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
+    <c:if test="${sessionScope['userId'] == null}" >
+        <c:redirect url = "index.jsp" />
+    </c:if>
+    <c:if test="${sessionScope['role'] != 'admin'}" >
+        <c:redirect url = "index.jsp" />
+    </c:if>
     <link rel="stylesheet" href="css/style.css">
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
@@ -13,6 +19,9 @@
     <title>Loan Addition</title>
     <body>
         <br></br><p><h1 align = "center">Register Loan Details :</h1>
+        <form align = "right" action = "logout" method = "get">
+            <input type = "submit" name = "button" value = "logout" style ="width:80px; height:30px;" />
+        </form> 
         <form:form action="addUser" modelAttribute = "user" method="post">
             <form:input type = "text" name = "firstName" path = "firstName" placeholder = "First Name" required = "required" />		        
             <form:input type="text" name="lastName" placeholder="Last Name" path="lastName" required="required" /><br></br>  

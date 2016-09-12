@@ -3,6 +3,12 @@
 
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <html>
+   <c:if test="${sessionScope['userId'] == null}" >
+        <c:redirect url = "index.jsp" />
+    </c:if>
+    <c:if test="${sessionScope['role'] != 'admin'}" >
+        <c:redirect url = "index.jsp" />
+    </c:if>
     <style>
             table {
                 font-family: arial, sans-serif;

@@ -3,12 +3,6 @@
 
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <html>
-   <c:if test="${sessionScope['userId'] == null}" >
-        <c:redirect url = "index.jsp" />
-    </c:if>
-    <c:if test="${sessionScope['role'] != 'admin'}" >
-        <c:redirect url = "index.jsp" />
-    </c:if>
     <style>
             table {
                 font-family: arial, sans-serif;
@@ -25,22 +19,27 @@
             }
     </style>
     <body>
-        <c:if test = "${vehicleModels != null}">
+    <link rel="stylesheet" href="css/style.css">
+        <form align = "right" action = "logout" method = "get">
+            <input type = "submit" name = "button" value = "logout" style ="width:80px; height:30px;" />
+        </form>    
+        <br></br>
+        <button type="button" onclick="javascript:history.back()" style ="width:80px; height:30px;" >go back</button>
+        <c:if test = "${loanDetails != null}">
             <table>
                 <tr>
                     <th>Model ID</th>
                     <th>Model name</th>
                     <th>Price</th>
                 </tr>
-                <c:forEach items="${vehicleModels}" var="vehicleModels">
+                <c:forEach items="${loanDetails}" var="loanDetail">
                     <tr>
-                        <td><c:out value="${vehicleModels.vehicleModelId}" /></td>
-                        <td><c:out value="${vehicleModels.vehicleModelName}" /></td>
-                        <td><c:out value="${vehicleModels.price}" /></td>
+                        <td><c:out value="${loanDetail.balanceAmount}" /></td>
+                        <td><c:out value="${loanDetail.balanceEmi}" /></td>
+                        <td><c:out value="${loanDetail.getLoan().loanId()}" /></td>
                     </tr>
                 </c:forEach>
             </table>
         </c:if>   
-        <a href = "adminOperation">Back to main page</a> 
     <body>
 </html>
