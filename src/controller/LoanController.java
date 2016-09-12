@@ -17,12 +17,14 @@ import exception.ApplicationException;
 import model.Company;
 import model.EligibilityDetail;
 import model.Loan;
+import model.LoanDetail;
 import model.Payment;
 import model.Vehicle;
 import model.VehicleModel;
 import model.User;
 import service.CompanyService;
 import service.EligibilityDetailService;
+import service.LoanDetailService;
 import service.LoanService;
 import service.PaymentService;
 import service.UserService;
@@ -40,6 +42,7 @@ public class LoanController {
     private CompanyService companyService = new CompanyService();
     private LoanService loanService = new LoanService();
     private PaymentService paymentService = new PaymentService();
+    private LoanDetailService loanDetailService = new LoanDetailService();
     
     @RequestMapping("/logIn") 
     public String welcome() {
@@ -51,20 +54,19 @@ public class LoanController {
         try {
             User user = userService.retrieveUser(userId);
             if(user != null) {
-                if ((user.getRole().equals("admin")) && (user.getPassword().equals(password))) {
+                if (((user.getRole().getRoleName()).equals("admin")) && (user.getPassword().equals(password))) {
             	    session.setAttribute("userId", userId);
             	    session.setAttribute("role", "admin");
-                    return new ModelAndView("admin");
-                } else if ((user.getRole().equals("user")) && (user.getPassword().equals(password))) {
+                    return new ModelAndView("adminOperation");
+                } else if (((user.getRole().getRoleName()).equals("user")) && (user.getPassword().equals(password))) {
             	    session.setAttribute("userId", userId);
             	    session.setAttribute("role", "user");
-                    return new ModelAndView("userOperation", "user", user);
+                    return new ModelAndView("userOperation");
                 } else {
                    return new ModelAndView("logIn", "Message", "Incorrect username or password");
                 }
             } else {
             	return new ModelAndView("logIn", "Message", "Incorrect username or password");
-            	//FileUtil.errorLog("Exception occured in EmployeeDao/insertEmployee()..." + exp.toString());	
             }
         } catch (ApplicationException e) {
             return new ModelAndView("logIn", "Message", (e.getMessage().toString()));
@@ -94,12 +96,12 @@ public class LoanController {
         } 
     }
     
-    @RequestMapping("/homepage")     
+    @RequestMapping("/homePage")     
     public String eligibilityDetail(ModelMap modelMap) throws ApplicationException {
     	modelMap.addAttribute("eligibilityDetail", new EligibilityDetail());
     	modelMap.addAttribute("vehicleList", vehicleService.retrieveVehicles());
     	modelMap.addAttribute("companyList", companyService.retrieveCompanies());
-        return "homepage";
+        return "homePage";
     } 
     
     @RequestMapping(value = "/vehicleModelView", method = RequestMethod.GET)     
@@ -164,8 +166,23 @@ public class LoanController {
         	e.printStackTrace();
         	//return new ModelAndView("acknowledgement", "message", e.getMessage());
         }
-    }    
+    }  
     
+    @RequestMapping("/vehicleOperation") 
+    public String vehicleOperation() {
+    	return "vehicleOperation";
+    }
+    
+    @RequestMapping("/vehicleModelOperation") 
+    public String vehicleModelOperation() {
+    	return "vehicleModelOperation";
+    }
+    
+    @RequestMapping("/companyOperation") 
+    public String companyOperation() {
+    	return "companyOperation";
+    }
+
     @RequestMapping("/insertVehicle")     
     public String insertVehicle(ModelMap modelMap) throws ApplicationException {
     	modelMap.addAttribute("insertVehicle", new Vehicle());
@@ -270,6 +287,12 @@ public class LoanController {
         return "loanDetail";
     } 
     
+    @RequestMapping("/retrieveUserLoanDetail")
+    public String retrieveUserLoanDetail(ModelMap modelMap, HttpSession session) throws ApplicationException {
+    	List<LoanDetail> loanDetails = loanDetailService.retrieveLoanDetailByUserId((int) session.getAttribute("userId"));
+    	modelMap.addAttribute("loanDetails", loanDetails);
+    	return "retrieveUserLoanDetail";
+    }
     @RequestMapping("/admin")     
     public String admin(ModelMap map) {
     	map.addAttribute("user", new User());
@@ -281,6 +304,10 @@ public class LoanController {
         return "adminOperation";
     }
     
+    @RequestMapping("/logout")
+    public String logout() {   
+        return "logIn";
+    }
 }
     
     

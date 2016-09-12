@@ -15,16 +15,16 @@
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
     </head>
     <body>
-        <h>Admin operation</h></br></br>
+        <h>Vehicle model operation</h></br></br>
         <link rel="stylesheet" href="css/style.css">
         <form align = "right" action = "logout" method = "get">
             <input type = "submit" name = "button" value = "logout" style ="width:80px; height:30px;" />
         </form>    
         <br></br>
-        <a href = vehicleOperation>Vehicle operation</a></br></br>
-        <a href = vehicleModelOperation>Vehicle model operation</a></br></br>
-        <a href = companyOperation>Company operation</a></br></br>
-        <a href = loanDetail>Loan payment </a></br></br>
-        <a href = admin>Add admin</a></br></br>
+        <button type="button" onclick="javascript:history.back()" style ="width:80px; height:30px;" >go back</button>
+        </br></br>
+        <a href = insertVehicleModel>Insert vehicle model</a></br></br>
+        <a href = removeVehicleModel>Delete vehicle model</a></br></br>
+        <a href = retrieveAllVehicleModel>Display all vehicle model</a>
     </body>
 </html>

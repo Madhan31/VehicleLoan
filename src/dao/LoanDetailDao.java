@@ -1,5 +1,7 @@
 package dao;
 
+import java.util.List;
+
 import org.hibernate.HibernateException;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
@@ -7,6 +9,7 @@ import org.hibernate.Transaction;
 
 import connection.HibernateConnection;
 import exception.ApplicationException;
+import model.Loan;
 import model.LoanDetail;
 
 
@@ -38,6 +41,21 @@ public class LoanDetailDao {
             transaction.commit();
             System.out.println(loanDetail);
             return loanDetail;
+        } catch(HibernateException exception) {
+            throw new ApplicationException("Error occured in retrive the loan details in loan", exception);
+        } finally {
+            session.close();
+        }
+    } 
+    
+    public List<LoanDetail> retrieveLoanDetailByUserId(int userId) throws ApplicationException {
+        Session session = sessionFactory.openSession();
+        Transaction transaction = null;
+        try {
+            transaction = session.beginTransaction();
+            List<LoanDetail> loanDetails = session.createQuery("from LoanDetail where user_id ="+userId).list();
+            transaction.commit();
+            return loanDetails;
         } catch(HibernateException exception) {
             throw new ApplicationException("Error occured in retrive the loan details in loan", exception);
         } finally {

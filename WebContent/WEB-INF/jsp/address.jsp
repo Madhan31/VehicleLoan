@@ -5,7 +5,7 @@
     
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
-      <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/style.css">
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <script type= "text/javascript" src = "js/stateCity.js"></script>
@@ -18,8 +18,8 @@
     <form:form action="addUser" modelAttribute = "user" method="post">
         <form:input type = "text" name = "street" path = "street" placeholder = "Street" required = "required"/>
         <form:input type = "text" name = "landMark" path = "landMark" placeholder = "Land mark" required = "required"/>		        
-        <form:select id="state" name ="state"></select>><br></br>  
-        <form:select id ="city" name ="city"></select><br></br>
+        <form:select id="state" name ="state" path = state ></form:select>><br></br>  
+        <form:select id ="city" name ="city" path = city ></form:select><br></br>
         <script language="javascript">
             populateStates("state", "city");
         </script>

@@ -6,6 +6,12 @@
   
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
+    <c:if test="${sessionScope['userId'] == null}" >
+        <c:redirect url = "index.jsp" />
+    </c:if>
+    <c:if test="${sessionScope['role'] != 'admin'}" >
+        <c:redirect url = "index.jsp" />
+    </c:if>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>Insert title here</title>
@@ -31,6 +37,5 @@
                 <input type = "submit" name = "button" value = "Submit"/>
             </fieldset>
         </form>
-        <a href = "adminOperation">Back to main page</a>
     </body>
 </html>

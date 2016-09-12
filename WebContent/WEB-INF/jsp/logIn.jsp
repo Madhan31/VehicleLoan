@@ -57,7 +57,5 @@
             </div>
         </form>
     </div>
-    <a href = "homepage">homepage</a>
-    <a href = "adminOperation">adminOperation</a>
     </body>
 </html>

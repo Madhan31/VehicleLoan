@@ -1,5 +1,7 @@
 package service;
 
+import java.util.List;
+
 import dao.LoanDetailDao;
 import exception.ApplicationException;
 import model.LoanDetail;
@@ -13,6 +15,10 @@ public class LoanDetailService {
     
     public LoanDetail retrieveLoanDetail(int loanId) throws ApplicationException {
         return loanDetailDao.retrieveLoanDetail(loanId);
+    }
+    
+    public List<LoanDetail> retrieveLoanDetailByUserId(int userId)throws ApplicationException {
+    	return loanDetailDao.retrieveLoanDetailByUserId(userId);
     }
     
     public boolean isLoanDetailExist(int loanId) throws ApplicationException {
