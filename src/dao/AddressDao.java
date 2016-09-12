@@ -10,6 +10,7 @@ import exception.ApplicationException;
 import model.Address;
 
 /**
+ * Dao class which has methods for adding address details in database.
  * 
  * @author Madhan
  *
@@ -21,6 +22,14 @@ public class AddressDao {
     private Session session;
     private Transaction transaction;	
 	
+    /**
+     * To add the address detail into database by using session.
+     * 
+     * @param address
+     *     Its object from service method.It contains the adddress detail of user.
+     * @throws ApplicationException
+     *     It handle all the custom exception in vehicle loan application.
+     */
 	public void insertAddress(Address address) throws ApplicationException {
         session = sessionFactory.openSession();
         try {

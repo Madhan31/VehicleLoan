@@ -8,7 +8,7 @@ import model.LoanDetail;
 
 /**
  * <p>
- * Loan deatil service class which has methods for adding, retrieve loan detail details.
+ * Loan detail service class which has methods for adding, retrieve loan detail details.
  * It contain all the business logic operation of loan detail class.
  * </p> 
  * 
@@ -54,7 +54,7 @@ public class LoanDetailService {
     }	  
     
     /**
-     * Retrieve all the company details from database to controller method.
+     * Retrieve all the loan details from database to controller method.
      *   
      * @param userId
      *     Get the userId from controller.

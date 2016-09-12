@@ -12,6 +12,7 @@ import exception.ApplicationException;
 import model.VehicleModel;
 
 /**
+ * Dao class which has methods for adding, removing, retrieving vehicle model detail into database.
  * 
  * @author vicky
  *
@@ -23,6 +24,16 @@ public class VehicleModelDao {
     private Session session;
     private Transaction transaction;	
     
+    /**
+     * Retrieve vehicle model detail from database and returns to service method.
+     *  
+     * @param vehicleModelId
+     *     Get vehicle model id from service to fetch the vehicle detail want to retrieve.
+     * @return
+     *     It return the vehicle model object to service method.
+     * @throws ApplicationException
+     *     It handle all the custom exception in vehicle loan application.
+     */
     public VehicleModel getVehicleModelById(int vehicleModelId) throws ApplicationException {
         session = sessionFactory.openSession();
         try {
@@ -38,10 +49,14 @@ public class VehicleModelDao {
     }    
     
     /**
+     * Retrieve all vehicle model detail by using vehicle id from database and returns to service method. 
      * 
      * @param vehicleId
+     *     Get vehicle id from service to fetch all the vehicle detail want to retrieve. 
      * @return
+     *     It return retrieve list of vehicle detail object to service method.
      * @throws ApplicationException
+     *     It handle all the custom exception in vehicle loan application.
      */
     public List<VehicleModel> getVehicleModelsByVehicleId(int vehicleId) throws ApplicationException {
         session = sessionFactory.openSession();
@@ -58,13 +73,12 @@ public class VehicleModelDao {
     }
     
     /**
-     * <p>
      * Retrieve all vehicleModels from database and returns to service method. 
-     * </p>
+     * 
      * @return
      * 		Returns vehicleModel list to service method.
-     * @throws DatabaseException
-     * 		if there is any error in hibernate configuration.
+     * @throws ApplicationException
+     *     It handle all the custom exception in vehicle loan application.
      */
     public List<VehicleModel> retrieveVehicleModels() throws ApplicationException {
         session = sessionFactory.openSession();
@@ -81,9 +95,12 @@ public class VehicleModelDao {
     }	
     
     /**
+     * To add the vehicle detail into database by using session.
      * 
      * @param vehicleModel
+     *     Its object from service method.It contains the vehicle model detail of vehicle.
      * @throws ApplicationException
+     *     It handle all the custom exception in vehicle loan application.
      */
     public void addVehicleModel(VehicleModel vehicleModel) throws ApplicationException {
         session = sessionFactory.openSession();
@@ -99,9 +116,12 @@ public class VehicleModelDao {
     }
     
     /**
+     * To remove the vehicle model detail from database by using session.
      * 
      * @param vehicleModelId
+     *     Get vehicle model id from service to fetch the vehicle model detail want to remove.
      * @throws ApplicationException
+     *     It handle all the custom exception in vehicle loan application.
      */
     public void removeVehicleModel(int vehicleModelId) throws ApplicationException {
         session = sessionFactory.openSession();

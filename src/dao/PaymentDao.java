@@ -13,12 +13,26 @@ import org.hibernate.Transaction;
 
 import model.Payment;
 
+/**
+ * Dao class which has methods for adding, retrieving user payment detail into database.
+ * 
+ * @author admin-pc
+ *
+ */
 public class PaymentDao {
 	private HibernateConnection hibernateConnection =  HibernateConnection.createObject();
     private SessionFactory sessionFactory = hibernateConnection.establishConnection();
     private Session session;
     private Transaction transaction;	
     
+    /**
+     * To add the payment detail into database by using session.
+     * 
+     * @param payment
+     *     Its object from service method.It contains the payment detail of user.
+     * @throws ApplicationException
+     *     It handle all the custom exception in vehicle loan application.
+     */
     public void addPayment(Payment payment) throws ApplicationException {
         Session session = sessionFactory.openSession();
         Transaction transaction = null;
@@ -33,6 +47,16 @@ public class PaymentDao {
         }
     }
     
+    /**
+     * Retrieve payment detail by using payment id from database and returns to service method. 
+     * 
+     * @param paymentId
+     *     Get loan id from service to fetch the payment detail want to retrieve. 
+     * @return
+     *     It return retrieve of payment detail object to service method.
+     * @throws ApplicationException
+     *     It handle all the custom exception in vehicle loan application.
+     */
     public Payment retrievePayment(int paymentId) throws ApplicationException {
         Session session = sessionFactory.openSession();
         Transaction transaction = null;

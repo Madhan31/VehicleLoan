@@ -5,6 +5,10 @@ import exception.ApplicationException;
 import model.EligibilityDetail;
 
 /**
+ * <p>
+ * Eligibility detail service class which has methods for adding eligibility details.
+ * It contain all the business logic operation of eligibility detail class.
+ * </p>  
  * 
  * @author Madhan
  *
@@ -14,15 +18,14 @@ public class EligibilityDetailService {
 	private EligibilityDetailDao eligibilityDetailDao = new EligibilityDetailDao();
 	
     /**
-	 * <p>
 	 * Calls eligibility dao methods to add eligibility details.
-	 * </p> 
+	 *  
      * @param employee
      * 		Its a object from controller method
      * @return
      * 		Returns true or false to controller method.
-     * @throws DatabaseException
-     * 		If there is any error in hibernate configuration.
+     * @throws ApplicationException
+     *     It handle all the custom exception in vehicle loan application.
      */   
     public boolean addEligibilityDetail(EligibilityDetail eligibilityDetail) throws ApplicationException {
         return eligibilityDetailDao.insertEligibilityDetail(eligibilityDetail);

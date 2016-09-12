@@ -1,9 +1,6 @@
 package dao;
 
-import java.util.List;
-
 import org.hibernate.HibernateException;
-import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
@@ -13,6 +10,7 @@ import exception.ApplicationException;
 import model.User;
 
 /**
+ * Dao class which has methods for adding, retrieving user detail into database.
  * 
  * @author vicky
  *
@@ -23,9 +21,12 @@ public class UserDao {
     private SessionFactory sessionFactory = hibernateConnection.establishConnection();
     
     /**
+     * To add the user detail into database by using session.
      * 
      * @param user
+     *     Its object from service method.It contains the user detail of user.
      * @throws ApplicationException
+     *     It handle all the custom exception in vehicle loan application.
      */
     public void addUser(User user) throws ApplicationException {
         Session session = sessionFactory.openSession();
@@ -44,10 +45,14 @@ public class UserDao {
     }
     
     /**
+     * Retrieve user detail by using user id from database and returns to service method. 
      * 
      * @param userId
+     *     Get user id from service to fetch the payment detail want to retrieve. 
      * @return
+     *     It return retrieve of user detail object to service method.
      * @throws ApplicationException
+     *     It handle all the custom exception in vehicle loan application.
      */
     public User retrieveUser(int userId) throws ApplicationException {
         Session session = sessionFactory.openSession();
@@ -60,30 +65,6 @@ public class UserDao {
             return user;
         } catch(HibernateException exp) {
             throw new ApplicationException("Error occured in retrive the user details in user", exp);
-        } finally {
-            session.close();
-        }
-    } 
-    
-    /**
-     * 
-     * @param mobileNumber
-     * @return
-     * @throws ApplicationException
-     */
-    public List<User> retrieveUserByMobileNumber(long mobileNumber) throws ApplicationException {
-        Session session = sessionFactory.openSession();
-        Transaction transaction = null;
-        List<User> user;
-        try {
-            transaction = session.beginTransaction();
-            Query query = session.createQuery("from User where mobileNumber=" + mobileNumber);
-            query.setParameter("mobileNumber", "mobileNumber");
-            user = query.list();
-            transaction.commit();
-            return user;
-        } catch(HibernateException exp) {
-            throw new ApplicationException("Error occured in retrive the mobile number in user", exp);
         } finally {
             session.close();
         }

@@ -10,9 +10,7 @@ import exception.ApplicationException;
 import model.EligibilityDetail;
 
 /**
- * <p>
- * Dao class which has methods for adding, updating, removing, etc., user eligibility details into database.
- * </p>
+ * Dao class which has methods for adding user eligibility details into database.
  * 
  * @author Madhan
  * 
@@ -29,12 +27,12 @@ public class EligibilityDetailDao {
 	 * <p>
 	 * To insert a eligibility details into table using session.
 	 * </p> 
-     * @param employee
-     * 		Its a object from service method
+     * @param eligibilityDetail
+     * 		Its a object from service method.
      * @return
      * 		Returns true or false to service method.
      * @throws ApplicationException
-     * 		If there is any error in hibernate configuration.
+     *     It handle all the custom exception in vehicle loan application.
      */
     public boolean insertEligibilityDetail(EligibilityDetail eligibilityDetail) throws ApplicationException {
         session = sessionFactory.openSession();
@@ -45,9 +43,7 @@ public class EligibilityDetailDao {
             return true;
         } catch (HibernateException exp) {
             transaction.rollback();
-            exp.printStackTrace();
             return false;
-            //throw new ApplicationException("Oops...Cannot register kindly check your input and try again...\n", exp);    
         } finally {
             session.close();           
         }
