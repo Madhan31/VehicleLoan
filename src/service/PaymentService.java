@@ -35,16 +35,15 @@ public class PaymentService {
         paymentDao.addPayment(payment);
         Loan loan = loanService.retrieveLoan(payment.getLoan().getLoanId());
         if(null == loanDetailService.retrieveLoanDetailByLoanId(payment.getLoan().getLoanId())) {
-            System.out.println("test11");
             int balanceEmi = ((loan.getLoanPeriod()) - 1);
             int balanceAmount = (loan.getLoanAmount() - payment.getPaymentAmount());
-            loanDetailService.addLoanDetail(new LoanDetail(balanceAmount, balanceEmi, loan, payment));
+            loanDetailService.addLoanDetail(new LoanDetail(balanceAmount, balanceEmi, loan, payment, loan.getUser()));
             return "Successfully paided";
         }
         LoanDetail loanDetail = loanDetailService.retrieveLoanDetailByLoanId(payment.getLoan().getLoanId());
         int balanceEmi = (loanDetail.getBalanceEmi() - 1);
         int balanceAmount = (loanDetail.getBalanceAmount() - payment.getPaymentAmount());
-        loanDetailService.addLoanDetail(new LoanDetail(balanceAmount, balanceEmi, loan, payment));
+        loanDetailService.addLoanDetail(new LoanDetail(balanceAmount, balanceEmi, loan, payment, loan.getUser()));
         return "Successfully paided";
     }
 	

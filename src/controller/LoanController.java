@@ -30,10 +30,20 @@ import service.LoanDetailService;
 import service.LoanService;
 import service.PaymentService;
 import service.UserService;
-//import util.FileUtil;
 import service.VehicleService;
 import service.VehicleModelService;
 
+/**
+ * <p>
+ * public LoanController class which has methods for adding, removing, etc., loan details and payment detail for an logged user.
+ * This class gets input like user name, contact, etc., from user through jsp page and calls corresponding loan service methods to add or update particular user details. 
+ * And it calls jsp pages for success or failure messages and also for exceptions.
+ * </p>
+ * 
+ * @author Madhan
+ * 
+ * @since 2016-08-27
+ */
 @Controller
 public class LoanController {
 	
@@ -47,11 +57,25 @@ public class LoanController {
     private LoanDetailService loanDetailService = new LoanDetailService();
     private AddressService addressService = new AddressService();
     
+	/**
+	 * public String loginpage() redirects to jsp page when corresponding url is called as mapped below. 
+	 * @return
+	 * 		Returns jsp file name.
+	 */    
     @RequestMapping("/logIn") 
     public String welcome() {
         return "logIn";
     }
     
+    /**
+     * public ModelAndView logIn method gets user id and password from user and transfer to corresponds jsp file.
+     * @param userId
+     * 		Contains unique id of an user.
+     * @param password
+     * 		Contains password of an user.
+     * @return
+     * 		Finally to it's returns a jsp page.
+     */
     @RequestMapping(value = "/logIn", method = RequestMethod.POST)
     public ModelAndView logIn(@RequestParam("userId")int userId, @RequestParam("password")String password, HttpSession session) {  
         try {
@@ -76,21 +100,34 @@ public class LoanController {
         }
     }
     
+	/**
+	 * public String signUp() redirects to jsp page when corresponding url is called as mapped below. 
+	 * @return
+	 * 		Returns jsp file name.
+	 */     
     @RequestMapping("/signUp")     
     public String signUp(ModelMap map) {
     	map.addAttribute("user", new User());
         return "user";
     }  
     
+    /**
+     * public String addUser method gets user details through spring form and transfer to service method. 
+     * @param user
+     * 		It contains user details.
+     * @param map
+     * 		It's like a hashmap used to store key and value
+     * @return
+     * 		Returns to the jsp page.
+     */
     @RequestMapping(value="/addUser", method = RequestMethod.POST) 
     public String addUser(@ModelAttribute("user") User user, ModelMap map) {
         try {
             userService.addUser(user);
-            //int userId = userService.getUserId(user.getMobileNumber());
             map.addAttribute("Message", "Your user ID is:"+user.getUserId());
-            //if(user.getRole().getRoleId() == 2){
-	          //  return "admin";
-            //}
+            if(user.getRole().getRoleId() == 2){
+	            return "admin";
+            }
             return "logIn";            
         } catch (ApplicationException e) {
             map.addAttribute("Message", (e.getMessage().toString()));
@@ -98,26 +135,58 @@ public class LoanController {
         } 
     }
     
+	/**
+	 * public ModelAndView eligibilityDetail() redirects to jsp page when corresponding url is called as mapped below. 
+	 * @return
+	 * 		Returns jsp file name.
+	 */    
     @RequestMapping("/homePage")     
-    public String eligibilityDetail(ModelMap modelMap) throws ApplicationException {
-    	modelMap.addAttribute("eligibilityDetail", new EligibilityDetail());
-    	modelMap.addAttribute("vehicleList", vehicleService.retrieveVehicles());
-    	modelMap.addAttribute("companyList", companyService.retrieveCompanies());
-        return "homePage";
+    public ModelAndView eligibilityDetail(ModelMap modelMap) {
+    	try {
+    		modelMap.addAttribute("eligibilityDetail", new EligibilityDetail());
+    		modelMap.addAttribute("vehicleList", vehicleService.retrieveVehicles());
+    		modelMap.addAttribute("companyList", companyService.retrieveCompanies());
+    		return new ModelAndView("homepage", "message", "Added Successfully");
+    	} catch (ApplicationException exp) {
+    		return new ModelAndView("acknowledgement", "Message", exp.toString());
+    	}
     } 
     
+	/**
+	 * public ModelAndView vehicleModelView() gets vehicle id through jsp and redirects to jsp page when corresponding url is called as mapped below. 
+	 * @return
+	 * 		Returns jsp file name.
+	 */    
     @RequestMapping(value = "/vehicleModelView", method = RequestMethod.GET)     
-    public String vehicleModelView(@RequestParam("vehicleId") int vehicleId, ModelMap modelMap) throws ApplicationException {
-    	modelMap.addAttribute("vehicleModelList", vehicleModelService.getVehicleModelsByVehicleId(vehicleId));
-        return "vehicleModelView";
+    public ModelAndView vehicleModelView(@RequestParam("vehicleId") int vehicleId, ModelMap modelMap) {
+    	try {
+    		modelMap.addAttribute("vehicleModelList", vehicleModelService.getVehicleModelsByVehicleId(vehicleId));
+    		return new ModelAndView("vehicleModelView", "message", "Added successfully");
+    	} catch (ApplicationException exp) {
+    		return new ModelAndView("acknowledgement", "message", exp.toString());
+    	}
     } 
     
+	/**
+	 * public ModelAndView vehicleModelPrice() gets vehicle Model Id through jsp and redirects to jsp page when corresponding url is called as mapped below. 
+	 * @return
+	 * 		Returns jsp file name.
+	 */    
     @RequestMapping(value = "/vehicleModelPrice", method = RequestMethod.GET)     
-    public String vehicleModelPrice(@RequestParam("vehicleModelId") int vehicleModelId, ModelMap modelMap) throws ApplicationException {
-    	modelMap.addAttribute("vehicleModel", vehicleModelService.getVehicleModelById(vehicleModelId));
-        return "vehicleModelPrice";
+    public ModelAndView vehicleModelPrice(@RequestParam("vehicleModelId") int vehicleModelId, ModelMap modelMap) {
+    	try {
+    		modelMap.addAttribute("vehicleModel", vehicleModelService.getVehicleModelById(vehicleModelId));
+    		return new ModelAndView("vehicleModelPrice", "message", "Added successfully");
+    	} catch (ApplicationException exp) {
+    		return new ModelAndView("acknowledgement", "message", exp.toString());
+    	}    	
     }
     
+	/**
+	 * public String emi() gets loanperiod and loan amount through jsp and redirects to jsp page when corresponding url is called as mapped below. 
+	 * @return
+	 * 		Returns jsp file name.
+	 */    
     @RequestMapping(value = "/emi", method = RequestMethod.GET)     
     public String emi(@RequestParam("loanPeriod") int loanPeriod,@RequestParam("loanAmount") int loanAmount, ModelMap modelMap) throws ApplicationException {
     	modelMap.addAttribute("emi", loanService.getEmiDetails(loanPeriod, loanAmount));
@@ -128,17 +197,16 @@ public class LoanController {
     
     
     /**
-     * <p>
-     * Gets employee details from jsp and calls service method and also display result.
-     * </p>
-     * 
-     * @param employee
-     * 		employee object contains employee details like id,name,etc.,
-     * @return 
-     * 		Returns success or failure message and also shows exception if any through jsp.
+     * public ModelAndView addEligibilityDetail method gets eligibility details from user and transfer to corresponds jsp file.
+     * @param eligibilityDetail
+     * 		Contains eligibility detail of an user.
+     * @param modelMap
+     * 		It's like a hashmap used to store key and value.
+     * @return
+     * 		Returns to jsp file to display the output.
      */
     @RequestMapping(value = "/addeligibilitydetail", method = RequestMethod.GET)
-    private ModelAndView addEligibilityDetail(@ModelAttribute("eligibilityDetail") EligibilityDetail eligibilityDetail, BindingResult bindingResult, ModelMap modelMap) {
+    public ModelAndView addEligibilityDetail(@ModelAttribute("eligibilityDetail") EligibilityDetail eligibilityDetail, BindingResult bindingResult, ModelMap modelMap) {
         try {
         	VehicleModel vechicleModel = vehicleModelService.getVehicleModelById(eligibilityDetail.getVehicleModel().getVehicleModelId()); 
             if (eligibilityDetailService.addEligibilityDetail(eligibilityDetail)) {
@@ -150,176 +218,363 @@ public class LoanController {
                 return new ModelAndView("acknowledgement", "message", "Data not inserted...");
             }            
         } catch (ApplicationException exp) {
-        	//FileUtil.errorLog("Exception occured in EmployeeDao/insertEmployee()..." + exp.toString());	
             return new ModelAndView("acknowledgement", "message", exp.getMessage());           
         } catch (Exception e) {
         	return new ModelAndView("acknowledgement", "message", e.getMessage());
         }
     }
     
+    /**
+     * public ModelAndView addLoanDetail method gets loan details from user and transfer to corresponds jsp file.
+     * @param loan
+     * 		It contains loan details of an user.
+     * @param modelMap
+     * 		It's like a hashmap used to store key and value.
+     * @return
+     * 		Returns to the jsp file for output.
+     */
     @RequestMapping(value = "/addloandetail", method = RequestMethod.GET)
     private ModelAndView addLoanDetail(@ModelAttribute("loan") Loan loan, BindingResult bindingResult, ModelMap modelMap) {
         try {
         	loanService.addLoan(loan);
         	modelMap.addAttribute("address", new Address());
         	return new ModelAndView("address", "loan", loan);
-        } catch (ApplicationException exp) {
-        	//FileUtil.errorLog("Exception occured in EmployeeDao/insertEmployee()..." + exp.toString());	
+        } catch (ApplicationException exp) {;	
             return new ModelAndView("acknowledgement", "message", exp.getMessage());
         } catch (Exception e) {
         	return new ModelAndView("acknowledgement", "message", e.getMessage());
         }
     }  
     
+    /**
+     * public ModelAndView addAddress method gets address from user and transfer to corresponds jsp file.
+     * @param address
+     * 		It contains user address.
+     * @param modelMap
+     * 		It's like a hashmap used to store key and value.
+     * @return
+     * 		Returns to jsp file.
+     */
     @RequestMapping(value = "/address", method = RequestMethod.POST)
     private ModelAndView addAddress(@ModelAttribute("address") Address address, BindingResult bindingResult, ModelMap modelMap) {
         try {
         	addressService.addAddress(address);
         	return new ModelAndView("acknowledgement", "message", "Loan applied successfully we will contact you soon");
         } catch (ApplicationException exp) {
-        	//FileUtil.errorLog("Exception occured in EmployeeDao/insertEmployee()..." + exp.toString());	
             return new ModelAndView("acknowledgement", "message", exp.getMessage());
         } catch (Exception e) {
         	return new ModelAndView("acknowledgement", "message", e.getMessage());
         }
     }      
     
+	/**
+	 * public String vehicleOperation() redirects to jsp page when corresponding url is called as mapped below. 
+	 * @return
+	 * 		Returns jsp file name.
+	 */    
     @RequestMapping("/vehicleOperation") 
     public String vehicleOperation() {
     	return "vehicleOperation";
     }
     
+	/**
+	 * public String vehicleModelOperation() redirects to jsp page when corresponding url is called as mapped below. 
+	 * @return
+	 * 		Returns jsp file name.
+	 */    
     @RequestMapping("/vehicleModelOperation") 
     public String vehicleModelOperation() {
     	return "vehicleModelOperation";
     }
     
+	/**
+	 * public String companyOperation() redirects to jsp page when corresponding url is called as mapped below. 
+	 * @return
+	 * 		Returns jsp file name.
+	 */    
     @RequestMapping("/companyOperation") 
     public String companyOperation() {
     	return "companyOperation";
     }
 
+	/**
+	 * public String insertVehicle() redirects to jsp page when corresponding url is called as mapped below. 
+	 * @return
+	 * 		Returns jsp file name.
+	 */    
     @RequestMapping("/insertVehicle")     
-    public String insertVehicle(ModelMap modelMap) throws ApplicationException {
+    public String insertVehicle(ModelMap modelMap) {
     	modelMap.addAttribute("insertVehicle", new Vehicle());
         return "addVehicle";
     }
     
+	/**
+	 * public ModelAndView addVehicle() redirects to jsp page when corresponding url is called as mapped below. 
+	 * @return
+	 * 		Returns jsp file name.
+	 */    
     @RequestMapping("/addVehicle")
-    public String addVehicle(@ModelAttribute("insertVehicle") Vehicle vehicle, ModelMap modelMap) throws ApplicationException {
-        modelMap.addAttribute("insert", vehicleService.addVehicle(vehicle));
-        return "addVehicle";
+    public ModelAndView addVehicle(@ModelAttribute("insertVehicle") Vehicle vehicle, ModelMap modelMap) {
+    	try {
+            modelMap.addAttribute("insert", vehicleService.addVehicle(vehicle));
+    		return new ModelAndView("addVehicle", "message", "Added successfully");
+    	} catch (ApplicationException exp) {
+    		return new ModelAndView("acknowledgement", "message", exp.toString());
+    	}     	
     } 
     
+	/**
+	 * public ModelAndView insertVehicleModel() redirects to jsp page when corresponding url is called as mapped below. 
+	 * @return
+	 * 		Returns jsp file name.
+	 */    
     @RequestMapping("/insertVehicleModel")     
-    public String insertVehicleModel(ModelMap modelMap) throws ApplicationException {
-    	modelMap.addAttribute("insertVehicleModel", new VehicleModel());
-    	modelMap.addAttribute("vehicleList", vehicleService.retrieveVehicles());
-        return "addVehicleModel";
+    public ModelAndView insertVehicleModel(ModelMap modelMap) {
+    	try {
+    		modelMap.addAttribute("insertVehicleModel", new VehicleModel());
+        	modelMap.addAttribute("vehicleList", vehicleService.retrieveVehicles());
+    		return new ModelAndView("addVehicleModel", "message", "Added successfully");
+    	} catch (ApplicationException exp) {
+    		return new ModelAndView("acknowledgement", "message", exp.toString());
+    	}     	
     }
     
+	/**
+	 * public ModelAndView addVehicleModel() redirects to jsp page when corresponding url is called as mapped below. 
+	 * @return
+	 * 		Returns jsp file name.
+	 */    
     @RequestMapping("/addVehicleModel")
-    public String addVehicleModel(@ModelAttribute("insertVehicleModel") VehicleModel vehicleModel, ModelMap modelMap) throws ApplicationException {
-        modelMap.addAttribute("insert", vehicleModelService.addVehicleModel(vehicleModel));
-        return "addVehicleModel";
+    public ModelAndView addVehicleModel(@ModelAttribute("insertVehicleModel") VehicleModel vehicleModel, ModelMap modelMap) {
+    	try {
+            modelMap.addAttribute("insert", vehicleModelService.addVehicleModel(vehicleModel));
+    		return new ModelAndView("addVehicleModel", "message", "Added successfully");
+    	} catch (ApplicationException exp) {
+    		return new ModelAndView("acknowledgement", "message", exp.toString());
+    	}     	
     } 
     
+	/**
+	 * public String insertCompany() redirects to jsp page when corresponding url is called as mapped below. 
+	 * @return
+	 * 		Returns jsp file name.
+	 */    
     @RequestMapping("/insertCompany")     
-    public String insertCompany(ModelMap modelMap) throws ApplicationException {
+    public String insertCompany(ModelMap modelMap) {
     	modelMap.addAttribute("insertCompany", new Company());
         return "addCompany";
     }
     
+	/**
+	 * public ModelAndView addCompany() gets company details through jsp and redirects to jsp page when corresponding url is called as mapped below. 
+	 * @return
+	 * 		Returns jsp file name.
+	 */    
     @RequestMapping("/addCompany")
-    public String addCompany(@ModelAttribute("insertCompany") Company company, ModelMap modelMap) throws ApplicationException {
-        modelMap.addAttribute("insert", companyService.addCompany(company));
-        return "addCompany";
+    public ModelAndView addCompany(@ModelAttribute("insertCompany") Company company, ModelMap modelMap) {
+    	try {
+            modelMap.addAttribute("insert", companyService.addCompany(company));
+    		return new ModelAndView("addCompany", "message", "Added successfully");
+    	} catch (ApplicationException exp) {
+    		return new ModelAndView("acknowledgement", "message", exp.toString());
+    	}    	
     }
     
+	/**
+	 * public ModelAndView deleteCompany() redirects to jsp page when corresponding url is called as mapped below. 
+	 * @return
+	 * 		Returns jsp file name.
+	 */    
     @RequestMapping("/deleteCompany")     
-    public String deleteCompany(ModelMap modelMap) throws ApplicationException {
-        List<Company> companies = companyService.retrieveCompanies();
-    	modelMap.addAttribute("companies", companies);
-        return "removeCompany";
+    public ModelAndView deleteCompany(ModelMap modelMap) {
+    	try {
+            List<Company> companies = companyService.retrieveCompanies();
+        	modelMap.addAttribute("companies", companies);    		
+    		return new ModelAndView("removeCompany", "message", "Added successfully");
+    	} catch (ApplicationException exp) {
+    		return new ModelAndView("acknowledgement", "message", exp.toString());
+    	}    	
     }
     
+	/**
+	 * public ModelAndView removeCompany() redirects to jsp page when corresponding url is called as mapped below. 
+	 * @return
+	 * 		Returns jsp file name.
+	 */    
     @RequestMapping(value = "/removeCompany", method = RequestMethod.GET)     
-    public String removeCompany(@RequestParam("companyId") int companyId, ModelMap modelMap) throws ApplicationException {
-    	modelMap.addAttribute("remove", companyService.removeCompany(companyId));
-        return "removeCompany";
+    public ModelAndView removeCompany(@RequestParam("companyId") int companyId, ModelMap modelMap) {
+    	try {
+        	modelMap.addAttribute("remove", companyService.removeCompany(companyId));  		
+    		return new ModelAndView("removeCompany", "message", "Added successfully");
+    	} catch (ApplicationException exp) {
+    		return new ModelAndView("acknowledgement", "message", exp.toString());
+    	}     	
     } 
 
+	/**
+	 * public ModelAndView deleteVehicleModel() redirects to jsp page when corresponding url is called as mapped below. 
+	 * @return
+	 * 		Returns jsp file name.
+	 */    
     @RequestMapping("/deleteVehicleModel")     
-    public String deleteVehicleModel(ModelMap modelMap) throws ApplicationException {
-        List<VehicleModel> vehicleModels = vehicleModelService.retrieveVehicleModels();
-    	modelMap.addAttribute("vehicleModels", vehicleModels);
-        return "removeVehicleModel";
+    public ModelAndView deleteVehicleModel(ModelMap modelMap) {
+    	try {
+            List<VehicleModel> vehicleModels = vehicleModelService.retrieveVehicleModels();
+        	modelMap.addAttribute("vehicleModels", vehicleModels);  		
+    		return new ModelAndView("removeVehicleModel", "message", "Added successfully");
+    	} catch (ApplicationException exp) {
+    		return new ModelAndView("acknowledgement", "message", exp.toString());
+    	}     	
     }
     
+	/**
+	 * public ModelAndView removeVehicleModel() redirects to jsp page when corresponding url is called as mapped below. 
+	 * @return
+	 * 		Returns jsp file name.
+	 */    
     @RequestMapping(value = "/removeVehicleModel", method = RequestMethod.GET)     
-    public String removeVehicleModel(@RequestParam("vehicleModelId") int vehicleModelId, ModelMap modelMap) throws ApplicationException {
-    	modelMap.addAttribute("remove", vehicleModelService.removeVehicleModel(vehicleModelId));
-        return "removeVehicleModel";
+    public ModelAndView removeVehicleModel(@RequestParam("vehicleModelId") int vehicleModelId, ModelMap modelMap) {
+    	try {
+        	modelMap.addAttribute("remove", vehicleModelService.removeVehicleModel(vehicleModelId)); 		
+    		return new ModelAndView("removeVehicleModel", "message", "Added successfully");
+    	} catch (ApplicationException exp) {
+    		return new ModelAndView("acknowledgement", "message", exp.toString());
+    	}     	
     } 
    
+	/**
+	 * public ModelAndView retrieveAllVehicle() redirects to jsp page when corresponding url is called as mapped below. 
+	 * @return
+	 * 		Returns jsp file name.
+	 */    
     @RequestMapping("/retrieveAllVehicle")     
-    public String retrieveAllVehicle(ModelMap modelMap) throws ApplicationException {
-        List<Vehicle> vehicles = vehicleService.retrieveVehicles();
-    	modelMap.addAttribute("vehicles", vehicles);
-        return "retrieveAllVehicle";
+    public ModelAndView retrieveAllVehicle(ModelMap modelMap) {
+    	try {
+            List<Vehicle> vehicles = vehicleService.retrieveVehicles();
+        	modelMap.addAttribute("vehicles", vehicles);
+        	return new ModelAndView("retrieveAllVehicle", "message", "Added successfully");
+    	} catch (ApplicationException exp) {
+    		return new ModelAndView("acknowledgement", "message", exp.toString());
+    	}     	
     }
     
+	/**
+	 * public ModelAndView retrieveAllVehicleModel() redirects to jsp page when corresponding url is called as mapped below. 
+	 * @return
+	 * 		Returns jsp file name.
+	 */      
     @RequestMapping("/retrieveAllVehicleModel")     
-    public String retrieveAllVehicleModel(ModelMap modelMap) throws ApplicationException {
-        List<VehicleModel> vehicleModels = vehicleModelService.retrieveVehicleModels();
-    	modelMap.addAttribute("vehicleModels", vehicleModels);
-        return "retrieveAllVehicleModel";
+    public ModelAndView retrieveAllVehicleModel(ModelMap modelMap) {
+    	try {
+            List<VehicleModel> vehicleModels = vehicleModelService.retrieveVehicleModels();
+        	modelMap.addAttribute("vehicleModels", vehicleModels);
+        	return new ModelAndView("retrieveAllVehicleModel", "message", "Added successfully");
+    	} catch (ApplicationException exp) {
+    		return new ModelAndView("acknowledgement", "message", exp.toString());
+    	}     	
     }
     
+	/**
+	 * public ModelAndView retrieveAllCompany() redirects to jsp page when corresponding url is called as mapped below. 
+	 * @return
+	 * 		Returns jsp file name.
+	 */      
     @RequestMapping("/retrieveAllCompany")     
-    public String retrieveAllCompany(ModelMap modelMap) throws ApplicationException {
-        List<Company> companies = companyService.retrieveCompanies();
-    	modelMap.addAttribute("companies", companies);
-        return "retrieveAllCompany";
+    public ModelAndView retrieveAllCompany(ModelMap modelMap) {
+    	try {
+    		List<Company> companies = companyService.retrieveCompanies();
+        	modelMap.addAttribute("companies", companies);
+        	return new ModelAndView("retrieveAllCompany", "message", "Added successfully");
+    	} catch (ApplicationException exp) {
+    		return new ModelAndView("acknowledgement", "message", exp.toString());
+    	}    	
     }
     
+	/**
+	 * public String loanDetail() redirects to jsp page when corresponding url is called as mapped below. 
+	 * @return
+	 * 		Returns jsp file name.
+	 */      
     @RequestMapping("/loanDetail") 
     public String loanDetail() {
     	return "loanDetail";
     }
     
+	/**
+	 * public ModelAndView payment() redirects to jsp page when corresponding url is called as mapped below. 
+	 * @return
+	 * 		Returns jsp file name.
+	 */      
     @RequestMapping("/payment")
-    public String payment(@RequestParam("userId") int userId, ModelMap modelMap) throws ApplicationException {
-    	List<Loan> loans = loanService.retrieveLoansByUserId(userId);
-    	modelMap.addAttribute("loans",loans);
-    	modelMap.addAttribute("userId",userId);
-    	modelMap.addAttribute("payment", new Payment());
-    	return "payment";
+    public ModelAndView payment(@RequestParam("userId") int userId, ModelMap modelMap) {
+    	try {
+        	List<Loan> loans = loanService.retrieveLoansByUserId(userId);
+        	modelMap.addAttribute("loans",loans);
+        	modelMap.addAttribute("userId",userId);
+        	modelMap.addAttribute("payment", new Payment());
+        	return new ModelAndView("payment", "message", "Added successfully");
+    	} catch (ApplicationException exp) {
+    		return new ModelAndView("acknowledgement", "message", exp.toString());
+    	}     	
     }
     
+	/**
+	 * public ModelAndView paymentConfirm() redirects to jsp page when corresponding url is called as mapped below. 
+	 * @return
+	 * 		Returns jsp file name.
+	 */      
     @RequestMapping("/paymentConfirm") 
-    public String paymentConfirm(@ModelAttribute("payment") Payment payment, ModelMap modelMap) throws ApplicationException {
-        modelMap.addAttribute("insert", paymentService.addPayment(payment));
-        return "loanDetail";
+    public ModelAndView paymentConfirm(@ModelAttribute("payment") Payment payment, ModelMap modelMap) {
+    	try {
+    		modelMap.addAttribute("insert", paymentService.addPayment(payment));
+        	return new ModelAndView("loanDetail", "message", "Added successfully");
+    	} catch (ApplicationException exp) {
+    		return new ModelAndView("acknowledgement", "message", exp.toString());
+    	}     	
     } 
     
+	/**
+	 * public ModelAndView retrieveUserLoanDetail() redirects to jsp page when corresponding url is called as mapped below. 
+	 * @return
+	 * 		Returns jsp file name.
+	 */      
     @RequestMapping("/retrieveUserLoanDetail")
-    public String retrieveUserLoanDetail(ModelMap modelMap, HttpSession session) throws ApplicationException {
-    	List<LoanDetail> loanDetails = loanDetailService.retrieveLoanDetailByUserId((int) session.getAttribute("userId"));
-    	modelMap.addAttribute("loanDetails", loanDetails);
-    	return "retrieveUserLoanDetail";
+    public ModelAndView retrieveUserLoanDetail(ModelMap modelMap, HttpSession session) {
+    	try {
+    		List<LoanDetail> loanDetails = loanDetailService.retrieveLoanDetailByUserId((int) session.getAttribute("userId"));
+        	modelMap.addAttribute("loanDetails", loanDetails);
+        	return new ModelAndView("retrieveUserLoanDetail", "message", "Added successfully");
+    	} catch (ApplicationException exp) {
+    		return new ModelAndView("acknowledgement", "message", exp.toString());
+    	}      	
     }
+    
+	/**
+	 * public String admin() redirects to jsp page when corresponding url is called as mapped below. 
+	 * @return
+	 * 		Returns jsp file name.
+	 */      
     @RequestMapping("/admin")     
     public String admin(ModelMap map) {
     	map.addAttribute("user", new User());
         return "admin";
     } 
     
+	/**
+	 * public String adminOperation() redirects to jsp page when corresponding url is called as mapped below. 
+	 * @return
+	 * 		Returns jsp file name.
+	 */      
     @RequestMapping("/adminOperation")
     public String adminOperation(ModelMap modelMap) {   
         return "adminOperation";
     }
     
+	/**
+	 * public String logout() redirects to jsp page when corresponding url is called as mapped below. 
+	 * @return
+	 * 		Returns jsp file name.
+	 */      
     @RequestMapping("/logout")
     public String logout() {   
         return "logIn";

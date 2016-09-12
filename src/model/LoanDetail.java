@@ -43,6 +43,10 @@ public class LoanDetail {
     @JoinColumn(name = "payment_id")
     private Payment payment;
     
+    @ManyToOne(cascade = CascadeType.PERSIST)
+    @JoinColumn(name = "user_id")
+    private User user;    
+    
     /**
      * Constructor without argument is used to create loan detail object.
      */
@@ -77,11 +81,12 @@ public class LoanDetail {
      * @param payment
      *     Contains payment object of an class payment.
      */
-    public LoanDetail(int balanceAmount, int balanceEmi, Loan loan, Payment payment) {
+    public LoanDetail(int balanceAmount, int balanceEmi, Loan loan, Payment payment, User user) {
     	this.payment = payment;
     	this.loan = loan;
         this.balanceAmount = balanceAmount;
         this.balanceEmi = balanceEmi;
+        this.user = user;
     }
     
     /**
