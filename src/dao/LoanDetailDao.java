@@ -31,17 +31,34 @@ public class LoanDetailDao {
         }
     }
     
-    public LoanDetail retrieveLoanDetail(int loanId) throws ApplicationException {
+    public List<LoanDetail> retrieveLoanDetails() throws ApplicationException {
         Session session = sessionFactory.openSession();
         Transaction transaction = null;
-        LoanDetail loanDetail;
         try {
             transaction = session.beginTransaction();
-            loanDetail = (LoanDetail) session.get(LoanDetail.class, loanId);
+            List<LoanDetail> loanDetail = session.createQuery("from LoanDetail").list();
             transaction.commit();
-            System.out.println(loanDetail);
             return loanDetail;
         } catch(HibernateException exception) {
+        	transaction.rollback();
+            throw new ApplicationException("Error occured in retrive the loan details in loan", exception);
+        } finally {
+            session.close();
+        }
+    }    
+    
+    public List<LoanDetail> retrieveLoanDetailsByLoanId(int loanId) throws ApplicationException {
+        Session session = sessionFactory.openSession();
+        Transaction transaction = null;
+        List<LoanDetail> loanDetail;
+        try {
+            transaction = session.beginTransaction();
+            loanDetail = session.createQuery("from LoanDetail where loan_id =  '"+loanId+"'").list();
+            transaction.commit();
+            return loanDetail;
+        } catch(HibernateException exception) {
+        	transaction.rollback();
+        	exception.printStackTrace();
             throw new ApplicationException("Error occured in retrive the loan details in loan", exception);
         } finally {
             session.close();

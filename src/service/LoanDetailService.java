@@ -14,14 +14,23 @@ public class LoanDetailService {
     }
     
     public LoanDetail retrieveLoanDetail(int loanId) throws ApplicationException {
-        return loanDetailDao.retrieveLoanDetail(loanId);
+        return isLoanDetailExist(loanId);
     }
+    
+    public LoanDetail isLoanDetailExist(int loanId) throws ApplicationException {
+    	int sizeCount = 1;
+    	int listSize = loanDetailDao.retrieveLoanDetailsByLoanId(loanId).size();
+        for (LoanDetail loanDetail :loanDetailDao.retrieveLoanDetailsByLoanId(loanId)) {
+        	if (listSize == sizeCount) {
+        		return loanDetail;
+        	} else {
+        		sizeCount++;
+        	}
+        }
+        return null;
+    }	  
     
     public List<LoanDetail> retrieveLoanDetailByUserId(int userId)throws ApplicationException {
     	return loanDetailDao.retrieveLoanDetailByUserId(userId);
-    }
-    
-    public boolean isLoanDetailExist(int loanId) throws ApplicationException {
-        return (retrieveLoanDetail(loanId) == null);
     }
 }
