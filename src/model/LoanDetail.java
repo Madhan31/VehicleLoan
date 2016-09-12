@@ -15,6 +15,7 @@ import javax.persistence.Table;
 import model.Payment;
 
 /**
+ * Loan detail pojo class which has setter and getter methods for accessing loan detail details.
  * 
  * @author vicky
  *
@@ -43,16 +44,20 @@ public class LoanDetail {
     private Payment payment;
     
     /**
-     * 
+     * Constructor without argument is used to create loan detail object.
      */
     public LoanDetail() {
     }
     
     /**
+     * Constructor with argument is used to create loan detail object.
      * 
      * @param loanDetailId
+     *     Contains unique id for an loan detail.
      * @param balanceAmount
+     *     Contains balance amount of customer to be paided.
      * @param balanceEmi
+     *     Contains remaining number of installent period. 
      */
     public LoanDetail(int loanDetailId, int balanceAmount, int balanceEmi) {
         this.loanDetailId = loanDetailId;
@@ -60,6 +65,18 @@ public class LoanDetail {
         this.balanceEmi = balanceEmi;
     }
     
+    /**
+     * Constructor with argument is used to create loan detail object.
+     * 
+     * @param balanceAmount
+     *     Contains balance amount of customer to be paided.
+     * @param balanceEmi
+     *     Contains remaining number of installent period.
+     * @param loan
+     *     Contains loan object of an class loan.
+     * @param payment
+     *     Contains payment object of an class payment.
+     */
     public LoanDetail(int balanceAmount, int balanceEmi, Loan loan, Payment payment) {
     	this.payment = payment;
     	this.loan = loan;
@@ -68,11 +85,18 @@ public class LoanDetail {
     }
     
     /**
+     * Constructor with argument is used to create loan detail object.
+     * 
 	 * @param loanDetailId
+	 *     Contains unique id for an loan detail.
 	 * @param balanceAmount
-	 * @param balanceEmi
-	 * @param loan
-	 * @param payment
+     *     Contains balance amount of customer to be paided.
+     * @param balanceEmi
+     *     Contains remaining number of installent period.
+     * @param loan
+     *     Contains loan object of an class loan.
+     * @param payment
+     *     Contains payment object of an class payment.
 	 */
 	public LoanDetail(int loanDetailId, int balanceAmount, int balanceEmi, Loan loan, Payment payment) {
 		super();
@@ -102,7 +126,10 @@ public class LoanDetail {
     public void setLoanDetailId(int loanDetailId) {
         this.loanDetailId = loanDetailId;
     }
-   
+    
+   /**
+    * Return object into string format
+    */
     @Override
 	public String toString() {
 		return "LoanDetail [loanDetailId=" + loanDetailId + ", balanceAmount=" + balanceAmount + ", balanceEmi="

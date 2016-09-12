@@ -21,8 +21,9 @@ import model.Payment;
 import model.Role;
 
 /*
- * Pojo class of Account model and create getter setter method for all attributes.
- *   
+ * User pojo class which has setter and getter methods for accessing user details.
+ * 
+ * @author vicky
  */
 @Entity
 @Table(name = "user_detail")
@@ -71,21 +72,30 @@ public class User {
     private Set<Payment> payments = new HashSet<Payment>();
     
     /**
-     * 
+     * Constructor without argument is used to create an user object.
      */
     public User() {
     }
     
     /**
+     * Constructor with argument is used to create an user object.
      * 
      * @param firstName
+     *     Contains first name of the user.
      * @param lastName
+     *     Contains last name of the user.
      * @param mobileNumber
+     *     Contains contact mobile number of user.
      * @param emailId
+     *     Contains contact mail address of user.
      * @param dateOfBirth
+     *     Contains user date of birth.
      * @param gender
+     *     Contains user gender information
      * @param password
+     *     Contains user log in password.
      * @param userId
+     *     Contains user log in unique user id.
      */
     public User(String firstName, String lastName, long mobileNumber, String emailId,String dateOfBirth, String gender, String password, int userId) {
         this.firstName = firstName;
@@ -193,7 +203,10 @@ public class User {
 	public Set<Payment> getPayments() {
 		return payments;
 	}
-
+    
+	/**
+	 * Return object to string format.
+	 */
 	@Override
 	public String toString() {
 		return "User [userId=" + userId + ", firstName=" + firstName + ", lastName=" + lastName + ", mobileNumber="

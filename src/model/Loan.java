@@ -1,6 +1,3 @@
-/**
- * 
- */
 package model;
 
 import java.util.HashSet;
@@ -17,6 +14,8 @@ import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 /**
+ * Company pojo class which has setter and getter methods for accessing company details.
+ * 
  * @author Madhan
  *
  */
@@ -24,6 +23,9 @@ import javax.persistence.Table;
 @Table(name = "loan")
 public class Loan {
 	
+	/**
+	 * Constructor without object is used to create a loan object.
+	 */
 	public Loan() {	}
 
 	@Id
@@ -57,16 +59,28 @@ public class Loan {
     private User user;
 
 	/**
+	 * Constructor with argument is used to create a loan object.
+	 * 
 	 * @param loanId
+	 *     Contains unique id for an loan.
 	 * @param emi
+	 *     Contains equated monthly installement amount from an loan amount.
 	 * @param loanPeriod
+	 *     Contains total installment period for accomplish the loan amount.
 	 * @param processingFees
+	 *     Contains processing fees for processing a loan document.
 	 * @param documentationCharges
+	 *     Contains documentation charge for applying loan
 	 * @param date
+	 *     Contain loan issued date to customer.
 	 * @param loanAmount
+	 *     Contains amount of loan given to an customer.
 	 * @param eligibilityDetail
+	 *     Contains eligibility detail class object.
 	 * @param user
+	 *     Contains user class object
 	 * @param loanDetails
+	 *     Contains loan detail class object.
 	 */
 	public Loan(int loanId, float emi, int loanPeriod, float processingFees, float documentationCharges, String date,
 			int loanAmount, EligibilityDetail eligibilityDetail, User user, Set<LoanDetail> loanDetails) {

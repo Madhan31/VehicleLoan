@@ -14,6 +14,8 @@ import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 /**
+ * Payment pojo class which has setter and getter methods for accessing payment details.
+ * 
  * @author Madhan
  *
  */
@@ -22,11 +24,18 @@ import javax.persistence.Table;
 public class Payment {
 	
 	/**
+	 * Constructor with argument is used to create a payment object.
+	 * 
 	 * @param paymentId
+	 *     Contains unique id for an user payment amount.
 	 * @param paymentAmount
+	 *     Contains payment amount of customer at the time installment period. 
 	 * @param date
+	 *     Contains date of payment of a customer.
 	 * @param loan
+	 *     Contains loan object of class loan.
 	 * @param user
+	 *     Contains user object of class user.
 	 */
 	public Payment(int paymentId, int paymentAmount, String date, Loan loan, User user) {
 		super();
@@ -36,9 +45,14 @@ public class Payment {
 		this.loan = loan;
 		this.user = user;
 	}
+	
+	/**
+	 * Constructor without argument is used to create an object. 
+	 */
     public Payment() {
     	
     }
+    
 	@Id
 	@GeneratedValue(strategy=GenerationType.AUTO)
 	@Column(name = "payment_id")
@@ -99,7 +113,7 @@ public class Payment {
 	}
     
 	/**
-	 * 
+	 *Return object to string format. 
 	 */
 	@Override
 	public String toString() {

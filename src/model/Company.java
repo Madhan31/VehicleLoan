@@ -6,6 +6,7 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 
 /**
+ * Company pojo class which has setter and getter methods for accessing company details.
  * 
  * @author vicky
  *
@@ -22,15 +23,18 @@ public class Company {
 	private String companyName;
     
 	/**
-	 * 
+	 * Constructor with no arguments is used to create an company object.
 	 */
 	public Company() {
 	}
 	
 	/**
+	 * Constructor which has arguments is used to create company object.
 	 * 
 	 * @param companyId
+	 *     Contains unique id for an company.
 	 * @param companyName
+	 *     Contains name of an company.
 	 */
 	public Company(int companyId, String companyName) {
 		super();
@@ -53,5 +57,4 @@ public class Company {
 	public void setCompanyName(String companyName) {
 		this.companyName = companyName;
 	}	
-
 }

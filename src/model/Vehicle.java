@@ -15,6 +15,7 @@ import javax.persistence.Table;
 import model.VehicleModel;
 
 /**
+ * Vehicle pojo class which has setter and getter methods for accessing vehicle details.
  * 
  * @author vicky
  *
@@ -35,15 +36,18 @@ public class Vehicle {
     private Set<VehicleModel> vehicleModels = new HashSet<VehicleModel>();
     
     /**
-     * 
+     * Constructor without argument is used to create a vehicle object.
      */
     public Vehicle() {
     }
     
     /**
+     * Constructor with argument is used to create a vehicle object.
      * 
      * @param vehicleId
+     *     Contains unique id for an vehicle.
      * @param vehicleName
+     *     Contains vehicle company name.
      */
     public Vehicle(int vehicleId, String vehicleName) {
         this.vehicleId = vehicleId;

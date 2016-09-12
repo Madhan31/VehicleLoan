@@ -12,6 +12,8 @@ import javax.persistence.Table;
 import model.VehicleModel;
 
 /**
+ * Company pojo class which has setter and getter methods for accessing company details.
+ * 
  * @author Madhan
  *
  */
@@ -19,6 +21,9 @@ import model.VehicleModel;
 @Table(name = "eligibility_detail")
 public class EligibilityDetail {
 
+	/**
+	 * Constructor without arguments is used to create a eligibility detail object. 
+	 */
 	public EligibilityDetail() { }	
 	
 	@Id
@@ -103,13 +108,22 @@ public class EligibilityDetail {
 	}	
 
 	/**
+	 * Constructor with argument is used to create a eligibility detail object.
+	 * 
 	 * @param id
+	 *     Contains unique id for an eligibility detail.
 	 * @param currentCity
+	 *     Contains current city of an eligibility detail.
 	 * @param salary
+	 *     Contains salary of an user.
 	 * @param downPayment
+	 *     Contains initial payment of an user.
 	 * @param company
+	 *     Contains current working company name of an user.  
 	 * @param vehicleModel
+	 *     Contains user choosed vehicle model name.
 	 * @param user
+	 *     Contains object of an class user.
 	 */
 	public EligibilityDetail(int id, String currentCity, String salary, int downPayment,
 			Company company, VehicleModel vehicleModel, User user) {

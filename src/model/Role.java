@@ -6,6 +6,8 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 
 /**
+ * Role pojo class which has setter and getter methods for accessing role details.
+ * 
  * @author Madhan
  *
  */
@@ -14,15 +16,18 @@ import javax.persistence.Table;
 public class Role {
 	
 	/**
-	 * 
+	 * Constructor without argument is used to create a role object. 
 	 */
 	public Role() { 
 	}
 	
 	/**
+	 * Constructor with argument is used to create a role role object.
 	 * 
 	 * @param roleId
+	 *     Contains unique id for an role.    
 	 * @param roleName
+	 *     Contains name of role of user.
 	 */
 	public Role(int roleId, String roleName) {
 		super();
@@ -53,8 +58,8 @@ public class Role {
 		this.roleName = roleName;
 	}
 
-	/* (non-Javadoc)
-	 * @see java.lang.Object#toString()
+	/* 
+	 * Return object to string fornat.
 	 */
 	@Override
 	public String toString() {
