@@ -23,8 +23,7 @@
                 alert('<c:out value = "${insert}" />');
             </script>
         </c:if>
-        </br></br>
-        <p><h1 align = "center">Enter User ID To Make Payment:</h1></p>
+        <br><h1 align = "center">Enter User ID To Make Payment:</h1>
             <div class="formLogout">
             <a href="logout">
                  <img src="img/logout.png" alt="logout" style="width:42px;height:42px;border:0;">
@@ -33,17 +32,7 @@
             <div class ="formBack">
                 <button type="button" onclick="javascript:history.back()">Go back</button>
             </div>     
-        <form action = "payment" class= "login">
-                <input type = "text" name = "userId" value = "userId" placeholder = "User ID" required = "required" /><br></br>
-        <form align = "right" action = "logout" method = "get">
-            <input type = "submit" name = "button" value = "logout" style ="width:80px; height:30px;" />
-        </form>    
-        <br></br>
-        <button type="button" onclick="javascript:history.back()" style ="width:80px; height:30px;" >go back</button>
-        <br></br><p><h1 align = "center">Enter user ID to make payment :</h1></p>
         <form action = "payment" class= "login"><br></br>
-            <fieldset>
-                <legand>Insert Vehicle</legand>
                 <input type = "text" name = "userId" placeholder = "User Id" required = "required" /><br></br>                
                 <input type = "submit" name = "button" value = "Submit"/>
         </form>

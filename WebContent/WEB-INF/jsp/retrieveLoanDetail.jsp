@@ -39,14 +39,14 @@
         <c:if test = "${loanDetail != null}">\
             <table>
                 <tr>
+                	<th>Your Loan id</th>
                     <th>Balance Loan Amount(Rs.)</th>
-                    <th>Balance emi (in months)</th>
-                    <th>Your Loan id</th>
+                    <th>Balance emi (in months)</th>                    
                 </tr>
                     <tr>
+                        <td><c:out value="${loanDetail.loan.loanId}" /></td>
                         <td><c:out value="${loanDetail.balanceAmount}" /></td>
                         <td><c:out value="${loanDetail.balanceEmi}" /></td>
-                        <td><c:out value="${loanDetail.loan.loanId}" /></td>
                     </tr>
             </table>
         </c:if>   

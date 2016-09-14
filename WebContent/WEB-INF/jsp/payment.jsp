@@ -6,6 +6,19 @@
   
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
+<script type="text/javascript">
+function getDate()
+{
+    var today = new Date();
+    var dd = today.getDate();
+    var mm = today.getMonth()+1; //January is 0!
+    var yyyy = today.getFullYear();
+    if(dd<10){dd='0'+dd} if(mm<10){mm='0'+mm}
+    today = yyyy+""+mm+""+dd;
+
+    document.getElementById("todayDate").value = today;
+}
+</script>
     <c:if test="${sessionScope['userId'] == null}" >
         <c:redirect url = "index.jsp" />
     </c:if>
@@ -32,7 +45,7 @@
             }
         </style>
     </head>
-    <body>
+    <body onload = "getDate();">
         <c:if test = "${loans != null}">
             <table>
                 <tr>
@@ -70,6 +83,7 @@
                 <form:input type = "text" name = "loan" path = "loan.loanId" placeholder = "Loan ID" required = "required" /><br></br>
                 <form:input type = "text" name = "paymentAmount" path = "paymentAmount" placeholder = "Payment Amount" required = "required" /><br></br>
                 <form:input type = "hidden" path = "user.userId" value = "${sessionScope['userId']}" /> <br></br>
+                <form:input type = "hidden" path = "date" name = "startdate" id = "todayDate"/>
                 <input type = "submit" name = "button" value = "Payment"/>
             </fieldset>
         </form:form>

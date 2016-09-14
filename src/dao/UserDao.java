@@ -63,6 +63,7 @@ public class UserDao {
             transaction.commit();
             return user;
         } catch(HibernateException exp) {
+        	exp.printStackTrace();
             throw new ApplicationException("Error occured in retrive the user details in user", exp);
         } finally {
             session.close();
