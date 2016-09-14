@@ -13,15 +13,43 @@
 </head>
 <title>Address Addition</title>
     <body onload = "populateStates('state','city');" >	
-    <br></br><p><h1 align = "center">Add Address Details :</h1>
+    <p><h1 align = "center">User Address Detail:</h1></p>
+            <div class="formLogout">
+            <a href="logout">
+                 <img src="img/logout.png" alt="logout" style="width:42px;height:42px;border:0;">
+            </a>
+            </div>
+            <div class ="formBack">
+                <button type="button" onclick="javascript:history.back()">Go back</button>
+            </div>
     <form:form action="address" modelAttribute = "address" method="post">
-        <form:input type = "text" name = "street" path = "street" placeholder = "Street" required = "required"/>
-        <form:input type = "text" name = "landmark" path = "landmark" placeholder = "Landmark" required = "required"/>		        
-        <form:select id="state" name ="state" path = "state" ></form:select><br></br>  
-        <form:select id ="city" name ="city" path = "city" ></form:select><br></br>       
-        <form:input type = "text" name = "pincode" path = "pincode" placeholder = "Pincode" required = "required"/>
+        <table>
+        <tr>
+        <td>Street Name:</td>
+        <td><form:input type = "text" name = "street" path = "street" placeholder = "Street" required = "required"/></td>
+        </tr>
+        <tr>
+        <td>Land Mark:</td>
+        <td><form:input type = "text" name = "landmark" path = "landmark" placeholder = "Landmark" required = "required"/></td>
+        </tr>
+        <tr>
+        <td>State</td>		        
+        <td><form:select id="state" name ="state" path = "state" ></form:select></td>
+        </tr>
+        <tr>
+        <td>City:</td>  
+        <td><form:select id ="city" name ="city" path = "city" ></form:select></td>     
+        </tr>
+        <tr>
+        <td>Pincode</td>
+        <td><form:input type = "text" name = "pincode" path = "pincode" placeholder = "Pincode" required = "required"/></td>
+        </tr>
         <form:input type = "hidden" path = "user.userId" value = "${sessionScope['userId']}" />
-        <input type = "submit" name = "button" value = "Register"/>
+        <tr>
+        <td></td>
+        <td><input type = "submit" name = "button" value = "Register"/></td>
+        </tr>
+        </table>
     </form:form>
 </body>
 </html>

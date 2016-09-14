@@ -3,13 +3,18 @@
 
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <html>
+    <link rel="stylesheet" href="css/style.css">
     <body>
-        <link rel="stylesheet" href="css/style.css">
-        <form align = "right" action = "logout" method = "get">
-            <input type = "submit" name = "button" value = "logout" style ="width:80px; height:30px;" />
-        </form>    
-        <br></br>
-    <a href = retrieveUserLoanDetail>View loan detail</a></br></br>
-    <a href = homePage>Apply for loan</a>  
+        </br></br>
+        <p><h1 align = "center">All Company Details </h1></p>
+            <div class="formLogout">
+            <a href="logout">
+                <img src="img/logout.png" alt="logout" style="width:42px;height:42px;border:0;">
+            </a>
+            </div>
+    <div class="formexample">
+    <a class = "button" href = retrieveUserLoanDetail>View loan detail</a></br></br>
+    <a class = "button" href = homePage>Apply for loan</a>  
+    </div>
     </body>
 </html>

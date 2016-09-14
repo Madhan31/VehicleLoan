@@ -46,29 +46,40 @@ function getDate()
 
 </script>
     <body onload = "getDate();">
-        <form  action = "logout" method = "get">
-            <input type = "submit" name = "button" value = "logout" style ="width:80px; height:30px;" />
-        </form>    
-        <br></br>
-    <button type="button" onclick="javascript:history.back()" style ="width:80px; height:30px;" >go back</button>
-    <br></br><p><h1 align = "center">Decide to Apply :</h1>
-    <!--<form class = "login">
-    <m:out value = "Rs. ${loanamount}"/>
-    </form>-->
-    <form:form action = "addloandetail" modelAttribute = "loan" method = "get" class= "login"><br></br>
-    <m:out value = "Rs. ${loanamount}"/>
-    <form:input type="hidden" path = "loanAmount" id = "loanAmount" value = "${loanamount}" />
-    <form:select path = "loanPeriod" id = "loanperiod" onchange = "emiDetails();">
-    	<option value = "12">1 Year</option>
-    	<option value = "24">2 Year</option>
-    	<option value = "36">3 Year</option>
-   	</form:select>   
+        </br></br>
+        <p><h1 align = "center">Decide To Apply Loan:</h1></p>
+            <div class="formLogout">
+            <a href="logout">
+                 <img src="img/logout.png" alt="logout" style="width:42px;height:42px;border:0;">
+            </a>
+            </div>
+            <div class ="formBack">
+                <button type="button" onclick="javascript:history.back()">Go back</button>
+            </div>
+    <form:form action = "addloandetail" modelAttribute = "loan" method = "get" class= "login">
+    <table>
+        <tr>
+            <td>Loan Amount:</td>
+            <td><m:out value = "Rs. ${loanamount}"/>
+            <form:input type="hidden" path = "loanAmount" id = "loanAmount" value = "${loanamount}" /></td>
+        </tr>
+        <tr>
+        <td>Loan Period</td>
+            <td><form:select path = "loanPeriod" id = "loanperiod" onchange = "emiDetails();">
+    	            <option value = "12">1 Year</option>
+    	            <option value = "24">2 Year</option>
+    	            <option value = "36">3 Year</option>
+   	        </form:select></td>   
    	<form:input type="hidden" path = "date" name="startdate" id="todayDate"/>
 <div id = "emiDetails">
    	</div>
    	<form:input type = "hidden" path = "eligibilityDetail.id" value = "${eligibilityDetailId}" />  
    	<form:input type = "hidden" path = "user.userId" value = "${sessionScope['userId']}" />
-        <input type = "submit" name = "button" value = "Apply Loan"/>
+   	<tr>
+   	<td></td>
+        <td><input type = "submit" name = "button" value = "Apply Loan"/></td>
+    </tr>
+    </table>
     </form:form>
 </body>
 </html>

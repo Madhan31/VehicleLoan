@@ -5,6 +5,7 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%> 
 <html>
         <link rel="stylesheet" href="css/style.css">
+
     <c:if test="${sessionScope['userId'] == null}" >
         <c:redirect url = "index.jsp" />
     </c:if>
@@ -15,16 +16,19 @@
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
     </head>
     <body>
-        <h>Admin operation</h></br></br>
-        <link rel="stylesheet" href="css/style.css">
-        <form align = "right" action = "logout" method = "get">
-            <input type = "submit" name = "button" value = "logout" style ="width:80px; height:30px;" />
-        </form>    
-        <br></br>
-        <a href = vehicleOperation>Vehicle operation</a></br></br>
-        <a href = vehicleModelOperation>Vehicle model operation</a></br></br>
-        <a href = companyOperation>Company operation</a></br></br>
-        <a href = loanDetail>Loan payment </a></br></br>
-        <a href = admin>Add admin</a></br></br>
+    </br></br>
+        <p><h1 align = "center">Admin Operation</h1></p>
+            <div class="formLogout">
+            <a href="logout">
+                 <img src="img/logout.png" alt="logout" style="width:42px;height:42px;border:0;">
+            </a> 
+            </div>
+        <div class="formexample">
+        <a class = "button" href = vehicleOperation>Vehicle operation</a></br></br>
+        <a class = "button" href = vehicleModelOperation>Vehicle model operation</a></br></br>
+        <a class = "button" href = companyOperation>Company operation</a></br></br>
+        <a class = "button" href = loanDetail>Loan payment </a></br></br>
+        <a class = "button" href = admin>Add admin</a></br></br>
+        </div>
     </body>
 </html>

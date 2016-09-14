@@ -3,6 +3,7 @@
 
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <html>
+   <link rel="stylesheet" href="css/style.css">
    <c:if test="${sessionScope['userId'] == null}" >
         <c:redirect url = "index.jsp" />
     </c:if>
@@ -25,6 +26,15 @@
             }
     </style>
     <body>
+        <p><h1 align = "center">All Company Details </h1></p>
+            <div class="formLogout">
+            <a href="logout">
+                 <img src="img/logout.png" alt="logout" style="width:42px;height:42px;border:0;">
+            </a>
+            </div>
+            <div class ="formBack">
+                <button type="button" onclick="javascript:history.back()">Go back</button>
+            </div>
         <c:if test = "${companies != null}">
             <table>
                 <tr>
@@ -39,6 +49,5 @@
                 </c:forEach>
             </table>
         </c:if>   
-        <a href = "adminOperation">Back to main page</a>
     </body>
 </html>

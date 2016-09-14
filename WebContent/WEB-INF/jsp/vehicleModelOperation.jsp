@@ -15,16 +15,19 @@
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
     </head>
     <body>
-        <h>Vehicle model operation</h></br></br>
-        <link rel="stylesheet" href="css/style.css">
-        <form align = "right" action = "logout" method = "get">
-            <input type = "submit" name = "button" value = "logout" style ="width:80px; height:30px;" />
-        </form>    
-        <br></br>
-        <button type="button" onclick="javascript:history.back()" style ="width:80px; height:30px;" >go back</button>
-        </br></br>
-        <a href = insertVehicleModel>Insert vehicle model</a></br></br>
-        <a href = removeVehicleModel>Delete vehicle model</a></br></br>
-        <a href = retrieveAllVehicleModel>Display all vehicle model</a>
+        <p><h1 align = "center">Vehicle Model Operation</h1></p>
+            <div class="formLogout">
+            <a href="logout">
+                 <img src="img/logout.png" alt="logout" style="width:42px;height:42px;border:0;">
+            </a> 
+            </div>
+            <div class ="formBack">
+                <button type="button" onclick="javascript:history.back()">Go back</button>
+            </div> 
+        <div class="formexample">
+        <a class = "button" href = insertVehicleModel>Insert vehicle model</a></br></br>
+        <a class = "button" href = removeVehicleModel>Delete vehicle model</a></br></br>
+        <a class = "button" href = retrieveAllVehicleModel>Display all vehicle model</a>
+        </div>
     </body>
 </html>

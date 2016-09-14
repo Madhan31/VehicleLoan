@@ -3,6 +3,7 @@
 
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <html>
+    <link rel="stylesheet" href="css/style.css">
     <style>
             table {
                 font-family: arial, sans-serif;
@@ -19,12 +20,15 @@
             }
     </style>
     <body>
-    <link rel="stylesheet" href="css/style.css">
-        <form align = "right" action = "logout" method = "get">
-            <input type = "submit" name = "button" value = "logout" style ="width:80px; height:30px;" />
-        </form>    
-        <br></br>
-        <button type="button" onclick="javascript:history.back()" style ="width:80px; height:30px;" >go back</button>
+        <p><h1 align = "center">Customer Loan Detail:</h1></p>
+            <div class="formLogout">
+            <a href="logout">
+                 <img src="img/logout.png" alt="logout" style="width:42px;height:42px;border:0;">
+            </a>
+            </div>
+            <div class ="formBack">
+                <button type="button" onclick="javascript:history.back()">Go back</button>
+            </div>
         <c:if test = "${loanDetails != null}">
             <table>
                 <tr>

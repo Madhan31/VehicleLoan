@@ -39,6 +39,15 @@
                 </c:forEach>
             </table>
         </c:if>   
+        <p><h1 align = "center">Remove Vehicle Details :</h1></p>
+            <div class="formLogout">
+            <a href="logout">
+                 <img src="img/logout.png" alt="logout" style="width:42px;height:42px;border:0;">
+            </a>
+            </div>
+            <div class ="formBack">
+                <button type="button" onclick="javascript:history.back()">Go back</button>
+            </div>
         <form action = "removeVehicle" method="get">
             <fieldset>
                 <legend>Delete vehicle detail</legend>         
@@ -47,7 +56,6 @@
                 <input type="reset" value="Clear" />
             </fieldset>
         </form>
-        <a href = "adminOperation">Back to main page</a> 
         <c:if test="${remove != null}" >
             <script language = "javaScript" type = "text/javascript">
                 alert('<c:out value = "${remove}" />');

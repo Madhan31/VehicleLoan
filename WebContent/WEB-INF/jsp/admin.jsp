@@ -18,25 +18,57 @@
     </head>
     <title>Loan Addition</title>
     <body>
-        <br></br><p><h1 align = "center">Register Loan Details :</h1>
-        <form align = "right" action = "logout" method = "get">
-            <input type = "submit" name = "button" value = "logout" style ="width:80px; height:30px;" />
-        </form> 
+        </br></br>
+        <p><h1 align = "center">Add Admin Details:</h1></p>
+            <div class="formLogout">
+            <a href="logout">
+                 <img src="img/logout.png" alt="logout" style="width:42px;height:42px;border:0;">
+            </a> 
+            </div>
+            <div class ="formBack">
+                <button type="button" onclick="javascript:history.back()">Go back</button>
+            </div>     
         <form:form action="addUser" modelAttribute = "user" method="post">
-            <form:input type = "text" name = "firstName" path = "firstName" placeholder = "First Name" required = "required" />		        
-            <form:input type="text" name="lastName" placeholder="Last Name" path="lastName" required="required" /><br></br>  
-            <form:input type = "text" name="dateOfBirth" placeholder="DD/MM/YYYY" path="dateOfBirth" required="required" /><br></br>
-            <form:select path = "gender">
-       		    <option value = "null">--select gender--</option>        
-       		    <option value = "male">Male</option>
-       		    <option value = "female">Female</option>
-       		    <option value = "others">Others</option>       		
-         	</form:select>       		
-            <form:input type="text" name="emailId" placeholder="Email" path="emailId" required="required" />
-            <form:input type="text" name=" mobileNumber" placeholder="Mobile Number" path="mobileNumber" required="required" />
-            <form:input type="password" name="password" placeholder="Password" path="password" required="required" />
+        <table>
+            <tr>
+                <td>First Name:</td>        
+                <td><form:input type = "text" name = "firstName" path = "firstName" placeholder = "First Name" required = "required" /></td>	        
+            </tr>
+            <tr>
+                <td>Last Name:</td>
+                <td><form:input type="text" name="lastName" placeholder="Last Name" path="lastName" required="required" /></td>
+            </tr>
+            <tr>
+                <td>Date Of Birth:</td>  
+                <td><form:input type = "text" name="dateOfBirth" placeholder="DD/MM/YYYY" path="dateOfBirth" required="required" /></td>
+            </tr>
+            <tr>
+                <td>Gender:</td>
+                <td><form:select path = "gender">
+       		        <option value = "null">--select gender--</option>        
+       		        <option value = "male">Male</option>
+       		        <option value = "female">Female</option>
+       		        <option value = "others">Others</option>       		
+         	    </form:select></td>
+         	</tr>
+         	<tr>
+         	    <td>Email ID:</td>		
+                <td><form:input type="text" name="emailId" placeholder="Email" path="emailId" required="required" /></td>
+            </tr>
+            <tr>
+                <td>Mobile Number:</td>
+                <td><form:input type="text" name=" mobileNumber" placeholder="Mobile Number" path="mobileNumber" required="required" /></td>
+            </tr>
+            <tr>
+                <td>Password:</td>
+                <td><form:input type="password" name="password" placeholder="Password" path="password" required="required" /></td>
+            </tr>
+            <tr>
             <form:input type = "hidden" path = "role.roleId" value = "2" />
-            <input type = "submit" name = "button" value = "Register"/>
+            <tr>
+                <td></td>
+                <td><input type = "submit" name = "button" value = "Register"/></td>
+            </tr>
         </form:form>
     </body>
 </html>

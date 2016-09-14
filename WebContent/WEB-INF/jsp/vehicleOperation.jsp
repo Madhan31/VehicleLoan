@@ -5,6 +5,7 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%> 
 <html>
         <link rel="stylesheet" href="css/style.css">
+        <link rel="images" href="images">
     <c:if test="${sessionScope['userId'] == null}" >
         <c:redirect url = "index.jsp" />
     </c:if>
@@ -15,16 +16,19 @@
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
     </head>
     <body>
-        <h>Vehicle operation</h></br></br>
-        <link rel="stylesheet" href="css/style.css">
-        <form align = "right" action = "logout" method = "get">
-            <input type = "submit" name = "button" value = "logout" style ="width:80px; height:30px;" />
-        </form>    
-        <br></br>
-        <button type="button" onclick="javascript:history.back()" style ="width:80px; height:30px;" >go back</button>
         </br></br>
-        <a href = insertVehicle>Insert vehicle</a></br></br>
-        <a href = removeVehicle>Delete vehicle</a></br></br>
-        <a href = retrieveAllVehicle>Display all vehicle</a>
+        <p><h1 align = "center">Vehicle Operation</h1></p>
+            <div class="formLogout">
+            <a href="logout">
+                 <img src="img/logout.png" alt="logout" style="width:42px;height:42px;border:0;">
+            </a>
+            <div class ="formBackVp">
+                <button type="button" onclick="javascript:history.back()">Go back</button>
+            </div>
+        <div align = "center" class="formexample">
+        <a class = "button" href = insertVehicle>Insert vehicle</a></br></br>
+        <a class = "button" href = removeVehicle>Delete vehicle</a></br></br>
+        <a class = "button" href = retrieveAllVehicle>Display all vehicle</a>
+        </div>
     </body>
 </html>
