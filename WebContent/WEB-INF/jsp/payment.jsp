@@ -58,15 +58,15 @@
                 alert('<c:out value = "${insert}" />');
             </script>
         </c:if>
-        <form align = "right" action = "logout" method = "get">
+        <form action = "logout" method = "get">
             <input type = "submit" name = "button" value = "logout" style ="width:80px; height:30px;" />
         </form>    
         <br></br>
         <button type="button" onclick="javascript:history.back()" style ="width:80px; height:30px;" >go back</button>
-        <br></br><p><h1 align = "center">Payment Details :</h1></p>
+        <br></br><h1 align = "center">Payment Details :</h1>
         <form:form action = "paymentConfirm" modelAttribute = "payment" class= "login"><br></br>
             <fieldset>
-                <legand>Insert Vehicle</legand>
+                <p>Insert Vehicle</p>
                 <form:input type = "text" name = "loan" path = "loan.loanId" placeholder = "Loan ID" required = "required" /><br></br>
                 <form:input type = "text" name = "paymentAmount" path = "paymentAmount" placeholder = "Payment Amount" required = "required" /><br></br>
                 <form:input type = "hidden" path = "user.userId" value = "${sessionScope['userId']}" /> <br></br>

@@ -146,7 +146,7 @@ public class LoanController {
     		modelMap.addAttribute("eligibilityDetail", new EligibilityDetail());
     		modelMap.addAttribute("vehicleList", vehicleService.retrieveVehicles());
     		modelMap.addAttribute("companyList", companyService.retrieveCompanies());
-    		return new ModelAndView("homepage", "message", "Added Successfully");
+    		return new ModelAndView("homePage", "message", "Added Successfully");
     	} catch (ApplicationException exp) {
     		return new ModelAndView("acknowledgement", "Message", exp.toString());
     	}
@@ -188,7 +188,7 @@ public class LoanController {
 	 * 		Returns jsp file name.
 	 */    
     @RequestMapping(value = "/emi", method = RequestMethod.GET)     
-    public String emi(@RequestParam("loanPeriod") int loanPeriod,@RequestParam("loanAmount") int loanAmount, ModelMap modelMap) throws ApplicationException {
+    public String emi(@RequestParam("loanPeriod") int loanPeriod,@RequestParam("loanAmount") int loanAmount, ModelMap modelMap) {
     	modelMap.addAttribute("emi", loanService.getEmiDetails(loanPeriod, loanAmount));
     	modelMap.addAttribute("processingFees", loanService.getProcessingFees(loanPeriod, loanAmount));
     	modelMap.addAttribute("documentationCharges", loanService.getDocumentationCharges(loanPeriod, loanAmount));
@@ -541,9 +541,8 @@ public class LoanController {
     @RequestMapping("/retrieveUserLoanDetail")
     public ModelAndView retrieveUserLoanDetail(ModelMap modelMap, HttpSession session) {
     	try {
-    		List<LoanDetail> loanDetails = loanDetailService.retrieveLoanDetailByUserId((int) session.getAttribute("userId"));
-        	modelMap.addAttribute("loanDetails", loanDetails);
-        	return new ModelAndView("retrieveUserLoanDetail", "message", "Added successfully");
+        	modelMap.addAttribute("loanDetail", loanDetailService.retrieveLoanDetailByUserId((int) session.getAttribute("userId")));
+        	return new ModelAndView("retrieveLoanDetail", "message", "Added successfully");
     	} catch (ApplicationException exp) {
     		return new ModelAndView("acknowledgement", "message", exp.toString());
     	}      	

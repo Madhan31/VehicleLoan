@@ -1,29 +1,24 @@
 package dao;
 
-import org.hibernate.cfg.AnnotationConfiguration;
-
-import connection.HibernateConnection;
-import exception.ApplicationException;
-
 import org.hibernate.HibernateException;
-import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
 
+import connection.HibernateConnection;
+import exception.ApplicationException;
 import model.Payment;
 
 /**
  * Dao class which has methods for adding, retrieving user payment detail into database.
  * 
- * @author admin-pc
+ * @author vicky
  *
  */
 public class PaymentDao {
+	
 	private HibernateConnection hibernateConnection =  HibernateConnection.createObject();
     private SessionFactory sessionFactory = hibernateConnection.establishConnection();
-    private Session session;
-    private Transaction transaction;	
     
     /**
      * To add the payment detail into database by using session.

@@ -9,7 +9,7 @@ import org.hibernate.SessionFactory;
  * Class is architectured using singleton factory concept.
  * </p>
  *
- * @author Praveen RaJ
+ * @author Madhan
  *
  * @created 2016-09-01
  */
@@ -49,11 +49,11 @@ public class HibernateConnection {
     public SessionFactory establishConnection() {
         if(configuration==null) {
             configuration=new AnnotationConfiguration();
-   	    configuration.configure("hibernate.cfg.xml"); 
-   	}
-   	if(sessionFactory==null) {	
-	    sessionFactory=configuration.configure().buildSessionFactory();
-	}
+            configuration.configure("hibernate.cfg.xml"); 
+        }
+        if(sessionFactory==null) {	
+        	sessionFactory=configuration.configure().buildSessionFactory();
+        }
         return sessionFactory;
     }
 }

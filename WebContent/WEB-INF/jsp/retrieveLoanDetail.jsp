@@ -4,6 +4,7 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <html>
     <link rel="stylesheet" href="css/style.css">
+	<link rel="stylesheet" href="css/style.css">
     <style>
             table {
                 font-family: arial, sans-serif;
@@ -16,7 +17,8 @@
                 padding: 8px;
             }
             tr:nth-child(even) {
-                background-color: #dddddd;
+            	color: #add8e6;
+                background-color: #sdf2s4;
             }
     </style>
     <body>
@@ -29,21 +31,27 @@
             <div class ="formBack">
                 <button type="button" onclick="javascript:history.back()">Go back</button>
             </div>
-        <c:if test = "${loanDetails != null}">
+        <form action = "logout" method = "get">
+            <input type = "submit" name = "button" value = "logout" style ="width:80px; height:30px;" />
+        </form>    
+        <br></br>
+        <button type="button" onclick="javascript:history.back()" style ="width:80px; height:30px;" >go back</button>
+        <c:if test = "${loanDetail != null}">\
             <table>
                 <tr>
-                    <th>Model ID</th>
-                    <th>Model name</th>
-                    <th>Price</th>
+                    <th>Balance Loan Amount(Rs.)</th>
+                    <th>Balance emi (in months)</th>
+                    <th>Your Loan id</th>
                 </tr>
-                <c:forEach items="${loanDetails}" var="loanDetail">
                     <tr>
                         <td><c:out value="${loanDetail.balanceAmount}" /></td>
                         <td><c:out value="${loanDetail.balanceEmi}" /></td>
-                        <td><c:out value="${loanDetail.getLoan().loanId()}" /></td>
+                        <td><c:out value="${loanDetail.loan.loanId}" /></td>
                     </tr>
-                </c:forEach>
             </table>
         </c:if>   
+        <c:if test = "${null == loanDetail}">
+        		<c:out value = "Currently you dont have any loan." />
+        </c:if>
     <body>
 </html>

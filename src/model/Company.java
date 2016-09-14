@@ -37,7 +37,6 @@ public class Company {
 	 *     Contains name of an company.
 	 */
 	public Company(int companyId, String companyName) {
-		super();
 		this.companyId = companyId;
 		this.companyName = companyName;
 	}

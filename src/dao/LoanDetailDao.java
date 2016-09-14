@@ -9,7 +9,6 @@ import org.hibernate.Transaction;
 
 import connection.HibernateConnection;
 import exception.ApplicationException;
-import model.Loan;
 import model.LoanDetail;
 
 /**
@@ -19,6 +18,7 @@ import model.LoanDetail;
  *
  */
 public class LoanDetailDao {
+	
     private HibernateConnection hibernateConnection = HibernateConnection.createObject();
     private SessionFactory sessionFactory = hibernateConnection.establishConnection();
     
@@ -100,7 +100,7 @@ public class LoanDetailDao {
      * Retrieve all loan detail by using user id from database and returns to service method. 
      * 
      * @param userId
-     *     Get user id from service to fetchn all the loan detail want to retrieve. 
+     *     Get user id from service to fetch all the loan detail want to retrieve. 
      * @return
      *     It return retrieve list of loan detail object to service method.
      * @throws ApplicationException

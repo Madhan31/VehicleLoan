@@ -41,16 +41,7 @@ public class LoanDetailService {
      *     It handle all the custom exception in vehicle loan application.
      */
     public LoanDetail retrieveLoanDetailByLoanId(int loanId) throws ApplicationException {
-    	int sizeCount = 1;
-    	int listSize = loanDetailDao.retrieveLoanDetailsByLoanId(loanId).size();
-        for (LoanDetail loanDetail :loanDetailDao.retrieveLoanDetailsByLoanId(loanId)) {
-        	if (listSize == sizeCount) {
-        		return loanDetail;
-        	} else {
-        		sizeCount++;
-        	}
-        }
-        return null;
+    	return retrieveFinalObjectFromList(loanDetailDao.retrieveLoanDetailsByLoanId(loanId));
     }	  
     
     /**
@@ -63,7 +54,27 @@ public class LoanDetailService {
      * @throws ApplicationException
      *     It handle all the custom exception in vehicle loan application.
      */
-    public List<LoanDetail> retrieveLoanDetailByUserId(int userId)throws ApplicationException {
-    	return loanDetailDao.retrieveLoanDetailByUserId(userId);
+    public LoanDetail retrieveLoanDetailByUserId(int userId)throws ApplicationException {
+    	return retrieveFinalObjectFromList(loanDetailDao.retrieveLoanDetailByUserId(userId));
+    }
+    
+    /**
+     * This method retrieve final object from given list.
+     * @param loanDetails
+     * 		Contains list of loan details. 
+     * @return
+     * 		Returns loan detail object.
+     */
+    private LoanDetail retrieveFinalObjectFromList(List<LoanDetail> loanDetails) {
+    	int sizeCount = 1;
+    	int listSize = loanDetails.size();
+        for (LoanDetail loanDetail :loanDetails) {
+        	if (listSize == sizeCount) {
+        		return loanDetail;
+        	} else {
+        		sizeCount++;
+        	}
+        }
+        return null;    	
     }
 }

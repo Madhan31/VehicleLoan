@@ -3,9 +3,7 @@ package dao;
 import java.util.List;
 import java.util.ArrayList;
 
-import org.hibernate.cfg.AnnotationConfiguration;
 import org.hibernate.HibernateException;
-import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
@@ -21,6 +19,7 @@ import model.Loan;
  *
  */
 public class LoanDao {
+	
     private HibernateConnection hibernateConnection = HibernateConnection.createObject();
     private SessionFactory sessionFactory = hibernateConnection.establishConnection();
     
