@@ -8,7 +8,8 @@ import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
 
 import connection.HibernateConnection;
-import exception.ApplicationException;
+import exception.ConfigurationException;
+import exception.DatabaseException;
 import model.Company;
 
 /**
@@ -31,8 +32,10 @@ public class CompanyDao {
      * 		Returns company list to service method.
      * @throws DatabaseException
      *     It handle all the custom exception in vehicle loan application.
+     * @throws ConfigurationException
+     *     It handle all the error message in configuration file.
      */
-    public List<Company> retrieveCompanies() throws ApplicationException {
+    public List<Company> retrieveCompanies() throws DatabaseException, ConfigurationException {
         session = sessionFactory.openSession();
         try {
             transaction = session.beginTransaction();
@@ -40,7 +43,7 @@ public class CompanyDao {
             transaction.commit();
             return companies;
         } catch (HibernateException exp) {
-            throw new ApplicationException("Oops...Cant retrieve companies Kindly check your input and try again...\n", exp);
+            throw new DatabaseException("Oops...Cant retrieve companies Kindly check your input and try again...\n", exp);
         } finally {
             session.close();
         }
@@ -51,17 +54,19 @@ public class CompanyDao {
      * 
      * @param company
      *     Its object from service method.It contains company detail.
-     * @throws ApplicationException
+     * @throws DatabaseException
      *     It handle all the custom exception in vehicle loan application.
+     * @throws ConfigurationException
+     *     It handle all the error message in configuration file.
      */
-    public void addCompany(Company company) throws ApplicationException {
+    public void addCompany(Company company) throws DatabaseException, ConfigurationException {
         session = sessionFactory.openSession();
         try {
             transaction = session.beginTransaction();
             session.save(company);
             transaction.commit();
         } catch(HibernateException exp) {
-            throw new ApplicationException("Error occured in add the values in company", exp);
+            throw new DatabaseException("Error occured in add the values in company", exp);
         } finally {
             session.close();
         }
@@ -72,10 +77,12 @@ public class CompanyDao {
      * 
      * @param companyId
      *     Get company id from service to fetch the particular comapny detail want to remove. 
-     * @throws ApplicationException
+     * @throws DatabaseException
      *     It handle all the custom exception in vehicle loan application.
+     * @throws ConfigurationException
+     *     It handle all the error message in configuration file.
      */
-    public void removeCompany(int companyId) throws ApplicationException {
+    public void removeCompany(int companyId) throws DatabaseException, ConfigurationException {
         session = sessionFactory.openSession();
         Company company;
         try {
@@ -84,7 +91,7 @@ public class CompanyDao {
             session.delete(company);
             transaction.commit();
         } catch(HibernateException exp) {
-            throw new ApplicationException("Error occured in remove the vehicle details in company", exp);
+            throw new DatabaseException("Error occured in remove the vehicle details in company", exp);
         } finally {
             session.close();
         }

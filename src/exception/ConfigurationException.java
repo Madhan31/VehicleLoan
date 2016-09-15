@@ -9,7 +9,7 @@ package exception;
  * 
  * @created 2016-08-27
  */
-public class ApplicationException extends Exception {
+public class ConfigurationException extends Exception {
     /**
 	 * 
 	 */
@@ -22,7 +22,7 @@ public class ApplicationException extends Exception {
      * @param message
      * 		Error message to be overridden.
      */
-    public ApplicationException(String message) {
+    public ConfigurationException(String message) {
         super(message);
     }
 
@@ -33,7 +33,7 @@ public class ApplicationException extends Exception {
      * @param cause
      * 		Error object to be overridden.
      */
-    public ApplicationException(Throwable cause) {
+    public ConfigurationException(Throwable cause) {
         super(cause);
     }
 
@@ -46,7 +46,7 @@ public class ApplicationException extends Exception {
      * @param cause
      * 		Error object to be overridden.
      */    
-    public ApplicationException(String message, Throwable cause) {
+    public ConfigurationException(String message, Throwable cause) {
         super(message,cause);
     }
 }

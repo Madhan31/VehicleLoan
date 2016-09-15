@@ -6,7 +6,8 @@ import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
 
 import connection.HibernateConnection;
-import exception.ApplicationException;
+import exception.ConfigurationException;
+import exception.DatabaseException;
 import model.EligibilityDetail;
 
 /**
@@ -33,8 +34,10 @@ public class EligibilityDetailDao {
      * 		Returns true or false to service method.
      * @throws ApplicationException
      *     It handle all the custom exception in vehicle loan application.
+     * @throws ConfigurationException
+     *     It handle all the error message in configuration file.
      */
-    public boolean insertEligibilityDetail(EligibilityDetail eligibilityDetail) throws ApplicationException {
+    public boolean insertEligibilityDetail(EligibilityDetail eligibilityDetail) throws DatabaseException, ConfigurationException {
         session = sessionFactory.openSession();
         try {
             transaction = session.beginTransaction();
@@ -42,8 +45,7 @@ public class EligibilityDetailDao {
             transaction.commit();
             return true;
         } catch (HibernateException exp) {
-            transaction.rollback();
-            return false;
+        	throw new DatabaseException("Oops...Cant retrieve companies Kindly check your input and try again...\n", exp);
         } finally {
             session.close();           
         }

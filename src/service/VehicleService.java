@@ -3,7 +3,8 @@ package service;
 import java.util.List;
 
 import dao.VehicleDao;
-import exception.ApplicationException;
+import exception.ConfigurationException;
+import exception.DatabaseException;
 import model.Vehicle;
 
 /**
@@ -24,10 +25,12 @@ public class VehicleService {
      * 
      * @return
      *     It return list of vehicle object to controller.
-     * @throws ApplicationException
+     * @throws DatabaseException
      *     It handle all the custom exception in vehicle loan application.
+     * @throws ConfigurationException
+     *     It handle all the error message in configuration file.   
      */
-    public List<Vehicle> retrieveVehicles() throws ApplicationException {
+    public List<Vehicle> retrieveVehicles() throws DatabaseException, ConfigurationException {
         return vehicleDao.retrieveVehicles();		
     }
     
@@ -37,10 +40,12 @@ public class VehicleService {
 	 *     Get the vehicle object from controller.
      * @return
      *     Its return notification message to controller.
-     * @throws ApplicationException
+     * @throws DatabaseException
      *     It handle all the custom exception in vehicle loan application.
+     * @throws ConfigurationException
+     *     It handle all the error message in configuration file.   
      */
-    public String addVehicle(Vehicle vehicle) throws ApplicationException {
+    public String addVehicle(Vehicle vehicle) throws DatabaseException, ConfigurationException {
         vehicleDao.addVehicle(vehicle);
         return "Vehicle details added successfully";
     }
@@ -52,10 +57,12 @@ public class VehicleService {
 	 *     Get vehicle id from controller to remove detail of specified vehicle. 
      * @return
      *     Its return notification message to controller.
-     * @throws ApplicationException
+     * @throws DatabaseException
      *     It handle all the custom exception in vehicle loan application.
+     * @throws ConfigurationException
+     *     It handle all the error message in configuration file.       
      */
-    public String removeVehicle(int vehicleId) throws ApplicationException {
+    public String removeVehicle(int vehicleId) throws DatabaseException, ConfigurationException {
         vehicleDao.removeVehicle(vehicleId);
         return "Vehicle details deleted successfully";
     }    

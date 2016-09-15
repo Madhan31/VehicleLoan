@@ -17,4 +17,9 @@
     <a class = "button" href = homePage>Apply for loan</a>  
     </div>
     </body>
+    <c:if test="${message != null}" >
+        <script language = "javaScript" type = "text/javascript">
+            alert('<c:out value = "${Message}" />');
+        </script>
+    </c:if>
 </html>

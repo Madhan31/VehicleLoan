@@ -1,7 +1,8 @@
 package service;
 
 import dao.EligibilityDetailDao;
-import exception.ApplicationException;
+import exception.ConfigurationException;
+import exception.DatabaseException;
 import model.EligibilityDetail;
 
 /**
@@ -24,10 +25,12 @@ public class EligibilityDetailService {
      * 		Its a object from controller method
      * @return
      * 		Returns true or false to controller method.
-     * @throws ApplicationException
+     * @throws DatabaseException
      *     It handle all the custom exception in vehicle loan application.
+     * @throws ConfigurationException
+     *     It handle all the error message in configuration file.   
      */   
-    public boolean addEligibilityDetail(EligibilityDetail eligibilityDetail) throws ApplicationException {
+    public boolean addEligibilityDetail(EligibilityDetail eligibilityDetail) throws DatabaseException, ConfigurationException {
         return eligibilityDetailDao.insertEligibilityDetail(eligibilityDetail);
     }	
 

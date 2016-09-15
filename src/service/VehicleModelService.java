@@ -3,7 +3,8 @@ package service;
 import java.util.List;
 
 import dao.VehicleModelDao;
-import exception.ApplicationException;
+import exception.ConfigurationException;
+import exception.DatabaseException;
 import model.VehicleModel;
 
 /**
@@ -26,10 +27,12 @@ public class VehicleModelService {
      *     Get vehicle id from controller for retrieve all the vehicle model detail.  
      * @return
      *     It return list of vehicle model object to controller.
-     * @throws ApplicationException
+     * @throws DatabaseException
      *     It handle all the custom exception in vehicle loan application.
+     * @throws ConfigurationException
+     *     It handle all the error message in configuration file.   
      */
-	public List<VehicleModel> getVehicleModelsByVehicleId(int vehicleId) throws ApplicationException {
+	public List<VehicleModel> getVehicleModelsByVehicleId(int vehicleId) throws DatabaseException, ConfigurationException {
 		return vehicleModelDao.getVehicleModelsByVehicleId(vehicleId);
 	}
 	
@@ -40,10 +43,12 @@ public class VehicleModelService {
      *     Get vehicle id from controller for retrieve a vehicle model detail.  
 	 * @return
 	 *     It return a retrieve vehicle model object to controller.
-	 * @throws ApplicationException
+	 * @throws DatabaseException
      *     It handle all the custom exception in vehicle loan application.
+     * @throws ConfigurationException
+     *     It handle all the error message in configuration file.    
 	 */
-	public VehicleModel getVehicleModelById(int vehicleModelId) throws ApplicationException {
+	public VehicleModel getVehicleModelById(int vehicleModelId) throws DatabaseException, ConfigurationException {
 		return vehicleModelDao.getVehicleModelById(vehicleModelId);		
 	}	
 	
@@ -52,10 +57,12 @@ public class VehicleModelService {
      * 
 	 * @return
      *     It return list of vehicle model object to controller.
-	 * @throws ApplicationException
+	 * @throws DatabaseException
      *     It handle all the custom exception in vehicle loan application.
+     * @throws ConfigurationException
+     *     It handle all the error message in configuration file.    
 	 */
-	public List<VehicleModel> retrieveVehicleModels() throws ApplicationException {
+	public List<VehicleModel> retrieveVehicleModels() throws DatabaseException, ConfigurationException {
 		return vehicleModelDao.retrieveVehicleModels();		
 	}
 	
@@ -66,10 +73,12 @@ public class VehicleModelService {
 	 *     Get the vehicle model object from controller.
 	 * @return
      *     Its return notification message to controller.
-	 * @throws ApplicationException
+	 * @throws DatabaseException
      *     It handle all the custom exception in vehicle loan application.
+     * @throws ConfigurationException
+     *     It handle all the error message in configuration file.    
 	 */
-	public String addVehicleModel(VehicleModel vehicleModel) throws ApplicationException {
+	public String addVehicleModel(VehicleModel vehicleModel) throws DatabaseException, ConfigurationException {
             vehicleModelDao.addVehicleModel(vehicleModel);
             return "Vehicle model details added successfully";
     }
@@ -81,10 +90,12 @@ public class VehicleModelService {
 	 *     Get vehicle model id from controller to remove detail of specified model. 
 	 * @return
      *     Its return notification message to controller.
-	 * @throws ApplicationException
+	 * @throws DatabaseException
      *     It handle all the custom exception in vehicle loan application.
+     * @throws ConfigurationException
+     *     It handle all the error message in configuration file.    
 	 */
-    public String removeVehicleModel(int vehicleModelId) throws ApplicationException {
+    public String removeVehicleModel(int vehicleModelId) throws DatabaseException, ConfigurationException {
         vehicleModelDao.removeVehicleModel(vehicleModelId);
         return "Vehicle model details deleted successfully";
     }  

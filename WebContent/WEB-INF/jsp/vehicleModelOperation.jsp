@@ -30,4 +30,9 @@
         <a class = "button" href = retrieveAllVehicleModel>Display all vehicle model</a>
         </div>
     </body>
+    <c:if test="${message != null}" >
+        <script language = "javaScript" type = "text/javascript">
+            alert('<c:out value = "${Message}" />');
+        </script>
+    </c:if>
 </html>

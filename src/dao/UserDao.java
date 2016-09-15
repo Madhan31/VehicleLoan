@@ -6,7 +6,8 @@ import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
 
 import connection.HibernateConnection;
-import exception.ApplicationException;
+import exception.ConfigurationException;
+import exception.DatabaseException;
 import model.User;
 
 /**
@@ -25,10 +26,12 @@ public class UserDao {
      * 
      * @param user
      *     Its object from service method.It contains the user detail of user.
-     * @throws ApplicationException
+     * @throws DatabaseException
      *     It handle all the custom exception in vehicle loan application.
+     * @throws ConfigurationException
+     *     It handle all the error message in configuration file. 
      */
-    public void addUser(User user) throws ApplicationException {
+    public void addUser(User user) throws DatabaseException, ConfigurationException {
         Session session = sessionFactory.openSession();
         Transaction transaction = null;
         try {
@@ -37,7 +40,7 @@ public class UserDao {
             transaction.commit();
         } catch(HibernateException exp) {
             transaction.rollback();
-            throw new ApplicationException("Error occured in add the values in user", exp);
+            throw new DatabaseException("Error occured in add the values in user", exp);
         } finally {
             session.close();
         }
@@ -50,10 +53,12 @@ public class UserDao {
      *     Get user id from service to fetch the payment detail want to retrieve. 
      * @return
      *     It return retrieve of user detail object to service method.
-     * @throws ApplicationException
+     * @throws DatabaseException
      *     It handle all the custom exception in vehicle loan application.
+     * @throws ConfigurationException
+     *     It handle all the error message in configuration file.  
      */
-    public User retrieveUser(int userId) throws ApplicationException {
+    public User retrieveUser(int userId) throws DatabaseException, ConfigurationException {
         Session session = sessionFactory.openSession();
         Transaction transaction = null;
         User user;
@@ -64,7 +69,7 @@ public class UserDao {
             return user;
         } catch(HibernateException exp) {
         	exp.printStackTrace();
-            throw new ApplicationException("Error occured in retrive the user details in user", exp);
+            throw new DatabaseException("Error occured in retrive the user details in user", exp);
         } finally {
             session.close();
         }

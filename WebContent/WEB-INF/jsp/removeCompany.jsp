@@ -25,6 +25,15 @@
             }
     </style>
     <body>
+        p><h1 align = "center">Remove Company Details :</h1></p>
+            <div class="formLogout">
+            <a href="logout">
+                 <img src="img/logout.png" alt="logout" style="width:42px;height:42px;border:0;">
+            </a>
+            </div>
+            <div class ="formBack">
+                <button type="button" onclick="javascript:history.back()">Go back</button>
+            </div>
         <c:if test = "${companies != null}">
             <table>
                 <tr>
@@ -48,7 +57,7 @@
             </fieldset>
         </form>
         <a href = "adminOperation">Back to main page</a> 
-        <c:if test="${remove != null}" >
+        <c:if test="${message != null}" >
             <script language = "javaScript" type = "text/javascript">
                 alert('<c:out value = "${remove}" />');
             </script>

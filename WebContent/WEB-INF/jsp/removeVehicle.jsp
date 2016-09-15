@@ -3,6 +3,7 @@
 
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <html>
+   <link rel="stylesheet" href="css/style.css">
    <c:if test="${sessionScope['userId'] == null}" >
         <c:redirect url = "index.jsp" />
     </c:if>
@@ -56,9 +57,10 @@
                 <input type="reset" value="Clear" />
             </fieldset>
         </form>
-        <c:if test="${remove != null}" >
+        <c:if test="${message != null}" >
             <script language = "javaScript" type = "text/javascript">
-                alert('<c:out value = "${remove}" />');
+                alert('<c:out value = "${message}" />');
+                window.location.href = "deleteVehicle";
             </script>
         </c:if>
     </body>

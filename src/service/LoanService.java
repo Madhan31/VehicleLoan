@@ -3,7 +3,8 @@ package service;
 import java.util.List;
 
 import dao.LoanDao;
-import exception.ApplicationException;
+import exception.ConfigurationException;
+import exception.DatabaseException;
 import model.EligibilityDetail;
 import model.Loan;
 import model.VehicleModel;
@@ -25,10 +26,12 @@ public class LoanService {
      * 
      * @param loan
      *     Get loan object from controller. 
-     * @throws ApplicationException
+     * @throws DatabaseException
      *     It handle all the custom exception in vehicle loan application.
+     * @throws ConfigurationException
+     *     It handle all the error message in configuration file.  
      */
-    public void addLoan(Loan loan) throws ApplicationException {
+    public void addLoan(Loan loan) throws DatabaseException, ConfigurationException {
         loanDao.addLoan(loan);
     }
     
@@ -39,10 +42,12 @@ public class LoanService {
      *     Get loan id from controller.
      * @return
      *    It return notification message to controller.
-     * @throws ApplicationException
+     * @throws DatabaseException
      *     It handle all the custom exception in vehicle loan application.
+     * @throws ConfigurationException
+     *     It handle all the error message in configuration file.     
      */
-    public String removeLoan(int loanId) throws ApplicationException {
+    public String removeLoan(int loanId) throws DatabaseException, ConfigurationException {
         if (isLoanExist(loanId)) {
             loanDao.removeLoan(loanId); 
             return "Loan deleted successfully"; 
@@ -57,10 +62,12 @@ public class LoanService {
      *     Get loan id from controller.
      * @return
      *    It return notification message to controller.
-     * @throws ApplicationException
+     * @throws DatabaseException
      *     It handle all the custom exception in vehicle loan application.
+     * @throws ConfigurationException
+     *     It handle all the error message in configuration file.   
      */
-    public Loan retrieveLoan(int loanId) throws ApplicationException {
+    public Loan retrieveLoan(int loanId) throws DatabaseException, ConfigurationException {
         return loanDao.retrieveLoan(loanId);
     }
     
@@ -71,10 +78,12 @@ public class LoanService {
      *     Get the userId from controller.
      * @return
      *     It return list of object to controller method.
-     * @throws ApplicationException
+     * @throws DatabaseException
      *     It handle all the custom exception in vehicle loan application.
+     * @throws ConfigurationException
+     *     It handle all the error message in configuration file.   
      */
-    public List<Loan> retrieveLoansByUserId(int userId) throws ApplicationException {
+    public List<Loan> retrieveLoansByUserId(int userId) throws DatabaseException, ConfigurationException {
         return loanDao.retrieveLoansByUserId(userId);
     }
     
@@ -83,10 +92,12 @@ public class LoanService {
      * 
      * @return
      *     It return list of object to controller method.
-     * @throws ApplicationException
+     * @throws DatabaseException
      *     It handle all the custom exception in vehicle loan application.
+     * @throws ConfigurationException
+     *     It handle all the error message in configuration file.   
      */
-    public List<Loan> retreiveAllLoans() throws ApplicationException {
+    public List<Loan> retreiveAllLoans() throws DatabaseException, ConfigurationException {
         return loanDao.retreieveAllLoans();
     }
     
@@ -97,10 +108,12 @@ public class LoanService {
      *     Get the loan id from controller.
      * @return
      *     It return true or false to service method.
-     * @throws ApplicationException
+     * @throws DatabaseException
      *     It handle all the custom exception in vehicle loan application.
+     * @throws ConfigurationException
+     *     It handle all the error message in configuration file.    
      */
-    public boolean isLoanExist(int loanId) throws ApplicationException {
+    public boolean isLoanExist(int loanId) throws DatabaseException, ConfigurationException {
         return (retrieveLoan(loanId) != null);
     }
     

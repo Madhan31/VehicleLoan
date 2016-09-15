@@ -3,7 +3,8 @@ package service;
 import java.util.List;
 
 import dao.CompanyDao;
-import exception.ApplicationException;
+import exception.ConfigurationException;
+import exception.DatabaseException;
 import model.Company;
 
 /**
@@ -24,10 +25,12 @@ public class CompanyService {
      * 
      * @return 
      *     It returns list object to controller method.
-     * @throws ApplicationException
+     * @throws DatabaseException
      *     It handle all the custom exception in vehicle loan application.
+     * @throws ConfigurationException
+     *     It handle all the error message in configuration file.    
      */
-    public List<Company> retrieveCompanies() throws ApplicationException {
+    public List<Company> retrieveCompanies() throws DatabaseException, ConfigurationException {
         return comanyDao.retrieveCompanies();		
     }	
     
@@ -38,10 +41,12 @@ public class CompanyService {
      *     Its object from a controller
      * @return 
      *     Its return notification message to controller.
-     * @throws ApplicationException
+     * @throws DatabaseException
      *     It handle all the custom exception in vehicle loan application.
+     * @throws ConfigurationException
+     *     It handle all the error message in configuration file.    
      */
-    public String addCompany(Company company) throws ApplicationException {
+    public String addCompany(Company company) throws DatabaseException, ConfigurationException {
         comanyDao.addCompany(company);
         return "Company details added successfully";
     }
@@ -53,10 +58,12 @@ public class CompanyService {
      *     Get company id from controller.
      * @return 
      *     Its return notification message to controller.
-     * @throws ApplicationException
+     * @throws DatabaseException
      *     It handle all the custom exception in vehicle loan application.
+     * @throws ConfigurationException
+     *     It handle all the error message in configuration file.    
      */
-    public String removeCompany(int companyId) throws ApplicationException {
+    public String removeCompany(int companyId) throws DatabaseException, ConfigurationException {
         comanyDao.removeCompany(companyId);
         return "Company details deleted successfully";
     }    

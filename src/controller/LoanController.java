@@ -13,12 +13,12 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
-import exception.ApplicationException;
+import exception.ConfigurationException;
+import exception.DatabaseException;
 import model.Address;
 import model.Company;
 import model.EligibilityDetail;
 import model.Loan;
-import model.LoanDetail;
 import model.Payment;
 import model.Vehicle;
 import model.VehicleModel;
@@ -90,13 +90,15 @@ public class LoanController {
             	    session.setAttribute("role", "user");
                     return new ModelAndView("userOperation");
                 } else {
-                   return new ModelAndView("logIn", "Message", "Incorrect username or password");
+                   return new ModelAndView("logIn", "message", "Incorrect username or password");
                 }
             } else {
-            	return new ModelAndView("logIn", "Message", "Incorrect username or password");
+            	return new ModelAndView("logIn", "message", "Incorrect username or password");
             }
-        } catch (ApplicationException e) {
-            return new ModelAndView("logIn", "Message", (e.getMessage().toString()));
+        } catch (DatabaseException exp) {
+            return new ModelAndView("logIn", "message", (exp.getMessage().toString()));
+        } catch (ConfigurationException exp) {
+        	return new ModelAndView("logIn", "message", (exp.getMessage().toString()));
         }
     }
     
@@ -121,18 +123,21 @@ public class LoanController {
      * 		Returns to the jsp page.
      */
     @RequestMapping(value="/addUser", method = RequestMethod.POST) 
-    public String addUser(@ModelAttribute("user") User user, ModelMap map) {
+    public String addUser(@ModelAttribute("user") User user, ModelMap modelMap) {
         try {
             userService.addUser(user);
-            map.addAttribute("Message", "Your user ID is:"+user.getUserId());
+            modelMap.addAttribute("message", "Your user ID is:"+user.getUserId());
             if(user.getRole().getRoleId() == 2){
 	            return "admin";
             }
             return "logIn";            
-        } catch (ApplicationException e) {
-            map.addAttribute("Message", (e.getMessage().toString()));
+        } catch (DatabaseException exp) {
+        	modelMap.addAttribute("message", (exp.getMessage().toString()));
             return "logIn"; 
-        } 
+        } catch (ConfigurationException exp) {
+        	modelMap.addAttribute("message", (exp.getMessage().toString()));
+        	return "logIn";
+        }
     }
     
 	/**
@@ -146,10 +151,12 @@ public class LoanController {
     		modelMap.addAttribute("eligibilityDetail", new EligibilityDetail());
     		modelMap.addAttribute("vehicleList", vehicleService.retrieveVehicles());
     		modelMap.addAttribute("companyList", companyService.retrieveCompanies());
-    		return new ModelAndView("homePage", "message", "Added Successfully");
-    	} catch (ApplicationException exp) {
-    		return new ModelAndView("acknowledgement", "Message", exp.toString());
-    	}
+    		return new ModelAndView("homePage", "message", "Eligibility Detail Added Successfully");
+    	} catch (DatabaseException exp) {
+    		return new ModelAndView("homePage", "message", (exp.getMessage().toString()));
+    	} catch (ConfigurationException exp) {
+        	return new ModelAndView("homePage", "message", (exp.getMessage().toString()));
+        }
     } 
     
 	/**
@@ -158,13 +165,17 @@ public class LoanController {
 	 * 		Returns jsp file name.
 	 */    
     @RequestMapping(value = "/vehicleModelView", method = RequestMethod.GET)     
-    public ModelAndView vehicleModelView(@RequestParam("vehicleId") int vehicleId, ModelMap modelMap) {
+    public String vehicleModelView(@RequestParam("vehicleId") int vehicleId, ModelMap modelMap) {
     	try {
     		modelMap.addAttribute("vehicleModelList", vehicleModelService.getVehicleModelsByVehicleId(vehicleId));
-    		return new ModelAndView("vehicleModelView", "message", "Added successfully");
-    	} catch (ApplicationException exp) {
-    		return new ModelAndView("acknowledgement", "message", exp.toString());
-    	}
+    		return "vehicleModelView";
+    	} catch (DatabaseException exp) {
+    		modelMap.addAttribute("message", (exp.getMessage().toString()));
+    		return "homePage";
+    	} catch (ConfigurationException exp) {
+    		modelMap.addAttribute("message", (exp.getMessage().toString()));
+    		return "homePage";
+        }
     } 
     
 	/**
@@ -173,13 +184,17 @@ public class LoanController {
 	 * 		Returns jsp file name.
 	 */    
     @RequestMapping(value = "/vehicleModelPrice", method = RequestMethod.GET)     
-    public ModelAndView vehicleModelPrice(@RequestParam("vehicleModelId") int vehicleModelId, ModelMap modelMap) {
+    public String vehicleModelPrice(@RequestParam("vehicleModelId") int vehicleModelId, ModelMap modelMap) {
     	try {
     		modelMap.addAttribute("vehicleModel", vehicleModelService.getVehicleModelById(vehicleModelId));
-    		return new ModelAndView("vehicleModelPrice", "message", "Added successfully");
-    	} catch (ApplicationException exp) {
-    		return new ModelAndView("acknowledgement", "message", exp.toString());
-    	}    	
+    		return "vehicleModelPrice";
+    	} catch (DatabaseException exp) {
+    		modelMap.addAttribute("message", (exp.getMessage().toString()));
+    		return "homePage";
+    	} catch (ConfigurationException exp) {
+    		modelMap.addAttribute("message", (exp.getMessage().toString()));
+    		return "homePage";
+        }
     }
     
 	/**
@@ -215,12 +230,12 @@ public class LoanController {
             	modelMap.addAttribute("loan", new Loan());
                 return new ModelAndView("loan", "loanamount", loanService.calculateLoanAmount(eligibilityDetail,vechicleModel));
             } else {
-                return new ModelAndView("acknowledgement", "message", "Data not inserted...");
+                return new ModelAndView("homePage", "message", "Data not inserted...");
             }            
-        } catch (ApplicationException exp) {
-            return new ModelAndView("acknowledgement", "message", exp.getMessage());           
-        } catch (Exception e) {
-        	return new ModelAndView("acknowledgement", "message", e.getMessage());
+        } catch (DatabaseException exp) {
+            return new ModelAndView("homePage", "message", (exp.getMessage().toString()));           
+        } catch (ConfigurationException exp) {
+        	return new ModelAndView("homePage", "message", (exp.getMessage().toString()));
         }
     }
     
@@ -234,15 +249,17 @@ public class LoanController {
      * 		Returns to the jsp file for output.
      */
     @RequestMapping(value = "/addloandetail", method = RequestMethod.GET)
-    private ModelAndView addLoanDetail(@ModelAttribute("loan") Loan loan, BindingResult bindingResult, ModelMap modelMap) {
+    private String addLoanDetail(@ModelAttribute("loan") Loan loan, BindingResult bindingResult, ModelMap modelMap) {
         try {
         	loanService.addLoan(loan);
         	modelMap.addAttribute("address", new Address());
-        	return new ModelAndView("address", "loan", loan);
-        } catch (ApplicationException exp) {;	
-            return new ModelAndView("acknowledgement", "message", exp.getMessage());
-        } catch (Exception e) {
-        	return new ModelAndView("acknowledgement", "message", e.getMessage());
+        	return "address";
+        } catch (DatabaseException exp) {
+    		modelMap.addAttribute("message", (exp.getMessage().toString()));
+    		return "loan";
+    	} catch (ConfigurationException exp) {
+    		modelMap.addAttribute("message", (exp.getMessage().toString()));
+    		return "loan";
         }
     }  
     
@@ -259,11 +276,11 @@ public class LoanController {
     private ModelAndView addAddress(@ModelAttribute("address") Address address, BindingResult bindingResult, ModelMap modelMap) {
         try {
         	addressService.addAddress(address);
-        	return new ModelAndView("acknowledgement", "message", "Loan applied successfully we will contact you soon");
-        } catch (ApplicationException exp) {
-            return new ModelAndView("acknowledgement", "message", exp.getMessage());
-        } catch (Exception e) {
-        	return new ModelAndView("acknowledgement", "message", e.getMessage());
+        	return new ModelAndView("address", "message", "Loan applied successfully we will contact you soon");
+        } catch (DatabaseException exp) {
+            return new ModelAndView("address", "message", (exp.getMessage().toString()));
+        } catch (ConfigurationException exp) {
+        	return new ModelAndView("address", "message", (exp.getMessage().toString()));
         }
     }      
     
@@ -318,9 +335,11 @@ public class LoanController {
     	try {
             modelMap.addAttribute("insert", vehicleService.addVehicle(vehicle));
     		return new ModelAndView("addVehicle", "message", "Added successfully");
-    	} catch (ApplicationException exp) {
-    		return new ModelAndView("acknowledgement", "message", exp.toString());
-    	}     	
+    	} catch (DatabaseException exp) {
+    		return new ModelAndView("addVehicle", "message", (exp.getMessage().toString()));
+    	} catch (ConfigurationException exp) {
+        	return new ModelAndView("addVehicle", "message", (exp.getMessage().toString()));
+        }   	
     } 
     
 	/**
@@ -329,14 +348,18 @@ public class LoanController {
 	 * 		Returns jsp file name.
 	 */    
     @RequestMapping("/insertVehicleModel")     
-    public ModelAndView insertVehicleModel(ModelMap modelMap) {
+    public String insertVehicleModel(ModelMap modelMap) {
     	try {
     		modelMap.addAttribute("insertVehicleModel", new VehicleModel());
         	modelMap.addAttribute("vehicleList", vehicleService.retrieveVehicles());
-    		return new ModelAndView("addVehicleModel", "message", "Added successfully");
-    	} catch (ApplicationException exp) {
-    		return new ModelAndView("acknowledgement", "message", exp.toString());
-    	}     	
+    		return "addVehicleModel";
+    	} catch (DatabaseException exp) {
+    		modelMap.addAttribute("message", (exp.getMessage().toString()));
+    		return "vehicleModelOperation";
+    	} catch (ConfigurationException exp) {
+    		modelMap.addAttribute("message", (exp.getMessage().toString()));
+    		return "vehicleModelOperation";
+        }    	
     }
     
 	/**
@@ -349,9 +372,11 @@ public class LoanController {
     	try {
             modelMap.addAttribute("insert", vehicleModelService.addVehicleModel(vehicleModel));
     		return new ModelAndView("addVehicleModel", "message", "Added successfully");
-    	} catch (ApplicationException exp) {
-    		return new ModelAndView("acknowledgement", "message", exp.toString());
-    	}     	
+    	} catch (DatabaseException exp) {
+    		return new ModelAndView("addVehicleModel", "message", (exp.getMessage().toString()));
+    	} catch (ConfigurationException exp) {
+    		return new ModelAndView("addVehicleModel", "message", (exp.getMessage().toString()));
+    	}       	
     } 
     
 	/**
@@ -375,9 +400,11 @@ public class LoanController {
     	try {
             modelMap.addAttribute("insert", companyService.addCompany(company));
     		return new ModelAndView("addCompany", "message", "Added successfully");
-    	} catch (ApplicationException exp) {
-    		return new ModelAndView("acknowledgement", "message", exp.toString());
-    	}    	
+    	} catch (DatabaseException exp) {
+    		return new ModelAndView("addCompany", "message", (exp.getMessage().toString()));
+    	} catch (ConfigurationException exp) {
+    		return new ModelAndView("addCompany", "message", (exp.getMessage().toString()));
+    	}     	
     }
     
 	/**
@@ -386,14 +413,18 @@ public class LoanController {
 	 * 		Returns jsp file name.
 	 */    
     @RequestMapping("/deleteCompany")     
-    public ModelAndView deleteCompany(ModelMap modelMap) {
+    public String deleteCompany(ModelMap modelMap) {
     	try {
             List<Company> companies = companyService.retrieveCompanies();
         	modelMap.addAttribute("companies", companies);    		
-    		return new ModelAndView("removeCompany", "message", "Added successfully");
-    	} catch (ApplicationException exp) {
-    		return new ModelAndView("acknowledgement", "message", exp.toString());
-    	}    	
+    		return "removeCompany";
+    	} catch (DatabaseException exp) {
+    		modelMap.addAttribute("message", (exp.getMessage().toString()));
+    		return "vehicleModelOperation";
+    	} catch (ConfigurationException exp) {
+    		modelMap.addAttribute("message", (exp.getMessage().toString()));
+    		return "vehicleModelOperation";
+        }       	 	
     }
     
 	/**
@@ -405,26 +436,66 @@ public class LoanController {
     public ModelAndView removeCompany(@RequestParam("companyId") int companyId, ModelMap modelMap) {
     	try {
         	modelMap.addAttribute("remove", companyService.removeCompany(companyId));  		
-    		return new ModelAndView("removeCompany", "message", "Added successfully");
-    	} catch (ApplicationException exp) {
-    		return new ModelAndView("acknowledgement", "message", exp.toString());
-    	}     	
+    		return new ModelAndView("removeCompany", "message", "Deleted successfully");
+    	} catch (DatabaseException exp) {
+    		return new ModelAndView("removeCompany", "message", (exp.getMessage().toString()));
+    	} catch (ConfigurationException exp) {
+    		return new ModelAndView("removeCompany", "message", (exp.getMessage().toString()));
+    	}       	
     } 
-
+    
+    @RequestMapping("/deleteVehicle")     
+    public String deleteVehicle(ModelMap modelMap) {
+    	try {
+            List<Vehicle> vehicles = vehicleService.retrieveVehicles();
+        	modelMap.addAttribute("vehicles", vehicles);    		
+    		return "removeVehicle";
+    	} catch (DatabaseException exp) {
+    		modelMap.addAttribute("message", (exp.getMessage().toString()));
+    		return "vehicleOperation";
+    	} catch (ConfigurationException exp) {
+    		modelMap.addAttribute("message", (exp.getMessage().toString()));
+    		return "vehicleOperation";
+        }       	 	
+    }
+    
+	/**
+	 * public ModelAndView removeCompany() redirects to jsp page when corresponding url is called as mapped below. 
+	 * @return
+	 * 		Returns jsp file name.
+	 */    
+    @RequestMapping(value = "/removeVehicle", method = RequestMethod.GET)     
+    public String removeVehicle(@RequestParam("vehicleId") int vehicleId, ModelMap modelMap) {
+    	try {
+        	modelMap.addAttribute("message", vehicleService.removeVehicle(vehicleId));  		
+    		return "removeVehicle";
+    	} catch (DatabaseException exp) {
+    		modelMap.addAttribute("message", (exp.getMessage().toString()));
+    		return "removeVehicle";
+    	} catch (ConfigurationException exp) {
+    		modelMap.addAttribute("message", (exp.getMessage().toString()));
+    		return "removeVehicle";
+        }      	
+    } 
+    
 	/**
 	 * public ModelAndView deleteVehicleModel() redirects to jsp page when corresponding url is called as mapped below. 
 	 * @return
 	 * 		Returns jsp file name.
 	 */    
     @RequestMapping("/deleteVehicleModel")     
-    public ModelAndView deleteVehicleModel(ModelMap modelMap) {
+    public String deleteVehicleModel(ModelMap modelMap) {
     	try {
             List<VehicleModel> vehicleModels = vehicleModelService.retrieveVehicleModels();
         	modelMap.addAttribute("vehicleModels", vehicleModels);  		
-    		return new ModelAndView("removeVehicleModel", "message", "Added successfully");
-    	} catch (ApplicationException exp) {
-    		return new ModelAndView("acknowledgement", "message", exp.toString());
-    	}     	
+    		return "removeVehicleModel";
+    	} catch (DatabaseException exp) {
+    		modelMap.addAttribute("message", (exp.getMessage().toString()));
+    		return "vehicleModelOperation";
+    	} catch (ConfigurationException exp) {
+    		modelMap.addAttribute("message", (exp.getMessage().toString()));
+    		return "vehicleModelOperation";
+        }      	
     }
     
 	/**
@@ -433,13 +504,17 @@ public class LoanController {
 	 * 		Returns jsp file name.
 	 */    
     @RequestMapping(value = "/removeVehicleModel", method = RequestMethod.GET)     
-    public ModelAndView removeVehicleModel(@RequestParam("vehicleModelId") int vehicleModelId, ModelMap modelMap) {
+    public String removeVehicleModel(@RequestParam("vehicleModelId") int vehicleModelId, ModelMap modelMap) {
     	try {
-        	modelMap.addAttribute("remove", vehicleModelService.removeVehicleModel(vehicleModelId)); 		
-    		return new ModelAndView("removeVehicleModel", "message", "Added successfully");
-    	} catch (ApplicationException exp) {
-    		return new ModelAndView("acknowledgement", "message", exp.toString());
-    	}     	
+        	modelMap.addAttribute("message", vehicleModelService.removeVehicleModel(vehicleModelId)); 		
+    		return "removeVehicleModel";
+    	} catch (DatabaseException exp) {
+    		modelMap.addAttribute("message", (exp.getMessage().toString()));
+    		return "vehicleModelOperation";
+    	} catch (ConfigurationException exp) {
+    		modelMap.addAttribute("message", (exp.getMessage().toString()));
+    		return "vehicleModelOperation";
+        }      	
     } 
    
 	/**
@@ -448,14 +523,18 @@ public class LoanController {
 	 * 		Returns jsp file name.
 	 */    
     @RequestMapping("/retrieveAllVehicle")     
-    public ModelAndView retrieveAllVehicle(ModelMap modelMap) {
+    public String retrieveAllVehicle(ModelMap modelMap) {
     	try {
             List<Vehicle> vehicles = vehicleService.retrieveVehicles();
         	modelMap.addAttribute("vehicles", vehicles);
-        	return new ModelAndView("retrieveAllVehicle", "message", "Added successfully");
-    	} catch (ApplicationException exp) {
-    		return new ModelAndView("acknowledgement", "message", exp.toString());
-    	}     	
+        	return "retrieveAllVehicle";
+    	} catch (DatabaseException exp) {
+    		modelMap.addAttribute("message", (exp.getMessage().toString()));
+    		return "vehicleOperation";
+    	} catch (ConfigurationException exp) {
+    		modelMap.addAttribute("message", (exp.getMessage().toString()));
+    		return "vehicleOperation";
+        }        	
     }
     
 	/**
@@ -464,14 +543,18 @@ public class LoanController {
 	 * 		Returns jsp file name.
 	 */      
     @RequestMapping("/retrieveAllVehicleModel")     
-    public ModelAndView retrieveAllVehicleModel(ModelMap modelMap) {
+    public String retrieveAllVehicleModel(ModelMap modelMap) {
     	try {
             List<VehicleModel> vehicleModels = vehicleModelService.retrieveVehicleModels();
         	modelMap.addAttribute("vehicleModels", vehicleModels);
-        	return new ModelAndView("retrieveAllVehicleModel", "message", "Added successfully");
-    	} catch (ApplicationException exp) {
-    		return new ModelAndView("acknowledgement", "message", exp.toString());
-    	}     	
+        	return "retrieveAllVehicleModel";
+    	} catch (DatabaseException exp) {
+    		modelMap.addAttribute("message", (exp.getMessage().toString()));
+    		return "vehicleModelOperation";
+    	} catch (ConfigurationException exp) {
+    		modelMap.addAttribute("message", (exp.getMessage().toString()));
+    		return "vehicleModelOperation";
+        }            	
     }
     
 	/**
@@ -480,14 +563,18 @@ public class LoanController {
 	 * 		Returns jsp file name.
 	 */      
     @RequestMapping("/retrieveAllCompany")     
-    public ModelAndView retrieveAllCompany(ModelMap modelMap) {
+    public String retrieveAllCompany(ModelMap modelMap) {
     	try {
     		List<Company> companies = companyService.retrieveCompanies();
         	modelMap.addAttribute("companies", companies);
-        	return new ModelAndView("retrieveAllCompany", "message", "Added successfully");
-    	} catch (ApplicationException exp) {
-    		return new ModelAndView("acknowledgement", "message", exp.toString());
-    	}    	
+        	return "retrieveAllCompany";
+    	} catch (DatabaseException exp) {
+    		modelMap.addAttribute("message", (exp.getMessage().toString()));
+    		return "companyOperation";
+    	} catch (ConfigurationException exp) {
+    		modelMap.addAttribute("message", (exp.getMessage().toString()));
+    		return "companyOperation";
+        }        	
     }
     
 	/**
@@ -506,16 +593,20 @@ public class LoanController {
 	 * 		Returns jsp file name.
 	 */      
     @RequestMapping("/payment")
-    public ModelAndView payment(@RequestParam("userId") int userId, ModelMap modelMap) {
+    public String payment(@RequestParam("userId") int userId, ModelMap modelMap) {
     	try {
         	List<Loan> loans = loanService.retrieveLoansByUserId(userId);
         	modelMap.addAttribute("loans",loans);
         	modelMap.addAttribute("userId",userId);
         	modelMap.addAttribute("payment", new Payment());
-        	return new ModelAndView("payment", "message", "Added successfully");
-    	} catch (ApplicationException exp) {
-    		return new ModelAndView("acknowledgement", "message", exp.toString());
-    	}     	
+        	return "payment";
+    	} catch (DatabaseException exp) {
+    		modelMap.addAttribute("message", (exp.getMessage().toString()));
+    		return "loanDetail";
+    	} catch (ConfigurationException exp) {
+    		modelMap.addAttribute("message", (exp.getMessage().toString()));
+    		return "loanDetail";
+        }      	
     }
     
 	/**
@@ -527,9 +618,11 @@ public class LoanController {
     public ModelAndView paymentConfirm(@ModelAttribute("payment") Payment payment, ModelMap modelMap) {
     	try {
     		modelMap.addAttribute("insert", paymentService.addPayment(payment));
-        	return new ModelAndView("loanDetail", "message", "Added successfully");
-    	} catch (ApplicationException exp) {
-    		return new ModelAndView("acknowledgement", "message", exp.toString());
+        	return new ModelAndView("loanDetail", "message", "Paided Sucessfully");
+    	} catch (DatabaseException exp) {
+    		return new ModelAndView("loanDetail", "message", (exp.getMessage().toString()));
+    	} catch (ConfigurationException exp) {
+    		return new ModelAndView("loanDetail", "message", (exp.getMessage().toString()));
     	}     	
     } 
     
@@ -539,13 +632,17 @@ public class LoanController {
 	 * 		Returns jsp file name.
 	 */      
     @RequestMapping("/retrieveUserLoanDetail")
-    public ModelAndView retrieveUserLoanDetail(ModelMap modelMap, HttpSession session) {
+    public String retrieveUserLoanDetail(ModelMap modelMap, HttpSession session) {
     	try {
         	modelMap.addAttribute("loanDetail", loanDetailService.retrieveLoanDetailByUserId((int) session.getAttribute("userId")));
-        	return new ModelAndView("retrieveLoanDetail", "message", "Added successfully");
-    	} catch (ApplicationException exp) {
-    		return new ModelAndView("acknowledgement", "message", exp.toString());
-    	}      	
+        	return "retrieveLoanDetail";
+    	} catch (DatabaseException exp) {
+    		modelMap.addAttribute("message", (exp.getMessage().toString()));
+    		return "userOperation";
+    	} catch (ConfigurationException exp) {
+    		modelMap.addAttribute("message", (exp.getMessage().toString()));
+    		return "userOperation";
+        }           	
     }
     
 	/**

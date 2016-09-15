@@ -9,7 +9,8 @@ import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
 
 import connection.HibernateConnection;
-import exception.ApplicationException;
+import exception.ConfigurationException;
+import exception.DatabaseException;
 import model.Loan;
 
 /**
@@ -28,10 +29,12 @@ public class LoanDao {
      * 
      * @param loan
      *     Its object from service method.It contains the loan detail of user.
-     * @throws ApplicationException
+     * @throws DatabaseException
      *     It handle all the custom exception in vehicle loan application.
+     * @throws ConfigurationException
+     *     It handle all the error message in configuration file.  
      */
-    public void addLoan(Loan loan) throws ApplicationException {
+    public void addLoan(Loan loan) throws DatabaseException, ConfigurationException {
         Session session = sessionFactory.openSession();
         Transaction transaction = null;
         try {
@@ -39,7 +42,7 @@ public class LoanDao {
             session.save(loan);
             transaction.commit();
         } catch(HibernateException e) {
-            throw new ApplicationException("Error occured in add the values in loan", e);
+            throw new DatabaseException("Error occured in add the values in loan", e);
         } finally {
             session.close();
         }
@@ -50,10 +53,12 @@ public class LoanDao {
      * 
      * @param loanId
      *     Get loan id from service to fetch the particular loan detail want to remove. 
-     * @throws ApplicationException
+     * @throws DatabaseException
      *     It handle all the custom exception in vehicle loan application.
+     * @throws ConfigurationException
+     *     It handle all the error message in configuration file.
      */
-    public void removeLoan(int loanId) throws ApplicationException {
+    public void removeLoan(int loanId) throws DatabaseException, ConfigurationException {
         Session session = sessionFactory.openSession();
         Transaction transaction = null;
         Loan loan;
@@ -63,7 +68,7 @@ public class LoanDao {
             session.delete(loan);
             transaction.commit();
         } catch(HibernateException exception) {
-            throw new ApplicationException("Error occured in remove the loan details in loan", exception);
+            throw new DatabaseException("Error occured in remove the loan details in loan", exception);
         } finally {
             session.close();
         }
@@ -76,10 +81,12 @@ public class LoanDao {
      *     Get loan id from service to fetch the particular loan detail want to retrieve. 
      * @return
      *    It return loan object to service.
-     * @throws ApplicationException
+     * @throws DatabaseException
      *     It handle all the custom exception in vehicle loan application.
+     * @throws ConfigurationException
+     *     It handle all the error message in configuration file.
      */
-    public Loan retrieveLoan(int loanId) throws ApplicationException {
+    public Loan retrieveLoan(int loanId) throws DatabaseException, ConfigurationException {
         Session session = sessionFactory.openSession();
         Transaction transaction = null;
         Loan loan;
@@ -89,7 +96,7 @@ public class LoanDao {
             transaction.commit();
             return loan;
         } catch(HibernateException exception) {
-            throw new ApplicationException("Error occured in retrive the loan details in loan", exception);
+            throw new DatabaseException("Error occured in retrive the loan details in loan", exception);
         } finally {
             session.close();
         }
@@ -102,10 +109,12 @@ public class LoanDao {
      *     Get user id from service to fetchn all the loan detail want to retrieve. 
      * @return
      *     It return list of loan object to service method.
-     * @throws ApplicationException
+     * @throws DatabaseException
      *     It handle all the custom exception in vehicle loan application.
+     * @throws ConfigurationException
+     *     It handle all the error message in configuration file.
      */
-    public List<Loan> retrieveLoansByUserId(int userId) throws ApplicationException {
+    public List<Loan> retrieveLoansByUserId(int userId) throws DatabaseException, ConfigurationException {
         Session session = sessionFactory.openSession();
         Transaction transaction = null;
         try {
@@ -117,7 +126,7 @@ public class LoanDao {
         	transaction.rollback();
         	exception.printStackTrace();
         	return null;
-            //throw new ApplicationException("Error occured in retrive the loan details in loan", exception);
+            //throw new DatabaseException("Error occured in retrive the loan details in loan", exception);
         } finally {
             session.close();
         }
@@ -128,10 +137,12 @@ public class LoanDao {
      * 
      * @return
      *     It return list of loan object to service method.
-     * @throws ApplicationException
+     * @throws DatabaseException
      *     It handle all the custom exception in vehicle loan application.
+     * @throws ConfigurationException
+     *     It handle all the error message in configuration file.
      */
-     public List<Loan> retreieveAllLoans() throws ApplicationException {
+     public List<Loan> retreieveAllLoans() throws DatabaseException, ConfigurationException {
         Session session = sessionFactory.openSession();
         List<Loan> loans = new ArrayList<Loan>();
         Transaction transaction = null;
@@ -140,7 +151,7 @@ public class LoanDao {
             loans = session.createQuery("from Loan").list();
             transaction.commit();
         } catch(HibernateException exception) {
-            throw new ApplicationException("Error occur in retrive all loan details in loan", exception);
+            throw new DatabaseException("Error occur in retrive all loan details in loan", exception);
         } finally {
             session.close();
         }

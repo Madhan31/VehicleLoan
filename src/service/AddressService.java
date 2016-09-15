@@ -1,7 +1,8 @@
 package service;
 
 import dao.AddressDao;
-import exception.ApplicationException;
+import exception.ConfigurationException;
+import exception.DatabaseException;
 import model.Address;
 
 /**
@@ -22,10 +23,12 @@ public class AddressService {
      * 
 	 * @param address
      *     Get address detail object from controller. 
-	 * @throws ApplicationException
+	 * @throws DatabaseException
      *     It handle all the custom exception in vehicle loan application.
+     * @throws ConfigurationException
+     *     It handle all the error message in configuration file.      
 	 */
-	public void addAddress(Address address) throws ApplicationException {
+	public void addAddress(Address address) throws DatabaseException, ConfigurationException {
 		addressDao.insertAddress(address);
 	}
 }

@@ -87,6 +87,10 @@ function getDate()
                 <input type = "submit" name = "button" value = "Payment"/>
             </fieldset>
         </form:form>
-        <a href = "adminOperation">Back to main page</a>
     </body>
+    <c:if test="${message != null}" >
+        <script language = "javaScript" type = "text/javascript">
+            alert('<c:out value = "${Message}" />');
+        </script>
+    </c:if>
 </html>

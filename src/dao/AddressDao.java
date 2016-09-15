@@ -6,7 +6,8 @@ import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
 
 import connection.HibernateConnection;
-import exception.ApplicationException;
+import exception.ConfigurationException;
+import exception.DatabaseException;
 import model.Address;
 
 /**
@@ -27,10 +28,12 @@ public class AddressDao {
      * 
      * @param address
      *     Its object from service method.It contains the adddress detail of user.
-     * @throws ApplicationException
+     * @throws DatabaseException
      *     It handle all the custom exception in vehicle loan application.
+     * @throws ConfigurationException
+     *     It handle all the error message in configuration file.
      */
-	public void insertAddress(Address address) throws ApplicationException {
+	public void insertAddress(Address address) throws DatabaseException, ConfigurationException {
         session = sessionFactory.openSession();
         try {
             transaction = session.beginTransaction();
@@ -39,7 +42,7 @@ public class AddressDao {
         } catch (HibernateException exp) {
             transaction.rollback();
             exp.printStackTrace();
-            throw new ApplicationException("Oops...Cannot add address kindly check your input and try again...\n", exp);    
+            throw new DatabaseException("Oops...Cannot add address kindly check your input and try again...\n", exp);    
         } finally {
             session.close();           
         }		

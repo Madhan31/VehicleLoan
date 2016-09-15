@@ -18,7 +18,8 @@
     </head>
     <title>Loan Addition</title>
     <body>
-        </br></br>
+        <br>
+        <br>
         <p><h1 align = "center">Add Admin Details:</h1></p>
             <div class="formLogout">
             <a href="logout">
@@ -71,4 +72,9 @@
             </tr>
         </form:form>
     </body>
+    <c:if test="${message != null}" >
+        <script language = "javaScript" type = "text/javascript">
+            alert('<c:out value = "${Message}" />');
+        </script>
+    </c:if>
 </html>

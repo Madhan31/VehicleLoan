@@ -3,7 +3,8 @@ package service;
 import java.util.List;
 
 import dao.LoanDetailDao;
-import exception.ApplicationException;
+import exception.ConfigurationException;
+import exception.DatabaseException;
 import model.LoanDetail;
 
 /**
@@ -23,10 +24,12 @@ public class LoanDetailService {
      * 
      * @param loanDetail
      *     Get loan detail object from controller. 
-     * @throws ApplicationException
+     * @throws DatabaseException
      *     It handle all the custom exception in vehicle loan application.
+     * @throws ConfigurationException
+     *     It handle all the error message in configuration file.     
      */
-    public void addLoanDetail(LoanDetail loanDetail) throws ApplicationException {
+    public void addLoanDetail(LoanDetail loanDetail) throws DatabaseException, ConfigurationException {
     	loanDetailDao.addLoanDetail(loanDetail);
     }
     
@@ -37,10 +40,12 @@ public class LoanDetailService {
      *     Get loan id form controller for retrieve particular loan detail.
      * @return
      *     Return the object of retrieve exist loan detail to controller.
-     * @throws ApplicationException
+     * @throws DatabaseException
      *     It handle all the custom exception in vehicle loan application.
+     * @throws ConfigurationException
+     *     It handle all the error message in configuration file.  
      */
-    public LoanDetail retrieveLoanDetailByLoanId(int loanId) throws ApplicationException {
+    public LoanDetail retrieveLoanDetailByLoanId(int loanId) throws DatabaseException, ConfigurationException {
     	return retrieveFinalObjectFromList(loanDetailDao.retrieveLoanDetailsByLoanId(loanId));
     }	  
     
@@ -51,10 +56,12 @@ public class LoanDetailService {
      *     Get the userId from controller.
      * @return
      *     It return list of object to controller method.
-     * @throws ApplicationException
+     * @throws DatabaseException
      *     It handle all the custom exception in vehicle loan application.
+     * @throws ConfigurationException
+     *     It handle all the error message in configuration file.    
      */
-    public LoanDetail retrieveLoanDetailByUserId(int userId)throws ApplicationException {
+    public LoanDetail retrieveLoanDetailByUserId(int userId)throws DatabaseException, ConfigurationException {
     	return retrieveFinalObjectFromList(loanDetailDao.retrieveLoanDetailByUserId(userId));
     }
     

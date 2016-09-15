@@ -30,4 +30,9 @@
             <input type = "submit" name = "button" value = "Register"/>
         </form:form>
     </body>
+    <c:if test="${message != null}" >
+        <script language = "javaScript" type = "text/javascript">
+            alert('<c:out value = "${Message}" />');
+        </script>
+    </c:if>
 </html>

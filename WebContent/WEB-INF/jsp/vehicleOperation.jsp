@@ -27,8 +27,18 @@
             </div>
         <div align = "center" class="formexample">
         <a class = "button" href = insertVehicle>Insert vehicle</a></br></br>
-        <a class = "button" href = removeVehicle>Delete vehicle</a></br></br>
+        <a class = "button" href = deleteVehicle>Delete vehicle</a></br></br>
         <a class = "button" href = retrieveAllVehicle>Display all vehicle</a>
         </div>
     </body>
+    <c:if test="${message != null}" >
+        <script language = "javaScript" type = "text/javascript">
+            alert('<c:out value = "${Message}" />');
+        </script>
+    </c:if>
+    <c:if test="${message != null}" >
+        <script language = "javaScript" type = "text/javascript">
+            alert('<c:out value = "${Message}" />');
+        </script>
+    </c:if>
 </html>

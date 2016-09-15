@@ -5,7 +5,8 @@ import model.LoanDetail;
 import model.Payment;
 
 import dao.PaymentDao;
-import exception.ApplicationException;
+import exception.ConfigurationException;
+import exception.DatabaseException;
 
 /**
  * <p>
@@ -28,10 +29,12 @@ public class PaymentService {
 	 *     Get the payment object from controller.
 	 * @return
      *     Its return notification message to controller.
-	 * @throws ApplicationException
+	 * @throws DatabaseException
      *     It handle all the custom exception in vehicle loan application.
+     * @throws ConfigurationException
+     *     It handle all the error message in configuration file.    
 	 */
-	public String addPayment(Payment payment) throws ApplicationException {
+	public String addPayment(Payment payment) throws DatabaseException, ConfigurationException {
         paymentDao.addPayment(payment);
         Loan loan = loanService.retrieveLoan(payment.getLoan().getLoanId());
         if(null == loanDetailService.retrieveLoanDetailByLoanId(payment.getLoan().getLoanId())) {
@@ -54,10 +57,12 @@ public class PaymentService {
 	 *     Get payment id from controller for retrieve particular payment detail.
 	 * @return
 	 *     It return the payment object to controller.   
-	 * @throws ApplicationException
+	 * @throws DatabaseException
      *     It handle all the custom exception in vehicle loan application.
+     * @throws ConfigurationException
+     *     It handle all the error message in configuration file.     
 	 */
-	public Payment retrievePayment(int paymentId) throws ApplicationException {
+	public Payment retrievePayment(int paymentId) throws DatabaseException, ConfigurationException {
         return paymentDao.retrievePayment(paymentId);
     }
 }

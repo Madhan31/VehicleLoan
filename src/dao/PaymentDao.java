@@ -6,7 +6,8 @@ import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
 
 import connection.HibernateConnection;
-import exception.ApplicationException;
+import exception.ConfigurationException;
+import exception.DatabaseException;
 import model.Payment;
 
 /**
@@ -25,10 +26,12 @@ public class PaymentDao {
      * 
      * @param payment
      *     Its object from service method.It contains the payment detail of user.
-     * @throws ApplicationException
+     * @throws DatabaseException
      *     It handle all the custom exception in vehicle loan application.
+     * @throws ConfigurationException
+     *     It handle all the error message in configuration file.
      */
-    public void addPayment(Payment payment) throws ApplicationException {
+    public void addPayment(Payment payment) throws DatabaseException, ConfigurationException {
         Session session = sessionFactory.openSession();
         Transaction transaction = null;
         try {
@@ -36,7 +39,7 @@ public class PaymentDao {
             session.save(payment);
             transaction.commit();
         } catch(HibernateException e) {
-            throw new ApplicationException("Error occured in add the values in payment", e);
+            throw new DatabaseException("Error occured in add the values in payment", e);
         } finally {
             session.close();
         }
@@ -49,10 +52,12 @@ public class PaymentDao {
      *     Get loan id from service to fetch the payment detail want to retrieve. 
      * @return
      *     It return retrieve of payment detail object to service method.
-     * @throws ApplicationException
+     * @throws DatabaseException
      *     It handle all the custom exception in vehicle loan application.
+     * @throws ConfigurationException
+     *     It handle all the error message in configuration file.
      */
-    public Payment retrievePayment(int paymentId) throws ApplicationException {
+    public Payment retrievePayment(int paymentId) throws DatabaseException, ConfigurationException {
         Session session = sessionFactory.openSession();
         Transaction transaction = null;
         Payment payment;
@@ -62,7 +67,7 @@ public class PaymentDao {
             transaction.commit();
             return payment;
         } catch(HibernateException exception) {
-            throw new ApplicationException("Error occured in retrive the payment details in payment", exception);
+            throw new DatabaseException("Error occured in retrive the payment details in payment", exception);
         } finally {
             session.close();
         }
