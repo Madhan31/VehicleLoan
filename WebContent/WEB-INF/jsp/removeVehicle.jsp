@@ -52,7 +52,7 @@
         <form action = "removeVehicle" method="get">
             <fieldset>
                 <legend>Delete vehicle detail</legend>         
-                <input type = "text" name = vehicleId placeholder =  "Vehicle ID"></br>
+                <input type = "text" id ="vehicleId" name = "vehicleId" placeholder =  "Vehicle ID"></br>
                 <input type = "submit" name = "button" value = "Delete" />
                 <input type="reset" value="Clear" />
             </fieldset>

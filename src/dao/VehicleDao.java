@@ -91,6 +91,7 @@ public class VehicleDao {
             session.delete(vehicle);
             transaction.commit();
         } catch(HibernateException exp) {
+        	exp.printStackTrace();
             throw new DatabaseException("Error occured in remove the vehicle details in vehicle", exp);
         } finally {
             session.close();

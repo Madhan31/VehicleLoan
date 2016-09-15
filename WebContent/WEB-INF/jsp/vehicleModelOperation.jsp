@@ -26,7 +26,7 @@
             </div> 
         <div class="formexample">
         <a class = "button" href = insertVehicleModel>Insert vehicle model</a></br></br>
-        <a class = "button" href = removeVehicleModel>Delete vehicle model</a></br></br>
+        <a class = "button" href = deleteVehicleModel>Delete vehicle model</a></br></br>
         <a class = "button" href = retrieveAllVehicleModel>Display all vehicle model</a>
         </div>
     </body>
