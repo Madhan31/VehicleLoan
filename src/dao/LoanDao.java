@@ -119,14 +119,12 @@ public class LoanDao {
         Transaction transaction = null;
         try {
             transaction = session.beginTransaction();
-            List<Loan> loans = session.createQuery("from Loan where user_id ="+userId).list();
+            List<Loan> loans = session.createQuery("from Loan where user_id = '"+userId+"'").list();
             transaction.commit();
             return loans;
         } catch(HibernateException exception) {
         	transaction.rollback();
-        	exception.printStackTrace();
-        	return null;
-            //throw new DatabaseException("Error occured in retrive the loan details in loan", exception);
+            throw new DatabaseException("Error occured in retrive the loan details in loan", exception);
         } finally {
             session.close();
         }

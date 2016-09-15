@@ -1,9 +1,12 @@
 package service;
 
+import java.util.List;
+
 import dao.AddressDao;
 import exception.ConfigurationException;
 import exception.DatabaseException;
 import model.Address;
+import model.LoanDetail;
 
 /**
  * <p>
@@ -19,7 +22,7 @@ public class AddressService {
 	private AddressDao addressDao = new AddressDao();
 	
 	/**
-     * Call loan detail dao for add new loan detail.
+     * Call address detail dao for add new address detail.
      * 
 	 * @param address
      *     Get address detail object from controller. 
@@ -31,4 +34,26 @@ public class AddressService {
 	public void addAddress(Address address) throws DatabaseException, ConfigurationException {
 		addressDao.insertAddress(address);
 	}
+	
+	/**
+     * Call address detail dao for add new address detail.
+     * 
+	 * @param address
+     *     Get address detail object from controller. 
+	 * @throws ApplicationException
+     *     It handle all the custom exception in vehicle loan application.
+	 */
+	public Address retrieveAddressByUserId(int userId) throws DatabaseException, ConfigurationException {
+    	int sizeCount = 1;
+    	List<Address> addresses = addressDao.retrieveAddressesByUserId(userId);
+    	int listSize = addresses.size();
+        for (Address address : addresses) {
+        	if (listSize == sizeCount) {
+        		return address;
+        	} else {
+        		sizeCount++;
+        	}
+        }
+        return null; 		
+	}	
 }

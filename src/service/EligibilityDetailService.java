@@ -1,5 +1,7 @@
 package service;
 
+import java.util.List;
+
 import dao.EligibilityDetailDao;
 import exception.ConfigurationException;
 import exception.DatabaseException;
@@ -32,6 +34,20 @@ public class EligibilityDetailService {
      */   
     public boolean addEligibilityDetail(EligibilityDetail eligibilityDetail) throws DatabaseException, ConfigurationException {
         return eligibilityDetailDao.insertEligibilityDetail(eligibilityDetail);
-    }	
+    }
+    
+    /**
+	 * Calls eligibility dao methods to retrieve eligibility details.
+	 *  
+     * @param employee
+     * 		Its a object from controller method
+     * @return
+     * 		Returns true or false to controller method.
+     * @throws ApplicationException
+     *     It handle all the custom exception in vehicle loan application.
+     */   
+    public List<EligibilityDetail> retrieveEligibilityDetailsByUserId(int userId) throws DatabaseException, ConfigurationException {
+        return eligibilityDetailDao.retrieveEligibilityDetailsByUserId(userId);
+    }    
 
 }

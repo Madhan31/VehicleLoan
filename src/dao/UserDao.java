@@ -1,5 +1,7 @@
 package dao;
 
+import java.util.List;
+
 import org.hibernate.HibernateException;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
@@ -68,12 +70,36 @@ public class UserDao {
             transaction.commit();
             return user;
         } catch(HibernateException exp) {
-        	exp.printStackTrace();
             throw new DatabaseException("Error occured in retrive the user details in user", exp);
         } finally {
             session.close();
         }
     } 
+    
+    /**
+     * Retrieve all user detail from database and returns to service method. 
+     * 
+     * @param userId
+     *     Get user id from service to fetch the payment detail want to retrieve. 
+     * @return
+     *     It return retrieve of user detail object to service method.
+     * @throws ApplicationException
+     *     It handle all the custom exception in vehicle loan application.
+     */
+    public List<User> retrieveAllUsers() throws DatabaseException, ConfigurationException {
+        Session session = sessionFactory.openSession();
+        Transaction transaction = null;
+        try {
+            transaction = session.beginTransaction();
+            List<User> users = session.createQuery("from User").list();
+            transaction.commit();
+            return users;
+        } catch(HibernateException exp) {
+            throw new DatabaseException("Error occured in retrive the users detail in user", exp);
+        } finally {
+            session.close();
+        }
+    }     
 }
     
     

@@ -1,5 +1,7 @@
 package dao;
 
+import java.util.List;
+
 import org.hibernate.HibernateException;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
@@ -47,5 +49,27 @@ public class AddressDao {
             session.close();           
         }		
 	}
-
+	
+    /**
+     * To add the address detail into database by using session.
+     * 
+     * @param address
+     *     Its object from service method.It contains the adddress detail of user.
+     * @throws ApplicationException
+     *     It handle all the custom exception in vehicle loan application.
+     */
+	public List<Address> retrieveAddressesByUserId(int userId) throws DatabaseException, ConfigurationException {
+        session = sessionFactory.openSession();
+        try {
+            transaction = session.beginTransaction();
+            List<Address> addresses = session.createQuery("from Address where user_id="+userId).list();
+            transaction.commit();
+            return addresses;
+        } catch (HibernateException exp) {
+            transaction.rollback();
+            throw new DatabaseException("Oops...Cannot retrieve address kindly check your input and try again...\n", exp);    
+        } finally {
+            session.close();           
+        }		
+	}	
 }

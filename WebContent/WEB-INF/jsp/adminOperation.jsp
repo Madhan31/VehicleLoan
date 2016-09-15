@@ -16,19 +16,19 @@
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
     </head>
     <body>
-    </br></br>
-        <p><h1 align = "center">Admin Operation</h1></p>
+        <p><h1 align = "center">Admin Operation</h1>
             <div class="formLogout">
             <a href="logout">
                  <img src="img/logout.png" alt="logout" style="width:42px;height:42px;border:0;">
             </a> 
             </div>
         <div class="formexample">
-        <a class = "button" href = vehicleOperation>Vehicle operation</a></br></br>
-        <a class = "button" href = vehicleModelOperation>Vehicle model operation</a></br></br>
-        <a class = "button" href = companyOperation>Company operation</a></br></br>
-        <a class = "button" href = loanDetail>Loan payment </a></br></br>
-        <a class = "button" href = admin>Add admin</a></br></br>
+        <a class = "button" href = vehicleOperation>Vehicle operation</a><br>
+        <a class = "button" href = vehicleModelOperation>Vehicle model operation</a><br>
+        <a class = "button" href = companyOperation>Company operation</a><br>
+        <a class = "button" href = loanDetail>Loan payment </a><br>
+        <a class = "button" href = admin>Add admin</a><br>
+        <a class = "button" href = usersDetail>Users Details</a><br>
         </div>
     </body>
 </html>

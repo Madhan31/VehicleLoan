@@ -5,21 +5,20 @@
 <html>
     <link rel="stylesheet" href="css/style.css">
     <body>
-        </br></br>
-        <p><h1 align = "center">All Company Details </h1></p>
+        <p><h1 align = "center">All Company Details </h1>
             <div class="formLogout">
             <a href="logout">
                 <img src="img/logout.png" alt="logout" style="width:42px;height:42px;border:0;">
             </a>
             </div>
     <div class="formexample">
-    <a class = "button" href = retrieveUserLoanDetail>View loan detail</a></br></br>
-    <a class = "button" href = homePage>Apply for loan</a>  
+    <a class = "button" href = homePage>Apply for loan</a><br>
+    <a class = "button" href = retrieveUserLoanDetail>View loan detail</a>
     </div>
     </body>
     <c:if test="${message != null}" >
         <script language = "javaScript" type = "text/javascript">
-            alert('<c:out value = "${Message}" />');
+            alert('<c:out value = "${message}" />');
         </script>
     </c:if>
 </html>

@@ -12,17 +12,17 @@
                 width: 100%;
             }
             td, th {
-                border: 1px solid #dddddd;
+                border: 1px solid #000000;
                 text-align: left;
                 padding: 8px;
             }
             tr:nth-child(even) {
-            	color: #add8e6;
+            	color: #000000;
                 background-color: #sdf2s4;
             }
     </style>
     <body>
-        <p><h1 align = "center">Customer Loan Detail:</h1></p>
+        <p><h1 align = "center">Customer Loan Detail:</h1>
             <div class="formLogout">
             <a href="logout">
                  <img src="img/logout.png" alt="logout" style="width:42px;height:42px;border:0;">
@@ -31,32 +31,37 @@
             <div class ="formBack">
                 <button type="button" onclick="javascript:history.back()">Go back</button>
             </div>
-        <form action = "logout" method = "get">
-            <input type = "submit" name = "button" value = "logout" style ="width:80px; height:30px;" />
-        </form>    
-        <br></br>
-        <button type="button" onclick="javascript:history.back()" style ="width:80px; height:30px;" >go back</button>
-        <c:if test = "${loanDetail != null}">\
+        <c:if test = "${null != loanDetails}">\
             <table>
                 <tr>
-                	<th>Your Loan id</th>
-                    <th>Balance Loan Amount(Rs.)</th>
-                    <th>Balance emi (in months)</th>                    
+                	<th>Loan id</th>
+                	<th>Loan Amount (Rs.)</th>
+                    <th>Emi(Rs.)</th>
+                    <th>Loan Period (in months)</th>
+                    <th>Loan applied Date</th>
+                    <th>Vehicle Name</th>                    
                 </tr>
+                <c:forEach items = "${loanDetails}" var = "loanDetail">
                     <tr>
-                        <td><c:out value="${loanDetail.loan.loanId}" /></td>
-                        <td><c:out value="${loanDetail.balanceAmount}" /></td>
-                        <td><c:out value="${loanDetail.balanceEmi}" /></td>
+                        <td><c:out value="${loanDetail.loanId}" /></td>
+                        <td><c:out value="${loanDetail.loanAmount}" /></td>
+                        <td><c:out value="${loanDetail.emi}" /></td>
+                        <td><c:out value="${loanDetail.loanPeriod}" /></td>
+                        <td><c:out value="${loanDetail.date}" /></td>
+                        <td><c:out value="${loanDetail.eligibilityDetail.vehicleModel.vehicleModelName}" /></td>
+                        <td><a href = "retrieveLoanBalance?loanId=${loanDetail.loanId}"> view balance</a></td>
+                        <td><a href = "retrievePaymentDetail?loanId=${loanDetail.loanId}"> view payment detail</a></td>
                     </tr>
+                </c:forEach>
             </table>
         </c:if>   
-        <c:if test = "${null == loanDetail}">
+        <c:if test = "${null == loanDetails}">
         		<c:out value = "Currently you dont have any loan." />
         </c:if>
     <body>
     <c:if test="${message != null}" >
         <script language = "javaScript" type = "text/javascript">
-            alert('<c:out value = "${Message}" />');
+            alert('<c:out value = "${message}" />');
         </script>
     </c:if>
 </html>

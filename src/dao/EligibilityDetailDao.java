@@ -1,5 +1,7 @@
 package dao;
 
+import java.util.List;
+
 import org.hibernate.HibernateException;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
@@ -45,10 +47,35 @@ public class EligibilityDetailDao {
             transaction.commit();
             return true;
         } catch (HibernateException exp) {
-        	throw new DatabaseException("Oops...Cant retrieve companies Kindly check your input and try again...\n", exp);
+        	throw new DatabaseException("Oops...Cant add eligibilityDetail Kindly check your input and try again...\n", exp);            
         } finally {
             session.close();           
         }
     }    
-
+    
+    /**
+	 * <p>
+	 * To insert a eligibility details into table using session.
+	 * </p> 
+     * @param eligibilityDetail
+     * 		Its a object from service method.
+     * @return
+     * 		Returns true or false to service method.
+     * @throws ApplicationException
+     *     It handle all the custom exception in vehicle loan application.
+     */
+    public List<EligibilityDetail> retrieveEligibilityDetailsByUserId(int userId) throws DatabaseException, ConfigurationException {
+        session = sessionFactory.openSession();
+        try {
+            transaction = session.beginTransaction();
+            List<EligibilityDetail> eligibilityDetails = session.createQuery("from EligibilityDetail where user_id="+userId).list();
+            transaction.commit();
+            return eligibilityDetails;
+        } catch (HibernateException exp) {
+            transaction.rollback();
+            throw new DatabaseException("Error occured in retrieving the eligibility details", exp);
+        } finally {
+            session.close();           
+        }
+    }     
 }

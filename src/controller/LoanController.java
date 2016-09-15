@@ -627,14 +627,14 @@ public class LoanController {
     } 
     
 	/**
-	 * public ModelAndView retrieveUserLoanDetail() redirects to jsp page when corresponding url is called as mapped below. 
+	 * public String retrieveUserLoanDetail() redirects to jsp page when corresponding url is called as mapped below. 
 	 * @return
 	 * 		Returns jsp file name.
 	 */      
     @RequestMapping("/retrieveUserLoanDetail")
     public String retrieveUserLoanDetail(ModelMap modelMap, HttpSession session) {
     	try {
-        	modelMap.addAttribute("loanDetail", loanDetailService.retrieveLoanDetailByUserId((int) session.getAttribute("userId")));
+    		modelMap.addAttribute("loanDetails", loanService.retrieveLoansByUserId((int) session.getAttribute("userId")));
         	return "retrieveLoanDetail";
     	} catch (DatabaseException exp) {
     		modelMap.addAttribute("message", (exp.getMessage().toString()));
@@ -642,8 +642,122 @@ public class LoanController {
     	} catch (ConfigurationException exp) {
     		modelMap.addAttribute("message", (exp.getMessage().toString()));
     		return "userOperation";
-        }           	
+        }    	
     }
+    
+	/**
+	 * public String retrieveLoanBalance() redirects to jsp page when corresponding url is called as mapped below. 
+	 * @return
+	 * 		Returns jsp file name.
+	 */      
+    @RequestMapping("/retrieveLoanBalance")
+    public String retrieveUserLoanBalance(@RequestParam("loanId") int loanId, ModelMap modelMap) {    	
+    	try {        	
+        	modelMap.addAttribute("loanBalance", loanDetailService.retrieveLoanDetailByLoanId(loanId));
+        	return "retrieveLoanBalance";
+    	} catch (DatabaseException exp) {
+    		modelMap.addAttribute("message", (exp.getMessage().toString()));
+    		return "retrieveLoanDetail";
+    	} catch (ConfigurationException exp) {
+    		modelMap.addAttribute("message", (exp.getMessage().toString()));
+    		return "retrieveLoanDetail";
+        }      	
+    }    
+    
+	/**
+	 * public String retrievePaymentDetail() redirects to jsp page when corresponding url is called as mapped below. 
+	 * @return
+	 * 		Returns jsp file name.
+	 */      
+    @RequestMapping("/retrievePaymentDetail")
+    public String retrievePaymentDetail(@RequestParam("loanId") int loanId, ModelMap modelMap, HttpSession session) {
+    	try {
+        	modelMap.addAttribute("paymentDetails", paymentService.retrievePaymentsByLoanId(loanId));        	
+        	return "retrievePaymentDetail";
+    	} catch (DatabaseException exp) {
+    		modelMap.addAttribute("message", (exp.getMessage().toString()));
+    		return "retrieveLoanDetail";
+    	} catch (ConfigurationException exp) {
+    		modelMap.addAttribute("message", (exp.getMessage().toString()));
+    		return "retrieveLoanDetail";
+        }       	
+    }  
+    
+	/**
+	 * public ModelAndView retrieveLoanDetail() redirects to jsp page when corresponding url is called as mapped below. 
+	 * @return
+	 * 		Returns jsp file name.
+	 */      
+    @RequestMapping("/retrieveLoanDetail")
+    public String retrieveLoanDetail(@RequestParam("userId") int userId, ModelMap modelMap) {
+    	try {
+        	modelMap.addAttribute("loanDetails", loanService.retrieveLoansByUserId(userId));        	
+        	return "retrieveLoanDetail";
+    	} catch (DatabaseException exp) {
+    		modelMap.addAttribute("message", (exp.getMessage().toString()));
+    		return "userOperation";
+    	} catch (ConfigurationException exp) {
+    		modelMap.addAttribute("message", (exp.getMessage().toString()));
+    		return "userOperation";
+        }      	
+    }    
+    
+	/**
+	 * public String retrieveUserLoanDetail() redirects to jsp page when corresponding url is called as mapped below. 
+	 * @return
+	 * 		Returns jsp file name.
+	 */      
+    @RequestMapping("/usersDetail")
+    public String retrieveAllUsers(ModelMap modelMap) {
+    	try {
+        	modelMap.addAttribute("usersDetail", userService.retrieveAllUsers());        	
+        	return "retrieveUsersDetail";
+    	} catch (DatabaseException exp) {
+    		modelMap.addAttribute("message", (exp.getMessage().toString()));
+    		return "adminOperation";
+    	} catch (ConfigurationException exp) {
+    		modelMap.addAttribute("message", (exp.getMessage().toString()));
+    		return "adminOperation";
+        }     	
+    }    
+    
+	/**
+	 * public String retrieveUserAddress() redirects to jsp page when corresponding url is called as mapped below. 
+	 * @return
+	 * 		Returns jsp file name.
+	 */      
+    @RequestMapping("/retrieveUserAddress")
+    public String retrieveUserAddress(@RequestParam("userId") int userId, ModelMap modelMap) {    	
+    	try {        	
+        	modelMap.addAttribute("userAddress", addressService.retrieveAddressByUserId(userId));
+        	return "retrieveUserAddress";
+    	} catch (DatabaseException exp) {
+    		modelMap.addAttribute("message", (exp.getMessage().toString()));
+    		return "retrieveUsersDetail";
+    	} catch (ConfigurationException exp) {
+    		modelMap.addAttribute("message", (exp.getMessage().toString()));
+    		return "retrieveUsersDetail";
+        }      	
+    }    
+    
+	/**
+	 * public String retrieveEligibilityDetailByUserId() redirects to jsp page when corresponding url is called as mapped below. 
+	 * @return
+	 * 		Returns jsp file name.
+	 */      
+    @RequestMapping("/retrieveUserEligibilityDetail")
+    public String retrieveEligibilityDetailsByUserId(@RequestParam("userId") int userId, ModelMap modelMap) {
+    	try {
+        	modelMap.addAttribute("eligibilityDetails", eligibilityDetailService.retrieveEligibilityDetailsByUserId(userId));        	
+        	return "retrieveEligibilityDetail";
+    	} catch (DatabaseException exp) {
+    		modelMap.addAttribute("message", (exp.getMessage().toString()));
+    		return "retrieveUsersDetail";
+    	} catch (ConfigurationException exp) {
+    		modelMap.addAttribute("message", (exp.getMessage().toString()));
+    		return "retrieveUsersDetail";
+        }       	
+    }    
     
 	/**
 	 * public String admin() redirects to jsp page when corresponding url is called as mapped below. 

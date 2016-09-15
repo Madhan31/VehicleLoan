@@ -4,6 +4,8 @@ import model.Loan;
 import model.LoanDetail;
 import model.Payment;
 
+import java.util.List;
+
 import dao.PaymentDao;
 import exception.ConfigurationException;
 import exception.DatabaseException;
@@ -65,4 +67,16 @@ public class PaymentService {
 	public Payment retrievePayment(int paymentId) throws DatabaseException, ConfigurationException {
         return paymentDao.retrievePayment(paymentId);
     }
+	
+	/**
+     * Call payment dao for retrieve particular payment detail.
+     * 
+	 * @return
+	 *     It return the payment object to controller.   
+	 * @throws ApplicationException
+     *     It handle all the custom exception in vehicle loan application.
+	 */
+	public List<Payment> retrievePaymentsByLoanId(int loanId) throws DatabaseException, ConfigurationException {
+        return paymentDao.retrievePaymentsByLoanId(loanId);
+    }	
 }

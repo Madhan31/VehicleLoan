@@ -1,5 +1,7 @@
 package service;
 
+import java.util.List;
+
 import dao.UserDao;
 import exception.ConfigurationException;
 import exception.DatabaseException;
@@ -33,7 +35,7 @@ public class UserService {
     }
     
     /**
-     * Call loan detail dao for retrieve particular loan detail.
+     * Call user detail dao for retrieve particular user detail.
      * 
      * @param userId
      *     Get loan id from controller to retrieve particular user detail.
@@ -44,8 +46,22 @@ public class UserService {
      * @throws ConfigurationException
      *     It handle all the error message in configuration file.  
      */
-    public User retrieveUser(int userId) throws DatabaseException, ConfigurationException{
+    public User retrieveUser(int userId) throws DatabaseException, ConfigurationException {
         return userDao.retrieveUser(userId);
     }
+    
+    /**
+     * Call user detail dao for retrieve all user detail.
+     * 
+     * @param userId
+     *     Get loan id from controller to retrieve particular user detail.
+     * @return
+	 *     It return the user object to controller.   
+     * @throws ApplicationException
+     *     It handle all the custom exception in vehicle loan application.
+     */
+    public List<User> retrieveAllUsers() throws DatabaseException, ConfigurationException {
+        return userDao.retrieveAllUsers();
+    }    
 }
     
