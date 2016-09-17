@@ -1,0 +1,27 @@
+<?xml version='1.0' encoding='UTF-8'?>  
+<!DOCTYPE hibernate-configuration PUBLIC  
+"-//Hibernate/Hibernate Configuration DTD 3.0//EN"  
+"http://hibernate.sourceforge.net/hibernate-configuration-3.0.dtd">  
+   
+<hibernate-configuration>  
+      
+    <session-factory>  
+        <property name ="dialect">org.hibernate.dialect.MySQLDialect</property>  
+        <property name = "connection.url">jdbc:mysql://localhost/vehicle_loan</property>  
+        <property name = "connection.username">root</property>  
+        <property name = "connection.password">manmadhan</property>  
+        <property name = "connection.driver_class">com.mysql.jdbc.Driver</property>  
+        <property name = "show_sql">true</property>
+        <mapping class = "com.i2i.vehicleloan.model.Address"/>  
+        <mapping class = "com.i2i.vehicleloan.model.EligibilityDetail"/>  
+        <mapping class = "com.i2i.vehicleloan.model.Loan"/>  
+        <mapping class = "com.i2i.vehicleloan.model.LoanDetail"/>  
+        <mapping class = "com.i2i.vehicleloan.model.Payment"/>  
+        <mapping class = "com.i2i.vehicleloan.model.Role"/>  
+        <mapping class = "com.i2i.vehicleloan.model.User"/>  
+        <mapping class = "com.i2i.vehicleloan.model.Vehicle"/>  
+        <mapping class = "com.i2i.vehicleloan.model.VehicleModel"/>   
+        <mapping class = "com.i2i.vehicleloan.model.Company"/>       
+    </session-factory>  
+      
+</hibernate-configuration>  
