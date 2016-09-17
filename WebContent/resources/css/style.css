@@ -489,3 +489,17 @@ input.address { width:250px }
 	color:#fff
 }
 
+input[type=text]:focus { background:#e4f0f8 }
+.formBackOperation {
+	width:27%;
+	margin:0px auto;
+	text-align:right;
+}
+
+input[type=text]:focus { background:#e4f0f8 }
+.formBackRemoveOperation {
+	width:15%;
+	margin:0px auto;
+	text-align:right;
+}
+

@@ -13,7 +13,7 @@
         http://www.springframework.org/schema/mvc         
         http://www.springframework.org/schema/mvc/spring-mvc-4.0.xsd" >       
 
-    <context:component-scan base-package="controller"/>
+    <context:component-scan base-package="com.i2i.vehicleloan.controller"/>
 
     <bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">
         <property name="viewClass" value="org.springframework.web.servlet.view.JstlView"></property>

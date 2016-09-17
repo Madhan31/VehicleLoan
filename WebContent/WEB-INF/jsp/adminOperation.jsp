@@ -16,6 +16,7 @@
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
     </head>
     <body>
+    <br></br>
         <p><h1 align = "center">Admin Operation</h1>
             <div class="formLogout">
             <a href="logout">

@@ -19,7 +19,7 @@
     </head>
     <body>
         </br></br>
-        <p><h1 align = "center">Add Company Details:</h1></p>
+        <p><h1 align = "center">Add Company Details</h1></p>
             <div class="formLogout">
             <a href="logout">
                  <img src="img/logout.png" alt="logout" style="width:42px;height:42px;border:0;">
@@ -27,7 +27,7 @@
             </div>
             <div class ="formBack">
                 <button type="button" onclick="javascript:history.back()">Go back</button>
-            </div>         
+            </div> 
         <form:form action = "addCompany" modelAttribute = "insertCompany" class= "login">
             <table>
                 <tr>
@@ -40,10 +40,15 @@
                 </tr>
             </table>
         </form:form>
-        <a class = "button" href = "companyOperation" style="width:200px;height:30px;border:0;">Back to company operation</a>
-    <c:if test="${message != null}" >
+ <div class ="formBackOperation">
+                <a class = "button" href = "companyOperation" style="width:200px;height:20px;border:0;">Back to company operation</a><br></br>
+                <a class = "button" href = "insertVehicle" style="width:200px;height:20px;border:0;">Click to add vehicle</a><br></br>
+                <a class = "button" href = "insertVehicleModel" style="width:200px;height:20px;border:0;">Click to add vehicle model</a>
+        </div>    
+        <c:if test="${message != null}" >
         <script language = "javaScript" type = "text/javascript">
             alert('<c:out value = "${message}" />');
+            window.location.href = "insertCompany";
         </script>
     </c:if>
     </body>

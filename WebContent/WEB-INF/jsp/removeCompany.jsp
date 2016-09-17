@@ -40,7 +40,7 @@
                 </c:forEach>
             </table>
         </c:if>   
-        <p><h1 align = "center">Remove Company Details :</h1></p>
+        <p><h1 align = "center">Remove Company Detail</h1></p>
             <div class="formLogout">
             <a href="logout">
                  <img src="img/logout.png" alt="logout" style="width:42px;height:42px;border:0;">
@@ -55,8 +55,12 @@
                 <input type = "submit" name = "button" value = "Delete" />
                 <input type="reset" value="Clear" />
             </form>
-            </div></br></br></br></br></br></br>
-        <a class = "button" href = "companyOperation"style="width:200px;height:30px;border:0;">Back to company operation</a>
+            </div><br></br><br></br><br></br>
+        <div class ="formBackRemoveOperation">
+                <a class = "button" href = "companyOperation" style="width:200px;height:20px;border:0;">Back to company operation</a><br></br>
+                <a class = "button" href = "deleteVehicle" style="width:200px;height:20px;border:0;">Click to remove vehicle</a><br></br>
+                <a class = "button" href = "deleteVehicleModel" style="width:200px;height:28px;border:0;">Click to remove vehicle model</a>
+        </div><br></br><br></br>
         <c:if test="${message != null}" >
             <script language = "javaScript" type = "text/javascript">
                 alert('<c:out value = "${message}" />');

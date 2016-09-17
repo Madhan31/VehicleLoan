@@ -30,11 +30,11 @@
         <a class = "button" href = deleteCompany>Delete company</a></br></br>
         <a class = "button" href = retrieveAllCompany>Display all company</a></br></br>
         <a class = "button" href = "adminOperation">Back to main menu</a>
-        </div>
+        </div><br></br><br></br>
     </body>
     <c:if test="${message != null}" >
         <script language = "javaScript" type = "text/javascript">
-            alert('<c:out value = "${Message}" />');
+            alert('<c:out value = "${message}" />');
         </script>
     </c:if>
 </html>

@@ -39,7 +39,7 @@
     </body>
      <c:if test="${message != null}" >
         <script language = "javaScript" type = "text/javascript">
-            alert('<c:out value = "${Message}" />');
+            alert('<c:out value = "${message}" />');
         </script>
     </c:if>
 </html>

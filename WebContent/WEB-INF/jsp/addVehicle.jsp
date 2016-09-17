@@ -18,8 +18,7 @@
         <title>Insert title here</title>
     </head>
     <body>
-        <title>Vehicle Addition</title>
-        <p><h1 align = "center">Add Vehicle Details :</h1></p>
+        <h1 align = "center">Add Vehicle Details</h1>
             <div class="formLogout">
             <a href="logout">
                  <img src="img/logout.png" alt="logout" style="width:42px;height:42px;border:0;">
@@ -27,18 +26,23 @@
             </div>
             <div class ="formBack">
                 <button type="button" onclick="javascript:history.back()">Go back</button>
-            </div>
+            </div> 
         <form:form align = "center" action = "addVehicle" modelAttribute = "insertVehicle" class= "login">
             <fieldset>
                 <form:input type = "text" name = "vehicleName" path = "vehicleName" placeholder = "Vehicle name" required = "required" /><br></br>
-                <input type = "submit" name = "button" value = "Add"/>
+                 <input type = "submit" name = "button" value = "Add"/>
             </fieldset>
-        </form:form></br></br>
-        <a class = "button" href = "vehicleOperation" style="width:200px;height:30px;border:0;">Back to vehicle operation</a>
+        </form:form>
+        <div class ="formBackOperation">
+                <a class = "button" href = "vehicleOperation" style="width:200px;height:20px;border:0;">Back to vehicle operation</a><br></br>
+                <a class = "button" href = "insertVehicleModel" style="width:200px;height:20px;border:0;">Click to add vehicle model</a><br></br>
+                <a class = "button" href = "insertCompany" style="width:200px;height:20px;border:0;">Click to add company</a>
+        </div><br></br><br></br>
     </body>
     <c:if test="${message != null}" >
         <script language = "javaScript" type = "text/javascript">
             alert('<c:out value = "${message}" />');
+            window.location.href = "insertVehicle";
         </script>
     </c:if>
 </html>

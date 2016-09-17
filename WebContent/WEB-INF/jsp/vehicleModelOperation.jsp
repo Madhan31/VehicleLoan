@@ -15,6 +15,7 @@
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
     </head>
     <body>
+       <br></br>
         <h1 align = "center">Vehicle Model Operation</h1>
             <div class="formLogout">
             <a href="logout">
@@ -33,7 +34,7 @@
     </body>
     <c:if test="${message != null}" >
         <script language = "javaScript" type = "text/javascript">
-            alert('<c:out value = "${Message}" />');
+            alert('<c:out value = "${message}" />');
         </script>
     </c:if>
 </html>
