@@ -14,7 +14,7 @@
 </head>
 <title>Address Addition</title>
     <body onload = "populateStates('state','city');" >	
-    <p><h1 align = "center">User Address Detail:</h1></p>
+    <h1 align = "center">User Address Detail:</h1>
             <div class="formLogout">
             <a href="logout">
                  <img src="img/logout.png" alt="logout" style="width:42px;height:42px;border:0;">
@@ -52,10 +52,11 @@
         </tr>
         </table>
     </form:form>
-</body>
-<c:if test="${message != null}" >
+    <c:if test="${message != null}" >
         <script language = "javaScript" type = "text/javascript">
             alert('<c:out value = "${message}" />');
+            window.location.href = "userOperation";
         </script>
     </c:if>
+    </body>
 </html>

@@ -16,6 +16,7 @@ time, mark, audio, video {
   border: 0;
   font-size: 100%;
   font: inherit;
+  font-color: #000000;
   vertical-align: baseline;
 }
 
@@ -44,7 +45,7 @@ q:before, q:after {
 
 table {
   border-style : solid;
-  border-color : #Ff7700;
+  border-color : #ffffff;
   border-collapse: collapse;
   border-spacing: 0;
 }
@@ -52,7 +53,7 @@ table {
 table td, table th {
     text-align : center;
     vertical-align : middle;
-    border : 1px solid #cec8c2;
+    border : 1px solid #ffffff;
     width : 38%;
     }
        
@@ -109,12 +110,12 @@ table td, table th {
 }
 
 body, .login-submit, .login-submit:before, .login-submit:after {
-  background:  #cec8c2  url("img/bg.png") 0 0 repeat;
+  background:  #ffffff  url("img/bg.png") 0 0 repeat;
 }
 
 body {
   font: 14px/20px 'Helvetica Neue', Helvetica, Arial, sans-serif;
-  color: #FFFFFF;
+  color: #000000;
 }
 
 a {
@@ -360,7 +361,7 @@ h1 {
     padding: 10px;
     text-align: center;
     border-radius: 5px;
-    color: white;
+    color: black;
     font-weight: bold;
 }
 #form {
@@ -430,7 +431,7 @@ margin-bottom:10px;
 #table {
   cell-padding :
   border-style : solid;
-  border-color : #Ff7700;
+  border-color : #ffffff;
   border-collapse: collapse;
   border-spacing: 0;
   
@@ -439,7 +440,7 @@ margin-bottom:10px;
 #table td, #table th {
     text-align : center;
     vertical-align : middle;
-    border : 1px solid black;
+    border : 1px solid white;
     width : 30%;
     }
 input[type=text]:focus { background:#e4f0f8 }
