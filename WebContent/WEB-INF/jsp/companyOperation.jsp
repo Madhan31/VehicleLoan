@@ -27,8 +27,9 @@
             </div>         
         <div class="formexample">
         <a class = "button" href = insertCompany>Insert company</a></br></br>
-        <a class = "button" href = removeCompany>Delete company</a></br></br>
-        <a class = "button" href = retrieveAllComapny>Display all company</a>
+        <a class = "button" href = deleteCompany>Delete company</a></br></br>
+        <a class = "button" href = retrieveAllCompany>Display all company</a></br></br>
+        <a class = "button" href = "adminOperation">Back to main menu</a>
         </div>
     </body>
     <c:if test="${message != null}" >

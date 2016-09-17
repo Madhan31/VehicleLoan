@@ -28,11 +28,6 @@
             <div class ="formBack">
                 <button type="button" onclick="javascript:history.back()">Go back</button>
             </div>         
-        <c:if test="${insert != null}" >
-            <script language = "javaScript" type = "text/javascript">
-                alert('<c:out value = "${insert}" />');
-            </script>
-        </c:if>
         <form:form action = "addCompany" modelAttribute = "insertCompany" class= "login">
             <table>
                 <tr>
@@ -45,10 +40,11 @@
                 </tr>
             </table>
         </form:form>
-    </body>
+        <a class = "button" href = "companyOperation" style="width:200px;height:30px;border:0;">Back to company operation</a>
     <c:if test="${message != null}" >
         <script language = "javaScript" type = "text/javascript">
-            alert('<c:out value = "${Message}" />');
+            alert('<c:out value = "${message}" />');
         </script>
     </c:if>
+    </body>
 </html>

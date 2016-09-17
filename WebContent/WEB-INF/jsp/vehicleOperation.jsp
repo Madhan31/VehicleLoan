@@ -28,7 +28,8 @@
         <div align = "center" class="formexample">
         <a class = "button" href = insertVehicle>Insert vehicle</a></br></br>
         <a class = "button" href = deleteVehicle>Delete vehicle</a></br></br>
-        <a class = "button" href = retrieveAllVehicle>Display all vehicle</a>
+        <a class = "button" href = retrieveAllVehicle>Display all vehicle</a></br></br>
+        <a class = "button" href = "adminOperation">Back to main menu</a>
         </div>
     </body>
     <c:if test="${message != null}" >

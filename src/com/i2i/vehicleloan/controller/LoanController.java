@@ -7,8 +7,8 @@ import javax.servlet.http.HttpSession;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.validation.BindingResult;
-import org.springframework.web.bind.annotation.ModelAttribute;  
-import org.springframework.web.bind.annotation.RequestMapping;  
+import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
@@ -20,9 +20,9 @@ import com.i2i.vehicleloan.model.Company;
 import com.i2i.vehicleloan.model.EligibilityDetail;
 import com.i2i.vehicleloan. model.Loan;
 import com.i2i.vehicleloan.model.Payment;
+import com.i2i.vehicleloan.model.User;
 import com.i2i.vehicleloan.model.Vehicle;
 import com.i2i.vehicleloan.model.VehicleModel;
-import com.i2i.vehicleloan.model.User;
 import com.i2i.vehicleloan.service.AddressService;
 import com.i2i.vehicleloan.service.CompanyService;
 import com.i2i.vehicleloan.service.EligibilityDetailService;
@@ -30,8 +30,8 @@ import com.i2i.vehicleloan.service.LoanDetailService;
 import com.i2i.vehicleloan.service.LoanService;
 import com.i2i.vehicleloan.service.PaymentService;
 import com.i2i.vehicleloan.service.UserService;
-import com.i2i.vehicleloan.service.VehicleService;
 import com.i2i.vehicleloan.service.VehicleModelService;
+import com.i2i.vehicleloan.service.VehicleService;
 
 /**
  * <p>
@@ -146,16 +146,18 @@ public class LoanController {
 	 * 		Returns jsp file name.
 	 */    
     @RequestMapping("/homePage")     
-    public ModelAndView eligibilityDetail(ModelMap modelMap) {
+    public String eligibilityDetail(ModelMap modelMap) {
     	try {
     		modelMap.addAttribute("eligibilityDetail", new EligibilityDetail());
     		modelMap.addAttribute("vehicleList", vehicleService.retrieveVehicles());
     		modelMap.addAttribute("companyList", companyService.retrieveCompanies());
-    		return new ModelAndView("homePage", "message", "Eligibility Detail Added Successfully");
+    		return "homePage";
     	} catch (DatabaseException exp) {
-    		return new ModelAndView("homePage", "message", (exp.getMessage().toString()));
+    		modelMap.addAttribute("message", (exp.getMessage().toString()));
+    		return "homePage";
     	} catch (ConfigurationException exp) {
-        	return new ModelAndView("homePage", "message", (exp.getMessage().toString()));
+    		modelMap.addAttribute("message", (exp.getMessage().toString()));
+    		return "homePage";
         }
     } 
     

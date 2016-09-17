@@ -40,6 +40,7 @@
                 </c:forEach>
             </table>
         </c:if>   
+        </br></br>
         <p><h1 align = "center">Delete Vehicle:</h1></p>
             <div class="formLogout">
             <a href="logout">
@@ -49,11 +50,14 @@
             <div class ="formBack">
                 <button type="button" onclick="javascript:history.back()">Go back</button>
             </div>   
-        <form action = "removeVehicle" method="get">
-                <input type = "text" id ="vehicleId" name = "vehicleId" placeholder =  "Vehicle ID"></br></br>
+            <div class = "formexample">
+            <form action = "removeVehicle" method="get">
+                <input type = "text" id ="vehicleId" name = "vehicleId" placeholder =  "Vehicle ID">
                 <input type = "submit" name = "button" value = "Delete" />
                 <input type="reset" value="Clear" />
         </form>
+        </div></br></br></br></br></br></br>
+        <a class = "button" href = "vehicleOperation" style="width:200px;height:30px;border:0;">Back to vehicle operation</a>
         <c:if test="${message != null}" >
             <script language = "javaScript" type = "text/javascript">
                 alert('<c:out value = "${message}" />');

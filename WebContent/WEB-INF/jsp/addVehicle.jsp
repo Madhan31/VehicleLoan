@@ -6,6 +6,7 @@
   
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
+    <link rel="stylesheet" href="css/style.css">
     <c:if test="${sessionScope['userId'] == null}" >
         <c:redirect url = "index.jsp" />
     </c:if>
@@ -18,12 +19,6 @@
     </head>
     <body>
         <title>Vehicle Addition</title>
-        <link rel="stylesheet" href="css/style.css">
-        <c:if test="${insert != null}" >
-            <script language = "javaScript" type = "text/javascript">
-                alert('<c:out value = "${insert}" />');
-            </script>
-        </c:if>
         <p><h1 align = "center">Add Vehicle Details :</h1></p>
             <div class="formLogout">
             <a href="logout">
@@ -38,11 +33,12 @@
                 <form:input type = "text" name = "vehicleName" path = "vehicleName" placeholder = "Vehicle name" required = "required" /><br></br>
                 <input type = "submit" name = "button" value = "Add"/>
             </fieldset>
-        </form:form>
+        </form:form></br></br>
+        <a class = "button" href = "vehicleOperation" style="width:200px;height:30px;border:0;">Back to vehicle operation</a>
     </body>
     <c:if test="${message != null}" >
         <script language = "javaScript" type = "text/javascript">
-            alert('<c:out value = "${Message}" />');
+            alert('<c:out value = "${message}" />');
         </script>
     </c:if>
 </html>

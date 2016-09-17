@@ -50,10 +50,11 @@
         <td><input type = "submit" name = "button" value = "Add"/></td>
         </table>
         </form:form>
+        <a class = "button" href = "vehicleModelOperation" style="width:200px;height:30px;border:0;">Back to vehicle model operation</a>
     </body>
     <c:if test="${message != null}" >
         <script language = "javaScript" type = "text/javascript">
-            alert('<c:out value = "${Message}" />');
+            alert('<c:out value = "${message}" />');
         </script>
     </c:if>
 </html>
