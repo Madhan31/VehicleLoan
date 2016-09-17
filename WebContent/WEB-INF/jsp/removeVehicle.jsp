@@ -40,22 +40,19 @@
                 </c:forEach>
             </table>
         </c:if>   
-        <p><h1 align = "center">Remove Vehicle Details :</h1></p>
+        <p><h1 align = "center">Delete Vehicle:</h1></p>
             <div class="formLogout">
             <a href="logout">
                  <img src="img/logout.png" alt="logout" style="width:42px;height:42px;border:0;">
-            </a>
+            </a> 
             </div>
             <div class ="formBack">
                 <button type="button" onclick="javascript:history.back()">Go back</button>
-            </div>
+            </div>   
         <form action = "removeVehicle" method="get">
-            <fieldset>
-                <legend>Delete vehicle detail</legend>         
-                <input type = "text" id ="vehicleId" name = "vehicleId" placeholder =  "Vehicle ID"></br>
+                <input type = "text" id ="vehicleId" name = "vehicleId" placeholder =  "Vehicle ID"></br></br>
                 <input type = "submit" name = "button" value = "Delete" />
                 <input type="reset" value="Clear" />
-            </fieldset>
         </form>
         <c:if test="${message != null}" >
             <script language = "javaScript" type = "text/javascript">
