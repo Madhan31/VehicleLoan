@@ -16,7 +16,7 @@ time, mark, audio, video {
   border: 0;
   font-size: 100%;
   font: inherit;
-  font-color: #000000;
+  font-color:#000000;
   vertical-align: baseline;
 }
 
@@ -55,7 +55,7 @@ table td, table th {
     text-align : center;
     vertical-align : middle;
     border : 1px solid #ffffff;
-    width : 38%;
+    width : 10%;
     font-color:#000000;
     }
        
@@ -156,7 +156,7 @@ input[type=text], input[type=password] {
   width: 300px;
   height: 40px;
   font-color:#000000;
-  text-shadow: 1px 1px 1px black;
+  text-shadow: 1px 1px 1px white;
   background: rgba(0, 0, 0, 0.16);
   border: 0;
   border-radius: 5px;
@@ -451,8 +451,8 @@ input[type=text]:focus { background:#e4f0f8 }
 .formexample {
 	width:15%;
 	margin:20px auto;
-	text-align:center;
 	font-color:#000000;
+	text-align:center;
 }
 input[type=text]:focus { background:#e4f0f8 }
 .formLogout {
