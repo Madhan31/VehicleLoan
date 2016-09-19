@@ -55,6 +55,9 @@ function loadvehicleprice() {
 </head>
 <link rel="stylesheet" href="css/style.css">
     <body>
+	<c:if test="${null == sessionScope['userId']}" >
+        <c:redirect url = "logIn" />
+    </c:if>    
     <c:if test="${null != loanDetail.balanceAmount}">
         <script language = "javaScript" type = "text/javascript">
             alert('<c:out value = "There is a pending loan in your account!!!" />');
@@ -79,7 +82,7 @@ function loadvehicleprice() {
 		 <option value="${company.companyId}">${company.companyName}</option>
 		</m:forEach>
 		 </form:select>         
-        <form:input type = "text" name = "salary" path = "salary" placeholder = "salary" required = "required" /><br></br>
+        <form:input type = "text" name = "salary" path = "salary" placeholder = "Salary per month" required = "required" /><br></br>
         
         <select name = "vehicle" id = "vehicle" onChange="loadvehiclemodels();" >
 		   <option value="0"> -- Select Vehicle -- </option>

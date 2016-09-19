@@ -5,7 +5,6 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>Insert title here</title>
 </head>
     <link rel="stylesheet" href="css/style.css">
 	<link rel="stylesheet" href="css/style.css">
@@ -15,16 +14,25 @@
                 border-collapse: collapse;
                 width: 100%;
             }
-            td, th {
+            td {
                 border: 1px solid #dddddd;
                 text-align: left;
                 padding: 8px;
             }
+            th {
+                border: 1px solid #dddddd;
+                text-align: left;
+                padding: 8px;
+                background-color: #c8897b;
+            }            
             tr:nth-child(even) {
                 background-color: #dddddd;
             }
     </style>
-<body>
+	<c:if test="${null == sessionScope['userId']}" >
+        <c:redirect url = "logIn" />
+    </c:if>    
+	<body>
         <p><h1 align = "center">Customer Loan Detail:</h1>
             <div class="formLogout">
             <a href="logout">

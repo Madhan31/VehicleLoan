@@ -6,18 +6,15 @@
 <html>
         <link rel="stylesheet" href="css/style.css">
         <link rel="images" href="images">
-    <c:if test="${sessionScope['userId'] == null}" >
-        <c:redirect url = "index.jsp" />
-    </c:if>
-    <c:if test="${sessionScope['role'] != 'admin'}" >
-        <c:redirect url = "index.jsp" />
+	<c:if test="${null == sessionScope['userId']}" >
+        <c:redirect url = "logIn" />
     </c:if>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
     </head>
     <body>
-        </br></br>
-        <p><h1 align = "center">Vehicle Operation</h1></p>
+        <br></br>
+        <h1 align = "center">Vehicle Operation</h1>
             <div class="formLogout">
             <a href="logout">
                  <img src="img/logout.png" alt="logout" style="width:42px;height:42px;border:0;">
@@ -26,9 +23,9 @@
                 <button type="button" onclick="javascript:history.back()">Go back</button>
             </div>
         <div align = "center" class="formexample">
-        <a class = "button" href = insertVehicle>Insert vehicle</a></br></br>
-        <a class = "button" href = deleteVehicle>Delete vehicle</a></br></br>
-        <a class = "button" href = retrieveAllVehicle>Display all vehicle</a></br></br>
+        <a class = "button" href = insertVehicle>Insert vehicle</a><br></br>
+        <a class = "button" href = deleteVehicle>Delete vehicle</a><br></br>
+        <a class = "button" href = retrieveAllVehicle>Display all vehicle</a><br></br>
         <a class = "button" href = "adminOperation">Back to main menu</a>
         </div>
     </body>

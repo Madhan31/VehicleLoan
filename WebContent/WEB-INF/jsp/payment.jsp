@@ -20,11 +20,8 @@ function getDate()
     document.getElementById("todayDate").value = today;
 }
 </script>
-    <c:if test="${sessionScope['userId'] == null}" >
-        <c:redirect url = "index.jsp" />
-    </c:if>
-    <c:if test="${sessionScope['role'] != 'admin'}" >
-        <c:redirect url = "index.jsp" />
+	<c:if test="${null == sessionScope['userId']}" >
+        <c:redirect url = "logIn" />
     </c:if>
         <link rel="stylesheet" href="css/style.css">
     <head>        

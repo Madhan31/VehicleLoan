@@ -5,7 +5,6 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>Insert title here</title>
 </head>
     <link rel="stylesheet" href="css/style.css">
 	<link rel="stylesheet" href="css/style.css">
@@ -17,6 +16,9 @@
     			resize:none;
 			}         
     </style>
+	<c:if test="${null == sessionScope['userId']}" >
+        <c:redirect url = "logIn" />
+    </c:if>    
     <body>
         <p><h1 align = "center">Customer Loan Detail:</h1>
             <div class="formLogout">

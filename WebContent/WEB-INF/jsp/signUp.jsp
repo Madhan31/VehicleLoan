@@ -8,13 +8,14 @@
     <link rel="stylesheet" href="css/style.css">
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>Insert title here</title>
-    </head>
-    <title>Loan Addition</title>
+    </head>   
     <body>
         <br></br>
         <h1 align = "center">Register User Details</h1>
         <br></br>
+            <div class ="formBack">
+                <button type="button" onclick="javascript:history.back()">Go back</button>
+            </div>        
         <form:form action="addUser" modelAttribute = "user" method="post">
             <table>
                 <tr>

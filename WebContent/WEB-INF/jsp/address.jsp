@@ -20,7 +20,7 @@
             </a>
             </div>
             <div class ="formBack">
-                <button type="button" onclick="javascript:history.back()">Go back</button>
+                <button type="button" onclick="alert('<c:out value = "You already applied for loan kindly enter you address..." />')">Go back</button>
             </div>
     <form:form action="address" modelAttribute = "address" method="post">
         <table>
@@ -56,6 +56,6 @@
             alert('<c:out value = "${message}" />');
             window.location.href = "userOperation";
         </script>
-    </c:if>
+    </c:if>   
     </body>
 </html>

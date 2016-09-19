@@ -5,6 +5,7 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ taglib uri="http://www.springframework.org/tags/form" prefix="form" %>
 <html>
+<title>Vehicle Loan</title>
 	<link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
     <c:if test="${message != null}" >
         <script language = "javaScript" type = "text/javascript">
@@ -50,7 +51,8 @@
     	</c:if> 
     	    <c:if test="${sessionScope['role'] == 'user'}" >
         		<c:redirect url = "userOperation" />
-    	</c:if>  
+    	</c:if>    
+    <body>  
     	<div class="well" id="title"><h1>Vehicle Loan</h1></div>
         <div id="wrapper">
         <div class="user-icon"></div>

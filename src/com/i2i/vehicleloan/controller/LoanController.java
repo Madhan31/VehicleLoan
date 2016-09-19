@@ -121,7 +121,7 @@ public class LoanController {
     @RequestMapping("/signUp")     
     public String signUp(ModelMap map) {
     	map.addAttribute("user", new User());
-        return "user";
+        return "signUp";
     }  
     
     /**
@@ -262,11 +262,11 @@ public class LoanController {
      * 		Returns to the jsp file for output.
      */
     @RequestMapping(value = "/addloandetail", method = RequestMethod.GET)
-    private String addLoanDetail(@ModelAttribute("loan") Loan loan, BindingResult bindingResult, ModelMap modelMap) {
+    public String addLoanDetail(@ModelAttribute("loan") Loan loan, BindingResult bindingResult, ModelMap modelMap) {
         try {
         	loanService.addLoan(loan);
-        	loanDetailService.addLoanDetail(new LoanDetail(loan.getLoanAmount(), loan.getLoanPeriod(), loan.getUser()));        	
-        	modelMap.addAttribute("address", new Address());
+        	loanDetailService.addLoanDetail(new LoanDetail(loan.getLoanAmount(), loan.getLoanPeriod(), loan.getUser()));
+        	modelMap.addAttribute("address", new Address()); 
         	return "address";
         } catch (DatabaseException exp) {
     		modelMap.addAttribute("message", (exp.getMessage().toString()));
@@ -287,7 +287,7 @@ public class LoanController {
      * 		Returns to jsp file.
      */
     @RequestMapping(value = "/address", method = RequestMethod.POST)
-    private ModelAndView addAddress(@ModelAttribute("address") Address address, BindingResult bindingResult, ModelMap modelMap) {
+    public ModelAndView addAddress(@ModelAttribute("address") Address address, BindingResult bindingResult, ModelMap modelMap) {
         try {
         	addressService.addAddress(address);
         	return new ModelAndView("address", "message", "Loan applied successfully we will contact you soon");

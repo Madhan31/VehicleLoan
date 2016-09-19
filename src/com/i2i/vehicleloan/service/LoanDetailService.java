@@ -46,7 +46,7 @@ public class LoanDetailService {
      *     It handle all the error message in configuration file.  
      */
     public LoanDetail retrieveLoanDetailByLoanId(int loanId) throws DatabaseException, ConfigurationException {
-    	return retrieveFinalObjectFromList(loanDetailDao.retrieveLoanDetailsByLoanId(loanId));
+    	return retrieveLatestLoanDetailFromList(loanDetailDao.retrieveLoanDetailsByLoanId(loanId));
     }	  
     
     /**
@@ -62,7 +62,7 @@ public class LoanDetailService {
      *     It handle all the error message in configuration file.    
      */
     public LoanDetail retrieveLoanDetailByUserId(int userId)throws DatabaseException, ConfigurationException {
-    	return retrieveFinalObjectFromList(loanDetailDao.retrieveLoanDetailByUserId(userId));
+    	return retrieveLatestLoanDetailFromList(loanDetailDao.retrieveLoanDetailByUserId(userId));
     }
     
     /**
@@ -72,7 +72,7 @@ public class LoanDetailService {
      * @return
      * 		Returns loan detail object.
      */
-    private LoanDetail retrieveFinalObjectFromList(List<LoanDetail> loanDetails) {
+    private LoanDetail retrieveLatestLoanDetailFromList(List<LoanDetail> loanDetails) {
     	int sizeCount = 1;
     	int listSize = loanDetails.size();
         for (LoanDetail loanDetail :loanDetails) {

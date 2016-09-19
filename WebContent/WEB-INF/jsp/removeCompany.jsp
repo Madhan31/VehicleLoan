@@ -4,11 +4,8 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <html>
     <link rel="stylesheet" href="css/style.css">
-    <c:if test="${sessionScope['userId'] == null}" >
-        <c:redirect url = "index.jsp" />
-    </c:if>
-    <c:if test="${sessionScope['role'] != 'admin'}" >
-        <c:redirect url = "index.jsp" />
+	<c:if test="${null == sessionScope['userId']}" >
+        <c:redirect url = "logIn" />
     </c:if>
     <style>
             table {
@@ -16,10 +13,16 @@
                 border-collapse: collapse;
                 width: 100%;
             }
-            td, th {
+            td {
                 border: 1px solid #dddddd;
                 text-align: left;
                 padding: 8px;
+            }
+            th {
+                border: 1px solid #dddddd;
+                text-align: left;
+                padding: 8px;
+                background-color: #c8897b;
             }
             tr:nth-child(even) {
                 background-color: #dddddd;
