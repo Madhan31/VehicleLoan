@@ -237,7 +237,6 @@ public class LoanController {
         try {
         	VehicleModel vechicleModel = vehicleModelService.getVehicleModelById(eligibilityDetail.getVehicleModel().getVehicleModelId()); 
             if (eligibilityDetailService.addEligibilityDetail(eligibilityDetail)) {
-            	System.out.println(eligibilityDetail.getId());
             	modelMap.addAttribute("eligibilityDetailId", eligibilityDetail.getId());
             	modelMap.addAttribute("loan", new Loan());
                 return new ModelAndView("loan", "loanamount", loanService.calculateLoanAmount(eligibilityDetail,vechicleModel));
