@@ -94,7 +94,6 @@ public class PaymentDao {
             transaction.commit();
             return payments;
         } catch(HibernateException exception) {
-        	transaction.rollback();
             throw new DatabaseException("Error occured in retrive the payment details in payment", exception);
         } finally {
             session.close();

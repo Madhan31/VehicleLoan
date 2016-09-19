@@ -20,7 +20,7 @@
     <body>
         <br>
         <br>
-        <p><h1 align = "center">Add Admin Details:</h1></p>
+        <h1 align = "center">Add Admin Details:</h1>
             <div class="formLogout">
             <a href="logout">
                  <img src="img/logout.png" alt="logout" style="width:42px;height:42px;border:0;">
@@ -70,6 +70,7 @@
                 <td></td>
                 <td><input type = "submit" name = "button" value = "Register"/></td>
             </tr>
+            </table>
         </form:form>
     </body>
     <c:if test="${message != null}" >

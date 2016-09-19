@@ -12,17 +12,17 @@
                 width: 100%;
             }
             td, th {
-                border: 1px solid #000000;
+                border: 1px solid #dddddd;
                 text-align: left;
                 padding: 8px;
             }
             tr:nth-child(even) {
-            	color: #000000;
-                background-color: #sdf2s4;
+                background-color: #dddddd;
             }
     </style>
     <body>
-        <p><h1 align = "center">Customer Loan Detail:</h1>
+        <br></br>
+        <h1 align = "center">Customer Loan Detail:</h1>
             <div class="formLogout">
             <a href="logout">
                  <img src="img/logout.png" alt="logout" style="width:42px;height:42px;border:0;">

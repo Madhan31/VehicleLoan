@@ -66,7 +66,6 @@ public class LoanDetailDao {
             transaction.commit();
             return loanDetail;
         } catch(HibernateException exception) {
-        	transaction.rollback();
             throw new  DatabaseException("Error occured in retrive the loan details in loan", exception);
         } finally {
             session.close();
@@ -95,8 +94,6 @@ public class LoanDetailDao {
             transaction.commit();
             return loanDetail;
         } catch(HibernateException exception) {
-        	transaction.rollback();
-        	exception.printStackTrace();
             throw new  DatabaseException("Error occured in retrive the loan details in loan", exception);
         } finally {
             session.close();

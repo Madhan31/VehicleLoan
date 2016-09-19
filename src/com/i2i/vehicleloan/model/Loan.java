@@ -180,5 +180,4 @@ public class Loan {
 	public void setLoanDetails(Set<LoanDetail> loanDetails) {
 		this.loanDetails = loanDetails;
 	}
-
 }

@@ -49,7 +49,7 @@
         	<c:redirect url = "adminOperation" />
     	</c:if> 
     	    <c:if test="${sessionScope['role'] == 'user'}" >
-        		<c:redirect url = "useroperation" />
+        		<c:redirect url = "userOperation" />
     		</c:if>   
     	<div class="well" id="title"><h1>Vehicle Loan</h1></div>
         <div id="wrapper">

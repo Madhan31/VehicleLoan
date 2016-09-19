@@ -18,6 +18,7 @@
         <title>Insert title here</title>
     </head>
     <body>
+        <br></br>
         <h1 align = "center">Add Vehicle Details</h1>
             <div class="formLogout">
             <a href="logout">

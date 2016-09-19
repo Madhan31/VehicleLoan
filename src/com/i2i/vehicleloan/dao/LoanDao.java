@@ -155,5 +155,4 @@ public class LoanDao {
         }
         return loans;
     }
-    
 }

@@ -41,7 +41,6 @@ public class UserDao {
             session.save(user);
             transaction.commit();
         } catch(HibernateException exp) {
-            transaction.rollback();
             throw new DatabaseException("Error occured in add the values in user", exp);
         } finally {
             session.close();

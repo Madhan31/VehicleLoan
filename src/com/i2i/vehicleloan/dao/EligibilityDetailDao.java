@@ -27,9 +27,8 @@ public class EligibilityDetailDao {
     private Transaction transaction;
     
     /**
-	 * <p>
 	 * To insert a eligibility details into table using session.
-	 * </p> 
+	 * 
      * @param eligibilityDetail
      * 		Its a object from service method.
      * @return
@@ -54,9 +53,8 @@ public class EligibilityDetailDao {
     }    
     
     /**
-	 * <p>
 	 * To insert a eligibility details into table using session.
-	 * </p> 
+	 *  
      * @param eligibilityDetail
      * 		Its a object from service method.
      * @return

@@ -48,7 +48,8 @@
                 </c:forEach>
             </table>
         </c:if>   
-        <p><h1 align = "center">Remove Company Detail</h1></p>            
+            <br></br>
+            <h1 align = "center">Remove Company Detail</h1>    
             <div class = "formexample">
             <form action = "removeCompany" method="get">
                 <input type = "text" name = companyId placeholder =  "Company ID"></br>

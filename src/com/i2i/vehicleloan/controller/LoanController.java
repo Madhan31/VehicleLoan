@@ -18,7 +18,7 @@ import com.i2i.vehicleloan.exception.DatabaseException;
 import com.i2i.vehicleloan.model.Address;
 import com.i2i.vehicleloan.model.Company;
 import com.i2i.vehicleloan.model.EligibilityDetail;
-import com.i2i.vehicleloan. model.Loan;
+import com.i2i.vehicleloan.model.Loan;
 import com.i2i.vehicleloan.model.Payment;
 import com.i2i.vehicleloan.model.User;
 import com.i2i.vehicleloan.model.Vehicle;
@@ -278,7 +278,7 @@ public class LoanController {
     /**
      * public ModelAndView addAddress method gets address from user and transfer to corresponds jsp file.
      * @param address
-     * 		It contains user address.
+     * 		It contains user address detail.
      * @param modelMap
      * 		It's like a hashmap used to store key and value.
      * @return
@@ -456,6 +456,11 @@ public class LoanController {
     	}       	
     } 
     
+	/**
+	 * public ModelAndView deleteVehicle() redirects to jsp page when corresponding url is called as mapped below. 
+	 * @return
+	 * 		Returns jsp file name.
+	 */   
     @RequestMapping("/deleteVehicle")     
     public String deleteVehicle(ModelMap modelMap) {
     	try {
@@ -472,7 +477,7 @@ public class LoanController {
     }
     
 	/**
-	 * public ModelAndView removeCompany() redirects to jsp page when corresponding url is called as mapped below. 
+	 * public ModelAndView removeVehicle() redirects to jsp page when corresponding url is called as mapped below. 
 	 * @return
 	 * 		Returns jsp file name.
 	 */    

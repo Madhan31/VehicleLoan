@@ -1,9 +1,7 @@
 package com.i2i.vehicleloan.exception;
 
 /**
- * <p>
  * Exception class which has constructors for creating own error messages.
- * </p>
  * 
  * @author Madhan
  * 
@@ -16,9 +14,8 @@ public class DatabaseException extends Exception {
 	private static final long serialVersionUID = 1L;
     
     /**
-     * <p>
      * Constructor with single parameter which has message. 
-     * </p>
+     * 
      * @param message
      * 		Error message to be overridden.
      */
@@ -27,9 +24,8 @@ public class DatabaseException extends Exception {
     }
 
     /**
-     * <p>
      * Constructor with single parameter which has object. 
-     * </p>
+     * 
      * @param cause
      * 		Error object to be overridden.
      */
@@ -38,9 +34,8 @@ public class DatabaseException extends Exception {
     }
 
     /**
-     * <p>
      * Constructor with double parameter which has string and object. 
-     * </p>
+     * 
      * @param message
      * 		Error message to be overridden.
      * @param cause

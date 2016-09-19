@@ -55,11 +55,10 @@ table td, table th {
     text-align : center;
     vertical-align : middle;
     border : 1px solid #ffffff;
-    width : 10%;
+    width : 50%;
     font-color:#000000;
     }
        
-
 .about {
   margin: 70px auto 40px;
   padding: 8px;

@@ -12,9 +12,7 @@ import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 /**
- * <p>
  * Address pojo class which has setter and getter methods for accessing address details. 
- * </p>
  * 
  * @author Madhan
  * 
