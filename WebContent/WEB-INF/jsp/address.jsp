@@ -2,17 +2,16 @@
     pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ taglib uri="http://www.springframework.org/tags/form" prefix="form" %>
-
-    
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
     <link rel="stylesheet" href="css/style.css">
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <script type= "text/javascript" src = "js/stateCity.js"></script>
-<title>Insert title here</title>
 </head>
-<title>Address Addition</title>
+    <c:if test="${null == sessionScope['userId']}" >
+        <c:redirect url = "logIn" />
+    </c:if>
     <body onload = "populateStates('state','city');" >	
     <h1 align = "center">User Address Detail:</h1>
             <div class="formLogout">

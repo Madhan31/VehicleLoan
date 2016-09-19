@@ -41,7 +41,7 @@ public class LoanDetailDao {
             session.save(loanDetail);
             transaction.commit();
         } catch(HibernateException e) {
-            throw new  DatabaseException("Error occured in add the values in loan", e);
+            throw new  DatabaseException("Error occured in add the values in loan detail", e);
         } finally {
             session.close();
         }

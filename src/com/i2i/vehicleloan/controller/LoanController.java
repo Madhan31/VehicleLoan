@@ -19,6 +19,7 @@ import com.i2i.vehicleloan.model.Address;
 import com.i2i.vehicleloan.model.Company;
 import com.i2i.vehicleloan.model.EligibilityDetail;
 import com.i2i.vehicleloan.model.Loan;
+import com.i2i.vehicleloan.model.LoanDetail;
 import com.i2i.vehicleloan.model.Payment;
 import com.i2i.vehicleloan.model.User;
 import com.i2i.vehicleloan.model.Vehicle;
@@ -264,6 +265,7 @@ public class LoanController {
     private String addLoanDetail(@ModelAttribute("loan") Loan loan, BindingResult bindingResult, ModelMap modelMap) {
         try {
         	loanService.addLoan(loan);
+        	loanDetailService.addLoanDetail(new LoanDetail(loan.getLoanAmount(), loan.getLoanPeriod(), loan.getUser()));        	
         	modelMap.addAttribute("address", new Address());
         	return "address";
         } catch (DatabaseException exp) {
@@ -814,9 +816,7 @@ public class LoanController {
 	 */      
     @RequestMapping("/logout")
     public String logout(HttpSession session) {  
-    	System.out.println("check");
         if (null != session.getAttribute("role")) {
-        	System.out.println("check 2");
             session.invalidate();
         }    	
         return "logIn";

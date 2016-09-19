@@ -166,13 +166,13 @@ public class LoanService {
      */
     public float getProcessingFees(int loanPeriod,int loanAmount) {
     	if(loanPeriod == 12) {
-    		return (loanAmount * 2/100);
+    		return (loanAmount * 1/100);
     	}
     	if(loanPeriod == 24) {
-    		return (loanAmount * 3/100);
+    		return (loanAmount * 2/100);
     	}
     	if(loanPeriod == 36) {
-    		return (loanAmount * 4/100);
+    		return (loanAmount * 3/100);
     	}
     	return 0;    	
     }
@@ -189,13 +189,13 @@ public class LoanService {
      */
     public float getDocumentationCharges(int loanPeriod,int loanAmount) {
     	if(loanPeriod == 12) {
-    		return (loanAmount * 5/100);
+    		return (loanAmount * 3/100);
     	}
     	if(loanPeriod == 24) {
-    		return (loanAmount * 4/100);
+    		return (loanAmount * 2/100);
     	}
     	if(loanPeriod == 36) {
-    		return (loanAmount * 3/100);
+    		return (loanAmount * 1/100);
     	}
     	return 0;     	
     }    

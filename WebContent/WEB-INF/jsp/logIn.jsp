@@ -44,13 +44,13 @@
             });
         </script>
     </head>
-    <body>
+    <body>    
     	<c:if test="${sessionScope['role'] == 'admin'}" >
         	<c:redirect url = "adminOperation" />
     	</c:if> 
     	    <c:if test="${sessionScope['role'] == 'user'}" >
         		<c:redirect url = "userOperation" />
-    		</c:if>   
+    	</c:if>  
     	<div class="well" id="title"><h1>Vehicle Loan</h1></div>
         <div id="wrapper">
         <div class="user-icon"></div>

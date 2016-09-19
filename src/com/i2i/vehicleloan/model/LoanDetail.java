@@ -56,22 +56,6 @@ public class LoanDetail {
     /**
      * Constructor with argument is used to create loan detail object.
      * 
-     * @param loanDetailId
-     *     Contains unique id for an loan detail.
-     * @param balanceAmount
-     *     Contains balance amount of customer to be paided.
-     * @param balanceEmi
-     *     Contains remaining number of installent period. 
-     */
-    public LoanDetail(int loanDetailId, int balanceAmount, int balanceEmi) {
-        this.loanDetailId = loanDetailId;
-        this.balanceAmount = balanceAmount;
-        this.balanceEmi = balanceEmi;
-    }
-    
-    /**
-     * Constructor with argument is used to create loan detail object.
-     * 
      * @param balanceAmount
      *     Contains balance amount of customer to be paided.
      * @param balanceEmi
@@ -91,25 +75,19 @@ public class LoanDetail {
     
     /**
      * Constructor with argument is used to create loan detail object.
-     * 
-	 * @param loanDetailId
-	 *     Contains unique id for an loan detail.
 	 * @param balanceAmount
      *     Contains balance amount of customer to be paided.
      * @param balanceEmi
-     *     Contains remaining number of installent period.
+     *     Contains remaining number of installment period.
      * @param loan
      *     Contains loan object of an class loan.
      * @param payment
      *     Contains payment object of an class payment.
 	 */
-	public LoanDetail(int loanDetailId, int balanceAmount, int balanceEmi, Loan loan, Payment payment) {
-		super();
-		this.loanDetailId = loanDetailId;
+	public LoanDetail(int balanceAmount, int balanceEmi, User user) {
 		this.balanceAmount = balanceAmount;
 		this.balanceEmi = balanceEmi;
-		this.loan = loan;
-		this.payment = payment;
+		this.user = user;
 	}
 
 	public int getLoanDetailId() {
