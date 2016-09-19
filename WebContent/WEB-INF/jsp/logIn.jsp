@@ -46,10 +46,10 @@
     </head>
     <body>
     	<c:if test="${sessionScope['role'] == 'admin'}" >
-        	<c:redirect url = "index" />
+        	<c:redirect url = "adminOperation" />
     	</c:if> 
     	    <c:if test="${sessionScope['role'] == 'user'}" >
-        		<c:redirect url = "index" />
+        		<c:redirect url = "useroperation" />
     		</c:if>   
     	<div class="well" id="title"><h1>Vehicle Loan</h1></div>
         <div id="wrapper">

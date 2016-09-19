@@ -107,7 +107,7 @@ public class LoanController {
      * @return
      * 		Returns jsp file name.
      */
-    @RequestMapping(value = "/index")	
+    @RequestMapping("/index")	
 	private String index() {
     	return "index";
     }     
@@ -787,18 +787,18 @@ public class LoanController {
 	 * 		Returns jsp file name.
 	 */      
     @RequestMapping("/adminOperation")
-    public String adminOperation(ModelMap modelMap) {   
+    public String adminOperation() {   
         return "adminOperation";
     }
     
     /**
-     *  public String userOperation() redirects to jsp page when corresponding url is called as mapped below
-     * @param modelMap
+     * public String userOperation() redirects to jsp page when corresponding url is called as mapped below
      * @return
+     *     Returns jsp file name.
      */
-    @RequestMapping("/adminOperation")
-    public String adminOperation(ModelMap modelMap) {   
-        return "adminOperation";
+    @RequestMapping("/userOperation")
+    public String userOperation() {   
+        return "userOperation";
     }
     
 	/**
@@ -808,7 +808,9 @@ public class LoanController {
 	 */      
     @RequestMapping("/logout")
     public String logout(HttpSession session) {  
+    	System.out.println("check");
         if (null != session.getAttribute("role")) {
+        	System.out.println("check 2");
             session.invalidate();
         }    	
         return "logIn";
