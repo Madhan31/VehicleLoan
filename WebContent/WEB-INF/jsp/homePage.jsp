@@ -55,8 +55,8 @@ function loadvehicleprice() {
 </head>
 <link rel="stylesheet" href="css/style.css">
     <body>
-        </br></br>
-        <p><h1 align = "center">Register Eligibility Detail:</h1></p>
+        <br></br>
+        <h1 align = "center">Register Eligibility Detail:</h1>
             <div class="formLogout">
             <a href="logout">
                  <img src="img/logout.png" alt="logout" style="width:42px;height:42px;border:0;">

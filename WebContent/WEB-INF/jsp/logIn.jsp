@@ -21,6 +21,7 @@
             }
             #title h1{
             	text-align:center;
+            	color:black;
             }
         </style>
         <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
