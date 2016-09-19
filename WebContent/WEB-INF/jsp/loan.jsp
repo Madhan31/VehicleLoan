@@ -67,13 +67,13 @@ function getDate()
         <tr>
         <td>Loan Period</td>
             <td><form:select path = "loanPeriod" id = "loanperiod" onchange = "emiDetails();">
+            		<option value="0"> Select tenure -- </option>
     	            <option value = "12">1 Year</option>
     	            <option value = "24">2 Year</option>
     	            <option value = "36">3 Year</option>
    	        </form:select></td>   
    	<form:input type="hidden" path = "date" name="startdate" id="todayDate"/>
-<div id = "emiDetails">
-   	</div>
+	<div id = "emiDetails"></div>
    	<form:input type = "hidden" path = "eligibilityDetail.id" value = "${eligibilityDetailId}" />  
    	<form:input type = "hidden" path = "user.userId" value = "${sessionScope['userId']}" />
    	<tr>

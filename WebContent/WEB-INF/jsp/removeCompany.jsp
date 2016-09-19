@@ -26,6 +26,14 @@
             }
     </style>
     <body>
+    		<div class="formLogout">
+            <a href="logout">
+                 <img src="img/logout.png" alt="logout" style="width:42px;height:42px;border:0;">
+            </a>
+            </div>
+            <div class ="formBack">
+                <button type="button" onclick="javascript:history.back()">Go back</button>
+            </div>
         <c:if test = "${companies != null}">
             <table>
                 <tr>
@@ -40,15 +48,7 @@
                 </c:forEach>
             </table>
         </c:if>   
-        <p><h1 align = "center">Remove Company Detail</h1></p>
-            <div class="formLogout">
-            <a href="logout">
-                 <img src="img/logout.png" alt="logout" style="width:42px;height:42px;border:0;">
-            </a>
-            </div>
-            <div class ="formBack">
-                <button type="button" onclick="javascript:history.back()">Go back</button>
-            </div>
+        <p><h1 align = "center">Remove Company Detail</h1></p>            
             <div class = "formexample">
             <form action = "removeCompany" method="get">
                 <input type = "text" name = companyId placeholder =  "Company ID"></br>

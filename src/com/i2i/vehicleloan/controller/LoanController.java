@@ -57,16 +57,6 @@ public class LoanController {
     private LoanDetailService loanDetailService = new LoanDetailService();
     private AddressService addressService = new AddressService();
     
-	/**
-	 * public String loginpage() redirects to jsp page when corresponding url is called as mapped below. 
-	 * @return
-	 * 		Returns jsp file name.
-	 */    
-    @RequestMapping("/logIn") 
-    public String welcome() {
-        return "logIn";
-    }
-    
     /**
      * public ModelAndView logIn method gets user id and password from user and transfer to corresponds jsp file.
      * @param userId
@@ -101,6 +91,26 @@ public class LoanController {
         	return new ModelAndView("logIn", "message", (exp.getMessage().toString()));
         }
     }
+    
+	/**
+	 * public String loginpage() redirects to jsp page when corresponding url is called as mapped below. 
+	 * @return
+	 * 		Returns jsp file name.
+	 */    
+    @RequestMapping("/logIn") 
+    public String loginForm() {
+        return "logIn";
+    }    
+    
+    /**
+     * private String index() redirects to jsp page when corresponding url is called as mapped below the method definition.
+     * @return
+     * 		Returns jsp file name.
+     */
+    @RequestMapping(value = "/index")	
+	private String index() {
+    	return "index";
+    }     
     
 	/**
 	 * public String signUp() redirects to jsp page when corresponding url is called as mapped below. 
@@ -788,7 +798,10 @@ public class LoanController {
 	 * 		Returns jsp file name.
 	 */      
     @RequestMapping("/logout")
-    public String logout() {   
+    public String logout(HttpSession session) {  
+        if (null != session.getAttribute("role")) {
+            session.invalidate();
+        }    	
         return "logIn";
     }
 }

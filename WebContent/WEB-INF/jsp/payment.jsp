@@ -6,6 +6,7 @@
   
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
+<title>Payment Addition</title>
 <script type="text/javascript">
 function getDate()
 {
@@ -26,9 +27,8 @@ function getDate()
         <c:redirect url = "index.jsp" />
     </c:if>
         <link rel="stylesheet" href="css/style.css">
-    <head>        <title>Payment Addition</title>
+    <head>        
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>Insert title here</title>
         <style>
             table {
                 font-family: arial, sans-serif;
@@ -45,6 +45,14 @@ function getDate()
             }
         </style>
     </head>
+            <div class="formLogout">
+            <a href="logout">
+                 <img src="img/logout.png" alt="logout" style="width:42px;height:42px;border:0;">
+            </a>
+            </div>
+            <div class ="formBack">
+                <button type="button" onclick="javascript:history.back()">Go back</button>
+            </div>
     <body onload = "getDate();">
         <c:if test = "${loans != null}">
             <table>
@@ -66,16 +74,6 @@ function getDate()
                 </c:forEach>
             </table>
         </c:if>   
-        <c:if test="${insert != null}" >
-            <script language = "javaScript" type = "text/javascript">
-                alert('<c:out value = "${insert}" />');
-            </script>
-        </c:if>
-        <form action = "logout" method = "get">
-            <input type = "submit" name = "button" value = "logout" style ="width:80px; height:30px;" />
-        </form>    
-        <br></br>
-        <button type="button" onclick="javascript:history.back()" style ="width:80px; height:30px;" >go back</button>
         <br></br><h1 align = "center">Payment Details :</h1>
         <form:form action = "paymentConfirm" modelAttribute = "payment" class= "login"><br></br>
             <fieldset>

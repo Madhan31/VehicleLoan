@@ -26,6 +26,14 @@
             }
     </style>
     <body>
+    		<div class="formLogout">
+            <a href="logout">
+                 <img src="img/logout.png" alt="logout" style="width:42px;height:42px;border:0;">
+            </a>
+            </div>
+            <div class ="formBack">
+                <button type="button" onclick="javascript:history.back()">Go back</button>
+            </div>    
         <c:if test = "${vehicles != null}">
             <table>
                 <tr>
@@ -41,15 +49,7 @@
             </table>
         </c:if>
         <br></br>
-        <h1 align = "center">Delete Vehicle Detail</h1>
-            <div class="formLogout">
-            <a href="logout">
-                 <img src="img/logout.png" alt="logout" style="width:42px;height:42px;border:0;">
-            </a> 
-            </div>
-            <div class ="formBack">
-                <button type="button" onclick="javascript:history.back()">Go back</button>
-            </div>   
+        <h1 align = "center">Delete Vehicle Detail</h1>  
             <div class = "formexample">
             <form action = "removeVehicle" method="get">
                 <input type = "text" id ="vehicleId" name = "vehicleId" placeholder =  "Vehicle ID">

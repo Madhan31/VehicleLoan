@@ -25,9 +25,7 @@
                 background-color: #dddddd;
             }
     </style>
-    <body>
-        <p><h1 align = "center">All Company Details </h1></p>
-            <div class="formLogout">
+    <div class="formLogout">
             <a href="logout">
                  <img src="img/logout.png" alt="logout" style="width:42px;height:42px;border:0;">
             </a>
@@ -35,6 +33,8 @@
             <div class ="formBack">
                 <button type="button" onclick="javascript:history.back()">Go back</button>
             </div>
+    <body>
+        <p><h1 align = "center">All Company Details </h1></p>            
         <c:if test = "${companies != null}">
             <table>
                 <tr>

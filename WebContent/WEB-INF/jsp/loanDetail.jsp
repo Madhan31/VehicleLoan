@@ -18,11 +18,6 @@
         <title>Insert title here</title>
     </head>
     <body>
-        <c:if test="${insert != null}" >
-            <script language = "javaScript" type = "text/javascript">
-                alert('<c:out value = "${insert}" />');
-            </script>
-        </c:if>
         <br><h1 align = "center">Enter User ID To Make Payment:</h1>
             <div class="formLogout">
             <a href="logout">
