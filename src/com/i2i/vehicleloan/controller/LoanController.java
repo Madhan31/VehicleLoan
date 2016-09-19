@@ -791,6 +791,16 @@ public class LoanController {
         return "adminOperation";
     }
     
+    /**
+     *  public String userOperation() redirects to jsp page when corresponding url is called as mapped below
+     * @param modelMap
+     * @return
+     */
+    @RequestMapping("/adminOperation")
+    public String adminOperation(ModelMap modelMap) {   
+        return "adminOperation";
+    }
+    
 	/**
 	 * public String logout() redirects to jsp page when corresponding url is called as mapped below. 
 	 * @return
