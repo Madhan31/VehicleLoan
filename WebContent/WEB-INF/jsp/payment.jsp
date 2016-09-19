@@ -15,7 +15,7 @@ function getDate()
     var mm = today.getMonth()+1; //January is 0!
     var yyyy = today.getFullYear();
     if(dd<10){dd='0'+dd} if(mm<10){mm='0'+mm}
-    today = yyyy+""+mm+""+dd;
+    today = dd+"/"+mm+"/"+yyyy;
 
     document.getElementById("todayDate").value = today;
 }
@@ -77,7 +77,6 @@ function getDate()
         <br></br><h1 align = "center">Payment Details :</h1>
         <form:form action = "paymentConfirm" modelAttribute = "payment" class= "login"><br></br>
             <fieldset>
-                <p>Insert Vehicle</p>
                 <form:input type = "text" name = "loan" path = "loan.loanId" placeholder = "Loan ID" required = "required" /><br></br>
                 <form:input type = "text" name = "paymentAmount" path = "paymentAmount" placeholder = "Payment Amount" required = "required" /><br></br>
                 <form:input type = "hidden" path = "user.userId" value = "${sessionScope['userId']}" /> <br></br>

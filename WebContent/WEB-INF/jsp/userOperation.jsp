@@ -5,7 +5,6 @@
 <html>
     <link rel="stylesheet" href="css/style.css">
     <body>
-        <p><h1 align = "center">All Company Details </h1>
             <div class="formLogout">
             <a href="logout">
                 <img src="img/logout.png" alt="logout" style="width:42px;height:42px;border:0;">

@@ -37,18 +37,18 @@ function getDate()
 {
     var today = new Date();
     var dd = today.getDate();
-    var mm = today.getMonth()+1; //January is 0!
+    var mm = today.getMonth()+1; 
     var yyyy = today.getFullYear();
     if(dd<10){dd='0'+dd} if(mm<10){mm='0'+mm}
-    today = yyyy+""+mm+""+dd;
+    today = dd+"/"+mm+"/"+yyyy;
 
     document.getElementById("todayDate").value = today;
 }
 
 </script>
     <body onload = "getDate();">
-        </br></br>
-        <p><h1 align = "center">Decide To Apply Loan:</h1></p>
+        <br></br>
+        <p><h1 align = "center">Decide To Apply Loan:</h1>
             <div class="formLogout">
             <a href="logout">
                  <img src="img/logout.png" alt="logout" style="width:42px;height:42px;border:0;">

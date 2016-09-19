@@ -55,6 +55,12 @@ function loadvehicleprice() {
 </head>
 <link rel="stylesheet" href="css/style.css">
     <body>
+    <c:if test="${loanDetail.balanceAmount != 0}">
+        <script language = "javaScript" type = "text/javascript">
+            alert('<c:out value = "There is a pending loan in your account!!!" />');
+            window.location.href="userOperation";
+        </script>    
+    </c:if>
         <br></br>
         <h1 align = "center">Register Eligibility Detail:</h1>
             <div class="formLogout">

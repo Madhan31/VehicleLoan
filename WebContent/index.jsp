@@ -8,7 +8,7 @@
         <c:redirect url = "logIn" />
     </c:if>
     <c:if test="${sessionScope['role'] == 'admin'}" >
-        <c:redirect url = "adminOperation" />   
+        <c:redirect url = "adminOperation" />
     </c:if>
     <c:if test="${sessionScope['role'] == 'user'}">
         <c:redirect url = "userOperation" />

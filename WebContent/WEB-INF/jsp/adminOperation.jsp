@@ -7,10 +7,7 @@
         <link rel="stylesheet" href="css/style.css">
 
     <c:if test="${sessionScope['userId'] == null}" >
-        <c:redirect url = "index.jsp" />
-    </c:if>
-    <c:if test="${sessionScope['role'] != 'admin'}" >
-        <c:redirect url = "index.jsp" />
+        <c:redirect url = "logIn" />
     </c:if>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">

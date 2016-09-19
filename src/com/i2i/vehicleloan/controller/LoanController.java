@@ -156,11 +156,12 @@ public class LoanController {
 	 * 		Returns jsp file name.
 	 */    
     @RequestMapping("/homePage")     
-    public String eligibilityDetail(ModelMap modelMap) {
+    public String eligibilityDetail(ModelMap modelMap, HttpSession session) {
     	try {
     		modelMap.addAttribute("eligibilityDetail", new EligibilityDetail());
     		modelMap.addAttribute("vehicleList", vehicleService.retrieveVehicles());
     		modelMap.addAttribute("companyList", companyService.retrieveCompanies());
+    		modelMap.addAttribute("loanDetail", loanDetailService.retrieveLoanDetailByUserId((int)session.getAttribute("userId")));
     		return "homePage";
     	} catch (DatabaseException exp) {
     		modelMap.addAttribute("message", (exp.getMessage().toString()));
@@ -799,7 +800,7 @@ public class LoanController {
     @RequestMapping("/userOperation")
     public String userOperation() {   
         return "userOperation";
-    }
+    }  
     
 	/**
 	 * public String logout() redirects to jsp page when corresponding url is called as mapped below. 
