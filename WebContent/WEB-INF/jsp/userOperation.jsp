@@ -9,8 +9,6 @@
     </c:if>    
     <body>
         <br></br>
-        <h1 align = "center">User Operation</h1>
-    	<br>
     	<h1 align = "center" style="font-color:#000000;">User Operation</h1>
             <div class="formLogout">
             <a href="logout">
@@ -18,8 +16,13 @@
             </a>
             </div>
     <div class="formexample">
-    <a class = "button" href = homePage>Apply for loan</a><br>
-    <a class = "button" href = retrieveUserLoanDetail>View loan detail</a>
+	<form action="homePage" method="post">
+		<button type="submit" class="btn-link">Apply for loan</button>
+	</form> 
+	<br>
+	<form action="retrieveUserLoanDetail" method="post">
+		<button type="submit" class="btn-link">View loan detail</button>
+	</form> 	   
     </div>
     </body>
     <c:if test="${message != null}" >

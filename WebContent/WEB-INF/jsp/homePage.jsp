@@ -55,7 +55,7 @@ function loadvehicleprice() {
 </head>
 <link rel="stylesheet" href="css/style.css">
     <body>
-	<c:if test="${null == sessionScope['userId']}" >
+	<c:if test="${null == sessionScope['role']}" >
         <c:redirect url = "logIn" />
     </c:if>    
     <c:if test="${null != loanDetail.balanceAmount}">

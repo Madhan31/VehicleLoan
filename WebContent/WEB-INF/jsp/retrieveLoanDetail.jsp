@@ -30,13 +30,8 @@
         <c:redirect url = "logIn" />
     </c:if>    
     <body>
-<<<<<<< 21c1b00fe3bff0fa50292b6092ef7352f8878dc6
-        <br></br>
-        <h1 align = "center">Customer Loan Detail:</h1>
-=======
     	<br>
         <p><h1 align = "center">Customer Loan Detail:</h1>
->>>>>>> validation in loan applying
             <div class="formLogout">
             <a href="logout">
                  <img src="img/logout.png" alt="logout" style="width:42px;height:42px;border:0;">

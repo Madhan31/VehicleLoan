@@ -152,11 +152,11 @@ public class LoanController {
     }
     
 	/**
-	 * public ModelAndView eligibilityDetail() redirects to jsp page when corresponding url is called as mapped below. 
+	 * public String eligibilityDetail() redirects to jsp page when corresponding url is called as mapped below. 
 	 * @return
 	 * 		Returns jsp file name.
-	 */    
-    @RequestMapping("/homePage")     
+	 */        
+    @RequestMapping(value = "/homePage", method = RequestMethod.POST)     
     public String eligibilityDetail(ModelMap modelMap, HttpSession session) {
     	try {
     		modelMap.addAttribute("eligibilityDetail", new EligibilityDetail());
@@ -171,7 +171,27 @@ public class LoanController {
     		modelMap.addAttribute("message", (exp.getMessage().toString()));
     		return "homePage";
         }
-    } 
+    }
+    
+    /**
+     * public String homePage() redirects to jsp page when corresponding url is called as mapped below.
+     * @return
+     */
+    @RequestMapping("/homePage")
+    public String homePage(ModelMap modelMap, HttpSession session) {
+        try {
+            modelMap.addAttribute("eligibilityDetail", new EligibilityDetail());
+            modelMap.addAttribute("vehicleList", vehicleService.retrieveVehicles());
+            modelMap.addAttribute("companyList", companyService.retrieveCompanies());
+            return "homePage";
+        } catch (DatabaseException exp) {
+            modelMap.addAttribute("message", (exp.getMessage().toString()));
+            return "homePage";
+        } catch (ConfigurationException exp) {
+            modelMap.addAttribute("message", (exp.getMessage().toString()));
+            return "homePage";
+        }
+    }
     
 	/**
 	 * public ModelAndView vehicleModelView() gets vehicle id through jsp and redirects to jsp page when corresponding url is called as mapped below. 
@@ -650,7 +670,7 @@ public class LoanController {
 	 * @return
 	 * 		Returns jsp file name.
 	 */      
-    @RequestMapping("/retrieveUserLoanDetail")
+    @RequestMapping(value = "/retrieveUserLoanDetail", method = RequestMethod.POST)
     public String retrieveUserLoanDetail(ModelMap modelMap, HttpSession session) {
     	try {
     		modelMap.addAttribute("loanDetails", loanService.retrieveLoansByUserId((int) session.getAttribute("userId")));
@@ -663,6 +683,16 @@ public class LoanController {
     		return "userOperation";
         }    	
     }
+    
+	/**
+	 * public String retrieveLoanDetail() redirects to jsp page when corresponding url is called as mapped below. 
+	 * @return
+	 * 		Returns jsp file name.
+	 */      
+    @RequestMapping("/retrieveUserLoanDetail")
+    public String retrieveLoanDetail(ModelMap modelMap, HttpSession session) {
+    	return "retrieveLoanDetail";  	
+    }    
     
 	/**
 	 * public String retrieveLoanBalance() redirects to jsp page when corresponding url is called as mapped below. 
