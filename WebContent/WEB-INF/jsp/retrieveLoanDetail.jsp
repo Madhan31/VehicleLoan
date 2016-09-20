@@ -47,8 +47,10 @@
                 	<th>Loan Amount (Rs.)</th>
                     <th>Emi(Rs.)</th>
                     <th>Loan Period (in months)</th>
-                    <th>Loan applied Date</th>
-                    <th>Vehicle Name</th>                    
+                    <th>Loan Applied Date</th>
+                    <th>Vehicle Name</th>
+                    <th>Balance Emi</th> 
+                    <th>Payment Detail</th>                   
                 </tr>
                 <c:forEach items = "${loanDetails}" var = "loanDetail">
                     <tr>
