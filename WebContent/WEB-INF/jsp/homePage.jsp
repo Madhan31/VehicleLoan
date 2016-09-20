@@ -77,23 +77,23 @@ function loadvehicleprice() {
             </div>
     <form:form action = "addeligibilitydetail" method = "get" modelAttribute = "eligibilityDetail" class= "login">
         <form:input type = "text" name = "currentcity" path = "currentCity" placeholder = "Current City" required = "required" /><br></br>         
-        <form:select path = "company.companyId">
-		   <option value="null"> -- Select Company -- </option>
+        <form:select path = "company.companyId" required="required">
+		   <option value=""> -- Select Company -- </option>
 		<m:forEach items="${companyList}" var="company">
 		 <option value="${company.companyId}">${company.companyName}</option>
 		</m:forEach>
 		 </form:select>         
         <form:input type = "text" name = "salary" path = "salary" placeholder = "Salary per month" required = "required" /><br></br>
         
-        <select name = "vehicle" id = "vehicle" onChange="loadvehiclemodels();">
-		   <option value="null"> -- Select Vehicle -- </option>
+        <select name = "vehicle" id = "vehicle" onChange="loadvehiclemodels();" required="required">
+		   <option value=""> -- Select Vehicle -- </option>
 		<m:forEach items="${vehicleList}" var="vehicle">
 		 <option value="${vehicle.vehicleId}">${vehicle.vehicleName}</option>
 		</m:forEach>
 		 </select>    
 		 
-<form:select path="vehicleModel.vehicleModelId" id="vehicleModelView" onchange = "loadvehicleprice();" >                    
-   <option value="null"> Select Vehicle Model -- </option>	   
+<form:select path="vehicleModel.vehicleModelId" id="vehicleModelView" onchange = "loadvehicleprice();" required="required">                    
+   <option value=""> Select Vehicle Model -- </option>	   
    <option></option>                                      
    </form:select>  <br></br>
    	<div id = "vehicleModelPrice">

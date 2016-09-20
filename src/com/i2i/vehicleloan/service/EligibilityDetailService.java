@@ -35,15 +35,10 @@ public class EligibilityDetailService {
      *     It handle all the error message in configuration file.   
      */   
     public boolean addEligibilityDetail(EligibilityDetail eligibilityDetail) throws DatabaseException, ConfigurationException {
+        System.out.print(eligibilityDetail.getSalary());
         if (eligibilityDetail.getSalary() < 10000) {
             throw new DatabaseException("Salary must be greater than 10000");
         }
-        if (null == eligibilityDetail.getCompany().getCompanyName()) {
-            throw new DatabaseException("Kindly select the company name");
-        }
-        if (null == eligibilityDetail.getVehicleModel().getVehicleModelName()) {
-            throw new DatabaseException("Kindly select the vehicle model");
-        }    
         if (eligibilityDetail.getDownPayment() < 10000) {
             throw new DatabaseException("Downpayment must be greater than 10000");
         }

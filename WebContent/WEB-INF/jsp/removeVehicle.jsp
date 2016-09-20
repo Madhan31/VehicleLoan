@@ -53,7 +53,7 @@
             </table>
         </c:if>
         <br></br>
-        <h1 align = "center">Delete Vehicle Detail</h1>  
+        <h1 align = "center">Delete Vehicle</h1>  
             <div class = "formexample">
             <form action = "removeVehicle" method="get">
                 <input type = "text" id ="vehicleId" name = "vehicleId" placeholder =  "Vehicle ID">

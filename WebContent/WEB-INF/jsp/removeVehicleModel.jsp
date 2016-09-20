@@ -55,10 +55,10 @@
             </table>
         </c:if>   
         <br></br>
-         <h1 align = "center">Delete Vehicle Model detail</h1>
+         <h1 align = "center">Delete Vehicle Model</h1>
             <div class = "formexample">
             <form action = "removeVehicleModel" method="get">
-                <input type = "text" id ="vehicleId" name = "vehicleId" placeholder =  "Vehicle Model ID">
+                <input type = "text" id ="vehicleModelId" name = "vehicleModelId" placeholder =  "Vehicle Model ID">
                 <input type = "submit" name = "button" value = "Delete" />
                 <input type="reset" value="Clear" />
         </form>
