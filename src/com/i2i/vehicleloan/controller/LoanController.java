@@ -241,6 +241,7 @@ public class LoanController {
     @RequestMapping(value = "/addeligibilitydetail", method = RequestMethod.GET)
     public ModelAndView addEligibilityDetail(@ModelAttribute("eligibilityDetail") EligibilityDetail eligibilityDetail, BindingResult bindingResult, ModelMap modelMap) {
         try {
+            System.out.println(eligibilityDetail.getCompany().getCompanyName());
         	VehicleModel vechicleModel = vehicleModelService.getVehicleModelById(eligibilityDetail.getVehicleModel().getVehicleModelId()); 
             if (eligibilityDetailService.addEligibilityDetail(eligibilityDetail)) {                
             	modelMap.addAttribute("eligibilityDetailId", eligibilityDetail.getId());

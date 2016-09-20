@@ -101,7 +101,7 @@ function loadvehicleprice() {
         <form:input type = "hidden" path = "user.userId" value = "${sessionScope['userId']}" />                
         <input type = "submit" name = "button" value = "Proceed"/>
     </form:form>   
-    <c:if test="${message != null}" >
+    <c:if test="${null != message}" >
         <script language = "javaScript" type = "text/javascript">
             alert('<c:out value = "${message}" />');
             window.location.href="homePage";
