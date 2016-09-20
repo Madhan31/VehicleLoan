@@ -120,6 +120,21 @@ public class LoanService {
     }
     
     /**
+     * Check whether any loan are avaliable for that specific eligibility detail id.
+     * 
+     * @param eligibilityDetailId
+     *     Get the loan id from eligibility detail service.
+     * @return
+     *     It return true or false to eligibility detail service.
+     * @throws DatabaseException
+     *     It handle all the custom exception in vehicle loan application.
+     * @throws ConfigurationException
+     *     It handle all the error message in configuration file.
+     */
+    public boolean isLoanExistByEligibilityDetailId(int eligibilityDetailId) throws DatabaseException, ConfigurationException {
+        return (loanDao.retrieveLoanByEligibilityDetailId(eligibilityDetailId) != null);
+    }
+    /**
      * Here calculate the loan amount user want from the down payment.
      * 
      * @param eligibilityDetail

@@ -20,6 +20,7 @@ import com.i2i.vehicleloan.model.EligibilityDetail;
 public class EligibilityDetailService {
 	
 	private EligibilityDetailDao eligibilityDetailDao = new EligibilityDetailDao();
+	private LoanService loanService = new LoanService();
 	
     /**
 	 * Calls eligibility dao methods to add eligibility details.
@@ -56,10 +57,31 @@ public class EligibilityDetailService {
      * 		Its a object from controller method
      * @return
      * 		Returns true or false to controller method.
-     * @throws ApplicationException
+     * @throws DatabaseException
      *     It handle all the custom exception in vehicle loan application.
+     * @throws ConfigurationException
+     *     It handle all the error message in configuration file.  
      */   
     public List<EligibilityDetail> retrieveEligibilityDetailsByUserId(int userId) throws DatabaseException, ConfigurationException {
         return eligibilityDetailDao.retrieveEligibilityDetailsByUserId(userId);
-    }    
+    }   
+    
+    /**
+     * Calls eligibility dao methods to retrieve eligibility details.
+     * 
+     * @param vehicleModelId
+     *     It get the value from vehicle model service for checking whether the vehicle model have any loan or not.
+     * @return
+     *     It return true or false to the vehicle model service.
+     * @throws DatabaseException
+     *     It handle all the custom exception in vehicle loan application.
+     * @throws ConfigurationException
+     *     It handle all the error message in configuration file.  
+     */
+    public boolean isVehicleModelExist(int vehicleModelId) throws DatabaseException, ConfigurationException {
+    	if (loanService.isLoanExistByEligibilityDetailId(eligibilityDetailDao.retrieveEligibilityDetail(vehicleModelId).getId())) {
+    	    return true;
+    	}
+    	return false;
+    }
 }

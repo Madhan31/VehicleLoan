@@ -36,14 +36,14 @@ import com.i2i.vehicleloan.service.VehicleService;
 
 /**
  * <p>
- * public LoanController class which has methods for adding, removing, etc., loan details and payment detail for an logged user.
+ * LoanController class which has methods for adding, removing, etc., loan details and payment detail for an logged user.
  * This class gets input like user name, contact, etc., from user through jsp page and calls corresponding loan service methods to add or update particular user details. 
  * And it calls jsp pages for success or failure messages and also for exceptions.
  * </p>
  * 
  * @author Madhan
  * 
- * @since
+ * @since 2016-09-06
  */
 @Controller
 public class LoanController {
@@ -59,7 +59,7 @@ public class LoanController {
     private AddressService addressService = new AddressService();
     
     /**
-     * public ModelAndView logIn method gets user id and password from user and transfer to corresponds jsp file.
+     * ModelAndView logIn method gets user id and password from user and transfer to corresponds jsp file.
      * @param userId
      * 		Contains unique id of an user.
      * @param password
@@ -94,7 +94,7 @@ public class LoanController {
     }
     
 	/**
-	 * public String loginpage() redirects to jsp page when corresponding url is called as mapped below. 
+	 * String loginpage() redirects to jsp page when corresponding url is called as mapped below. 
 	 * @return
 	 * 		Returns jsp file name.
 	 */    
@@ -104,7 +104,7 @@ public class LoanController {
     }    
     
     /**
-     * private String index() redirects to jsp page when corresponding url is called as mapped below the method definition.
+     * String index() redirects to jsp page when corresponding url is called as mapped below the method definition.
      * @return
      * 		Returns jsp file name.
      */
@@ -114,7 +114,7 @@ public class LoanController {
     }     
     
 	/**
-	 * public String signUp() redirects to jsp page when corresponding url is called as mapped below. 
+	 * String signUp() redirects to jsp page when corresponding url is called as mapped below. 
 	 * @return
 	 * 		Returns jsp file name.
 	 */     
@@ -125,7 +125,7 @@ public class LoanController {
     }  
     
     /**
-     * public String addUser method gets user details through spring form and transfer to service method. 
+     * String addUser method gets user details through spring form and transfer to service method. 
      * @param user
      * 		It contains user details.
      * @param map
@@ -138,7 +138,7 @@ public class LoanController {
         try {
             userService.addUser(user);
             modelMap.addAttribute("message", "Your user ID is:"+user.getUserId());
-            if(user.getRole().getRoleId() == 2){
+            if (user.getRole().getRoleId() == 2) {
 	            return "admin";
             }
             return "logIn";            
@@ -152,7 +152,7 @@ public class LoanController {
     }
     
 	/**
-	 * public String eligibilityDetail() redirects to jsp page when corresponding url is called as mapped below. 
+	 * String eligibilityDetail() redirects to jsp page when corresponding url is called as mapped below. 
 	 * @return
 	 * 		Returns jsp file name.
 	 */        
@@ -178,7 +178,7 @@ public class LoanController {
     }
     
 	/**
-	 * public ModelAndView vehicleModelView() gets vehicle id through jsp and redirects to jsp page when corresponding url is called as mapped below. 
+	 * ModelAndView vehicleModelView() gets vehicle id through jsp and redirects to jsp page when corresponding url is called as mapped below. 
 	 * @return
 	 * 		Returns jsp file name.
 	 */    
@@ -197,7 +197,7 @@ public class LoanController {
     } 
     
 	/**
-	 * public ModelAndView vehicleModelPrice() gets vehicle Model Id through jsp and redirects to jsp page when corresponding url is called as mapped below. 
+	 * ModelAndView vehicleModelPrice() gets vehicle Model Id through jsp and redirects to jsp page when corresponding url is called as mapped below. 
 	 * @return
 	 * 		Returns jsp file name.
 	 */    
@@ -216,7 +216,7 @@ public class LoanController {
     }
     
 	/**
-	 * public String emi() gets loanperiod and loan amount through jsp and redirects to jsp page when corresponding url is called as mapped below. 
+	 * String emi() gets loanperiod and loan amount through jsp and redirects to jsp page when corresponding url is called as mapped below. 
 	 * @return
 	 * 		Returns jsp file name.
 	 */    
@@ -230,7 +230,7 @@ public class LoanController {
     
     
     /**
-     * public ModelAndView addEligibilityDetail method gets eligibility details from user and transfer to corresponds jsp file.
+     * ModelAndView addEligibilityDetail method gets eligibility details from user and transfer to corresponds jsp file.
      * @param eligibilityDetail
      * 		Contains eligibility detail of an user.
      * @param modelMap
@@ -258,7 +258,7 @@ public class LoanController {
     }
     
     /**
-     * public ModelAndView addLoanDetail method gets loan details from user and transfer to corresponds jsp file.
+     * ModelAndView addLoanDetail method gets loan details from user and transfer to corresponds jsp file.
      * @param loan
      * 		It contains loan details of an user.
      * @param modelMap
@@ -283,7 +283,7 @@ public class LoanController {
     }  
     
     /**
-     * public ModelAndView addAddress method gets address from user and transfer to corresponds jsp file.
+     * ModelAndView addAddress method gets address from user and transfer to corresponds jsp file.
      * @param address
      * 		It contains user address detail.
      * @param modelMap
@@ -304,7 +304,7 @@ public class LoanController {
     }      
     
 	/**
-	 * public String vehicleOperation() redirects to jsp page when corresponding url is called as mapped below. 
+	 * String vehicleOperation() redirects to jsp page when corresponding url is called as mapped below. 
 	 * @return
 	 * 		Returns jsp file name.
 	 */    
@@ -314,7 +314,7 @@ public class LoanController {
     }
     
 	/**
-	 * public String vehicleModelOperation() redirects to jsp page when corresponding url is called as mapped below. 
+	 * String vehicleModelOperation() redirects to jsp page when corresponding url is called as mapped below. 
 	 * @return
 	 * 		Returns jsp file name.
 	 */    
@@ -324,7 +324,7 @@ public class LoanController {
     }
     
 	/**
-	 * public String companyOperation() redirects to jsp page when corresponding url is called as mapped below. 
+	 * String companyOperation() redirects to jsp page when corresponding url is called as mapped below. 
 	 * @return
 	 * 		Returns jsp file name.
 	 */    
@@ -334,18 +334,18 @@ public class LoanController {
     }
 
 	/**
-	 * public String insertVehicle() redirects to jsp page when corresponding url is called as mapped below. 
+	 * String insertVehicle() redirects to jsp page when corresponding url is called as mapped below. 
 	 * @return
 	 * 		Returns jsp file name.
 	 */    
     @RequestMapping("/insertVehicle")     
     public String insertVehicle(ModelMap modelMap) {
-    	modelMap.addAttribute("insertVehicle", new Vehicle());
+        modelMap.addAttribute("insertVehicle", new Vehicle());
         return "addVehicle";
     }
     
 	/**
-	 * public ModelAndView addVehicle() redirects to jsp page when corresponding url is called as mapped below. 
+	 * ModelAndView addVehicle() redirects to jsp page when corresponding url is called as mapped below. 
 	 * @return
 	 * 		Returns jsp file name.
 	 */    
@@ -362,7 +362,7 @@ public class LoanController {
     } 
     
 	/**
-	 * public ModelAndView insertVehicleModel() redirects to jsp page when corresponding url is called as mapped below. 
+	 * ModelAndView insertVehicleModel() redirects to jsp page when corresponding url is called as mapped below. 
 	 * @return
 	 * 		Returns jsp file name.
 	 */    
@@ -382,7 +382,7 @@ public class LoanController {
     }
     
 	/**
-	 * public ModelAndView addVehicleModel() redirects to jsp page when corresponding url is called as mapped below. 
+	 * ModelAndView addVehicleModel() redirects to jsp page when corresponding url is called as mapped below. 
 	 * @return
 	 * 		Returns jsp file name.
 	 */    
@@ -399,7 +399,7 @@ public class LoanController {
     } 
     
 	/**
-	 * public String insertCompany() redirects to jsp page when corresponding url is called as mapped below. 
+	 * String insertCompany() redirects to jsp page when corresponding url is called as mapped below. 
 	 * @return
 	 * 		Returns jsp file name.
 	 */    
@@ -410,7 +410,7 @@ public class LoanController {
     }
     
 	/**
-	 * public ModelAndView addCompany() gets company details through jsp and redirects to jsp page when corresponding url is called as mapped below. 
+	 * ModelAndView addCompany() gets company details through jsp and redirects to jsp page when corresponding url is called as mapped below. 
 	 * @return
 	 * 		Returns jsp file name.
 	 */    
@@ -427,7 +427,7 @@ public class LoanController {
     }
     
 	/**
-	 * public ModelAndView deleteCompany() redirects to jsp page when corresponding url is called as mapped below. 
+	 * ModelAndView deleteCompany() redirects to jsp page when corresponding url is called as mapped below. 
 	 * @return
 	 * 		Returns jsp file name.
 	 */    
@@ -447,7 +447,7 @@ public class LoanController {
     }
     
 	/**
-	 * public ModelAndView removeCompany() redirects to jsp page when corresponding url is called as mapped below. 
+	 * ModelAndView removeCompany() redirects to jsp page when corresponding url is called as mapped below. 
 	 * @return
 	 * 		Returns jsp file name.
 	 */    
@@ -464,7 +464,7 @@ public class LoanController {
     } 
     
 	/**
-	 * public ModelAndView deleteVehicle() redirects to jsp page when corresponding url is called as mapped below. 
+	 * ModelAndView deleteVehicle() redirects to jsp page when corresponding url is called as mapped below. 
 	 * @return
 	 * 		Returns jsp file name.
 	 */   
@@ -484,7 +484,7 @@ public class LoanController {
     }
     
 	/**
-	 * public ModelAndView removeVehicle() redirects to jsp page when corresponding url is called as mapped below. 
+	 * ModelAndView removeVehicle() redirects to jsp page when corresponding url is called as mapped below. 
 	 * @return
 	 * 		Returns jsp file name.
 	 */    
@@ -503,7 +503,7 @@ public class LoanController {
     } 
     
 	/**
-	 * public ModelAndView deleteVehicleModel() redirects to jsp page when corresponding url is called as mapped below. 
+	 * ModelAndView deleteVehicleModel() redirects to jsp page when corresponding url is called as mapped below. 
 	 * @return
 	 * 		Returns jsp file name.
 	 */    
@@ -523,7 +523,7 @@ public class LoanController {
     }
     
 	/**
-	 * public ModelAndView removeVehicleModel() redirects to jsp page when corresponding url is called as mapped below. 
+	 * ModelAndView removeVehicleModel() redirects to jsp page when corresponding url is called as mapped below. 
 	 * @return
 	 * 		Returns jsp file name.
 	 */    
@@ -542,7 +542,7 @@ public class LoanController {
     } 
    
 	/**
-	 * public ModelAndView retrieveAllVehicle() redirects to jsp page when corresponding url is called as mapped below. 
+	 * ModelAndView retrieveAllVehicle() redirects to jsp page when corresponding url is called as mapped below. 
 	 * @return
 	 * 		Returns jsp file name.
 	 */    
@@ -562,7 +562,7 @@ public class LoanController {
     }
     
 	/**
-	 * public ModelAndView retrieveAllVehicleModel() redirects to jsp page when corresponding url is called as mapped below. 
+	 * ModelAndView retrieveAllVehicleModel() redirects to jsp page when corresponding url is called as mapped below. 
 	 * @return
 	 * 		Returns jsp file name.
 	 */      
@@ -582,7 +582,7 @@ public class LoanController {
     }
     
 	/**
-	 * public ModelAndView retrieveAllCompany() redirects to jsp page when corresponding url is called as mapped below. 
+	 * ModelAndView retrieveAllCompany() redirects to jsp page when corresponding url is called as mapped below. 
 	 * @return
 	 * 		Returns jsp file name.
 	 */      
@@ -602,7 +602,7 @@ public class LoanController {
     }
     
 	/**
-	 * public String loanDetail() redirects to jsp page when corresponding url is called as mapped below. 
+	 * String loanDetail() redirects to jsp page when corresponding url is called as mapped below. 
 	 * @return
 	 * 		Returns jsp file name.
 	 */      
@@ -612,7 +612,7 @@ public class LoanController {
     }
     
 	/**
-	 * public ModelAndView payment() redirects to jsp page when corresponding url is called as mapped below. 
+	 * ModelAndView payment() redirects to jsp page when corresponding url is called as mapped below. 
 	 * @return
 	 * 		Returns jsp file name.
 	 */      
@@ -634,7 +634,7 @@ public class LoanController {
     }
     
 	/**
-	 * public ModelAndView paymentConfirm() redirects to jsp page when corresponding url is called as mapped below. 
+	 * ModelAndView paymentConfirm() redirects to jsp page when corresponding url is called as mapped below. 
 	 * @return
 	 * 		Returns jsp file name.
 	 */      
@@ -651,7 +651,7 @@ public class LoanController {
     } 
     
 	/**
-	 * public String retrieveUserLoanDetail() redirects to jsp page when corresponding url is called as mapped below. 
+	 * String retrieveUserLoanDetail() redirects to jsp page when corresponding url is called as mapped below. 
 	 * @return
 	 * 		Returns jsp file name.
 	 */      
@@ -661,9 +661,8 @@ public class LoanController {
     	    if (null != session.getAttribute("userId")) {
     	        modelMap.addAttribute("loanDetails", loanService.retrieveLoansByUserId((int) session.getAttribute("userId")));
     	        return "retrieveLoanDetail";
-    	    } else {
-    	        return "logIn";
-    	    }
+    	    } 
+    	    return "logIn";
     	} catch (DatabaseException exp) {
     		modelMap.addAttribute("message", (exp.getMessage().toString()));
     		return "userOperation";
@@ -674,7 +673,7 @@ public class LoanController {
     }   
     
 	/**
-	 * public String retrieveLoanBalance() redirects to jsp page when corresponding url is called as mapped below. 
+	 * String retrieveLoanBalance() redirects to jsp page when corresponding url is called as mapped below. 
 	 * @return
 	 * 		Returns jsp file name.
 	 */      
@@ -693,7 +692,7 @@ public class LoanController {
     }    
     
 	/**
-	 * public String retrievePaymentDetail() redirects to jsp page when corresponding url is called as mapped below. 
+	 * String retrievePaymentDetail() redirects to jsp page when corresponding url is called as mapped below. 
 	 * @return
 	 * 		Returns jsp file name.
 	 */      
@@ -712,7 +711,7 @@ public class LoanController {
     }  
     
 	/**
-	 * public ModelAndView retrieveLoanDetail() redirects to jsp page when corresponding url is called as mapped below. 
+	 * ModelAndView retrieveLoanDetail() redirects to jsp page when corresponding url is called as mapped below. 
 	 * @return
 	 * 		Returns jsp file name.
 	 */      
@@ -731,7 +730,7 @@ public class LoanController {
     }    
     
 	/**
-	 * public String retrieveUserLoanDetail() redirects to jsp page when corresponding url is called as mapped below. 
+	 * String retrieveUserLoanDetail() redirects to jsp page when corresponding url is called as mapped below. 
 	 * @return
 	 * 		Returns jsp file name.
 	 */      
@@ -750,7 +749,7 @@ public class LoanController {
     }    
     
 	/**
-	 * public String retrieveUserAddress() redirects to jsp page when corresponding url is called as mapped below. 
+	 * String retrieveUserAddress() redirects to jsp page when corresponding url is called as mapped below. 
 	 * @return
 	 * 		Returns jsp file name.
 	 */      
@@ -769,7 +768,7 @@ public class LoanController {
     }    
     
 	/**
-	 * public String retrieveEligibilityDetailByUserId() redirects to jsp page when corresponding url is called as mapped below. 
+	 * String retrieveEligibilityDetailByUserId() redirects to jsp page when corresponding url is called as mapped below. 
 	 * @return
 	 * 		Returns jsp file name.
 	 */      
@@ -788,7 +787,7 @@ public class LoanController {
     }    
     
 	/**
-	 * public String admin() redirects to jsp page when corresponding url is called as mapped below. 
+	 * String admin() redirects to jsp page when corresponding url is called as mapped below. 
 	 * @return
 	 * 		Returns jsp file name.
 	 */      
@@ -799,7 +798,7 @@ public class LoanController {
     } 
     
 	/**
-	 * public String adminOperation() redirects to jsp page when corresponding url is called as mapped below. 
+	 * String adminOperation() redirects to jsp page when corresponding url is called as mapped below. 
 	 * @return
 	 * 		Returns jsp file name.
 	 */      
@@ -809,7 +808,7 @@ public class LoanController {
     }
     
     /**
-     * public String userOperation() redirects to jsp page when corresponding url is called as mapped below
+     * String userOperation() redirects to jsp page when corresponding url is called as mapped below
      * @return
      *     Returns jsp file name.
      */
@@ -819,7 +818,7 @@ public class LoanController {
     }  
     
 	/**
-	 * public String logout() redirects to jsp page when corresponding url is called as mapped below. 
+	 * String logout() redirects to jsp page when corresponding url is called as mapped below. 
 	 * @return
 	 * 		Returns jsp file name.
 	 */      
@@ -832,6 +831,6 @@ public class LoanController {
     }
 }
     
-    
+       
     
     

@@ -1,7 +1,6 @@
 package com.i2i.vehicleloan.dao;
 
 import java.util.List;
-import java.util.ArrayList;
 
 import org.hibernate.HibernateException;
 import org.hibernate.Session;
@@ -149,4 +148,30 @@ public class LoanDao {
             session.close();
         }
      }
+    
+    /**
+     * To retrieve the loan detail by using eligibility detail ID.
+     * 
+     * @param eligibilityDetailId
+     *     It is the value from service to to get a specific detail from database.
+     * @return
+     *     It return a object to service method
+     * @throws ApplicationException
+     *     It handle all the custom exception in vehicle loan application.
+     * @throws ConfigurationException
+     *     It handle all the error message in configuration file.
+     */
+    public Loan retrieveLoanByEligibilityDetailId(int eligibilityDetailId) throws DatabaseException, ConfigurationException {
+        session = sessionFactory.openSession();
+        try {
+            transaction = session.beginTransaction();
+            Loan loan = (Loan) session.createQuery("from loan where eligibility_detail_id = '"+eligibilityDetailId+"'");
+            transaction.commit();
+            return loan;
+        } catch (HibernateException exp) {
+            throw new DatabaseException("Error occured in retrive the payment details in payment", exp);
+        } finally {
+            session.close();
+        }
+    }
 }

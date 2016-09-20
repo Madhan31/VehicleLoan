@@ -20,6 +20,7 @@ import com.i2i.vehicleloan.model.VehicleModel;
 public class VehicleModelService {
 	
     private VehicleModelDao vehicleModelDao = new VehicleModelDao();
+    private EligibilityDetailService eligibilityDetailService = new EligibilityDetailService();
 	
     /**
      * Retrieve all the vehicle model details by vehicle id.
@@ -97,7 +98,10 @@ public class VehicleModelService {
      *     It handle all the error message in configuration file.    
 	 */
     public String removeVehicleModel(int vehicleModelId) throws DatabaseException, ConfigurationException {
-        vehicleModelDao.removeVehicleModel(vehicleModelId);
-        return "Vehicle model details deleted successfully";
+    	if (!(eligibilityDetailService.isVehicleModelExist(vehicleModelId))) {
+            vehicleModelDao.removeVehicleModel(vehicleModelId);
+            return "Vehicle model details deleted successfully";
+    	}
+    	return "This vehicle model have a loan ";
     }  
 }

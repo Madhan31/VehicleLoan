@@ -53,14 +53,16 @@ public class EligibilityDetailDao {
     }    
     
     /**
-	 * To insert a eligibility details into table using session.
+	 * To retrieve all the eligibility detail by using user ID.
 	 *  
      * @param eligibilityDetail
-     * 		Its a object from service method.
+     * 		Its a value from service method.
      * @return
-     * 		Returns true or false to service method.
+     * 		Returns list of object to service method.
      * @throws ApplicationException
      *     It handle all the custom exception in vehicle loan application.
+     * @throws ConfigurationException
+     *     It handle all the error message in configuration file.   
      */
     public List<EligibilityDetail> retrieveEligibilityDetailsByUserId(int userId) throws DatabaseException, ConfigurationException {
         session = sessionFactory.openSession();
@@ -74,5 +76,31 @@ public class EligibilityDetailDao {
         } finally {
             session.close();           
         }
-    }     
+    }  
+    
+    /**
+     * To retrieve the eligibility detail by using vehicle model ID.
+     * 
+     * @param paymentId
+     *     It is the value from service to to get a specific detail from database.
+     * @return
+     *     It return a object to service method
+     * @throws ApplicationException
+     *     It handle all the custom exception in vehicle loan application.
+     * @throws ConfigurationException
+     *     It handle all the error message in configuration file.
+     */
+    public EligibilityDetail retrieveEligibilityDetail(int vehicleModelId) throws DatabaseException, ConfigurationException {
+        session = sessionFactory.openSession();
+        try {
+            transaction = session.beginTransaction();
+            EligibilityDetail eligibilityDetail = (EligibilityDetail) session.createQuery("from EligibilityDetail where vehicle_model_id = '"+vehicleModelId+"'");
+            transaction.commit();
+            return eligibilityDetail;
+        } catch (HibernateException exp) {
+            throw new DatabaseException("Error occured in retrive the payment details in payment", exp);
+        } finally {
+            session.close();
+        }
+    }
 }
