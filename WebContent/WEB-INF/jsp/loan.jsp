@@ -69,7 +69,7 @@ function getDate()
         </tr>
         <tr>
         <td>Loan Period</td>
-            <td><form:select path = "loanPeriod" id = "loanperiod" onchange = "emiDetails();">
+            <td><form:select path = "loanPeriod" id = "loanperiod" onchange = "emiDetails();" required>
             		<option value="0"> Select tenure -- </option>
     	            <option value = "12">1 Year</option>
     	            <option value = "24">2 Year</option>

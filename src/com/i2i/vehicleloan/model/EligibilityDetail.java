@@ -37,7 +37,7 @@ public class EligibilityDetail {
 	private String currentCity;
 	
 	@Column(name = "salary")
-	private String salary;
+	private int salary;
 	
 	@Column(name = "down_payment")
 	private int downPayment;
@@ -70,11 +70,11 @@ public class EligibilityDetail {
 		this.currentCity = currentCity;
 	}
 
-	public String getSalary() {
+	public int getSalary() {
 		return salary;
 	}
 
-	public void setSalary(String salary) {
+	public void setSalary(int salary) {
 		this.salary = salary;
 	}
 
@@ -128,7 +128,7 @@ public class EligibilityDetail {
 	 * @param user
 	 *     Contains object of an class user.
 	 */
-	public EligibilityDetail(int id, String currentCity, String salary, int downPayment,
+	public EligibilityDetail(int id, String currentCity, int salary, int downPayment,
 			Company company, VehicleModel vehicleModel, User user) {
 		super();
 		this.id = id;

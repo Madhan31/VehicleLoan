@@ -15,14 +15,9 @@
                 <img src="img/logout.png" alt="logout" style="width:42px;height:42px;border:0;">
             </a>
             </div>
-    <div class="formexample">
-	<form action="homePage" method="post">
-		<button type="submit" class="btn-link">Apply for loan</button>
-	</form> 
-	<br>
-	<form action="retrieveUserLoanDetail" method="post">
-		<button type="submit" class="btn-link">View loan detail</button>
-	</form> 	   
+    <div class="formexample">	   
+    <a class = "button" href = homePage>Apply for loan</a><br>
+    <a class = "button" href = retrieveUserLoanDetail>View loan detail</a>
     </div>
     </body>
     <c:if test="${message != null}" >

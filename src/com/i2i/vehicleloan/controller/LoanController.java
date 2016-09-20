@@ -43,7 +43,7 @@ import com.i2i.vehicleloan.service.VehicleService;
  * 
  * @author Madhan
  * 
- * @since 2016-08-27
+ * @since
  */
 @Controller
 public class LoanController {
@@ -156,40 +156,24 @@ public class LoanController {
 	 * @return
 	 * 		Returns jsp file name.
 	 */        
-    @RequestMapping(value = "/homePage", method = RequestMethod.POST)     
+    @RequestMapping("/homePage")     
     public String eligibilityDetail(ModelMap modelMap, HttpSession session) {
     	try {
-    		modelMap.addAttribute("eligibilityDetail", new EligibilityDetail());
-    		modelMap.addAttribute("vehicleList", vehicleService.retrieveVehicles());
-    		modelMap.addAttribute("companyList", companyService.retrieveCompanies());
-    		modelMap.addAttribute("loanDetail", loanDetailService.retrieveLoanDetailByUserId((int)session.getAttribute("userId")));
-    		return "homePage";
+    	    if (null != session.getAttribute("userId")) {
+    	        modelMap.addAttribute("eligibilityDetail", new EligibilityDetail());
+    	        modelMap.addAttribute("vehicleList", vehicleService.retrieveVehicles());
+    	        modelMap.addAttribute("companyList", companyService.retrieveCompanies());    		
+    		    modelMap.addAttribute("loanDetail", loanDetailService.retrieveLoanDetailByUserId((int)session.getAttribute("userId")));
+    		    return "homePage";
+    		} else {
+    		    return "logIn";
+    		}
     	} catch (DatabaseException exp) {
     		modelMap.addAttribute("message", (exp.getMessage().toString()));
     		return "homePage";
     	} catch (ConfigurationException exp) {
     		modelMap.addAttribute("message", (exp.getMessage().toString()));
     		return "homePage";
-        }
-    }
-    
-    /**
-     * public String homePage() redirects to jsp page when corresponding url is called as mapped below.
-     * @return
-     */
-    @RequestMapping("/homePage")
-    public String homePage(ModelMap modelMap, HttpSession session) {
-        try {
-            modelMap.addAttribute("eligibilityDetail", new EligibilityDetail());
-            modelMap.addAttribute("vehicleList", vehicleService.retrieveVehicles());
-            modelMap.addAttribute("companyList", companyService.retrieveCompanies());
-            return "homePage";
-        } catch (DatabaseException exp) {
-            modelMap.addAttribute("message", (exp.getMessage().toString()));
-            return "homePage";
-        } catch (ConfigurationException exp) {
-            modelMap.addAttribute("message", (exp.getMessage().toString()));
-            return "homePage";
         }
     }
     
@@ -258,7 +242,7 @@ public class LoanController {
     public ModelAndView addEligibilityDetail(@ModelAttribute("eligibilityDetail") EligibilityDetail eligibilityDetail, BindingResult bindingResult, ModelMap modelMap) {
         try {
         	VehicleModel vechicleModel = vehicleModelService.getVehicleModelById(eligibilityDetail.getVehicleModel().getVehicleModelId()); 
-            if (eligibilityDetailService.addEligibilityDetail(eligibilityDetail)) {
+            if (eligibilityDetailService.addEligibilityDetail(eligibilityDetail)) {                
             	modelMap.addAttribute("eligibilityDetailId", eligibilityDetail.getId());
             	modelMap.addAttribute("loan", new Loan());
                 return new ModelAndView("loan", "loanamount", loanService.calculateLoanAmount(eligibilityDetail,vechicleModel));
@@ -266,9 +250,9 @@ public class LoanController {
                 return new ModelAndView("homePage", "message", "Data not inserted...");
             }            
         } catch (DatabaseException exp) {
-            return new ModelAndView("homePage", "message", (exp.getMessage().toString()));           
+            return new ModelAndView("homePage", "message", exp.getMessage());           
         } catch (ConfigurationException exp) {
-        	return new ModelAndView("homePage", "message", (exp.getMessage().toString()));
+        	return new ModelAndView("homePage", "message", exp.getMessage());
         }
     }
     
@@ -670,11 +654,15 @@ public class LoanController {
 	 * @return
 	 * 		Returns jsp file name.
 	 */      
-    @RequestMapping(value = "/retrieveUserLoanDetail", method = RequestMethod.POST)
+    @RequestMapping("/retrieveUserLoanDetail")
     public String retrieveUserLoanDetail(ModelMap modelMap, HttpSession session) {
     	try {
-    		modelMap.addAttribute("loanDetails", loanService.retrieveLoansByUserId((int) session.getAttribute("userId")));
-        	return "retrieveLoanDetail";
+    	    if (null != session.getAttribute("userId")) {
+    	        modelMap.addAttribute("loanDetails", loanService.retrieveLoansByUserId((int) session.getAttribute("userId")));
+    	        return "retrieveLoanDetail";
+    	    } else {
+    	        return "logIn";
+    	    }
     	} catch (DatabaseException exp) {
     		modelMap.addAttribute("message", (exp.getMessage().toString()));
     		return "userOperation";
@@ -682,17 +670,7 @@ public class LoanController {
     		modelMap.addAttribute("message", (exp.getMessage().toString()));
     		return "userOperation";
         }    	
-    }
-    
-	/**
-	 * public String retrieveLoanDetail() redirects to jsp page when corresponding url is called as mapped below. 
-	 * @return
-	 * 		Returns jsp file name.
-	 */      
-    @RequestMapping("/retrieveUserLoanDetail")
-    public String retrieveLoanDetail(ModelMap modelMap, HttpSession session) {
-    	return "retrieveLoanDetail";  	
-    }    
+    }   
     
 	/**
 	 * public String retrieveLoanBalance() redirects to jsp page when corresponding url is called as mapped below. 

@@ -47,6 +47,22 @@ public class LoanDetailService {
      * @throws ConfigurationException
      *     It handle all the error message in configuration file.  
      */
+    public LoanDetail retrieveLatestLoanDetail() throws DatabaseException, ConfigurationException {
+        return retrieveLatestLoanDetailFromList(loanDetailDao.retrieveLoanDetails());
+    }    
+    
+    /**
+     * Call loan detail dao for retrieve particular loan detail.
+     * 
+     * @param loanId
+     *     Get loan id form controller for retrieve particular loan detail.
+     * @return
+     *     Return the object of retrieve exist loan detail to controller.
+     * @throws DatabaseException
+     *     It handle all the custom exception in vehicle loan application.
+     * @throws ConfigurationException
+     *     It handle all the error message in configuration file.  
+     */
     public LoanDetail retrieveLoanDetailByLoanId(int loanId) throws DatabaseException, ConfigurationException {
     	return retrieveLatestLoanDetailFromList(loanDetailDao.retrieveLoanDetailsByLoanId(loanId));
     }	  
