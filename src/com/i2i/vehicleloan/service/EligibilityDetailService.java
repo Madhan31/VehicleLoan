@@ -15,6 +15,7 @@ import com.i2i.vehicleloan.model.EligibilityDetail;
  * 
  * @author Madhan
  *
+ * @since 2016-09-06
  */
 public class EligibilityDetailService {
 	
@@ -49,5 +50,4 @@ public class EligibilityDetailService {
     public List<EligibilityDetail> retrieveEligibilityDetailsByUserId(int userId) throws DatabaseException, ConfigurationException {
         return eligibilityDetailDao.retrieveEligibilityDetailsByUserId(userId);
     }    
-
 }

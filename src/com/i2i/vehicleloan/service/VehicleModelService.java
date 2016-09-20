@@ -15,6 +15,7 @@ import com.i2i.vehicleloan.model.VehicleModel;
  * 
  * @author vicky
  *
+ * @since 2016-09-06
  */
 public class VehicleModelService {
 	
@@ -79,8 +80,8 @@ public class VehicleModelService {
      *     It handle all the error message in configuration file.    
 	 */
 	public String addVehicleModel(VehicleModel vehicleModel) throws DatabaseException, ConfigurationException {
-            vehicleModelDao.addVehicleModel(vehicleModel);
-            return "Vehicle model details added successfully";
+        vehicleModelDao.addVehicleModel(vehicleModel);
+        return "Vehicle model details added successfully";
     }
     
 	/**

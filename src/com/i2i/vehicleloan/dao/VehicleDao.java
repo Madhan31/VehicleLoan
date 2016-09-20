@@ -17,6 +17,7 @@ import com.i2i.vehicleloan.model.Vehicle;
  * 
  * @author vicky
  *
+ * @since 2016-09-06
  */
 public class VehicleDao {
 	
@@ -43,7 +44,7 @@ public class VehicleDao {
             transaction.commit();
             return vehicles;
         } catch (HibernateException exp) {
-            throw new DatabaseException("Oops...Cant retrieve Kindly check your input and try again...\n", exp);
+            throw new DatabaseException("Oops...Cant retrieve Kindly check your input and try again...", exp);
         } finally {
             session.close();
         }
@@ -65,7 +66,7 @@ public class VehicleDao {
             transaction = session.beginTransaction();
             session.save(vehicle);
             transaction.commit();
-        } catch(HibernateException exp) {
+        } catch (HibernateException exp) {
             throw new DatabaseException("Error occured in add the values in vehicle", exp);
         } finally {
             session.close();
@@ -84,14 +85,12 @@ public class VehicleDao {
      */
     public void removeVehicle(int vehicleId) throws DatabaseException, ConfigurationException {
         session = sessionFactory.openSession();
-        Vehicle vehicle;
         try {
             transaction = session.beginTransaction();  
-            vehicle = (Vehicle) session.load(Vehicle.class, vehicleId);
+            Vehicle vehicle = (Vehicle) session.load(Vehicle.class, vehicleId);
             session.delete(vehicle);
             transaction.commit();
-        } catch(HibernateException exp) {
-        	exp.printStackTrace();
+        } catch (HibernateException exp) {
             throw new DatabaseException("Error occured in remove the vehicle details in vehicle", exp);
         } finally {
             session.close();

@@ -17,11 +17,14 @@ import com.i2i.vehicleloan.model.User;
  * 
  * @author vicky
  *
+ * @since 2016-09-06
  */
 public class UserDao {
 	
     private HibernateConnection hibernateConnection =  HibernateConnection.createObject();
     private SessionFactory sessionFactory = hibernateConnection.establishConnection();
+    private Session session;
+    private Transaction transaction;
     
     /**
      * To add the user detail into database by using session.
@@ -34,13 +37,12 @@ public class UserDao {
      *     It handle all the error message in configuration file. 
      */
     public void addUser(User user) throws DatabaseException, ConfigurationException {
-        Session session = sessionFactory.openSession();
-        Transaction transaction = null;
+        session = sessionFactory.openSession();
         try {
             transaction = session.beginTransaction();
             session.save(user);
             transaction.commit();
-        } catch(HibernateException exp) {
+        } catch (HibernateException exp) {
             throw new DatabaseException("Error occured in add the values in user", exp);
         } finally {
             session.close();
@@ -60,15 +62,13 @@ public class UserDao {
      *     It handle all the error message in configuration file.  
      */
     public User retrieveUser(int userId) throws DatabaseException, ConfigurationException {
-        Session session = sessionFactory.openSession();
-        Transaction transaction = null;
-        User user;
+        session = sessionFactory.openSession();
         try {
             transaction = session.beginTransaction();
-            user = (User) session.get(User.class, userId);
+            User user = (User) session.get(User.class, userId);
             transaction.commit();
             return user;
-        } catch(HibernateException exp) {
+        } catch (HibernateException exp) {
             throw new DatabaseException("Error occured in retrive the user details in user", exp);
         } finally {
             session.close();
@@ -86,14 +86,13 @@ public class UserDao {
      *     It handle all the custom exception in vehicle loan application.
      */
     public List<User> retrieveAllUsers() throws DatabaseException, ConfigurationException {
-        Session session = sessionFactory.openSession();
-        Transaction transaction = null;
+        session = sessionFactory.openSession();
         try {
             transaction = session.beginTransaction();
             List<User> users = session.createQuery("from User").list();
             transaction.commit();
             return users;
-        } catch(HibernateException exp) {
+        } catch (HibernateException exp) {
             throw new DatabaseException("Error occured in retrive the users detail in user", exp);
         } finally {
             session.close();

@@ -17,11 +17,14 @@ import com.i2i.vehicleloan.model.Payment;
  * 
  * @author vicky
  *
+ * @since 2016-09-06
  */
 public class PaymentDao {
 	
 	private HibernateConnection hibernateConnection =  HibernateConnection.createObject();
     private SessionFactory sessionFactory = hibernateConnection.establishConnection();
+    private Session session;
+    private Transaction transaction;
     
     /**
      * To add the payment detail into database by using session.
@@ -34,14 +37,13 @@ public class PaymentDao {
      *     It handle all the error message in configuration file.
      */
     public void addPayment(Payment payment) throws DatabaseException, ConfigurationException {
-        Session session = sessionFactory.openSession();
-        Transaction transaction = null;
+        session = sessionFactory.openSession();
         try {
             transaction = session.beginTransaction();
             session.save(payment);
             transaction.commit();
-        } catch(HibernateException e) {
-            throw new DatabaseException("Error occured in add the values in payment", e);
+        } catch (HibernateException exp) {
+            throw new DatabaseException("Error occured in add the values in payment", exp);
         } finally {
             session.close();
         }
@@ -60,16 +62,14 @@ public class PaymentDao {
      *     It handle all the error message in configuration file.
      */
     public Payment retrievePayment(int paymentId) throws DatabaseException, ConfigurationException {
-        Session session = sessionFactory.openSession();
-        Transaction transaction = null;
-        Payment payment;
+        session = sessionFactory.openSession();
         try {
             transaction = session.beginTransaction();
-            payment = (Payment) session.get(Payment.class, paymentId);
+            Payment payment = (Payment) session.get(Payment.class, paymentId);
             transaction.commit();
             return payment;
-        } catch(HibernateException exception) {
-            throw new DatabaseException("Error occured in retrive the payment details in payment", exception);
+        } catch (HibernateException exp) {
+            throw new DatabaseException("Error occured in retrive the payment details in payment", exp);
         } finally {
             session.close();
         }
@@ -86,15 +86,14 @@ public class PaymentDao {
      *     It handle all the custom exception in vehicle loan application.
      */
     public List<Payment> retrievePaymentsByLoanId(int loanId) throws DatabaseException, ConfigurationException {
-        Session session = sessionFactory.openSession();
-        Transaction transaction = null;
+        session = sessionFactory.openSession();
         try {
             transaction = session.beginTransaction();
             List<Payment> payments = session.createQuery("from Payment where loan_id = '"+loanId+"'").list();
             transaction.commit();
             return payments;
-        } catch(HibernateException exception) {
-            throw new DatabaseException("Error occured in retrive the payment details in payment", exception);
+        } catch (HibernateException exp) {
+            throw new DatabaseException("Error occured in retrive the payment details in payment", exp);
         } finally {
             session.close();
         }

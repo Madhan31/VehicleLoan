@@ -17,8 +17,10 @@ import com.i2i.vehicleloan.model.VehicleModel;
  * 
  * @author admin-pc
  *
+ * @since 2016-09-06
  */
 public class LoanService {
+
     private LoanDao loanDao = new LoanDao();
     
     /**
@@ -141,14 +143,14 @@ public class LoanService {
      * @return
      *     It return the value to controller.
      */
-    public float getEmiDetails(int loanPeriod,int loanAmount) {
-    	if(loanPeriod == 12) {
+    public float getEmiDetails(int loanPeriod, int loanAmount) {
+    	if (loanPeriod == 12) {     // Here 12 indicates emi period 
     		return (loanAmount + loanAmount * 10/100)/loanPeriod;
     	}
-    	if(loanPeriod == 24) {
+    	if (loanPeriod == 24) {
     		return (loanAmount + loanAmount * 15/100)/loanPeriod;
     	}
-    	if(loanPeriod == 36) {
+    	if (loanPeriod == 36) {
     		return (loanAmount + loanAmount * 18/100)/loanPeriod;
     	}
     	return 0;    	
@@ -164,14 +166,14 @@ public class LoanService {
      * @return
      *     It return the value to controller.
      */
-    public float getProcessingFees(int loanPeriod,int loanAmount) {
-    	if(loanPeriod == 12) {
+    public float getProcessingFees(int loanPeriod, int loanAmount) {
+    	if (loanPeriod == 12) {
     		return (loanAmount * 1/100);
     	}
-    	if(loanPeriod == 24) {
+    	if (loanPeriod == 24) {
     		return (loanAmount * 2/100);
     	}
-    	if(loanPeriod == 36) {
+    	if (loanPeriod == 36) {
     		return (loanAmount * 3/100);
     	}
     	return 0;    	
@@ -187,14 +189,14 @@ public class LoanService {
      * @return
      *     It return the value to controller.
      */
-    public float getDocumentationCharges(int loanPeriod,int loanAmount) {
-    	if(loanPeriod == 12) {
+    public float getDocumentationCharges(int loanPeriod, int loanAmount) {
+    	if (loanPeriod == 12) {
     		return (loanAmount * 3/100);
     	}
-    	if(loanPeriod == 24) {
+    	if (loanPeriod == 24) {
     		return (loanAmount * 2/100);
     	}
-    	if(loanPeriod == 36) {
+    	if (loanPeriod == 36) {
     		return (loanAmount * 1/100);
     	}
     	return 0;     	

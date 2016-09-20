@@ -15,6 +15,7 @@ import com.i2i.vehicleloan.model.Vehicle;
  * 
  * @author vicky
  *
+ * @since 2016-09-06
  */
 public class VehicleService {
 	
@@ -36,6 +37,7 @@ public class VehicleService {
     
     /**
      * Call vehicle dao for add new vehicle detail.
+     *
      * @param vehicle
 	 *     Get the vehicle object from controller.
      * @return

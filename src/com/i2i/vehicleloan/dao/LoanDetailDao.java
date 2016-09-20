@@ -17,11 +17,14 @@ import com.i2i.vehicleloan.model.LoanDetail;
  * 
  * @author admin-pc
  *
+ * @since 2016-09-06
  */
 public class LoanDetailDao {
 	
     private HibernateConnection hibernateConnection = HibernateConnection.createObject();
     private SessionFactory sessionFactory = hibernateConnection.establishConnection();
+    private Session session;
+    private Transaction transaction;
     
     /**
      * To add the loan detail into database by using session.
@@ -34,14 +37,13 @@ public class LoanDetailDao {
      *     It handle all the error message in configuration file.
      */
     public void addLoanDetail(LoanDetail loanDetail) throws DatabaseException, ConfigurationException {
-        Session session = sessionFactory.openSession();
-        Transaction transaction = null;
+        session = sessionFactory.openSession();
         try {
             transaction = session.beginTransaction();
             session.save(loanDetail);
             transaction.commit();
-        } catch(HibernateException e) {
-            throw new  DatabaseException("Error occured in add the values in loan detail", e);
+        } catch (HibernateException exp) {
+            throw new  DatabaseException("Error occured in add the values in loan detail", exp);
         } finally {
             session.close();
         }
@@ -58,15 +60,14 @@ public class LoanDetailDao {
      *     It handle all the error message in configuration file. 
      */
     public List<LoanDetail> retrieveLoanDetails() throws DatabaseException, ConfigurationException {
-        Session session = sessionFactory.openSession();
-        Transaction transaction = null;
+        session = sessionFactory.openSession();
         try {
             transaction = session.beginTransaction();
             List<LoanDetail> loanDetail = session.createQuery("from LoanDetail").list();
             transaction.commit();
             return loanDetail;
-        } catch(HibernateException exception) {
-            throw new  DatabaseException("Error occured in retrive the loan details in loan", exception);
+        } catch (HibernateException exp) {
+            throw new  DatabaseException("Error occured in retrive the loan details in loan", exp);
         } finally {
             session.close();
         }
@@ -85,16 +86,14 @@ public class LoanDetailDao {
      *     It handle all the error message in configuration file.   
      */
     public List<LoanDetail> retrieveLoanDetailsByLoanId(int loanId) throws DatabaseException, ConfigurationException {
-        Session session = sessionFactory.openSession();
-        Transaction transaction = null;
-        List<LoanDetail> loanDetail;
+        session = sessionFactory.openSession();
         try {
             transaction = session.beginTransaction();
-            loanDetail = session.createQuery("from LoanDetail where loan_id =  '"+loanId+"'").list();
+            List<LoanDetail> loanDetail = session.createQuery("from LoanDetail where loan_id = '"+loanId+"'").list();
             transaction.commit();
             return loanDetail;
-        } catch(HibernateException exception) {
-            throw new  DatabaseException("Error occured in retrive the loan details in loan", exception);
+        } catch (HibernateException exp) {
+            throw new  DatabaseException("Error occured in retrive the loan details in loan", exp);
         } finally {
             session.close();
         }
@@ -113,14 +112,13 @@ public class LoanDetailDao {
      *     It handle all the error message in configuration file. 
      */
     public List<LoanDetail> retrieveLoanDetailByUserId(int userId) throws DatabaseException, ConfigurationException {
-        Session session = sessionFactory.openSession();
-        Transaction transaction = null;
+        session = sessionFactory.openSession();
         try {
             transaction = session.beginTransaction();
-            List<LoanDetail> loanDetails = session.createQuery("from LoanDetail where user_id ="+userId).list();
+            List<LoanDetail> loanDetails = session.createQuery("from LoanDetail where user_id = "+userId).list();
             transaction.commit();
             return loanDetails;
-        } catch(HibernateException exception) {
+        } catch (HibernateException exception) {
             throw new  DatabaseException("Error occured in retrive the loan details in loan", exception);
         } finally {
             session.close();

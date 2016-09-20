@@ -17,7 +17,7 @@ import com.i2i.vehicleloan.model.EligibilityDetail;
  * 
  * @author Madhan
  * 
- * @since 2016-08-27
+ * @since 2016-09-06
  */
 public class EligibilityDetailDao {
 
@@ -70,7 +70,6 @@ public class EligibilityDetailDao {
             transaction.commit();
             return eligibilityDetails;
         } catch (HibernateException exp) {
-            transaction.rollback();
             throw new DatabaseException("Error occured in retrieving the eligibility details", exp);
         } finally {
             session.close();           

@@ -17,6 +17,7 @@ import com.i2i.vehicleloan.model.VehicleModel;
  * 
  * @author vicky
  *
+ * @since 2016-09-06
  */
 public class VehicleModelDao {
 
@@ -44,8 +45,8 @@ public class VehicleModelDao {
             VehicleModel vehicleModel = (VehicleModel)session.get(VehicleModel.class, vehicleModelId);
             transaction.commit();
             return vehicleModel;
-        } catch (Exception exp) {
-            throw new DatabaseException("Oops...Cant retrieve vehicelModel Kindly check your input and try again...\n", exp);
+        } catch (HibernateException exp) {
+            throw new DatabaseException("Oops...Cant retrieve vehicelModel Kindly check your input and try again...", exp);
         } finally {
             session.close();
         }	
@@ -67,10 +68,10 @@ public class VehicleModelDao {
         session = sessionFactory.openSession();
         try {
             transaction = session.beginTransaction();
-            List<VehicleModel> vehicleModels = session.createQuery("from VehicleModel where vehicle_id ="+vehicleId).list();
+            List<VehicleModel> vehicleModels = session.createQuery("from VehicleModel where vehicle_id = "+vehicleId).list();
             transaction.commit();
             return vehicleModels;
-        } catch (Exception exp) {
+        } catch (HibernateException exp) {
             throw new DatabaseException("Oops...Cant retrieve vehicelModel Kindly check your input and try again...\n", exp);
         } finally {
             session.close();
@@ -94,8 +95,8 @@ public class VehicleModelDao {
             List<VehicleModel> vehicleModels = session.createQuery("from VehicleModel").list();
             transaction.commit();
             return vehicleModels;
-        } catch (Exception exp) {
-            throw new DatabaseException("Oops...Kindly check your input and try again...\n", exp);
+        } catch (HibernateException exp) {
+            throw new DatabaseException("Oops...Kindly check your input and try again...", exp);
         } finally {
             session.close();
         }
@@ -117,7 +118,7 @@ public class VehicleModelDao {
             transaction = session.beginTransaction();
             session.save(vehicleModel);
             transaction.commit();
-        } catch(HibernateException exp) {
+        } catch (HibernateException exp) {
             throw new DatabaseException("Error occured in add the values in vehicle model", exp);
         } finally {
             session.close();
@@ -136,13 +137,12 @@ public class VehicleModelDao {
      */
     public void removeVehicleModel(int vehicleModelId) throws DatabaseException, ConfigurationException {
         session = sessionFactory.openSession();
-        VehicleModel vehicleModel;
         try {
             transaction = session.beginTransaction();  
-            vehicleModel = (VehicleModel) session.load(VehicleModel.class, vehicleModelId);
+            VehicleModel vehicleModel = (VehicleModel) session.load(VehicleModel.class, vehicleModelId);
             session.delete(vehicleModel);
             transaction.commit();
-        } catch(HibernateException exp) {
+        } catch (HibernateException exp) {
             throw new DatabaseException("Error occured in remove the vehicle model details", exp);
         } finally {
             session.close();

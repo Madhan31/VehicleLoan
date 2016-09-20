@@ -15,8 +15,10 @@ import com.i2i.vehicleloan.model.LoanDetail;
  * 
  *  @author vicky
  *
+ * @since 2016-09-06
  */
 public class LoanDetailService {
+
     private LoanDetailDao loanDetailDao = new LoanDetailDao();
     
     /**

@@ -17,6 +17,7 @@ import com.i2i.vehicleloan.model.Address;
  * 
  * @author Madhan
  *
+ * @since 2016-09-06
  */
 public class AddressDao {
 	
@@ -42,8 +43,6 @@ public class AddressDao {
             session.save(address);
             transaction.commit();
         } catch (HibernateException exp) {
-            transaction.rollback();
-            exp.printStackTrace();
             throw new DatabaseException("Oops...Cannot add address kindly check your input and try again...\n", exp);    
         } finally {
             session.close();           
@@ -66,7 +65,6 @@ public class AddressDao {
             transaction.commit();
             return addresses;
         } catch (HibernateException exp) {
-            transaction.rollback();
             throw new DatabaseException("Oops...Cannot retrieve address kindly check your input and try again...\n", exp);    
         } finally {
             session.close();           

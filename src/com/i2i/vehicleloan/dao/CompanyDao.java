@@ -17,6 +17,7 @@ import com.i2i.vehicleloan.model.Company;
  * 
  * @author vicky
  *
+ * @since 2016-09-06
  */
 public class CompanyDao {
 
@@ -65,7 +66,7 @@ public class CompanyDao {
             transaction = session.beginTransaction();
             session.save(company);
             transaction.commit();
-        } catch(HibernateException exp) {
+        } catch (HibernateException exp) {
             throw new DatabaseException("Error occured in add the values in company", exp);
         } finally {
             session.close();
@@ -84,13 +85,12 @@ public class CompanyDao {
      */
     public void removeCompany(int companyId) throws DatabaseException, ConfigurationException {
         session = sessionFactory.openSession();
-        Company company;
         try {
             transaction = session.beginTransaction();  
-            company = (Company) session.load(Company.class, companyId);
+            Company company = (Company) session.load(Company.class, companyId);
             session.delete(company);
             transaction.commit();
-        } catch(HibernateException exp) {
+        } catch (HibernateException exp) {
             throw new DatabaseException("Error occured in remove the vehicle details in company", exp);
         } finally {
             session.close();

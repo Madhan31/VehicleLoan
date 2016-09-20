@@ -15,6 +15,7 @@ import com.i2i.vehicleloan.model.User;
  * 
  * @author vicky
  *
+ * @since 2016-09-06
  */
 public class UserService {
 	

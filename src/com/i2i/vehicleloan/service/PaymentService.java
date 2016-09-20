@@ -17,6 +17,7 @@ import com.i2i.vehicleloan.model.Payment;
  * 
  * @author admin-pc
  *
+ * @since 2016-09-06
  */
 public class PaymentService {
 	private PaymentDao paymentDao = new PaymentDao();
@@ -38,7 +39,7 @@ public class PaymentService {
 	public String addPayment(Payment payment) throws DatabaseException, ConfigurationException {
         paymentDao.addPayment(payment);
         Loan loan = loanService.retrieveLoan(payment.getLoan().getLoanId());
-        if(null == loanDetailService.retrieveLoanDetailByLoanId(payment.getLoan().getLoanId())) {
+        if (null == loanDetailService.retrieveLoanDetailByLoanId(payment.getLoan().getLoanId())) {
             int balanceEmi = ((loan.getLoanPeriod()) - 1);
             int balanceAmount = (loan.getLoanAmount() - payment.getPaymentAmount());
             loanDetailService.addLoanDetail(new LoanDetail(balanceAmount, balanceEmi, loan, payment, loan.getUser()));
