@@ -11,6 +11,7 @@
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
     </head>
+    <title>Admin Operation</title>
     <body>
     <br></br>
         <h1 align = "center" style="font-color:#000000;">Admin Operation</h1>

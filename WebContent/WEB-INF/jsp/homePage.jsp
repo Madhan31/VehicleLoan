@@ -54,6 +54,7 @@ function loadvehicleprice() {
 </script>
 </head>
 <link rel="stylesheet" href="css/style.css">
+<title>Add Eligibility Detail</title>
     <body>
 	<c:if test="${null == sessionScope['role']}" >
         <c:redirect url = "logIn" />

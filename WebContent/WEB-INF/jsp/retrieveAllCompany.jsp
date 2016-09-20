@@ -28,6 +28,7 @@
                 background-color: #dddddd;
             }
     </style>
+    <title>Display All Company</title>
      <body>
      <br></br>
         <h1 align = "center">All Company Details </h1> 

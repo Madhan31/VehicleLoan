@@ -9,6 +9,7 @@
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
     </head>   
+    <title>Add New User</title>
     <body>
         <br></br>
         <h1 align = "center">Register User Details</h1>

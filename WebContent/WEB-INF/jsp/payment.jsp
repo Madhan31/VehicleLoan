@@ -50,6 +50,7 @@ function getDate()
             <div class ="formBack">
                 <button type="button" onclick="javascript:history.back()">Go back</button>
             </div>
+    <title>Add Payment</title>
     <body onload = "getDate();">
         <c:if test = "${loans != null}">
             <table>

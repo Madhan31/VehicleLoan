@@ -7,6 +7,7 @@
 	<c:if test="${null == sessionScope['userId']}" >
         <c:redirect url = "logIn" />
     </c:if>    
+    <title>User Operation</title>
     <body>
         <br></br>
     	<h1 align = "center" style="font-color:#000000;">User Operation</h1>

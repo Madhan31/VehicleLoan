@@ -28,6 +28,7 @@
                 background-color: #dddddd;
             }
     </style>
+    <title>Remove Vehicle</title>
     <body>
     		<div class="formLogout">
             <a href="logout">

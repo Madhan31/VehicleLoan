@@ -12,6 +12,7 @@
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
     </head>
+    <title>Vehicle Operation</title>
     <body>
         <br></br>
         <h1 align = "center">Vehicle Operation</h1>

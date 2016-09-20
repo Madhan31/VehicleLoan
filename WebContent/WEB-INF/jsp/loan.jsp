@@ -49,6 +49,7 @@ function getDate()
 	<c:if test="${null == sessionScope['userId']}" >
         <c:redirect url = "logIn" />
     </c:if>
+    <title>Add Loan</title>
     <body onload = "getDate();">
         <br></br>
         <p><h1 align = "center">Decide To Apply Loan:</h1>

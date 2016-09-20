@@ -142,11 +142,11 @@ public class LoanDao {
             transaction = session.beginTransaction();
             List<Loan> loans = session.createQuery("from Loan").list();
             transaction.commit();
+            return loans;
         } catch (HibernateException exp) {
             throw new DatabaseException("Error occur in retrive all loan details in loan", exp);
         } finally {
             session.close();
         }
-        return loans;
      }
 }

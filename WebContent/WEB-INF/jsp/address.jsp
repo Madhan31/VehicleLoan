@@ -12,6 +12,7 @@
     <c:if test="${null == sessionScope['userId']}" >
         <c:redirect url = "logIn" />
     </c:if>
+    <title>Add Address</title>
     <body onload = "populateStates('state','city');" >	
     <h1 align = "center">User Address Detail:</h1>
             <div class="formLogout">

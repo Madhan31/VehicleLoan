@@ -29,6 +29,7 @@
 	<c:if test="${null == sessionScope['userId']}" >
         <c:redirect url = "logIn" />
     </c:if>    
+    <title>Display Eligibility Detail</title>
     <body>
         <p><h1 align = "center">Customer Loan Detail:</h1>
             <div class="formLogout">

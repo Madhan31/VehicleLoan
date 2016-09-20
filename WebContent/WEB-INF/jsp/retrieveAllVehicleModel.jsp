@@ -28,6 +28,7 @@
                 background-color: #dddddd;
             }
     </style>
+    <title>Display All Vehicle Model</title>
     <body>
         <br></br>
         <h1 align = "center">All Vehicle Model Details </h1>

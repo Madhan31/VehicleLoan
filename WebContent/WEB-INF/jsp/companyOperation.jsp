@@ -11,6 +11,7 @@
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
     </head>
+    <title>Company Operation</title>
     <body>
     </br></br>
         <p><h1 align = "center">Company Operation</h1></p>

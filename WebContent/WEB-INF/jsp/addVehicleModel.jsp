@@ -14,6 +14,7 @@
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>Insert title here</title>
     </head>
+    <title>Add Vehicle Model</title>
     <body>
         <br></br>
         <h1 align = "center">Add Vehicle Model</h1>

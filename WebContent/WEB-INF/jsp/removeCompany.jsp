@@ -28,6 +28,7 @@
                 background-color: #dddddd;
             }
     </style>
+    <title>Remove Company</title>
     <body>
     		<div class="formLogout">
             <a href="logout">

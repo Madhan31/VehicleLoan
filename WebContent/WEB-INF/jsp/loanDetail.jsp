@@ -12,8 +12,8 @@
     </c:if>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>Insert title here</title>
     </head>
+    <title>Loan Detail</title>
     <body>
         <br><h1 align = "center">Enter User ID To Make Payment:</h1>
             <div class="formLogout">
