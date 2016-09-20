@@ -53,7 +53,11 @@ function loadvehicleprice() {
 }
 </script>
 </head>
-<link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/style.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+    <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 <title>Add Eligibility Detail</title>
     <body>
 	<c:if test="${null == sessionScope['role']}" >
@@ -65,15 +69,16 @@ function loadvehicleprice() {
             window.location.href="userOperation";
         </script>    
     </c:if>
-        <br></br>
-        <h1 align = "center">Register Eligibility Detail:</h1>
+         <div class="jumbotron text-center" style="padding-top: 2px; padding-bottom: 13px;">
+            <h1><small>Register Eligibility Detail</small></h1>
+            </div>
             <div class="formLogout">
             <a href="logout">
                  <img src="img/logout.png" alt="logout" style="width:42px;height:42px;border:0;">
             </a>
             </div>
-            <div class ="formBack">
-                <button type="button" onclick="javascript:history.back()">Go back</button>
+            <div class ="formBackAv">
+                <img src="img/back.png" alt="logout" style="width:42px;height:47px;border:0;" onclick="javascript:history.back()">
             </div>
     <form:form action = "addeligibilitydetail" method = "get" modelAttribute = "eligibilityDetail" class= "login">
         <form:input type = "text" name = "currentcity" path = "currentCity" placeholder = "Current City" required = "required" /><br></br>         

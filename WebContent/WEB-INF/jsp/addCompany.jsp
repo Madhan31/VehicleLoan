@@ -20,8 +20,8 @@
                 	<img src="img/logout.png" alt="logout" style="width:42px;height:42px;border:0;">
             	</a> 
             </div>
-            <div class ="formBack">
-                <button type="button" onclick="javascript:history.back()">Go back</button>
+            <div class ="formBackAv">
+                <img src="img/back.png" alt="logout" style="width:42px;height:47px;border:0;" onclick="javascript:history.back()">
             </div> 
         	<form:form action = "addCompany" modelAttribute = "insertCompany" class= "login">
             	<table>

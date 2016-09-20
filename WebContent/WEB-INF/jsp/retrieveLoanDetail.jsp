@@ -13,15 +13,16 @@
     </c:if>    
     <title>Display Loan Detail</title>
     <body>
-    	<br>
-        <p><h1 align = "center">Customer Loan Detail:</h1>
+    	<div class="jumbotron text-center" style="padding-top: 2px; padding-bottom: 13px;">
+            <h1><small>Customer Loan Detail</small></h1>
+            </div>
             <div class="formLogout">
             <a href="logout">
                  <img src="img/logout.png" alt="logout" style="width:42px;height:42px;border:0;">
             </a>
             </div>
-            <div class ="formBack">
-                <button type="button" onclick="javascript:history.back()">Go back</button>
+            <div class ="formBackAv">
+                <img src="img/back.png" alt="logout" style="width:47px;height:42px;border:0;" onclick="javascript:history.back()">
             </div>
             <div class = "container">
         <c:if test = "${null != loanDetails}">\

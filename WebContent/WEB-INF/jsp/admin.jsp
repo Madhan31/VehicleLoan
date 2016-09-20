@@ -1,76 +1,146 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib uri="http://www.springframework.org/tags/form" prefix="form" %>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>  
-    
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
-    <c:if test="${null == sessionScope['userId']}" >
-        <c:redirect url = "logIn" />
-    </c:if>
-    <link rel="stylesheet" href="css/style.css">
-    <head>
-        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>Insert title here</title>
-    </head>
-    <title>Add Admin Detail</title>
+<head>
+        <title>Signup Page</title>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+         <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+         </head>
     <body>
-        <br>
-        <br>
-        <h1 align = "center">Add Admin Details:</h1>
-            <div class="formLogout">
-            <a href="logout">
-                 <img src="img/logout.png" alt="logout" style="width:42px;height:42px;border:0;">
-            </a> 
+        <div class="jumbotron text-center" style="padding-top: 2px; padding-bottom: 13px;">
+            <h1><small>Add Admin Detail</small></h1>
             </div>
-            <div class ="formBack">
-                <button type="button" onclick="javascript:history.back()">Go back</button>
-            </div>     
-        <form:form action="addUser" modelAttribute = "user" method="post">
-        <table>
-            <tr>
-                <td>First Name:</td>        
-                <td><form:input type = "text" name = "firstName" path = "firstName" placeholder = "First Name" required = "required" /></td>	        
-            </tr>
-            <tr>
-                <td>Last Name:</td>
-                <td><form:input type="text" name="lastName" placeholder="Last Name" path="lastName" required="required" /></td>
-            </tr>
-            <tr>
-                <td>Date Of Birth:</td>  
-                <td><form:input type = "text" name="dateOfBirth" placeholder="DD/MM/YYYY" path="dateOfBirth" required="required" /></td>
-            </tr>
-            <tr>
-                <td>Gender:</td>
-                <td><form:select path = "gender">
+            <div class="formLogout">
+                 <img src="img/logout.png" alt="logout" style="width:42px;height:42px;border:0;" onclick="javascript:history.back()">
+            </div> 
+            <div class="formLogout">
+                 <img src="img/back.png" alt="logout" style="width:42px;height:47px;border:0;" onclick="javascript:history.back()">
+            </div> 
+         <div class = "panel panel-default col-sm-offset-4 col-sm-4 col">
+   <div class = "panel-heading">
+      <h2 class = "panel-title text-center title-style">
+         Sign up
+      </h2>
+   </div>   
+      <div class = "panel-body"><br>
+        <form:form action="addUser" class="login-form" modelAttribute = "user" method="post">
+               <div class="form-group">
+            <table id = "table td th">
+                <tr>
+                <td>First Name</td>
+                <td><form:input type = "text" name = "firstName" class="form-control" path = "firstName" placeholder = "First Name" required = "required" /></td>	        
+                </tr>
+                <tr>
+                <td>Last Name</td>
+                <td><form:input type="text" name="lastName" class="form-control" placeholder="Last Name" path="lastName" required="required" /></td>
+                </tr>
+                <tr>
+                <td>Date Of Birth</td>
+                <td><form:input type = "text" name="dateOfBirth" class="form-control" placeholder="DD/MM/YYYY" path="dateOfBirth" required="required" /></td>
+                </tr>
+                <tr>
+                <td>Gender</td>
+                <td><form:select path = "gender" class="form-control">
        		        <option value = "null">--select gender--</option>        
        		        <option value = "male">Male</option>
        		        <option value = "female">Female</option>
        		        <option value = "others">Others</option>       		
          	    </form:select></td>
-         	</tr>
-         	<tr>
-         	    <td>Email ID:</td>		
-                <td><form:input type="text" name="emailId" placeholder="Email" path="emailId" required="required" /></td>
-            </tr>
-            <tr>
-                <td>Mobile Number:</td>
-                <td><form:input type="text" name=" mobileNumber" placeholder="Mobile Number" path="mobileNumber" required="required" /></td>
-            </tr>
-            <tr>
-                <td>Password:</td>
+         	    </tr>
+         	    <tr>
+         	    <td>Email ID</td>     		
+                <td><form:input type="text" name="emailId" class="form-control" placeholder="Email" path="emailId" required="required" /></td>
+                </tr>
+                <tr>
+                <td>Mobile Number</td>
+                <td><form:input type="text" name=" mobileNumber" class="form-control" placeholder="Mobile Number" path="mobileNumber" required="required" /></td>
+                </tr>
+                <tr>
+                <td>Password</td>
                 <td><form:input type="password" name="password" placeholder="Password" path="password" required="required" /></td>
-            </tr>
-            <tr>
-            <form:input type = "hidden" path = "role.roleId" value = "2" />
-            <tr>
-                <td></td>
-                <td><input type = "submit" name = "button" value = "Register"/></td>
-            </tr>
-            </table>
-        </form:form>
-    </body>
-    <c:if test="${message != null}" >
+                </tr>
+                <form:input type = "hidden" path = "role.roleId" value = "1" />
+                </table>
+				<div class = "panel-footer footer-align"><input type = "submit" name = "button" value = "Register" class="btn btn-info btn-lg pull-left col-sm-4 border input-align"/></div>                </div>
+            </form:form>
+            </div>
+<style>
+input[type=text]:focus { background:#e4f0f8 }
+.formLogout {
+	width:75%;
+	margin:20px auto;
+	text-align:right;
+	cursor:pointer;
+}
+.title {
+    font-family: "Times New Roman", Times, serif; 
+  }
+.title-style {
+  font-size: 150%;
+}
+.footer-align {
+height : 75px;
+}
+.border {
+border-style: solid double
+}
+.image-width {
+width:250px;
+}
+.myCarousel-width {
+  width:500px;
+}
+.image-body {
+margin-left :50%;
+}
+.input-align{
+margin-left:40%;
+}
+.r-116 {
+right:163px;
+}
+.carousel {
+    margin-bottom: 0;
+    padding: 0 40px 30px 40px;
+}
+
+/* The controlsy */
+.carousel-control {
+	left: -12px;
+    height: 40px;
+	width: 40px;
+    background: none repeat scroll 0 0 #222222;
+    border: 4px solid #FFFFFF;
+    border-radius: 23px 23px 23px 23px;
+    margin-top: 90px;
+}
+.carousel-control.right {
+	right: -12px;
+}
+/* The indicators */
+.carousel-indicators {
+	right: 50%;
+	top: auto;
+	bottom: -10px;
+	margin-right: -19px;
+}
+/* The colour of the indicators */
+.carousel-indicators li {
+	background: #cecece;
+}
+.carousel-indicators .active {
+background: #428bca;
+}
+</style>            
+        </body>
+       <c:if test="${message != null}" >
         <script language = "javaScript" type = "text/javascript">
             alert('<c:out value = "${message}" />');
         </script>

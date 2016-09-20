@@ -52,21 +52,13 @@ table {
 }
 
 table td, table th {
-    text-align : center;
+    text-align : left;
     vertical-align : middle;
     border : 1px solid #ffffff;
     width : 20%;
     font-color:#000000;
     }
     
-#table td, th {
-    text-align : left;
-    vertical-align : left;
-    border : 1px solid #ffffff;
-    width : 10%;
-    font-color:#000000;
-    }    
-       
 .about {
   margin: 70px auto 40px;
   padding: 8px;
@@ -448,8 +440,8 @@ margin-bottom:10px;
 }
 
 #table td, #table th {
-    text-align : center;
-    vertical-align : middle;
+    text-align : left;
+    vertical-align : left;
     border : 1px solid white;
     width : 30%;
     font-color:#000000;
@@ -475,7 +467,13 @@ input[type=text]:focus { background:#e4f0f8 }
 }
 input[type=text]:focus { background:#e4f0f8 }
 .formBackVp {
-	width:103%;
+	width:101%;
+	margin:20px auto;
+	text-align:right;
+}
+input[type=text]:focus { background:#e4f0f8 }
+.formBackAv {
+	width:76%;
 	margin:20px auto;
 	text-align:right;
 }

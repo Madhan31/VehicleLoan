@@ -28,8 +28,8 @@
                  <img src="img/logout.png" alt="logout" style="width:42px;height:42px;border:0;">
             </a>
             </div>
-            <div class ="formBack">
-                <button type="button" onclick="javascript:history.back()">Go back</button>
+            <div class ="formBackAv">
+                <img src="img/back.png" alt="logout" style="width:47px;height:42px;border:0;" onclick="javascript:history.back()">
             </div>
 	<textarea rows="5" cols="50" readonly>Address:
 	<m:out value="${userAddress.street}"></m:out>,

@@ -4,8 +4,12 @@
 <%@ taglib uri="http://www.springframework.org/tags/form" prefix="form"%>    
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%> 
 <html>
-        <link rel="stylesheet" href="css/style.css">
-        <link rel="images" href="images">
+    <link rel="stylesheet" href="css/style.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+    <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <link rel="images" href="images">
 	<c:if test="${null == sessionScope['userId']}" >
         <c:redirect url = "logIn" />
     </c:if>
@@ -14,14 +18,15 @@
     </head>
     <title>Vehicle Operation</title>
     <body>
-        <br></br>
-        <h1 align = "center">Vehicle Operation</h1>
+        <div class="jumbotron text-center" style="padding-top: 2px; padding-bottom: 13px;">
+            <h1><small>Vehicle Operation</small></h1>
+            </div>
             <div class="formLogout">
             <a href="logout">
                  <img src="img/logout.png" alt="logout" style="width:42px;height:42px;border:0;">
             </a>
             <div class ="formBackVp">
-                <button type="button" onclick="javascript:history.back()">Go back</button>
+                <img src="img/back.png" alt="logout" style="width:47px;height:42px;border:0;" onclick="javascript:history.back()">
             </div>
         <div align = "center" class="formexample">
         <a class = "button" href = insertVehicle>Insert vehicle</a><br></br>

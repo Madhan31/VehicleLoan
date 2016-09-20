@@ -24,7 +24,7 @@
 <body>
 <div>
 <div class="jumbotron text-center">
-<h2 class="title"> Vehicle Loan</h2>
+<h2 class="title">I2I LOAN PVT LTD</h2>
 </div>
 <br>
  <div class="row">

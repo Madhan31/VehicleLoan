@@ -13,8 +13,7 @@
     </c:if>    
     <title>User Operation</title>
     <body>
-        <br></br>
-    	    <div class="jumbotron text-center">
+    	    <div class="jumbotron text-center" style="padding-top: 2px; padding-bottom: 13px;">
             <h1><small>User Operation</small></h1>
             </div>
             <div class="formLogout">
