@@ -4,30 +4,13 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <html>
     <link rel="stylesheet" href="css/style.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+    <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 	<c:if test="${null == sessionScope['userId']}" >
         <c:redirect url = "logIn" />
     </c:if>
-    <style>
-            table {
-                font-family: arial, sans-serif;
-                border-collapse: collapse;
-                width: 100%;
-            }
-            td {
-                border: 1px solid #dddddd;
-                text-align: left;
-                padding: 8px;
-            }
-            th {
-                border: 1px solid #dddddd;
-                text-align: left;
-                padding: 8px;
-                background-color: #c8897b;
-            }            
-            tr:nth-child(even) {
-                background-color: #dddddd;
-            }
-    </style>
     <title>Display All Vehicle</title>
     <body>
         <br></br>
@@ -40,19 +23,25 @@
             <div class ="formBack">
                 <button type="button" onclick="javascript:history.back()">Go back</button>
             </div>
+            <div class = "container">
         <c:if test = "${vehicles != null}">
-            <table>
-                <tr>
+            <table class="table">
+                <thead>
+                <tr class = "success">
                     <th>Vehicle ID</th>
                     <th>Vehicle name</th>
                 </tr>
+                </thead>
+                <tbody>
                 <c:forEach items="${vehicles}" var="vehicles">
-                    <tr>
+                    <tr class = "info">
                         <td><c:out value="${vehicles.vehicleId}" /></td>
                         <td><c:out value="${vehicles.vehicleName}" /></td>
                     </tr>
                 </c:forEach>
+                </tbody>
             </table>
         </c:if>   
+        </div>
     </body>
 </html>

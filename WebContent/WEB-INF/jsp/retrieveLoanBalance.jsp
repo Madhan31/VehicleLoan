@@ -7,28 +7,10 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 </head>
     <link rel="stylesheet" href="css/style.css">
-	<link rel="stylesheet" href="css/style.css">
-    <style>
-            table {
-                font-family: arial, sans-serif;
-                border-collapse: collapse;
-                width: 100%;
-            }
-            td {
-                border: 1px solid #dddddd;
-                text-align: left;
-                padding: 8px;
-            }
-            th {
-                border: 1px solid #dddddd;
-                text-align: left;
-                padding: 8px;
-                background-color: #c8897b;
-            }            
-            tr:nth-child(even) {
-                background-color: #dddddd;
-            }
-    </style>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+    <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 	<c:if test="${null == sessionScope['userId']}" >
         <c:redirect url = "logIn" />
     </c:if>    
@@ -42,20 +24,26 @@
             </div>
             <div class ="formBack">
                 <button type="button" onclick="javascript:history.back()">Go back</button>
-            </div>        
+            </div>     
+            <div class = "container">   
         <c:if test = "${null != loanBalance}">
-            <table>
-                <tr>
+            <table class="table">
+                <thead>
+                <tr class = "success">
                     <th>Loan Id</th>
                     <th>Balance amount(Rs.)</th>
                     <th>Balance emi (in months)</th>
                 </tr>
-                    <tr>
+                </thead>
+                <tbody>
+                    <tr class = "info">
                     	<td><c:out value="${loanBalance.loan.loanId}" /></td>
                         <td><c:out value="${loanBalance.balanceAmount}" /></td>
                         <td><c:out value="${loanBalance.balanceEmi}" /></td>             
                     </tr>
+                    </tbody>
             </table>
         </c:if>
+        </div>
 </body>
 </html>

@@ -23,24 +23,13 @@ function getDate()
 	<c:if test="${null == sessionScope['userId']}" >
         <c:redirect url = "logIn" />
     </c:if>
-        <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/style.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+    <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
     <head>        
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <style>
-            table {
-                font-family: arial, sans-serif;
-                border-collapse: collapse;
-                width: 100%;
-            }
-            td, th {
-                border: 1px solid #dddddd;
-                text-align: left;
-                padding: 8px;
-            }
-            tr:nth-child(even) {
-                background-color: #dddddd;
-            }
-        </style>
     </head>
             <div class="formLogout">
             <a href="logout">
@@ -52,17 +41,21 @@ function getDate()
             </div>
     <title>Add Payment</title>
     <body onload = "getDate();">
+    <div class = "container">
         <c:if test = "${loans != null}">
-            <table>
-                <tr>
+            <table class = "table">
+                <thead>
+                <tr class = "success">
                     <th>Loan ID</th>
                     <th>EMI</th>
                     <th>Period</th>
                     <th>Date</th>
                     <th>Loan Amount</th>
                 </tr>
+                </thead>
+                <tbody>
                 <c:forEach items="${loans}" var="loans">
-                    <tr>
+                    <tr class = "info">
                         <td><c:out value="${loans.loanId}" /></td>
                         <td><c:out value="${loans.emi}" /></td>
                         <td><c:out value="${loans.loanPeriod}" /></td>
@@ -70,8 +63,10 @@ function getDate()
                         <td><c:out value="${loans.loanAmount}" /></td>
                     </tr>
                 </c:forEach>
+                </tbody>
             </table>
         </c:if>   
+        </div>
         <br></br><h1 align = "center">Payment Details :</h1>
         <form:form action = "paymentConfirm" modelAttribute = "payment" class= "login"><br></br>
             <fieldset>

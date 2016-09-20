@@ -4,28 +4,10 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <html>
     <link rel="stylesheet" href="css/style.css">
-	<link rel="stylesheet" href="css/style.css">
-    <style>
-            table {
-                font-family: arial, sans-serif;
-                border-collapse: collapse;
-                width: 100%;
-            }
-            td {
-                border: 1px solid #dddddd;
-                text-align: left;
-                padding: 8px;
-            }
-            th {
-                border: 1px solid #dddddd;
-                text-align: left;
-                padding: 8px;
-                background-color: #c8897b;
-            }            
-            tr:nth-child(even) {
-                background-color: #dddddd;
-            }
-    </style>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+    <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 	<c:if test="${null == sessionScope['userId']}" >
         <c:redirect url = "logIn" />
     </c:if>   
@@ -40,24 +22,30 @@
             <div class ="formBack">
                 <button type="button" onclick="javascript:history.back()">Go back</button>
             </div>
-        <c:if test = "${null != paymentDetails}">\
-            <table>
-                <tr>
+            <div class = "container">
+            <c:if test = "${null != paymentDetails}">\
+            <table class = "table">
+            <thead>
+                <tr class = "success">
                 	<th>Your Payment id</th>
                 	<th>Payment Amount (Rs.)</th>
                     <th>Payment Date</th>
                     <th>Loan id</th>                    
                 </tr>
+                </thead>
+                <tbody>
                 <c:forEach items = "${paymentDetails}" var = "paymentDetail">
-                    <tr>
+                    <tr class = "info">
                         <td><c:out value="${paymentDetail.paymentId}" /></td>
                         <td><c:out value="${paymentDetail.paymentAmount}" /></td>
                         <td><c:out value="${paymentDetail.date}" /></td>
                         <td><c:out value="${paymentDetail.loan.loanId}" /></td>                        
                     </tr>
                 </c:forEach>
+                </tbody>
             </table>
         </c:if>   
+        </div>
         <c:if test = "${null == paymentDetails}">
         		<c:out value = "There is no payment." />
         </c:if>
