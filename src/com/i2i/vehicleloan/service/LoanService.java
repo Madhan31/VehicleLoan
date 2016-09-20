@@ -116,7 +116,7 @@ public class LoanService {
      *     It handle all the error message in configuration file.    
      */
     public boolean isLoanExist(int loanId) throws DatabaseException, ConfigurationException {
-        return (retrieveLoan(loanId) != null);
+        return (null != retrieveLoan(loanId));
     }
     
     /**
@@ -132,7 +132,7 @@ public class LoanService {
      *     It handle all the error message in configuration file.
      */
     public boolean isLoanExistByEligibilityDetailId(int eligibilityDetailId) throws DatabaseException, ConfigurationException {
-        return (loanDao.retrieveLoanByEligibilityDetailId(eligibilityDetailId) != null);
+        return (null != loanDao.retrieveLoanByEligibilityDetailId(eligibilityDetailId));
     }
     /**
      * Here calculate the loan amount user want from the down payment.

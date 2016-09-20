@@ -29,7 +29,27 @@ function getDate()
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
     <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
     <head>        
-        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <style>
+            table {
+                font-family: arial, sans-serif;
+                border-collapse: collapse;
+                width: 100%;
+            }
+            td {
+                border: 1px solid #dddddd;
+                text-align: left;
+                padding: 8px;
+            }
+            th {
+                border: 1px solid #dddddd;
+                text-align: left;
+                padding: 8px;
+                background-color: #c8897b;
+            }            
+            tr:nth-child(even) {
+                background-color: #dddddd;
+            }
+    </style>
     </head>
             <div class="formLogout">
             <a href="logout">
