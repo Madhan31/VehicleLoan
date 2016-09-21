@@ -1,6 +1,10 @@
 package com.i2i.vehicleloan.connection;
 
 import org.hibernate.cfg.AnnotationConfiguration;
+
+import com.i2i.vehicleloan.exception.ConfigurationException;
+
+import org.hibernate.HibernateException;
 import org.hibernate.SessionFactory;
 
 /**
@@ -46,14 +50,18 @@ public class HibernateConnection {
      * @return sessionFactory
      *        Contains object for class SessionFactory
      */
-    public SessionFactory establishConnection() {
-        if(configuration==null) {
-            configuration=new AnnotationConfiguration();
-            configuration.configure("hibernate.cfg.xml"); 
+    public SessionFactory establishConnection() throws ConfigurationException {
+    	try {
+            if (configuration==null) {
+                configuration=new AnnotationConfiguration();
+                configuration.configure("hibernate.cfg.xml"); 
+            }
+            if (sessionFactory==null) {	
+        	    sessionFactory=configuration.configure().buildSessionFactory();
+            }
+            return sessionFactory;
+        } catch (HibernateException exp) {
+        	throw new ConfigurationException("Error occured in establish connection in session factory", exp);
         }
-        if(sessionFactory==null) {	
-        	sessionFactory=configuration.configure().buildSessionFactory();
-        }
-        return sessionFactory;
     }
 }

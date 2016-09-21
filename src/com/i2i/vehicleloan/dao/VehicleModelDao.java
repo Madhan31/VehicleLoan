@@ -21,10 +21,11 @@ import com.i2i.vehicleloan.model.VehicleModel;
  */
 public class VehicleModelDao {
 
-    private HibernateConnection hibernateConnection =  HibernateConnection.createObject();
-    private SessionFactory sessionFactory = hibernateConnection.establishConnection();
-    private Session session;
-    private Transaction transaction;	
+	private SessionFactory hibernateConnection() throws ConfigurationException { 
+	    HibernateConnection hibernateConnection =  HibernateConnection.createObject();
+	    SessionFactory sessionFactory = hibernateConnection.establishConnection();
+	    return sessionFactory;
+	}	
     
     /**
      * Retrieve vehicle model detail from database and returns to service method.
@@ -39,7 +40,9 @@ public class VehicleModelDao {
      *     It handle all the error message in configuration file.   
      */
     public VehicleModel getVehicleModelById(int vehicleModelId) throws DatabaseException, ConfigurationException {
-        session = sessionFactory.openSession();
+    	SessionFactory sessionFactory = hibernateConnection();
+        Session session = sessionFactory.openSession();
+        Transaction transaction = null;
         try {
             transaction = session.beginTransaction();
             VehicleModel vehicleModel = (VehicleModel)session.get(VehicleModel.class, vehicleModelId);
@@ -65,7 +68,9 @@ public class VehicleModelDao {
      *     It handle all the error message in configuration file. 
      */
     public List<VehicleModel> getVehicleModelsByVehicleId(int vehicleId) throws DatabaseException, ConfigurationException {
-        session = sessionFactory.openSession();
+    	SessionFactory sessionFactory = hibernateConnection();
+        Session session = sessionFactory.openSession();
+        Transaction transaction = null;
         try {
             transaction = session.beginTransaction();
             List<VehicleModel> vehicleModels = session.createQuery("from VehicleModel where vehicle_id = "+vehicleId).list();
@@ -89,7 +94,9 @@ public class VehicleModelDao {
      *     It handle all the error message in configuration file.  
      */
     public List<VehicleModel> retrieveVehicleModels() throws DatabaseException, ConfigurationException {
-        session = sessionFactory.openSession();
+    	SessionFactory sessionFactory = hibernateConnection();
+        Session session = sessionFactory.openSession();
+        Transaction transaction = null;
         try {
             transaction = session.beginTransaction();
             List<VehicleModel> vehicleModels = session.createQuery("from VehicleModel").list();
@@ -113,7 +120,9 @@ public class VehicleModelDao {
      *     It handle all the error message in configuration file.   
      */
     public void addVehicleModel(VehicleModel vehicleModel) throws DatabaseException, ConfigurationException {
-        session = sessionFactory.openSession();
+    	SessionFactory sessionFactory = hibernateConnection();
+        Session session = sessionFactory.openSession();
+        Transaction transaction = null;;
         try {
             transaction = session.beginTransaction();
             session.save(vehicleModel);
@@ -136,7 +145,9 @@ public class VehicleModelDao {
      *     It handle all the error message in configuration file.   
      */
     public void removeVehicleModel(int vehicleModelId) throws DatabaseException, ConfigurationException {
-        session = sessionFactory.openSession();
+    	SessionFactory sessionFactory = hibernateConnection();
+        Session session = sessionFactory.openSession();
+        Transaction transaction = null;
         try {
             transaction = session.beginTransaction();  
             VehicleModel vehicleModel = (VehicleModel) session.load(VehicleModel.class, vehicleModelId);

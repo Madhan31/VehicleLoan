@@ -21,10 +21,11 @@ import com.i2i.vehicleloan.model.Loan;
  */
 public class LoanDao {
 	
-    private HibernateConnection hibernateConnection = HibernateConnection.createObject();
-    private SessionFactory sessionFactory = hibernateConnection.establishConnection();
-    private Session session;
-    private Transaction transaction;
+	private SessionFactory hibernateConnection() throws ConfigurationException { 
+	    HibernateConnection hibernateConnection =  HibernateConnection.createObject();
+	    SessionFactory sessionFactory = hibernateConnection.establishConnection();
+	    return sessionFactory;
+	}
     
     /**
      * To add the loan detail into database by using session.
@@ -37,7 +38,9 @@ public class LoanDao {
      *     It handle all the error message in configuration file.  
      */
     public void addLoan(Loan loan) throws DatabaseException, ConfigurationException {
-        session = sessionFactory.openSession();
+    	SessionFactory sessionFactory = hibernateConnection();
+        Session session = sessionFactory.openSession();
+        Transaction transaction = null;
         try {
             transaction = session.beginTransaction();
             session.save(loan);
@@ -60,7 +63,9 @@ public class LoanDao {
      *     It handle all the error message in configuration file.
      */
     public void removeLoan(int loanId) throws DatabaseException, ConfigurationException {
-        session = sessionFactory.openSession();
+    	SessionFactory sessionFactory = hibernateConnection();
+        Session session = sessionFactory.openSession();
+        Transaction transaction = null;
         try {
             transaction = session.beginTransaction();  
             Loan loan = (Loan) session.load(Loan.class, loanId);
@@ -86,7 +91,9 @@ public class LoanDao {
      *     It handle all the error message in configuration file.
      */
     public Loan retrieveLoan(int loanId) throws DatabaseException, ConfigurationException {
-        session = sessionFactory.openSession();
+    	SessionFactory sessionFactory = hibernateConnection();
+        Session session = sessionFactory.openSession();
+        Transaction transaction = null;
         try {
             transaction = session.beginTransaction();
             Loan loan = (Loan) session.get(Loan.class, loanId);
@@ -112,7 +119,9 @@ public class LoanDao {
      *     It handle all the error message in configuration file.
      */
     public List<Loan> retrieveLoansByUserId(int userId) throws DatabaseException, ConfigurationException {
-        session = sessionFactory.openSession();
+    	SessionFactory sessionFactory = hibernateConnection();
+        Session session = sessionFactory.openSession();
+        Transaction transaction = null;
         try {
             transaction = session.beginTransaction();
             List<Loan> loans = session.createQuery("from Loan where user_id = '"+userId+"'").list();
@@ -136,7 +145,9 @@ public class LoanDao {
      *     It handle all the error message in configuration file.
      */
     public List<Loan> retreieveAllLoans() throws DatabaseException, ConfigurationException {
-        session = sessionFactory.openSession();
+    	SessionFactory sessionFactory = hibernateConnection();
+        Session session = sessionFactory.openSession();
+        Transaction transaction = null;
         try {
             transaction = session.beginTransaction();
             List<Loan> loans = session.createQuery("from Loan").list();
@@ -162,7 +173,9 @@ public class LoanDao {
      *     It handle all the error message in configuration file.
      */
     public Loan retrieveLoanByEligibilityDetailId(int eligibilityDetailId) throws DatabaseException, ConfigurationException {
-        session = sessionFactory.openSession();
+    	SessionFactory sessionFactory = hibernateConnection();
+        Session session = sessionFactory.openSession();
+        Transaction transaction = null;
         try {
             transaction = session.beginTransaction();
             Loan loan = (Loan) session.createQuery("from loan where eligibility_detail_id = '"+eligibilityDetailId+"'");

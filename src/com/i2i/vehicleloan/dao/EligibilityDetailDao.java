@@ -21,10 +21,11 @@ import com.i2i.vehicleloan.model.EligibilityDetail;
  */
 public class EligibilityDetailDao {
 
-	private HibernateConnection hibernateConnection =  HibernateConnection.createObject();
-	private SessionFactory sessionFactory = hibernateConnection.establishConnection();
-    private Session session;
-    private Transaction transaction;
+	private SessionFactory hibernateConnection() throws ConfigurationException { 
+	    HibernateConnection hibernateConnection =  HibernateConnection.createObject();
+	    SessionFactory sessionFactory = hibernateConnection.establishConnection();
+	    return sessionFactory;
+	}
     
     /**
 	 * To insert a eligibility details into table using session.
@@ -39,7 +40,9 @@ public class EligibilityDetailDao {
      *     It handle all the error message in configuration file.
      */
     public boolean insertEligibilityDetail(EligibilityDetail eligibilityDetail) throws DatabaseException, ConfigurationException {
-        session = sessionFactory.openSession();
+    	SessionFactory sessionFactory = hibernateConnection();
+        Session session = sessionFactory.openSession();
+        Transaction transaction = null;
         try {
             transaction = session.beginTransaction();
             session.save(eligibilityDetail);
@@ -65,7 +68,9 @@ public class EligibilityDetailDao {
      *     It handle all the error message in configuration file.   
      */
     public List<EligibilityDetail> retrieveEligibilityDetailsByUserId(int userId) throws DatabaseException, ConfigurationException {
-        session = sessionFactory.openSession();
+    	SessionFactory sessionFactory = hibernateConnection();
+        Session session = sessionFactory.openSession();
+        Transaction transaction = null;
         try {
             transaction = session.beginTransaction();
             List<EligibilityDetail> eligibilityDetails = session.createQuery("from EligibilityDetail where user_id="+userId).list();
@@ -91,7 +96,9 @@ public class EligibilityDetailDao {
      *     It handle all the error message in configuration file.
      */
     public EligibilityDetail retrieveEligibilityDetail(int vehicleModelId) throws DatabaseException, ConfigurationException {
-        session = sessionFactory.openSession();
+    	SessionFactory sessionFactory = hibernateConnection();
+        Session session = sessionFactory.openSession();
+        Transaction transaction = null;
         try {
             transaction = session.beginTransaction();
             EligibilityDetail eligibilityDetail = (EligibilityDetail) session.createQuery("from EligibilityDetail where vehicle_model_id = '"+vehicleModelId+"'");

@@ -21,10 +21,11 @@ import com.i2i.vehicleloan.model.Company;
  */
 public class CompanyDao {
 
-    private HibernateConnection hibernateConnection =  HibernateConnection.createObject();
-    private SessionFactory sessionFactory = hibernateConnection.establishConnection();
-    private Session session;
-    private Transaction transaction;	
+	private SessionFactory hibernateConnection() throws ConfigurationException { 
+	    HibernateConnection hibernateConnection =  HibernateConnection.createObject();
+	    SessionFactory sessionFactory = hibernateConnection.establishConnection();
+	    return sessionFactory;
+	}	
 	
     /**
      * Retrieve all company details from database and returns to service method. 
@@ -37,7 +38,9 @@ public class CompanyDao {
      *     It handle all the error message in configuration file.
      */
     public List<Company> retrieveCompanies() throws DatabaseException, ConfigurationException {
-        session = sessionFactory.openSession();
+    	SessionFactory sessionFactory = hibernateConnection();
+        Session session = sessionFactory.openSession();
+        Transaction transaction = null;
         try {
             transaction = session.beginTransaction();
             List<Company> companies = session.createQuery("from Company").list();
@@ -61,7 +64,9 @@ public class CompanyDao {
      *     It handle all the error message in configuration file.
      */
     public void addCompany(Company company) throws DatabaseException, ConfigurationException {
-        session = sessionFactory.openSession();
+    	SessionFactory sessionFactory = hibernateConnection();
+        Session session = sessionFactory.openSession();
+        Transaction transaction = null;
         try {
             transaction = session.beginTransaction();
             session.save(company);
@@ -84,7 +89,9 @@ public class CompanyDao {
      *     It handle all the error message in configuration file.
      */
     public void removeCompany(int companyId) throws DatabaseException, ConfigurationException {
-        session = sessionFactory.openSession();
+    	SessionFactory sessionFactory = hibernateConnection();
+        Session session = sessionFactory.openSession();
+        Transaction transaction = null;
         try {
             transaction = session.beginTransaction();  
             Company company = (Company) session.load(Company.class, companyId);

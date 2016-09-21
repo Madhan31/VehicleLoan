@@ -21,10 +21,11 @@ import com.i2i.vehicleloan.model.Payment;
  */
 public class PaymentDao {
 	
-	private HibernateConnection hibernateConnection =  HibernateConnection.createObject();
-    private SessionFactory sessionFactory = hibernateConnection.establishConnection();
-    private Session session;
-    private Transaction transaction;
+	private SessionFactory hibernateConnection() throws ConfigurationException { 
+	    HibernateConnection hibernateConnection =  HibernateConnection.createObject();
+	    SessionFactory sessionFactory = hibernateConnection.establishConnection();
+	    return sessionFactory;
+	}
     
     /**
      * To add the payment detail into database by using session.
@@ -37,7 +38,9 @@ public class PaymentDao {
      *     It handle all the error message in configuration file.
      */
     public void addPayment(Payment payment) throws DatabaseException, ConfigurationException {
-        session = sessionFactory.openSession();
+    	SessionFactory sessionFactory = hibernateConnection();
+        Session session = sessionFactory.openSession();
+        Transaction transaction = null;
         try {
             transaction = session.beginTransaction();
             session.save(payment);
@@ -62,7 +65,9 @@ public class PaymentDao {
      *     It handle all the error message in configuration file.
      */
     public Payment retrievePayment(int paymentId) throws DatabaseException, ConfigurationException {
-        session = sessionFactory.openSession();
+    	SessionFactory sessionFactory = hibernateConnection();
+        Session session = sessionFactory.openSession();
+        Transaction transaction = null;
         try {
             transaction = session.beginTransaction();
             Payment payment = (Payment) session.get(Payment.class, paymentId);
@@ -86,7 +91,9 @@ public class PaymentDao {
      *     It handle all the custom exception in vehicle loan application.
      */
     public List<Payment> retrievePaymentsByLoanId(int loanId) throws DatabaseException, ConfigurationException {
-        session = sessionFactory.openSession();
+    	SessionFactory sessionFactory = hibernateConnection();
+        Session session = sessionFactory.openSession();
+        Transaction transaction = null;
         try {
             transaction = session.beginTransaction();
             List<Payment> payments = session.createQuery("from Payment where loan_id = '"+loanId+"'").list();

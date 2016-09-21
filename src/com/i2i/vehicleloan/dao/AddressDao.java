@@ -21,10 +21,12 @@ import com.i2i.vehicleloan.model.Address;
  */
 public class AddressDao {
 	
-	private HibernateConnection hibernateConnection =  HibernateConnection.createObject();
-	private SessionFactory sessionFactory = hibernateConnection.establishConnection();
-    private Session session;
-    private Transaction transaction;	
+	private SessionFactory hibernateConnection() throws ConfigurationException { 
+	    HibernateConnection hibernateConnection =  HibernateConnection.createObject();
+	    SessionFactory sessionFactory = hibernateConnection.establishConnection();
+	    return sessionFactory;
+	}
+    	
 	
     /**
      * To add the address detail into database by using session.
@@ -37,7 +39,9 @@ public class AddressDao {
      *     It handle all the error message in configuration file.
      */
 	public void insertAddress(Address address) throws DatabaseException, ConfigurationException {
-        session = sessionFactory.openSession();
+		SessionFactory sessionFactory = hibernateConnection();
+        Session session = sessionFactory.openSession();
+        Transaction transaction = null;
         try {
             transaction = session.beginTransaction();
             session.save(address);
@@ -58,7 +62,9 @@ public class AddressDao {
      *     It handle all the custom exception in vehicle loan application.
      */
 	public List<Address> retrieveAddressesByUserId(int userId) throws DatabaseException, ConfigurationException {
-        session = sessionFactory.openSession();
+		SessionFactory sessionFactory = hibernateConnection();
+        Session session = sessionFactory.openSession();
+        Transaction transaction = null;
         try {
             transaction = session.beginTransaction();
             List<Address> addresses = session.createQuery("from Address where user_id="+userId).list();

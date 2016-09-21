@@ -21,10 +21,11 @@ import com.i2i.vehicleloan.model.LoanDetail;
  */
 public class LoanDetailDao {
 	
-    private HibernateConnection hibernateConnection = HibernateConnection.createObject();
-    private SessionFactory sessionFactory = hibernateConnection.establishConnection();
-    private Session session;
-    private Transaction transaction;
+	private SessionFactory hibernateConnection() throws ConfigurationException { 
+	    HibernateConnection hibernateConnection =  HibernateConnection.createObject();
+	    SessionFactory sessionFactory = hibernateConnection.establishConnection();
+	    return sessionFactory;
+	}
     
     /**
      * To add the loan detail into database by using session.
@@ -37,7 +38,9 @@ public class LoanDetailDao {
      *     It handle all the error message in configuration file.
      */
     public void addLoanDetail(LoanDetail loanDetail) throws DatabaseException, ConfigurationException {
-        session = sessionFactory.openSession();
+    	SessionFactory sessionFactory = hibernateConnection();
+        Session session = sessionFactory.openSession();
+        Transaction transaction = null;
         try {
             transaction = session.beginTransaction();
             session.save(loanDetail);
@@ -60,7 +63,9 @@ public class LoanDetailDao {
      *     It handle all the error message in configuration file. 
      */
     public List<LoanDetail> retrieveLoanDetails() throws DatabaseException, ConfigurationException {
-        session = sessionFactory.openSession();
+    	SessionFactory sessionFactory = hibernateConnection();
+        Session session = sessionFactory.openSession();
+        Transaction transaction = null;
         try {
             transaction = session.beginTransaction();
             List<LoanDetail> loanDetail = session.createQuery("from LoanDetail").list();
@@ -86,7 +91,9 @@ public class LoanDetailDao {
      *     It handle all the error message in configuration file.   
      */
     public List<LoanDetail> retrieveLoanDetailsByLoanId(int loanId) throws DatabaseException, ConfigurationException {
-        session = sessionFactory.openSession();
+    	SessionFactory sessionFactory = hibernateConnection();
+        Session session = sessionFactory.openSession();
+        Transaction transaction = null;
         try {
             transaction = session.beginTransaction();
             List<LoanDetail> loanDetail = session.createQuery("from LoanDetail where loan_id = '"+loanId+"'").list();
@@ -112,7 +119,9 @@ public class LoanDetailDao {
      *     It handle all the error message in configuration file. 
      */
     public List<LoanDetail> retrieveLoanDetailByUserId(int userId) throws DatabaseException, ConfigurationException {
-        session = sessionFactory.openSession();
+    	SessionFactory sessionFactory = hibernateConnection();
+        Session session = sessionFactory.openSession();
+        Transaction transaction = null;
         try {
             transaction = session.beginTransaction();
             List<LoanDetail> loanDetails = session.createQuery("from LoanDetail where user_id = "+userId).list();
