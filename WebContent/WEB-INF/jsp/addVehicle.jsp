@@ -34,7 +34,7 @@
     <div class="collapse navbar-collapse" id="myNavbar">
       <ul class="nav navbar-nav">
         <li><a href="adminOperation">Home</a></li>
-        <li class="dropdown"><a class="dropdown-toggle" class = "active" data-toggle="dropdown" href="#">Vehicle Operation<span class="caret"></span></a>
+        <li class="dropdown" class = "active"><a class="dropdown-toggle"  data-toggle="dropdown" href="#">Vehicle Operation<span class="caret"></span></a>
             <ul class="dropdown-menu">
               <li><a href="#">Add Vehicle</a></li>
               <li><a href="deleteVehicle">Delete Vehicle</a></li>
@@ -55,6 +55,7 @@
               <li><a href="retrieveAllCompany">Display All Company</a></li> 
             </ul>
           </li>
+          <li><a href="loanDetail">Loan Payment</a></li>
         <li><a href="admin">Add Admin</a></li>
         <li><a href="usersDetail">Users Detail</a></li>
       </ul>

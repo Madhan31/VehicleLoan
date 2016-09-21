@@ -685,6 +685,28 @@ public class LoanController {
     	    return "logIn";
     	} catch (DatabaseException exp) {
     		modelMap.addAttribute("message", (exp.getMessage().toString()));
+    		return "adminOperation";
+    	} catch (ConfigurationException exp) {
+    		modelMap.addAttribute("message", (exp.getMessage().toString()));
+    		return "adminOperation";
+        }    	
+    }   
+    
+    /**
+	 * String retrieveUserDetail() redirects to jsp page when corresponding url is called as mapped below. 
+	 * @return
+	 * 		Returns jsp file name.
+	 */      
+    @RequestMapping("/retrieveUserDetail")
+    public String retrieveUserDetail(ModelMap modelMap, HttpSession session) {
+    	try {
+    	    if (null != session.getAttribute("userId")) {
+    	        modelMap.addAttribute("loanDetails", loanService.retrieveLoansByUserId((int) session.getAttribute("userId")));
+    	        return "retrieveUserDetail";
+    	    } 
+    	    return "logIn";
+    	} catch (DatabaseException exp) {
+    		modelMap.addAttribute("message", (exp.getMessage().toString()));
     		return "userOperation";
     	} catch (ConfigurationException exp) {
     		modelMap.addAttribute("message", (exp.getMessage().toString()));
@@ -711,6 +733,25 @@ public class LoanController {
         }      	
     }    
     
+    /**
+	 * String retrieveUserLoanBalance() redirects to jsp page when corresponding url is called as mapped below. 
+	 * @return
+	 * 		Returns jsp file name.
+	 */      
+    @RequestMapping("/retrieveUserLoanBalanceDetail")
+    public String retrieveUserLoanBalanceDetail(@RequestParam("loanId") int loanId, ModelMap modelMap) {    	
+    	try {        	
+        	modelMap.addAttribute("loanBalance", loanDetailService.retrieveLoanDetailByLoanId(loanId));
+        	return "retrieveUserLoanBalance";
+    	} catch (DatabaseException exp) {
+    		modelMap.addAttribute("message", (exp.getMessage().toString()));
+    		return "retrieveUserDetail";
+    	} catch (ConfigurationException exp) {
+    		modelMap.addAttribute("message", (exp.getMessage().toString()));
+    		return "retrieveUserDetail";
+        }      	
+    }
+    
 	/**
 	 * String retrievePaymentDetail() redirects to jsp page when corresponding url is called as mapped below. 
 	 * @return
@@ -727,6 +768,25 @@ public class LoanController {
     	} catch (ConfigurationException exp) {
     		modelMap.addAttribute("message", (exp.getMessage().toString()));
     		return "retrieveLoanDetail";
+        }       	
+    }  
+    
+    /**
+	 * String retrieveUserPaymentDetail() redirects to jsp page when corresponding url is called as mapped below. 
+	 * @return
+	 * 		Returns jsp file name.
+	 */      
+    @RequestMapping("/retrieveUserPaymentDetail")
+    public String retrieveUserPaymentDetail(@RequestParam("loanId") int loanId, ModelMap modelMap, HttpSession session) {
+    	try {
+        	modelMap.addAttribute("paymentDetails", paymentService.retrievePaymentsByLoanId(loanId));        	
+        	return "retrieveUserPaymentDetail";
+    	} catch (DatabaseException exp) {
+    		modelMap.addAttribute("message", (exp.getMessage().toString()));
+    		return "retrieveUserDetail";
+    	} catch (ConfigurationException exp) {
+    		modelMap.addAttribute("message", (exp.getMessage().toString()));
+    		return "retrieveUserDetail";
         }       	
     }  
     

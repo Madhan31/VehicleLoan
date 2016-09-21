@@ -29,37 +29,59 @@ function getDate()
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
     <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
     <head>        
-    <style>
-            table {
-                font-family: arial, sans-serif;
-                border-collapse: collapse;
-                width: 100%;
-            }
-            td {
-                border: 1px solid #dddddd;
-                text-align: left;
-                padding: 8px;
-            }
-            th {
-                border: 1px solid #dddddd;
-                text-align: left;
-                padding: 8px;
-                background-color: #c8897b;
-            }            
-            tr:nth-child(even) {
-                background-color: #dddddd;
-            }
-    </style>
     </head>
-            <div class="formLogout">
-            <a href="logout">
-                 <img src="img/logout.png" alt="logout" style="width:42px;height:42px;border:0;">
-            </a>
-            </div>
-            <div class ="formBackAv">
-                <img src="img/back.png" alt="logout" style="width:47px;height:42px;border:0;" onclick="javascript:history.back()">
-            </div>
     <title>Add Payment</title>
+              <body id="myPage" data-spy="scroll" data-target=".navbar" data-offset="50">
+
+<nav class="navbar navbar-inverse">
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>                        
+      </button>
+    </div>
+    <div class="collapse navbar-collapse" id="myNavbar">
+      <ul class="nav navbar-nav">
+        <li><a href="adminOperation">Home</a></li>
+       
+        <li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="#">Vehicle Operation<span class="caret"></span></a>
+            <ul class="dropdown-menu">
+              <li><a href="insertVehicle">Add Vehicle</a></li>
+              <li><a href="deleteVehicle">Delete Vehicle</a></li>
+              <li><a href="retrieveAllVehicle">Display All Vehicle</a></li> 
+            </ul>
+          </li>
+        <li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="#">Model Operation<span class="caret"></span></a>
+            <ul class="dropdown-menu">
+              <li><a href="insertVehicleModel">Add Vehicle Model</a></li>
+              <li><a href="deleteVehicleModel">Delete Vehicle Model</a></li>
+              <li><a href="retrieveAllVehicleModel">Display All Vehicle Model</a></li> 
+            </ul>
+          </li>
+        <li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="#">Company Operation<span class="caret"></span></a>
+            <ul class="dropdown-menu">
+              <li><a href="insertCompany">Add Company</a></li>
+              <li><a href="deleteCompany">Delete Company</a></li>
+              <li><a href="retrieveAllCompany">Display All Company</a></li> 
+            </ul>
+          </li>
+         <li><a href="loanDetail">Loan Payment</a></li>
+        <li class = "active"><a href="#">Payment</a></li>       
+         <li><a href="admin">Add Admin</a></li>
+        <li><a href="usersDetail">Users Detail</a></li>
+      </ul>
+      <ul class="nav navbar-nav navbar-right">
+        <li><a href="logIn"><span class="glyphicon glyphicon-log-in" style="color:red"></span> Log out</a></li>
+      </ul>
+    </div>
+  </div>
+  </nav>
+  <div class="jumbotron text-center" style="padding-top: 2px; padding-bottom: 13px;">
+            <h1><small>Payment</small></h1>
+  </div> 
+    
     <body onload = "getDate();">
     <div class = "container">
         <c:if test = "${loans != null}">
@@ -87,16 +109,31 @@ function getDate()
             </table>
         </c:if>   
         </div>
-        <br></br><h1 align = "center">Payment Details :</h1>
-        <form:form action = "paymentConfirm" modelAttribute = "payment" class= "login"><br></br>
-            <fieldset>
-                <form:input type = "text" name = "loan" path = "loan.loanId" placeholder = "Loan ID" required = "required" /><br></br>
-                <form:input type = "text" name = "paymentAmount" path = "paymentAmount" placeholder = "Payment Amount" required = "required" /><br></br>
+        <div class = "panel panel-default col-sm-offset-4 col-sm-4 col">
+   <div class = "panel-heading">
+      <h2 class = "panel-title text-center title-style">
+         Payment
+      </h2>
+   </div>   
+      <div class = "panel-body"><br>
+        <form:form action = "paymentConfirm" modelAttribute = "payment" class= "login-form"><br></br>
+            <div class="form-group">
+            <table id = "table td th">
+                <tr>
+                <td>Loan Id:</td>
+                <td><form:input type = "text" name = "loan" path = "loan.loanId" placeholder = "Loan ID" required = "required" /></td>
+                </tr>
+                <tr>
+                <td>Payment Amount:</td>
+                <td><form:input type = "text" name = "paymentAmount" path = "paymentAmount" placeholder = "Payment Amount" required = "required" /></td>
+                </tr>
+                </table>
                 <form:input type = "hidden" path = "user.userId" value = "${sessionScope['userId']}" /> <br></br>
                 <form:input type = "hidden" path = "date" name = "startdate" id = "todayDate"/>
-                <input type = "submit" name = "button" value = "Payment"/>
-            </fieldset>
+                <div class = "panel-footer footer-align"><input type = "submit" name = "button" value = "Payment" class="btn btn-info btn-lg pull-right col-sm-4 border input-align"/></div>
+       </div>
         </form:form>
+        </div>
     </body>
     <c:if test="${message != null}" >
         <script language = "javaScript" type = "text/javascript">

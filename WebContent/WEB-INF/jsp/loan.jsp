@@ -75,8 +75,10 @@ function getDate()
     </div>
     <div class="collapse navbar-collapse" id="myNavbar">
       <ul class="nav navbar-nav">
-        <li><a onclick="javascript:history.back()">Go Back</a></li>
+         <li><a href="userOperation">Home</a></li>
+        <li class = "active"><a href="#">Apply For Loan</a></li>
         <li><a href="retrieveUserLoanDetail">View Loan Detail</a></li>
+        <li><a onclick="javascript:history.back()">Go Back</a></li>
       </ul>
       <ul class="nav navbar-nav navbar-right">
         <li><a href="logout"><span class="glyphicon glyphicon-log-in"></span> Logout</a></li>

@@ -47,6 +47,7 @@
               <li><a href="retrieveAllCompany">Display All Company</a></li> 
             </ul>
           </li>
+          <li><a href="loanDetail">Loan Payment</a></li>
         <li class = "active"><a href="#">Add Admin</a></li>
         <li><a href="usersDetail">Users Detail</a></li>
       </ul>

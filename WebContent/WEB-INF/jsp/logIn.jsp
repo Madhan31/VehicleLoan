@@ -1,4 +1,9 @@
 <!DOCTYPE html>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ taglib uri="http://www.springframework.org/tags/form" prefix="form" %>
+<%@ taglib uri = "http://java.sun.com/jsp/jstl/core" prefix = "m" %>
 <html lang="en">
 <head>
   <title>Welcome to I2I vehicle loan</title>
@@ -81,6 +86,11 @@
     </div>
   </div>
 </div>
-
 </body>
+<c:if test="${null != message}" >
+        <script language = "javaScript" type = "text/javascript">
+            alert('<c:out value = "${message}" />');
+            window.location.href="homePage";
+        </script>
+    </c:if>
 </html>
