@@ -5,41 +5,9 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+  <link rel="stylesheet" href="css/bootstrap.css">
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
   <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-  <style>
-    /* Remove the navbar's default margin-bottom and rounded borders */ 
-    .navbar {
-      margin-bottom: 0;
-      border-radius: 0;
-    }
-    
-    /* Set height of the grid so .sidenav can be 100% (adjust as needed) */
-    .row.content {height: 450px}
-    
-    /* Set gray background color and 100% height */
-    .sidenav {
-      padding-top: 20px;
-      background-color: #f1f1f1;
-      height: 100%;
-    }
-    
-    /* Set black background color, white text and some padding */
-    footer {
-      background-color: #555;
-      color: white;
-      padding: 15px;
-    }
-    
-    /* On small screens, set height to 'auto' for sidenav and grid */
-    @media screen and (max-width: 767px) {
-      .sidenav {
-        height: auto;
-        padding: 15px;
-      }
-      .row.content {height:auto;} 
-    }
-  </style>
 </head>
 <body>
 
@@ -94,16 +62,18 @@
       </h2>
    </div>    
    <div class = "panel-body"><br>    
-       <form name="login-form" class="login-form" action="logIn" method="post">
+       <form name="login-form" class="login-form" method="post" action="logIn" >
        <div class="form-group">
           <input type="text" name="userId" class="form-control" id="user" placeholder = "User Id" required>
         </div>
         <div class="form-group">
       <input type="password" name="password" class="form-control" id="pwd" placeholder = "Password" required>
       </div>
-<div class = "panel-footer footer-align">
+    <div class="checkbox" style = "margin-left: -198px">
+      <label style = "margin-bottom: 17px"><input type="checkbox"> Remember me</label>
+    </div>
 <input type="submit" name="submit" value="Login" class="btn btn-info btn-lg pull-right col-sm-4 border input-align" />
-</div>  
+
 </form> 
 </div>
 </div>

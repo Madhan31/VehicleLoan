@@ -70,7 +70,7 @@
     </div>
   </div>
 </nav>
-   <div class = "panel panel-default col-sm-offset-4 col-sm-4 col">
+<div class = "panel panel-default col-sm-offset-4 col-sm-4 col">
    <div class = "panel-heading">
       <h2 class = "panel-title text-center title-style">
          Sign up
@@ -117,6 +117,7 @@
                 </table>
 				<div class = "panel-footer footer-align"><input type = "submit" name = "button" value = "Register" class="btn btn-info btn-lg pull-left col-sm-4 border input-align"/></div>                </div>
             </form:form>
+            </div>
             </div>
 <style>
 input[type=text]:focus { background:#e4f0f8 }

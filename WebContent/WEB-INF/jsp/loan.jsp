@@ -50,51 +50,86 @@ function getDate()
 }
 
 </script>
+	<link rel="stylesheet" href="css/style.css">
 	<c:if test="${null == sessionScope['userId']}" >
         <c:redirect url = "logIn" />
-    </c:if>
-    <title>Add Loan</title>
-    <body onload = "getDate();">
-        <div class="jumbotron text-center" style="padding-top: 2px; padding-bottom: 13px;">
-            <h1><small>Decide To Apply Loan</small></h1>
-            </div>
-            <div class="formLogout">
-            <a href="logout">
-                 <img src="img/back.png" alt="logout" style="width:42px;height:42px;border:0;" onclick="javascript:history.back()">
-            </a>
-            </div>
-            <div class ="formBackAv">
-                <img src="img/back.png" alt="logout" style="width:42px;height:47px;border:0;" onclick="javascript:history.back()">
-            </div>
-    <form:form action = "addloandetail" modelAttribute = "loan" method = "get" class= "login">
+    </c:if>    
+    <title>Eligibility Detail</title>
+<meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+  <link rel="stylesheet" href="css/bootstrap.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+  <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+</head>
+<body onload = "getDate();">
+
+<nav class="navbar navbar-inverse">
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>                        
+      </button>
+    </div>
+    <div class="collapse navbar-collapse" id="myNavbar">
+      <ul class="nav navbar-nav">
+        <li><a onclick="javascript:history.back()">Go Back</a></li>
+        <li><a href="retrieveUserLoanDetail">View Loan Detail</a></li>
+      </ul>
+      <ul class="nav navbar-nav navbar-right">
+        <li><a href="logout"><span class="glyphicon glyphicon-log-in"></span> Logout</a></li>
+      </ul>
+    </div>
+  </div>
+</nav>      
+    	<div class="jumbotron text-center" style="padding-top: 2px; padding-bottom: 13px;">
+            <h1><small>Decide to Apply Loan</small></h1>
+            </div>                                 
+<div class = "panel panel-default col-sm-offset-4 col-sm-4 col">    
+    <div class = "panel-body"><br>     
+    <form:form action = "addloandetail" modelAttribute = "loan" method = "get" class="login-form">
+   	<div class="form-group">
     <table>
         <tr>
             <td>Loan Amount:</td>
-            <td><m:out value = "Rs. ${loanamount}"/>
-            <form:input type="hidden" path = "loanAmount" id = "loanAmount" value = "${loanamount}" /></td>
+            <td><input type = "text" value = "Rs. ${loanamount}" readonly class="form-control"/></td>
+         </tr>
+         <tr>
+            <td><form:input type="hidden" path = "loanAmount" id = "loanAmount" value = "${loanamount}" /></td>
         </tr>
         <tr>
         <td>Loan Period</td>
-            <td><form:select path = "loanPeriod" id = "loanperiod" onchange = "emiDetails();" required="required">
+            <td><form:select path = "loanPeriod" id = "loanperiod" onchange = "emiDetails();" required="required"  class="form-control">
             		<option value=""> Select tenure -- </option>
     	            <option value = "12">1 Year</option>
     	            <option value = "24">2 Year</option>
     	            <option value = "36">3 Year</option>
    	        </form:select></td>   
-   	<form:input type="hidden" path = "date" name="startdate" id="todayDate"/>
-	<div id = "emiDetails"></div>
-   	<form:input type = "hidden" path = "eligibilityDetail.id" value = "${eligibilityDetailId}" />  
-   	<form:input type = "hidden" path = "user.userId" value = "${sessionScope['userId']}" />
-   	<tr>
-   	<td></td>
-        <td><input type = "submit" name = "button" value = "Apply Loan"/></td>
-    </tr>
+   	        </tr>
+   	        <tr>
+   	<td><form:input type="hidden" path = "date" name="startdate" id="todayDate"/></td>
+   	</tr>
+	<tr>
+	<td><div id = "emiDetails"></div></td>
+	</tr>
+	<tr>	
+   	<td><form:input type = "hidden" path = "eligibilityDetail.id" value = "${eligibilityDetailId}" /></td>
+   	</tr>
+   	<tr>  
+   	<td><form:input type = "hidden" path = "user.userId" value = "${sessionScope['userId']}" /></td>
+   	</tr>
     </table>
+    </div>  
+    <input type = "submit" name = "button" value = "Apply Loan" class="btn btn-info btn-lg pull-right col-sm-4 border input-align"/>
     </form:form>
-</body>
+    </div>
+    </div>
 <c:if test="${message != null}" >
         <script language = "javaScript" type = "text/javascript">
             alert('<c:out value = "${message}" />');
         </script>
-    </c:if>
+    </c:if>    
+</body>
 </html>
