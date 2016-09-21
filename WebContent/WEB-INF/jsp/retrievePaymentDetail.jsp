@@ -13,15 +13,28 @@
     </c:if>   
     <title>Display Payment Detail</title> 
     <body>
-        <p><h1 align = "center">Customer Loan Detail:</h1>
-            <div class="formLogout">
-            <a href="logout">
-                 <img src="img/logout.png" alt="logout" style="width:42px;height:42px;border:0;">
-            </a>
-            </div>
-            <div class ="formBackAv">
-                <img src="img/back.png" alt="logout" style="width:47px;height:42px;border:0;" onclick="javascript:history.back()">
-            </div>
+         <nav class="navbar navbar-inverse">
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>                        
+      </button>
+    </div>
+    <div class="collapse navbar-collapse" id="myNavbar">
+      <ul class="nav navbar-nav">
+        <li><a href="adminOperation">Home</a></li>
+        <li class = "active"><a href="#">Payment Detail</a></li>
+        <li><a href="usersDetail">Customer Detail</a></li>
+        <li><a onclick="javascript:history.back()">Go Back</a></li>
+      </ul>
+      <ul class="nav navbar-nav navbar-right">
+        <li><a href="logIn"><span class="glyphicon glyphicon-log-in" style="color:red"></span> Log out</a></li>
+      </ul>
+    </div>
+  </div>
+  </nav>
             <div class = "container">
             <c:if test = "${null != paymentDetails}">\
             <table class = "table">

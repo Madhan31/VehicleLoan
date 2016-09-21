@@ -14,19 +14,52 @@
          <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
          </head>
     <body>
-        <div class="jumbotron text-center" style="padding-top: 2px; padding-bottom: 13px;">
-            <h1><small>Add Admin Detail</small></h1>
-            </div>
-            <div class="formLogout">
-                 <img src="img/logout.png" alt="logout" style="width:42px;height:42px;border:0;" onclick="javascript:history.back()">
-            </div> 
-            <div class="formLogout">
-                 <img src="img/back.png" alt="logout" style="width:42px;height:47px;border:0;" onclick="javascript:history.back()">
-            </div> 
+        <nav class="navbar navbar-inverse">
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>                        
+      </button>
+    </div>
+    <div class="collapse navbar-collapse" id="myNavbar">
+      <ul class="nav navbar-nav">
+        <li><a href="adminOperation">Home</a></li>
+        <li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="#">Vehicle Operation<span class="caret"></span></a>
+            <ul class="dropdown-menu">
+              <li><a href="insertVehicle">Add Vehicle</a></li>
+              <li><a href="deleteVehicle">Delete Vehicle</a></li>
+              <li><a href="retrieveAllVehicle">Display All Vehicle</a></li> 
+            </ul>
+          </li>
+        <li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="#">Model Operation<span class="caret"></span></a>
+            <ul class="dropdown-menu">
+              <li><a href="insertVehicleModel">Add Vehicle</a></li>
+              <li><a href="deleteVehicleModel">Delete Vehicle</a></li>
+              <li><a href="retrieveAllVehicleModel">Display All Vehicle</a></li> 
+            </ul>
+          </li>
+        <li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="#">Company Operation<span class="caret"></span></a>
+            <ul class="dropdown-menu">
+              <li><a href="insertCompany">Add Company</a></li>
+              <li><a href="deleteCompany">Delete Company</a></li>
+              <li><a href="retrieveAllCompany">Display All Company</a></li> 
+            </ul>
+          </li>
+        <li class = "active"><a href="#">Add Admin</a></li>
+        <li><a href="usersDetail">Users Detail</a></li>
+      </ul>
+      <ul class="nav navbar-nav navbar-right">
+        <li><a href="logIn"><span class="glyphicon glyphicon-log-in" style="color:red"></span> Log out</a></li>
+      </ul>
+    </div>
+  </div>
+  </nav>
          <div class = "panel panel-default col-sm-offset-4 col-sm-4 col">
    <div class = "panel-heading">
       <h2 class = "panel-title text-center title-style">
-         Sign up
+         Add admin detail
       </h2>
    </div>   
       <div class = "panel-body"><br>

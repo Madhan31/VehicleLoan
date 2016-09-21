@@ -55,9 +55,8 @@
     <div class="collapse navbar-collapse" id="myNavbar">
       <ul class="nav navbar-nav">
         <li class="active"><a href="#">Home</a></li>
-        <li><a href="#">About</a></li>
-        <li><a href="#">Projects</a></li>
-        <li><a href="#">Contact</a></li>
+        <li><a href="about">About</a></li>
+        <li><a href="contact">Contact</a></li>
       </ul>
       <ul class="nav navbar-nav navbar-right">
         <li><a href="signUp"><span class="glyphicon glyphicon-log-in"></span> New User</a></li>
@@ -81,7 +80,9 @@
     </div>
 </div>    
       <h1>Welcome</h1>
-      <p>I2I Loan Pvt Ltd is one of the.</p>
+      <p>Loan sharks have been prevalent among our society since the beginning of early civilization. Illegal money lenders will often stop at nothing to collect the extortionate interest rates due to them. 
+      Such is the case below. 
+      The following mafia loan sharks were infamously world renowned for committing the most violent and heinous acts when owed money.</p>
       <hr>
     </div>
     <div class="row row-bottom-margin">

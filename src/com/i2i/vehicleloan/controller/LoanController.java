@@ -104,6 +104,26 @@ public class LoanController {
     }    
     
     /**
+	 * String contact() redirects to jsp page when corresponding url is called as mapped below. 
+	 * @return
+	 * 		Returns jsp file name.
+	 */  
+    @RequestMapping("/contact") 
+    public String contact() {
+        return "contact";
+    }
+    
+    /**
+	 * String about() redirects to jsp page when corresponding url is called as mapped below. 
+	 * @return
+	 * 		Returns jsp file name.
+	 */  
+    @RequestMapping("/about") 
+    public String about() {
+        return "about";
+    }
+    
+    /**
      * String index() redirects to jsp page when corresponding url is called as mapped below the method definition.
      * @return
      * 		Returns jsp file name.

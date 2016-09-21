@@ -4,6 +4,13 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <html>
    <link rel="stylesheet" href="css/style.css">
+   <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+  <link href="http://fonts.googleapis.com/css?family=Lato" rel="stylesheet" type="text/css">
+  <link href="http://fonts.googleapis.com/css?family=Montserrat" rel="stylesheet" type="text/css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+  <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 	<c:if test="${null == sessionScope['userId']}" >
         <c:redirect url = "logIn" />
     </c:if>
@@ -30,14 +37,48 @@
     </style>
     <title>Remove Vehicle Model</title>
     <body>
-    	<div class="formLogout">
-            <a href="logout">
-                 <img src="img/logout.png" alt="logout" style="width:42px;height:42px;border:0;">
-            </a>
-            </div>
-            <div class ="formBackAv">
-                <img src="img/back.png" alt="logout" style="width:47px;height:42px;border:0;" onclick="javascript:history.back()">
-            </div>
+    	     <nav class="navbar navbar-inverse">
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>                        
+      </button>
+    </div>
+    <div class="collapse navbar-collapse" id="myNavbar">
+      <ul class="nav navbar-nav">
+        <li><a href="adminOperation">Home</a></li>
+        <li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="#">Vehicle Operation<span class="caret"></span></a>
+            <ul class="dropdown-menu">
+              <li><a href="insertVehicle">Add Vehicle</a></li>
+              <li><a href="deleteVehicle">Delete Vehicle</a></li>
+              <li><a href="retrieveAllVehicle">Display All Vehicle</a></li> 
+            </ul>
+          </li>
+        <li class="dropdown"><a class="dropdown-toggle" class = "active" data-toggle="dropdown" href="#">Model Operation<span class="caret"></span></a>
+            <ul class="dropdown-menu">
+              <li><a href="insertVehicleModel">Add Vehicle Model</a></li>
+              <li><a href="#">Delete Vehicle Model</a></li>
+              <li><a href="retrieveAllVehicleModel">Display All Vehicle Model</a></li> 
+            </ul>
+          </li>
+        <li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="#">Company Operation<span class="caret"></span></a>
+            <ul class="dropdown-menu">
+              <li><a href="insertCompany">Add Company</a></li>
+              <li><a href="deleteCompany">Delete Company</a></li>
+              <li><a href="retrieveAllCompany">Display All Company</a></li> 
+            </ul>
+          </li>
+        <li><a href="admin">Add Admin</a></li>
+        <li><a href="usersDetail">Users Detail</a></li>
+      </ul>
+      <ul class="nav navbar-nav navbar-right">
+        <li><a href="logIn"><span class="glyphicon glyphicon-log-in" style="color:red"></span> Log out</a></li>
+      </ul>
+    </div>
+  </div>
+  </nav>
         <c:if test = "${vehicleModels != null}">
             <table>
                 <tr>
@@ -55,19 +96,25 @@
             </table>
         </c:if>   
         <br></br>
-         <h1 align = "center">Delete Vehicle Model</h1>
-            <div class = "formexample">
-            <form action = "removeVehicleModel" method="get">
-                <input type = "text" id ="vehicleModelId" name = "vehicleModelId" placeholder =  "Vehicle Model ID">
-                <input type = "submit" name = "button" value = "Delete" />
-                <input type="reset" value="Clear" />
+         <div class = "panel panel-default col-sm-offset-4 col-sm-4 col">
+   <div class = "panel-heading">
+      <h2 class = "panel-title text-center title-style">
+         Delete Vehicle Model
+      </h2>
+   </div>   
+      <div class = "panel-body">
+            <form action = "removeVehicleModel" method="get" class = "login-form">
+                <div class="form-group">
+                 <table id = "table td th">
+                 <tr>
+                 <td>Model Id</td>
+                 <td><input type = "text" id ="vehicleModelId" name = "vehicleModelId" placeholder =  "Model ID"></td>
+                 </tr>
+                 </table>
+                <div class = "panel-footer footer-align"><input type = "submit" name = "button" value = "Delete" class="btn btn-info btn-lg pull-right col-sm-4 border input-align"/></div>
+             </div>
         </form>
-        </div><br></br><br></br><br></br><br></br>
-        <div class ="formBackRemoveOperation">
-                <a class = "button" href = "vehicleModelOperation" style="width:200px;height:28px;border:0;">Back to vehicle model operation</a><br></br>
-                <a class = "button" href = "deleteVehicle" style="width:200px;height:20px;border:0;">Click to remove vehicle</a><br></br>
-                <a class = "button" href = "deleteCompany" style="width:200px;height:20px;border:0;">Click to remove company</a>
-        </div><br></br><br></br>
+        </div>
     </body>
     <c:if test="${message != null}" >
         <script language = "javaScript" type = "text/javascript">
