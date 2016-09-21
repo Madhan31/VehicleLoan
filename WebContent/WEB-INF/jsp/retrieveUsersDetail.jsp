@@ -29,7 +29,7 @@
             <table class = "table">
             <thead>
                 <tr class = "success">
-                	<th>User id</th>
+                	<th>User Id</th>
                 	<th>First Name</th>
                     <th>Last Name</th>
                     <th>Contact No.</th>
@@ -37,7 +37,7 @@
                     <th>DOB</th> 
                     <th>Gender</th>
                     <th>Address</th>
-                    <th>EligibilityDetail</th>
+                    <th>Eligibility Detail</th>
                     <th>Loan Detail</th>                   
                 </tr>
                 </thead>

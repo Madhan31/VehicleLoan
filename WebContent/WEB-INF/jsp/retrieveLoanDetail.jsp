@@ -25,13 +25,13 @@
                 <img src="img/back.png" alt="logout" style="width:47px;height:42px;border:0;" onclick="javascript:history.back()">
             </div>
             <div class = "container">
-        <c:if test = "${null != loanDetails}">\
+        <c:if test = "${null != loanDetails}">
             <table class="table">
                 <thead>
                 <tr class = "success">
-                	<th>Loan id</th>
+                	<th>Loan Id</th>
                 	<th>Loan Amount (Rs.)</th>
-                    <th>Emi(Rs.)</th>
+                    <th>EMI (Rs.)</th>
                     <th>Loan Period (in months)</th>
                     <th>Loan Applied Date</th>
                     <th>Vehicle Name</th>
