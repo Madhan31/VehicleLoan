@@ -66,7 +66,7 @@ public class CompanyService {
      *     It handle all the error message in configuration file.    
      */
     public String removeCompany(int companyId) throws DatabaseException, ConfigurationException {
-        if (ValidationUtil.isNumeric(String.valueOf(companyId))) {
+        if (!ValidationUtil.isNumeric(String.valueOf(companyId))) {
             throw new DatabaseException("Kindly Enter valid comapny id...");
         }
         comanyDao.removeCompany(companyId);
