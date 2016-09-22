@@ -6,6 +6,7 @@ import com.i2i.vehicleloan.dao.EligibilityDetailDao;
 import com.i2i.vehicleloan.exception.ConfigurationException;
 import com.i2i.vehicleloan.exception.DatabaseException;
 import com.i2i.vehicleloan.model.EligibilityDetail;
+import com.i2i.vehicleloan.util.ValidationUtil;
 
 /**
  * <p>
@@ -35,10 +36,15 @@ public class EligibilityDetailService {
      *     It handle all the error message in configuration file.   
      */   
     public boolean addEligibilityDetail(EligibilityDetail eligibilityDetail) throws DatabaseException, ConfigurationException {
-        System.out.print(eligibilityDetail.getSalary());
+        if (!ValidationUtil.isNumeric(String.valueOf(eligibilityDetail.getSalary()))) {
+            throw new DatabaseException("Kindly Enter only numbers...");
+        }        
         if (eligibilityDetail.getSalary() < 10000) {
             throw new DatabaseException("Salary must be greater than 10000");
         }
+        if (!ValidationUtil.isNumeric(String.valueOf(eligibilityDetail.getDownPayment()))) {
+            throw new DatabaseException("Kindly Enter only numbers...");
+        }         
         if (eligibilityDetail.getDownPayment() < 10000) {
             throw new DatabaseException("Downpayment must be greater than 10000");
         }

@@ -7,6 +7,7 @@ import com.i2i.vehicleloan.exception.ConfigurationException;
 import com.i2i.vehicleloan.exception.DatabaseException;
 import com.i2i.vehicleloan.model.Address;
 import com.i2i.vehicleloan.model.LoanDetail;
+import com.i2i.vehicleloan.util.ValidationUtil;
 
 /**
  * <p>
@@ -33,6 +34,9 @@ public class AddressService {
      *     It handle all the error message in configuration file.      
 	 */
 	public void addAddress(Address address) throws DatabaseException, ConfigurationException {
+	    if (!ValidationUtil.isNumeric(String.valueOf(address.getPincode()))) {
+	        throw new DatabaseException("Kindly Enter valid pincode...");
+	    }
 		addressDao.insertAddress(address);
 	}
 	

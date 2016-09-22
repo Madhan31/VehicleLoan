@@ -6,6 +6,7 @@ import com.i2i.vehicleloan.dao.CompanyDao;
 import com.i2i.vehicleloan.exception.ConfigurationException;
 import com.i2i.vehicleloan.exception.DatabaseException;
 import com.i2i.vehicleloan.model.Company;
+import com.i2i.vehicleloan.util.ValidationUtil;
 
 /**
  * <p>
@@ -65,6 +66,9 @@ public class CompanyService {
      *     It handle all the error message in configuration file.    
      */
     public String removeCompany(int companyId) throws DatabaseException, ConfigurationException {
+        if (ValidationUtil.isNumeric(String.valueOf(companyId))) {
+            throw new DatabaseException("Kindly Enter valid comapny id...");
+        }
         comanyDao.removeCompany(companyId);
         return "Company details deleted successfully";
     }    

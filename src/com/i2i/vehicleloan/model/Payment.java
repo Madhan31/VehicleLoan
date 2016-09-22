@@ -22,37 +22,6 @@ import javax.persistence.Table;
 @Entity
 @Table(name = "payment")
 public class Payment {
-	
-	/**
-	 * Constructor with argument is used to create a payment object.
-	 * 
-	 * @param paymentId
-	 *     Contains unique id for an user payment amount.
-	 * @param paymentAmount
-	 *     Contains payment amount of customer at the time installment period. 
-	 * @param date
-	 *     Contains date of payment of a customer.
-	 * @param loan
-	 *     Contains loan object of class loan.
-	 * @param user
-	 *     Contains user object of class user.
-	 */
-	public Payment(int paymentId, int paymentAmount, String date, Loan loan, User user) {
-		super();
-		this.paymentId = paymentId;
-		this.paymentAmount = paymentAmount;
-		this.date = date;
-		this.loan = loan;
-		this.user = user;
-	}
-	
-	/**
-	 * Constructor without argument is used to create an object. 
-	 */
-    public Payment() {
-    	
-    }
-    
 	@Id
 	@GeneratedValue(strategy=GenerationType.AUTO)
 	@Column(name = "payment_id")
@@ -71,7 +40,37 @@ public class Payment {
     @ManyToOne(cascade = CascadeType.PERSIST)
     @JoinColumn(name = "user_id")
     private User user;
-
+  
+    /**
+     * Constructor with argument is used to create a payment object.
+     * 
+     * @param paymentId
+     *     Contains unique id for an user payment amount.
+     * @param paymentAmount
+     *     Contains payment amount of customer at the time installment period. 
+     * @param date
+     *     Contains date of payment of a customer.
+     * @param loan
+     *     Contains loan object of class loan.
+     * @param user
+     *     Contains user object of class user.
+     */
+    public Payment(int paymentId, int paymentAmount, String date, Loan loan, User user) {
+        super();
+        this.paymentId = paymentId;
+        this.paymentAmount = paymentAmount;
+        this.date = date;
+        this.loan = loan;
+        this.user = user;
+    }
+    
+    /**
+     * Constructor without argument is used to create an object. 
+     */
+    public Payment() {
+        
+    }    
+    
 	public int getPaymentId() {
 		return paymentId;
 	}

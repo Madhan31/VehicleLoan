@@ -8,6 +8,7 @@ import com.i2i.vehicleloan.exception.DatabaseException;
 import com.i2i.vehicleloan.model.Loan;
 import com.i2i.vehicleloan.model.LoanDetail;
 import com.i2i.vehicleloan.model.Payment;
+import com.i2i.vehicleloan.util.ValidationUtil;
 
 /**
  * <p>
@@ -37,6 +38,12 @@ public class PaymentService {
      *     It handle all the error message in configuration file.    
 	 */
 	public String addPayment(Payment payment) throws DatabaseException, ConfigurationException {
+        if (!ValidationUtil.isNumeric(String.valueOf(payment.getLoan().getLoanId()))) {
+            throw new DatabaseException("Kindly Enter valid number...");
+        } 	    
+        if (!ValidationUtil.isNumeric(String.valueOf(payment.getPaymentAmount()))) {
+            throw new DatabaseException("Kindly Enter only numbers...");
+        }         
         paymentDao.addPayment(payment);
         Loan loan = loanService.retrieveLoan(payment.getLoan().getLoanId());
         if (null == loanDetailService.retrieveLoanDetailByLoanId(payment.getLoan().getLoanId())) {
