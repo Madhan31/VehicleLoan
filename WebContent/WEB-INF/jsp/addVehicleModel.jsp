@@ -39,7 +39,7 @@
               <li><a href="retrieveAllVehicle">Display All Vehicle</a></li> 
             </ul>
           </li>
-        <li class="dropdown"><a class="dropdown-toggle" class = "active" data-toggle="dropdown" href="#">Model Operation<span class="caret"></span></a>
+        <li class="dropdown"><a class="dropdown-toggle" class = "active" data-toggle="dropdown" href="#">Vehicle Model Operation<span class="caret"></span></a>
             <ul class="dropdown-menu">
               <li><a href="#">Add Vehicle Model</a></li>
               <li><a href="deleteVehicleModel">Delete Vehicle Model</a></li>
@@ -58,7 +58,7 @@
         <li><a href="usersDetail">Users Detail</a></li>
       </ul>
       <ul class="nav navbar-nav navbar-right">
-        <li><a href="logIn"><span class="glyphicon glyphicon-log-in" style="color:red"></span> Log out</a></li>
+        <li><a href="logout"><span class="glyphicon glyphicon-log-in" style="color:red"></span> Log out</a></li>
       </ul>
     </div>
   </div>

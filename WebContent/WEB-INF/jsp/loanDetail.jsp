@@ -44,7 +44,7 @@
               <li><a href="retrieveAllVehicle">Display All Vehicle</a></li> 
             </ul>
           </li>
-        <li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="#">Model Operation<span class="caret"></span></a>
+        <li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="#">Vehicle Model Operation<span class="caret"></span></a>
             <ul class="dropdown-menu">
               <li><a href="insertVehicleModel">Add Vehicle Model</a></li>
               <li><a href="deleteVehicleModel">Delete Vehicle Model</a></li>
@@ -63,13 +63,13 @@
         <li><a href="usersDetail">Users Detail</a></li>
       </ul>
       <ul class="nav navbar-nav navbar-right">
-        <li><a href="logIn"><span class="glyphicon glyphicon-log-in" style="color:red"></span> Log out</a></li>
+        <li><a href="logout"><span class="glyphicon glyphicon-log-in" style="color:red"></span> Log out</a></li>
       </ul>
     </div>
   </div>
   </nav>
   <div class="jumbotron text-center" style="padding-top: 2px; padding-bottom: 13px;">
-            <h1><small>Enter Your User Id To Make Payment</small></h1>
+            <h1><small>Enter User Id To Make Payment</small></h1>
   </div> 
   <div class = "panel panel-default col-sm-offset-4 col-sm-4 col">
    <div class = "panel-heading">
@@ -83,12 +83,13 @@
             <table id = "table td th">
                 <tr>
                 <td>User Id</td>
-                <td><input type = "text" name = "userId" placeholder = "User Id" required = "required" /></td>                
+                <td><input type = "text" name = "userId" required = "required" /></td>                
                 </tr>
                 </table>
                 <div class = "panel-footer footer-align"><input type = "submit" name = "button" value = "Search" class="btn btn-info btn-lg pull-right col-sm-4 border input-align"/></div>
         </div>
         </form>
+        </div>
         </div>
     </body>
      <c:if test="${message != null}" >

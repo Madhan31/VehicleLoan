@@ -53,9 +53,8 @@
     </div>
 </div>    
       <h1>Welcome</h1>
-      <p>Loan sharks have been prevalent among our society since the beginning of early civilization. Illegal money lenders will often stop at nothing to collect the extortionate interest rates due to them. 
-      Such is the case below. 
-      The following mafia loan sharks were infamously world renowned for committing the most violent and heinous acts when owed money.</p>
+      <p>I2I Vehicle Loan pvt ltd is one of the superior, proactive loan service in the world. While providing cost effective, responsive service to others in our role as a development bank, and in doing so, meet the requirements of our stakeholders.
+      	We, at I2I pvt ltd, are commited to become the bank of choice by providing SUPERIOR, PRO-ACTIVE, INNOVATIVE, STATE-OF-THE-ART banking services with an attitude of care and concern for the customers and patrons. </p>
       <hr>
     </div>
     <div class="row row-bottom-margin">

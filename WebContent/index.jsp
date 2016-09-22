@@ -2,7 +2,6 @@
     pageEncoding="ISO-8859-1"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <html>
-	<link rel="stylesheet" href="css/style.css">
     <title>Welcome</title>
     <c:if test="${null == sessionScope['userId']}" >
         <c:redirect url = "logIn" />

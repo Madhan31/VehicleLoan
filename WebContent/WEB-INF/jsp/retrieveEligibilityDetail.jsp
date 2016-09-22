@@ -29,14 +29,14 @@
         <li><a href="usersDetail">Go Back</a></li>
       </ul>
       <ul class="nav navbar-nav navbar-right">
-        <li><a href="logIn"><span class="glyphicon glyphicon-log-in" style="color:red"></span> Log out</a></li>
+        <li><a href="logout"><span class="glyphicon glyphicon-log-in" style="color:red"></span> Log out</a></li>
       </ul>
     </div>
   </div>
   </nav>
-  <div id="contact" class="container">
-  <h3 class="text-center">Customer Eligibility Detail</h3>
-  </div>
+    	<div class="jumbotron text-center" style="padding-top: 2px; padding-bottom: 13px;">
+            <h1><small>Customer Eligibility Detail</small></h1>
+            </div> 
             <div class = "container">
         <c:if test = "${null != eligibilityDetails}">
             <table class="table">

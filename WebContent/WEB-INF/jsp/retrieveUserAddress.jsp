@@ -37,18 +37,18 @@
     <div class="collapse navbar-collapse" id="myNavbar">
       <ul class="nav navbar-nav">
         <li><a href="adminOperation">Home</a></li>
-        <li class = "active"><a href="#">Address Detail</a></li>
+        <li class = "active"><a href="">Address Detail</a></li>
         <li><a href="usersDetail">Go Back</a></li>
       </ul>
       <ul class="nav navbar-nav navbar-right">
-        <li><a href="logIn"><span class="glyphicon glyphicon-log-in" style="color:red"></span> Log out</a></li>
+        <li><a href="logout"><span class="glyphicon glyphicon-log-in" style="color:red"></span> Log out</a></li>
       </ul>
     </div>
   </div>
   </nav>
-  <div id="contact" class="container">
-  <h3 class="text-center">Customer Address Detail</h3>
-  </div>
+    	<div class="jumbotron text-center" style="padding-top: 2px; padding-bottom: 13px;">
+            <h1><small>Customer Address</small></h1>
+            </div> 
 	<textarea rows="5" cols="50" readonly>Address:
 	<m:out value="${userAddress.street}"></m:out>,
 	<m:out value="${userAddress.city}"></m:out>,

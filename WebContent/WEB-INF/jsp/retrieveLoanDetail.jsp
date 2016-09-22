@@ -33,7 +33,7 @@
         <li><a href="usersDetail">Go Back</a></li>
       </ul>
       <ul class="nav navbar-nav navbar-right">
-        <li><a href="logIn"><span class="glyphicon glyphicon-log-in" style="color:red"></span> Log out</a></li>
+        <li><a href="logout"><span class="glyphicon glyphicon-log-in" style="color:red"></span> Log out</a></li>
       </ul>
     </div>
   </div>
