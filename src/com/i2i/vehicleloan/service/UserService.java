@@ -6,6 +6,7 @@ import com.i2i.vehicleloan.dao.UserDao;
 import com.i2i.vehicleloan.exception.ConfigurationException;
 import com.i2i.vehicleloan.exception.DatabaseException;
 import com.i2i.vehicleloan.model.User;
+import com.i2i.vehicleloan.util.ValidationUtil;
 
 /**
  * <p>
@@ -32,9 +33,20 @@ public class UserService {
      *     It handle all the error message in configuration file.    
      */
     public void addUser(User user) throws DatabaseException, ConfigurationException {
-        userDao.addUser(user);
+    	if (ValidationUtil.isAlphabetic(user.getFirstName())) {
+    		if (ValidationUtil.isAlphabetic(user.getLastName())) {   	
+    			if (ValidationUtil.isTenDigit(String.valueOf(user.getMobileNumber()))) {
+    				if (ValidationUtil.isValidMailId(user.getEmailId())) {
+                        userDao.addUser(user);
+    		        }
+    		        throw new DatabaseException("Mobile number should consist of ten numbers");
+    		    }
+    		    throw new DatabaseException("Email id should consist example@gmail.com");
+    	    }
+    	    throw new DatabaseException("Please enter alphabets only in last name");
+        }
+    	throw new DatabaseException("Please enter alphabets only in first name");
     }
-    
     /**
      * Call user detail dao for retrieve particular user detail.
      * 
@@ -48,7 +60,10 @@ public class UserService {
      *     It handle all the error message in configuration file.  
      */
     public User retrieveUser(int userId) throws DatabaseException, ConfigurationException {
-        return userDao.retrieveUser(userId);
+    	if (ValidationUtil.isNumeric(String.valueOf(userId))) {
+           return userDao.retrieveUser(userId);
+        }
+    	throw new DatabaseException("Please enter number only in price");
     }
     
     /**

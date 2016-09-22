@@ -6,6 +6,7 @@ import com.i2i.vehicleloan.dao.VehicleModelDao;
 import com.i2i.vehicleloan.exception.ConfigurationException;
 import com.i2i.vehicleloan.exception.DatabaseException;
 import com.i2i.vehicleloan.model.VehicleModel;
+import com.i2i.vehicleloan.util.ValidationUtil;
 
 /**
  * <p>
@@ -51,7 +52,10 @@ public class VehicleModelService {
      *     It handle all the error message in configuration file.    
 	 */
 	public VehicleModel getVehicleModelById(int vehicleModelId) throws DatabaseException, ConfigurationException {
-		return vehicleModelDao.getVehicleModelById(vehicleModelId);		
+		if (ValidationUtil.isAlphabetic(String.valueOf(vehicleModelId))) {
+		    return vehicleModelDao.getVehicleModelById(vehicleModelId);
+		}
+		throw new DatabaseException("Please enter number only in model id");
 	}	
 	
 	/**
@@ -81,9 +85,12 @@ public class VehicleModelService {
      *     It handle all the error message in configuration file.    
 	 */
 	public String addVehicleModel(VehicleModel vehicleModel) throws DatabaseException, ConfigurationException {
-        vehicleModelDao.addVehicleModel(vehicleModel);
-        return "Vehicle model details added successfully";
-    }
+        if (ValidationUtil.isNumeric(String.valueOf(vehicleModel.getPrice()))) {
+		    vehicleModelDao.addVehicleModel(vehicleModel);
+            return "Vehicle model details added successfully";
+        }
+        throw new DatabaseException("Please enter number only in price");
+	}
     
 	/**
 	 * Call vehicle model dao for remove vehicle model detail.
@@ -98,10 +105,13 @@ public class VehicleModelService {
      *     It handle all the error message in configuration file.    
 	 */
     public String removeVehicleModel(int vehicleModelId) throws DatabaseException, ConfigurationException {
-    	if (!(eligibilityDetailService.isVehicleModelExist(vehicleModelId))) {
-            vehicleModelDao.removeVehicleModel(vehicleModelId);
-            return "Vehicle model details deleted successfully";
-    	}
-    	return "This vehicle model have a loan ";
-    }  
+    	if (ValidationUtil.isAlphabetic(String.valueOf(vehicleModelId))) {
+    	    if (!(eligibilityDetailService.isVehicleModelExist(vehicleModelId))) {
+                vehicleModelDao.removeVehicleModel(vehicleModelId);
+                return "Vehicle model details deleted successfully";
+    	    }
+    	    return "This vehicle model have a loan ";
+        }
+    	throw new DatabaseException("Please enter number only in model id");
+    }
 }

@@ -6,6 +6,7 @@ import com.i2i.vehicleloan.dao.VehicleDao;
 import com.i2i.vehicleloan.exception.ConfigurationException;
 import com.i2i.vehicleloan.exception.DatabaseException;
 import com.i2i.vehicleloan.model.Vehicle;
+import com.i2i.vehicleloan.util.ValidationUtil;
 
 /**
  * <p>
@@ -65,7 +66,10 @@ public class VehicleService {
      *     It handle all the error message in configuration file.       
      */
     public String removeVehicle(int vehicleId) throws DatabaseException, ConfigurationException {
-        vehicleDao.removeVehicle(vehicleId);
-        return "Vehicle details deleted successfully";
-    }    
+    	if (ValidationUtil.isNumeric(String.valueOf(vehicleId))) {
+            vehicleDao.removeVehicle(vehicleId);
+            return "Vehicle details deleted successfully";
+        }
+    	throw new DatabaseException("Please enter number only");
+    }
 }
