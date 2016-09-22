@@ -32,7 +32,7 @@
         <li><a href="contact">Contact</a></li>
       </ul>
       <ul class="nav navbar-nav navbar-right">
-        <li><a href="signUp"><span class="glyphicon glyphicon-log-in"></span> New User</a></li>
+        <li><a href="signUp"><span class="glyphicon glyphicon-log-in" style = "color:blue;"></span> New User</a></li>
       </ul>
     </div>
   </div>

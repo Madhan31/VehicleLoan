@@ -38,10 +38,6 @@
     </div>
   </div>
   </nav>
-  <div id="contact" class="container">
-  <h3 class="text-center">Customer Loan Detail</h3>
-  </div>
-</nav>    
     	<div class="jumbotron text-center" style="padding-top: 2px; padding-bottom: 13px;">
             <h1><small>Loan Detail</small></h1>
             </div>

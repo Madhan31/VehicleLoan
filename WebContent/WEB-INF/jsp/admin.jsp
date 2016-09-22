@@ -102,7 +102,8 @@
                 </tr>
                 <form:input type = "hidden" path = "role.roleId" value = "1" />
                 </table>
-				<div class = "panel-footer footer-align"><input type = "submit" name = "button" value = "Register" class="btn btn-info btn-lg pull-left col-sm-4 border input-align"/></div>                </div>
+				<div class = "panel-footer footer-align"><input type = "submit" name = "button" value = "Register" class="btn btn-info btn-lg pull-left col-sm-4 border input-align"/></div>       
+	         </div>
             </form:form>
             </div>
 <style>

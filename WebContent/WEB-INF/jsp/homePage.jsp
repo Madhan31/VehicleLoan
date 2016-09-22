@@ -82,7 +82,7 @@ function loadvehicleprice() {
         <li><a onclick="javascript:history.back()">Go Back</a></li>
       </ul>
       <ul class="nav navbar-nav navbar-right">
-        <li><a href="logout"><span class="glyphicon glyphicon-log-in"></span> Logout</a></li>
+        <li><a href="logout"><span class="glyphicon glyphicon-log-in" style = "color:red;"></span> Logout</a></li>
       </ul>
     </div>
   </div>

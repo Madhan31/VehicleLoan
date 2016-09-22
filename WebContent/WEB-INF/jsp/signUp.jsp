@@ -69,7 +69,7 @@
       </ul>
     </div>
   </div>
-</nav>
+</nav>	
 <div class = "panel panel-default col-sm-offset-4 col-sm-4 col">
    <div class = "panel-heading">
       <h2 class = "panel-title text-center title-style">

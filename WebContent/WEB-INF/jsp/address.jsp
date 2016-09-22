@@ -18,19 +18,34 @@
     </c:if>
     <title>Add Address</title>
     <body onload = "populateStates('state','city');" >	
-    <div class="jumbotron text-center" style="padding-top: 2px; padding-bottom: 13px;">
-            <h1><small>User Address Detail</small></h1>
-            </div>
-            <div class="formLogout">
-            <a href="logout">
-                 <img src="img/logout.png" alt="logout" style="width:42px;height:42px;border:0;">
-            </a>
-            </div>
-            <div class ="formBack">
-                <img src="img/back.png" alt="logout" style="width:42px;height:47px;border:0;" onclick="alert('<c:out value = "You already applied for loan kindly enter you address..." />')"/>
-            </div>
+    <nav class="navbar navbar-inverse">
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>                        
+      </button>
+    </div>
+    <div class="collapse navbar-collapse" id="myNavbar">
+      <ul class="nav navbar-nav">
+        <li><a onclick="alert('<c:out value = "You already applied for loan kindly enter you address..." />')">Go Back</a></li>
+        <li><a href="retrieveUserLoanDetail">View Loan Detail</a></li>
+      </ul>
+      <ul class="nav navbar-nav navbar-right">
+        <li><a href="logout"><span class="glyphicon glyphicon-log-in" style = "color:red;"></span> Logout</a></li>
+      </ul>
+    </div>
+  </div>
+</nav>      
+    	<div class="jumbotron text-center" style="padding-top: 2px; padding-bottom: 13px;">
+            <h1><small>Add Address Detail</small></h1>
+            </div>                                 
+<div class = "panel panel-default col-sm-offset-4 col-sm-4 col">    
+    <div class = "panel-body"><br> 
     <form:form action="address" modelAttribute = "address" method="post">
-        <table>
+        <div class="form-group">
+        <table id = "table td th">
         <tr>
         <td>Street Name:</td>
         <td><form:input type = "text" name = "street" path = "street" placeholder = "Street" required = "required"/></td>
@@ -40,7 +55,7 @@
         <td><form:input type = "text" name = "landmark" path = "landmark" placeholder = "Landmark" required = "required"/></td>
         </tr>
         <tr>
-        <td>State</td>		        
+        <td>State:</td>		        
         <td><form:select id="state" name ="state" path = "state" ></form:select></td>
         </tr>
         <tr>
@@ -48,16 +63,15 @@
         <td><form:select id ="city" name ="city" path = "city" ></form:select></td>     
         </tr>
         <tr>
-        <td>Pincode</td>
+        <td>Pincode:</td>
         <td><form:input type = "text" name = "pincode" path = "pincode" placeholder = "Pincode" required = "required"/></td>
         </tr>
         <form:input type = "hidden" path = "user.userId" value = "${sessionScope['userId']}" />
-        <tr>
-        <td></td>
-        <td><input type = "submit" name = "button" value = "Register"/></td>
-        </tr>
         </table>
+       <div class = "panel-footer footer-align"><input type = "submit" name = "button" value = "Add" class="btn btn-info btn-lg pull-right col-sm-4 border input-align"/></div> 
+        </div>
     </form:form>
+    </div>
     <c:if test="${message != null}" >
         <script language = "javaScript" type = "text/javascript">
             alert('<c:out value = "${message}" />');
